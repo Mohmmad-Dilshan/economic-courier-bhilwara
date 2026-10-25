@@ -22,10 +22,13 @@ To guarantee integrity when presenting to the business owner, every piece of bus
 ### 1.2 Category B: Unverified Information (Requires Client Confirmation)
 The following items are placeholders and **must not be presented as fact** to the client. All instances in code/copy must be denoted with `[PENDING CLIENT CONFIRMATION]`:
 
-| Attribute | Temporary Prototype Placeholder | Client Confirmation Needed |
+| Attribute | Temporary Prototype Placeholder / Reference | Client Confirmation Needed |
 | :--- | :--- | :--- |
-| **Office Address** | *"Shop No. [X], Near Textile Market / Pur Road, Bhilwara, Rajasthan 311001"* | Exact physical shop address & Google Maps pin |
-| **Direct Phone** | `+91 98XXX XXXXX` / `+91 1482 XXXXXX` | Official mobile & landline numbers |
+| **Office Address** | *"Shop No. [X], Near Textile Market / Pur Road, Bhilwara, Rajasthan 311001"* | Exact physical shop address & Google Maps pin verification |
+| **Direct Phone** | `+91 89551 44444` (User Supplied) | Final owner confirmation before wiring to live actions |
+| **Instagram Channel** | [`instagram.com/economiccourierbhilwara`](https://www.instagram.com/economiccourierbhilwara/) (User Supplied) | Owner authorization before media embedding or linking |
+| **Google Maps Listing** | [`share.google/qFnFe077dnj6QUEwb`](https://share.google/qFnFe077dnj6QUEwb) (User Supplied) | Owner validation (listing ownership & timings not verified) |
+| **Tracking Method** | **Unknown** (Strict Demo Mode `DEMO-` only) | Client specification (Carrier portal vs. API vs. phone) |
 | **Official Email** | `info@economiccourierbhilwara.com` | Verified domain email or Gmail |
 | **GSTIN Number** | `08AAAAA0000A1Z5` [Placeholder] | Valid GST registration certificate |
 | **Operating Hours** | Mon–Sat: 9:30 AM – 8:30 PM; Sun: Closed/By appointment | Real office opening & pickup cutoff timings |
@@ -33,6 +36,8 @@ The following items are placeholders and **must not be presented as fact** to th
 | **Statistics & Counters** | *"15+ Years Experience", "50,000+ Parcels"* | Real operational metrics & founding year |
 | **Client Testimonials** | Curated industry archetype quotes | Real client quotes and merchant approvals |
 | **Rates / Pricing Tables**| Slabs indicated as *"Custom quotation based on volume"* | Actual rate cards per destination & weight |
+
+> **Note:** For the complete provenance and source registry, see [`docs/BUSINESS-DATA.md`](./BUSINESS-DATA.md).
 
 ---
 

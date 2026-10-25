@@ -1,89 +1,81 @@
 # Asset Management & Media Strategy
 
-**Project:** Economic Courier / eCS World Wide Express  
-**Document:** Media Handling, Photography Protocols, Video Embedding & Asset Registry  
-**Status:** Approved for Implementation  
+**Project:** Economic Courier / eCS World Wide Express, Bhilwara<br/>
+**Document:** Media Handling, Asset Inventory, Photography Protocols & Licensing Guardrails<br/>
+**Status:** Canonical Media Registry (Updated for Data & Assets Foundation)
 
 ---
 
-## 1. Logo Asset Strategy
+## 1. Asset Inventory & Status Audit
 
-The visual brand identity relies on the provided **eCS World Wide Express** emblem combined with the **Economic Courier** trade lockup.
+A rigorous inspection of the workspace (`d:\economic-courier-bhilwara`) was conducted. Below is the active asset inventory:
 
-### 1.1 Digital Asset Inventory
-| Asset Filename | Format | Dimensions | Purpose |
-| :--- | :--- | :--- | :--- |
-| `ecs-logo-primary.svg` | SVG (Vector) | Scalable | Primary navigation bar & hero branding (Navy + Express Red) |
-| `ecs-logo-white.svg` | SVG (Vector) | Scalable | Dark surfaces, footer, inverted banners |
-| `ecs-emblem.svg` | SVG (Vector) | 64×64 | Monogram icon for favicon, mobile headers, map pins |
-| `favicon.ico` | ICO | 32×32 | Standard browser tab icon |
-| `apple-touch-icon.png` | PNG | 180×180 | iOS home screen bookmark icon |
-
-### 1.2 Preservation Rules
-- Vector SVGs are the mandatory format for logos to prevent raster pixelation on high-DPI displays.
-- All SVGs must be sanitized and optimized (removing unnecessary Illustrator/Inkscape metadata).
+| Asset Category | Target Path | Required Files | Current Workspace Status | Licensing & Permission Status |
+| :--- | :--- | :--- | :--- | :--- |
+| **Brand Logo (Primary)** | `public/assets/logo/` | `ecs-logo-primary.svg`, `ecs-logo-white.svg` | ⚠️ **MISSING** — Zero local vector files found. | Proposed SVG concept generated in code; requires official owner approval. |
+| **Brand Favicon / Monogram** | `public/assets/logo/` | `favicon.ico`, `ecs-monogram.svg` | ⚠️ **MISSING** | Pending approved client mark. |
+| **Storefront & Office Hub** | `public/assets/office/` | `exterior-storefront.webp`, `booking-counter.webp` | ⚠️ **MISSING** | Must be authentic photos taken at Bhilwara premises. Stock photos of rival couriers prohibited. |
+| **Team & Delivery Staff** | `public/assets/team/` | `counter-staff.webp`, `delivery-rider.webp` | ⚠️ **MISSING** | Requires express consent from featured employees before public publishing. |
+| **Parcels & Textile Swatches**| `public/assets/parcels/` | `textile-swatches.webp`, `tamper-evident-seal.webp`| ⚠️ **MISSING** | Labels must have customer private information (names, phones) redacted. |
+| **Social Media Visuals** | `public/assets/social/` | Poster frames for video reels | ⚠️ **MISSING** | **Strict Rule:** No downloading or scraping from Instagram without explicit owner permission. |
 
 ---
 
-## 2. Business Photography Protocols
+## 2. File Organization Architecture
 
-The credibility of the website relies heavily on authentic local imagery rather than stock photos.
-
-### 2.1 Authentic On-Site Photography Checklist (To Request from Client)
-1. **Bhilwara Office Exterior:** Daytime shot of the storefront displaying the eCS / Economic Courier signage.
-2. **Dispatch & Booking Counter:** Friendly staff member assisting a customer or weighing a parcel on the commercial scale.
-3. **Packaging Station:** Highlighting secure parcel taping, barcode labeling, and waterproof plastic outer pouches.
-4. **Textile Sample Dispatch:** Real fabric swatches, sample cardboard folders, and neatly stacked sample boxes ready for air dispatch.
-5. **Local Delivery Fleet:** Courier delivery personnel with branded bags or vehicles in front of the Bhilwara hub.
-
-### 2.2 Curated Stock Photography Guardrails
-Until authentic photos are collected during the client review phase:
-- Use only clean, neutral commercial logistics imagery (e.g., cargo freighter aircraft taxiing at dusk, highway express transit at sunrise, clean parcels on modern conveyor systems).
-- **Prohibited:** Never use stock imagery showing couriers wearing branded uniforms of multinational rivals (e.g. UPS, DHL, FedEx, Royal Mail) or non-Indian urban settings.
-
----
-
-## 3. Instagram Video & Reel Content Integration
-
-Couriers frequently leverage Instagram reels to showcase daily dispatches, customer unboxings, and branch activities.
-
-### 3.1 Rules of Engagement for Video Assets
-1. **Authorization Mandatory:** Only embed videos, reels, or clips explicitly authorized or created by the business owner.
-2. **No Performance Degradation:**
-   - Never embed heavy, unoptimized third-party Instagram iframe scripts directly into the initial page load.
-   - Use a **Facade / Lite-Player Pattern**: Display a high-resolution, static poster frame with a play button overlay.
-   - The actual video player or iframe loads *only* when the user clicks the play button.
-3. **Playback Constraints:**
-   - Video must be muted by default (`muted: true`).
-   - Autoplay is prohibited unless video is an ambient background loop with `playsinline` and no audio track.
-   - Must support responsive aspect ratios (`16:9` for landscape videos, `9:16` for Instagram Reels / vertical clips).
-
----
-
-## 4. File Optimization & Storage Architecture
+The `public/assets/` tree has been scaffolded to maintain strict separation of concerns:
 
 ```
 public/assets/
-├── brand/
-│   ├── ecs-logo-primary.svg
-│   ├── ecs-logo-white.svg
-│   ├── ecs-emblem.svg
-│   └── og-preview.jpg         (1200×630, < 180 KB)
-├── hero/
-│   ├── express-air-cargo.webp (1920×1080, < 160 KB)
-│   └── express-mobile-hero.webp(800×1000, < 90 KB)
-├── services/
-│   ├── domestic-express.webp  (800×600, < 75 KB)
-│   ├── international-cargo.webp(800×600, < 75 KB)
-│   ├── document-courier.webp  (800×600, < 70 KB)
-│   └── textile-logistics.webp (800×600, < 80 KB)
-└── video/
-    └── poster-reel-preview.webp(720×1280, < 95 KB)
+├── logo/               # Vector SVGs, lockups, and emblems
+│   └── README.md       # Target specs & approval criteria
+├── office/             # Authentic Bhilwara hub storefront & counter photos
+│   └── README.md
+├── team/               # Counter staff and delivery personnel photos (with consent)
+│   └── README.md
+├── parcels/            # Packaging, tamper-evident seals & swatch dispatch photos
+│   └── README.md
+└── social/             # Authorized poster frames for Instagram video facade player
+    └── README.md
 ```
 
-### 4.1 Compression Standards
-- All raster photographs must be encoded in **WebP** or **AVIF** format with quality factor between `80–85%`.
-- Max raw file sizes:
-  - Hero banners: `< 180 KB`
-  - Service card images: `< 80 KB`
-  - Icons and badges: `< 15 KB`
+---
+
+## 3. Brand Logo Usage & Approval Protocol
+
+1. **No Fabricated Logos as Official Assets:**
+   - The geometric vector chevron currently utilized in [`BrandLogo.tsx`](../src/components/common/BrandLogo.tsx) is a **temporary placeholder concept**.
+   - It must remain visibly tagged with:
+     `[Proposed Concept Logo — Pending Official Asset Approval]`
+   - It will only be transitioned to the permanent brand asset once the business owner formally supplies their official vector file or gives written authorization to adopt the design.
+
+2. **Vector SVG Mandate:**
+   - Raster JPEG/PNG screenshots of logos found on social media will not be used in the header due to pixelation on retina displays.
+   - The client will be requested to supply original EPS/AI/SVG artwork or high-resolution vector assets.
+
+---
+
+## 4. Photography & Video Integration Protocols
+
+### 4.1 Authentic Photography Acquisition (Phase 3 On-Site Checklist)
+To be collected directly from the Economic Courier owner:
+1. **Daytime Exterior:** Bhilwara storefront showing street entrance and eCS signage.
+2. **Booking Counter:** Active desk with commercial scale and parcel dispatch register.
+3. **Textile Sample Handling:** Packaged fabric swatches ready for evening air dispatch.
+4. **Delivery Vehicle / Courier Rider:** Bhilwara local delivery setup.
+
+### 4.2 Instagram Video Facade Pattern
+For the user-supplied Instagram reference ([`instagram.com/economiccourierbhilwara`](https://www.instagram.com/economiccourierbhilwara/)):
+- **Consent Gate:** Media from the Instagram profile may only be utilized once permission is granted by the account owner.
+- **Performance Rule:** Do not embed heavy third-party Instagram iframes into the initial server render. When authorized, use a **Lite-Player Facade** (static poster image with an SVG play icon; clicking loads the video stream on demand).
+
+---
+
+## 5. File Formats & Compression Budgets
+
+| Asset Type | Maximum Raw Size | Primary Format | Fallback Format |
+| :--- | :--- | :--- | :--- |
+| **Vector Logos & Icons** | `< 25 KB` | Clean SVG | WebP |
+| **Hero Backgrounds** | `< 160 KB` | WebP / AVIF | Compressed JPEG |
+| **Feature / Card Photos** | `< 75 KB` | WebP / AVIF | Compressed JPEG |
+| **Video Reel Posters** | `< 90 KB` | WebP | Compressed JPEG |

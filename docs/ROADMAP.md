@@ -50,13 +50,13 @@
 
 ---
 
-### Phase 1: Foundation Setup & Design System Tokens
+### Phase 1: Foundation Setup & Design System Tokens (COMPLETED)
 - **Milestone Goal:** Establish clean, error-free Next.js App Router framework with foundational CSS design tokens.
 - **Key Tasks:**
-  1. Initialize Next.js project with TypeScript in root directory.
-  2. Implement `tokens.css` with exact color palette, typography scales, radii, and elevations from [`docs/DESIGN.md`](./DESIGN.md).
-  3. Create atomic UI components: `Button`, `Card`, `Badge`, `Input`, `NoticeBanner`.
-  4. Build responsive `Header` and `Footer` layout shell.
+  1. [x] Initialize Next.js project with TypeScript in root directory.
+  2. [x] Implement `tokens.css` with exact color palette, typography scales, radii, and elevations from [`docs/DESIGN.md`](./DESIGN.md).
+  3. [x] Create atomic UI components: `Button`, `Card`, `Badge`, `Input`, `NoticeBanner`.
+  4. [x] Build responsive `Header` and `Footer` layout shell.
 
 ---
 

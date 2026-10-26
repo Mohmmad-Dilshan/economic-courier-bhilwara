@@ -42,3 +42,14 @@ yarn-error.log*
 # TypeScript build info
 *.tsbuildinfo
 next-env.d.ts
+
+# Local design previews (not required for website deployment)
+/public/current-page-preview.png
+/public/final-homepage-preview.png
+/public/pixel-close-homepage.png
+/public/pixel-close-v2.png
+/public/updated-homepage-preview.png
+
+# Design reference assets (not required for website deployment)
+/public/assets/ref-*.png
+/public/assets/reference-ui.jpg

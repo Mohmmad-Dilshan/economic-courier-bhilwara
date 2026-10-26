@@ -67,7 +67,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={cn(plusJakarta.variable, jetbrainsMono.variable)}>
-      <body className="min-h-screen flex flex-col bg-[var(--color-bg-primary)] text-[var(--color-text-primary)] antialiased">
+      <body className="font-sans min-h-screen flex flex-col bg-[var(--color-bg-primary)] text-[var(--color-text-primary)] antialiased">
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />

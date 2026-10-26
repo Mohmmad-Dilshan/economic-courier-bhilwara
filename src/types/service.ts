@@ -1,3 +1,5 @@
+import { ServiceTypeOption } from './inquiry';
+
 export type ServiceCategory = 'all' | 'domestic' | 'international' | 'textile' | 'documents';
 
 export interface ServiceItem {
@@ -12,4 +14,8 @@ export interface ServiceItem {
   features: string[];
   idealFor: string[];
   iconName: string;
+  image: string;
+  inquiryServiceKey: ServiceTypeOption;
+  ctaLabel: string;
+  complianceNote?: string;
 }

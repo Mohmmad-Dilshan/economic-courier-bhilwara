@@ -24,7 +24,7 @@ export const SERVICES_DATA: ServiceItem[] = [
       'Inter-city sample packets',
     ],
     iconName: 'Truck',
-    image: '/assets/services/service-domestic.jpg',
+    image: '/assets/services/card-domestic.jpg',
     inquiryServiceKey: 'domestic',
     ctaLabel: 'Inquire for Domestic Courier',
     complianceNote:
@@ -53,7 +53,7 @@ export const SERVICES_DATA: ServiceItem[] = [
       'Cross-border business correspondence',
     ],
     iconName: 'Globe',
-    image: '/assets/services/service-international.jpg',
+    image: '/assets/services/card-international.jpg',
     inquiryServiceKey: 'international',
     ctaLabel: 'Inquire for International Courier',
     complianceNote:
@@ -82,7 +82,7 @@ export const SERVICES_DATA: ServiceItem[] = [
       'Corporate bank guarantees & financial briefs',
     ],
     iconName: 'FileText',
-    image: '/assets/services/service-documents.jpg',
+    image: '/assets/services/card-documents.jpg',
     inquiryServiceKey: 'documents',
     ctaLabel: 'Inquire for Document Courier',
     complianceNote:
@@ -111,7 +111,7 @@ export const SERVICES_DATA: ServiceItem[] = [
       'Apparel design catalogs & merchandiser packages',
     ],
     iconName: 'Layers',
-    image: '/assets/office/about-collage.jpg',
+    image: '/assets/services/card-textiles.jpg',
     inquiryServiceKey: 'textiles',
     ctaLabel: 'Inquire for Textile Shipping',
     complianceNote:

@@ -15,10 +15,20 @@ export type ServiceTypeOption =
   | 'textiles'
   | 'other';
 
+export type WeightBracketOption =
+  | 'under-0.5kg'
+  | '0.5-2kg'
+  | '2-5kg'
+  | '5kg-plus'
+  | 'commercial-freight';
+
 export interface CustomerInquiryFormData {
   customerName: string;
   contact: string;
   serviceType: ServiceTypeOption | '';
+  originCity?: string;
+  destination?: string;
+  approxWeight?: WeightBracketOption | '';
   message: string;
 }
 
@@ -26,6 +36,9 @@ export interface InquiryFieldErrors {
   customerName?: string;
   contact?: string;
   serviceType?: string;
+  originCity?: string;
+  destination?: string;
+  approxWeight?: string;
   message?: string;
   general?: string;
 }

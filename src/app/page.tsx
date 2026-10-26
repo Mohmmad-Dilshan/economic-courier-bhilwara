@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import {
@@ -10,18 +10,18 @@ import {
   Truck,
   Globe,
   FileText,
+  Layers,
   Phone,
-  ChevronRight,
   MessageCircle,
   AlertCircle,
   Loader2,
 } from 'lucide-react';
-import { InstagramIcon } from '@/components/common/InstagramIcon';
 import { DEMO_SHIPMENTS } from '@/lib/trackingData';
 import { ConsignmentDemoResult } from '@/types/tracking';
 import { BUSINESS_INFO } from '@/lib/constants';
 import { TrackingModal } from '@/components/home/TrackingModal';
 import { InquiryModal } from '@/components/home/InquiryModal';
+import { RealMomentsSection } from '@/components/home/RealMomentsSection';
 
 export default function HomePage() {
   const [trackingInput, setTrackingInput] = useState('');
@@ -34,12 +34,6 @@ export default function HomePage() {
   // Inquiry Desk state
   const [inquiryModalOpen, setInquiryModalOpen] = useState(false);
   const [inquiryInitialService, setInquiryInitialService] = useState<string>('');
-
-  // Reels carousel scroll ref
-  const reelsScrollRef = useRef<HTMLDivElement>(null);
-  const scrollReels = () => {
-    reelsScrollRef.current?.scrollBy({ left: 240, behavior: 'smooth' });
-  };
 
   const handleOpenInquiry = (service: string = '') => {
     setInquiryInitialService(service);
@@ -83,23 +77,38 @@ export default function HomePage() {
     {
       id: 'domestic',
       title: 'Domestic Courier',
-      description: 'Fast & reliable delivery across India.',
-      image: '/assets/services/service-domestic.jpg',
+      caption: 'domestic · all-india',
+      subtext: 'Surface & air express across India',
+      image: '/assets/services/card-domestic.jpg',
       icon: Truck,
+      rotation: 'lg:-rotate-2',
     },
     {
       id: 'international',
       title: 'International Courier',
-      description: 'Global delivery in 200+ countries.',
-      image: '/assets/services/service-international.jpg',
+      caption: 'international · 220+ countries',
+      subtext: 'Global air cargo & priority transit',
+      image: '/assets/services/card-international.jpg',
       icon: Globe,
+      rotation: 'lg:rotate-1',
     },
     {
       id: 'documents',
       title: 'Documents & Parcels',
-      description: 'Secure handling of your important documents and parcels.',
-      image: '/assets/services/service-documents.jpg',
+      caption: 'documents · priority desk',
+      subtext: 'Secure paperwork & dossiers',
+      image: '/assets/services/card-documents.jpg',
       icon: FileText,
+      rotation: 'lg:-rotate-1',
+    },
+    {
+      id: 'textiles',
+      title: 'Commercial & Textile Cargo',
+      caption: 'commercial · textile freight',
+      subtext: 'Bhilwara mills to national hubs',
+      image: '/assets/services/card-textiles.jpg',
+      icon: Layers,
+      rotation: 'lg:rotate-2',
     },
   ];
 
@@ -114,15 +123,19 @@ export default function HomePage() {
             {/* Left Content Column */}
             <div className="lg:col-span-6 space-y-5">
               {/* Location Badge */}
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FFF5F5] border border-red-100/80 text-[#DC2626] text-[11px] font-bold tracking-wider uppercase shadow-2xs">
-                <MapPin className="w-3.5 h-3.5 text-[#DC2626] fill-red-100" />
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-gradient-to-r from-red-50 via-white to-red-50/50 border border-red-200/80 text-[#DC2626] text-[11px] font-extrabold tracking-widest uppercase shadow-xs reveal-init delay-75">
+                <span className="w-2 h-2 rounded-full bg-[#DC2626] shadow-[0_0_8px_rgba(220,38,38,0.7)] animate-pulse" />
+                <MapPin className="w-3.5 h-3.5 text-[#DC2626]" />
                 <span>BHILWARA · INDIA</span>
               </div>
 
-              {/* Large Two-Color Headline with Flight Trail and Airplane */}
-              <h1 className="text-3xl sm:text-4xl lg:text-[48px] xl:text-[52px] font-extrabold text-[#0F172A] tracking-tight leading-[1.08]">
-                From Bhilwara to <br />
-                <span className="text-[#DC2626] inline-flex items-center relative">
+              {/* Large Modern Gradient Headline with Flight Trail and Airplane */}
+              <h1 className="text-4xl sm:text-5xl lg:text-[54px] xl:text-[58px] font-black tracking-[-0.035em] leading-[1.06] reveal-init delay-150">
+                <span className="bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900 bg-clip-text text-transparent">
+                  From Bhilwara to
+                </span>{' '}
+                <br />
+                <span className="bg-gradient-to-r from-[#DC2626] via-[#EF4444] to-[#B91C1C] bg-clip-text text-transparent inline-flex items-center relative drop-shadow-[0_2px_12px_rgba(220,38,38,0.18)]">
                   the world.
                   <svg
                     className="w-14 h-11 -mt-7 ml-2.5 inline-block overflow-visible shrink-0"
@@ -145,13 +158,12 @@ export default function HomePage() {
               </h1>
 
               {/* Subtitle */}
-              <p className="text-sm sm:text-base text-slate-600 leading-relaxed max-w-md">
-                Domestic &amp; international courier services <br className="hidden sm:inline" />
-                for documents and parcels.
+              <p className="text-base sm:text-lg text-slate-600 leading-relaxed max-w-md font-normal reveal-init delay-225">
+                Priority domestic express &amp; worldwide air cargo connectivity, tailored for Bhilwara trade, documents, and parcels.
               </p>
 
               {/* Search / Tracking Box */}
-              <div className="pt-1 max-w-[440px]">
+              <div className="pt-1 max-w-[440px] reveal-init delay-300">
                 <form
                   onSubmit={handleTrackSubmit}
                   noValidate
@@ -210,7 +222,7 @@ export default function HomePage() {
               </div>
 
               {/* WhatsApp / Inquiry Action Button */}
-              <div className="pt-0.5">
+              <div className="pt-0.5 reveal-init delay-375">
                 <button
                   type="button"
                   onClick={() => handleOpenInquiry()}
@@ -224,7 +236,7 @@ export default function HomePage() {
             </div>
 
             {/* Right Hero Image Card */}
-            <div className="lg:col-span-6 relative flex justify-center lg:justify-end">
+            <div className="lg:col-span-6 relative flex justify-center lg:justify-end reveal-init reveal-scale delay-200">
               <div className="relative w-full max-w-[560px]">
                 <Image
                   src="/assets/hero/hero-courier.jpg"
@@ -245,24 +257,32 @@ export default function HomePage() {
           ========================================================================= */}
       <section id="business" className="py-2 lg:py-3">
         <div className="max-w-[1200px] mx-auto px-6 lg:px-8">
-          <div className="bg-[#F0F7FD] rounded-2xl py-3.5 px-8 border border-[#E0EDF8] flex flex-wrap md:flex-nowrap items-center justify-between gap-6 shadow-2xs">
-            <div className="flex items-center gap-2.5 text-[13px] font-semibold text-[#0F172A] flex-1 justify-center md:justify-start">
-              <Truck className="w-4 h-4 text-[#0F172A] shrink-0" />
+          <div className="bg-[#F0F7FD] rounded-2xl py-3 px-6 sm:px-8 border border-[#E0EDF8] flex flex-wrap md:flex-nowrap items-center justify-between gap-4 sm:gap-6 shadow-2xs reveal-init">
+            <div className="flex items-center gap-2.5 text-[13px] font-bold text-slate-800 flex-1 justify-center md:justify-start reveal-init delay-75">
+              <div className="w-6 h-6 rounded-md bg-white text-[#DC2626] shadow-2xs flex items-center justify-center shrink-0 border border-red-100/60">
+                <Truck className="w-3.5 h-3.5 text-[#DC2626]" />
+              </div>
               <span>Domestic shipping</span>
             </div>
             <div className="hidden md:block h-6 w-px bg-[#D4E4F3]" />
-            <div className="flex items-center gap-2.5 text-[13px] font-semibold text-[#0F172A] flex-1 justify-center md:justify-start">
-              <Globe className="w-4 h-4 text-[#0F172A] shrink-0" />
+            <div className="flex items-center gap-2.5 text-[13px] font-bold text-slate-800 flex-1 justify-center md:justify-start reveal-init delay-150">
+              <div className="w-6 h-6 rounded-md bg-white text-[#DC2626] shadow-2xs flex items-center justify-center shrink-0 border border-red-100/60">
+                <Globe className="w-3.5 h-3.5 text-[#DC2626]" />
+              </div>
               <span>International courier</span>
             </div>
             <div className="hidden md:block h-6 w-px bg-[#D4E4F3]" />
-            <div className="flex items-center gap-2.5 text-[13px] font-semibold text-[#0F172A] flex-1 justify-center md:justify-start">
-              <FileText className="w-4 h-4 text-[#0F172A] shrink-0" />
+            <div className="flex items-center gap-2.5 text-[13px] font-bold text-slate-800 flex-1 justify-center md:justify-start reveal-init delay-225">
+              <div className="w-6 h-6 rounded-md bg-white text-[#DC2626] shadow-2xs flex items-center justify-center shrink-0 border border-red-100/60">
+                <FileText className="w-3.5 h-3.5 text-[#DC2626]" />
+              </div>
               <span>Documents &amp; parcels</span>
             </div>
             <div className="hidden md:block h-6 w-px bg-[#D4E4F3]" />
-            <div className="flex items-center gap-2.5 text-[13px] font-semibold text-[#0F172A] flex-1 justify-center md:justify-start">
-              <MapPin className="w-4 h-4 text-[#0F172A] shrink-0" />
+            <div className="flex items-center gap-2.5 text-[13px] font-bold text-slate-800 flex-1 justify-center md:justify-start reveal-init delay-300">
+              <div className="w-6 h-6 rounded-md bg-white text-[#DC2626] shadow-2xs flex items-center justify-center shrink-0 border border-red-100/60">
+                <MapPin className="w-3.5 h-3.5 text-[#DC2626]" />
+              </div>
               <span>Bhilwara-based service</span>
             </div>
           </div>
@@ -270,201 +290,85 @@ export default function HomePage() {
       </section>
 
       {/* =========================================================================
-          3. OUR SERVICES SECTION (3 Wide Desktop Cards)
+          3. OUR SERVICES SECTION (SwipeTrip-Inspired Floating Polaroid Photo Cards)
           ========================================================================= */}
-      <section id="services" className="py-8 lg:py-12">
-        <div className="max-w-[1200px] mx-auto px-6 lg:px-8">
+      <section id="services" className="py-10 lg:py-16 bg-[#FAF7F2]/60">
+        <div className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8">
           {/* Section Header */}
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 mb-6">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 mb-8 reveal-init">
             <div>
-              <p className="text-[11px] font-bold text-[#DC2626] tracking-wider uppercase">
-                OUR SERVICES
-              </p>
-              <h2 className="text-2xl sm:text-3xl lg:text-[34px] font-extrabold text-[#0F172A] tracking-tight mt-1">
-                Courier, made simpler.
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-red-50 border border-red-200/80 text-[#DC2626] text-[11px] font-extrabold tracking-widest uppercase shadow-2xs mb-2">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#DC2626] animate-pulse" />
+                <span>OUR SERVICES</span>
+              </div>
+              <h2 className="text-3xl sm:text-4xl lg:text-[40px] font-black tracking-[-0.035em] leading-[1.12]">
+                <span className="bg-gradient-to-b from-slate-900 to-slate-800 bg-clip-text text-transparent">Courier,</span>{' '}
+                <span className="bg-gradient-to-r from-[#DC2626] via-[#E11D48] to-[#EF4444] bg-clip-text text-transparent">made simpler.</span>
               </h2>
-              <p className="text-sm text-slate-500 mt-1 max-w-md">
+              <p className="text-sm sm:text-base text-slate-500 mt-2 max-w-md font-normal leading-relaxed">
                 Reliable, secure and efficient courier solutions for your personal and business needs.
               </p>
             </div>
             <Link
               href="/services"
-              className="text-[13px] font-semibold text-slate-700 hover:text-[#DC2626] inline-flex items-center gap-1 transition-colors self-start sm:self-end"
+              className="text-[13px] font-semibold text-slate-700 hover:text-[#DC2626] inline-flex items-center gap-1.5 transition-colors self-start sm:self-end group"
             >
               <span>View all services</span>
-              <ArrowRight className="w-3.5 h-3.5" />
+              <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
             </Link>
           </div>
 
-          {/* 3 Service Cards Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {services.map((service) => (
-              <div
-                key={service.id}
-                onClick={() => handleOpenInquiry(service.id)}
-                role="button"
-                tabIndex={0}
-                onKeyDown={(e) => {
-                  if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    handleOpenInquiry(service.id);
-                  }
-                }}
-                className="bg-white rounded-2xl border border-slate-200/80 shadow-2xs hover:shadow-md transition-all duration-300 hover:-translate-y-1 overflow-hidden flex flex-col group cursor-pointer"
-              >
-                {/* Clean Photo (Contains circular badge naturally) */}
-                <div className="relative w-full h-44 sm:h-48 overflow-hidden">
-                  <Image
-                    src={service.image}
-                    alt={service.title}
-                    fill
-                    sizes="(max-width: 768px) 100vw, 380px"
-                    className="object-cover transition-transform duration-300 group-hover:scale-105"
-                  />
-                </div>
+          {/* SwipeTrip-Style Polaroid Cards: 2x2 on Mobile, 4 Across on Desktop with Floating Tilts */}
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3.5 sm:gap-5 lg:gap-6 pt-2 pb-3">
+            {services.map((service, sIdx) => {
+              const delays = ['delay-75', 'delay-150', 'delay-225', 'delay-300'];
+              const delayClass = delays[sIdx % delays.length];
 
-                {/* Card Body */}
-                <div className="p-5 pt-4 flex-1 flex flex-col justify-between">
-                  <div>
-                    <h3 className="text-base font-bold text-[#0F172A]">
-                      {service.title}
-                    </h3>
-                    <p className="text-[13px] text-slate-500 mt-1 leading-relaxed">
-                      {service.description}
+              return (
+                <div
+                  key={service.id}
+                  onClick={() => handleOpenInquiry(service.id)}
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      e.preventDefault();
+                      handleOpenInquiry(service.id);
+                    }
+                  }}
+                  className={`bg-white rounded-2xl sm:rounded-3xl p-2.5 sm:p-3.5 lg:p-4 pb-3 sm:pb-4.5 lg:pb-5 shadow-[0_10px_30px_rgba(15,23,42,0.06)] hover:shadow-[0_22px_44px_rgba(15,23,42,0.12)] border border-slate-100/90 flex flex-col group cursor-pointer transition-all duration-300 ease-out hover:scale-[1.03] hover:-translate-y-1.5 hover:z-10 ${service.rotation} hover:rotate-0 reveal-init reveal-scale ${delayClass}`}
+                >
+                  {/* Photo Frame with Clean Rounded Corners */}
+                  <div className="relative w-full aspect-[4/3] rounded-xl sm:rounded-2xl overflow-hidden bg-slate-100">
+                    <Image
+                      src={service.image}
+                      alt={service.title}
+                      fill
+                      sizes="(max-width: 640px) 50vw, (max-width: 1024px) 50vw, 280px"
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                  </div>
+
+                  {/* Polaroid Caption Label (SwipeTrip Style: centered with dot separator) */}
+                  <div className="text-center pt-2.5 sm:pt-3.5 flex flex-col items-center justify-center">
+                    <p className="text-[11px] sm:text-[13px] lg:text-[14px] font-bold text-slate-800 group-hover:text-[#DC2626] transition-colors leading-tight tracking-tight">
+                      {service.caption}
+                    </p>
+                    <p className="hidden sm:block text-[11px] text-slate-400 font-medium mt-0.5 leading-tight">
+                      {service.subtext}
                     </p>
                   </div>
-                  <div className="mt-4 pt-1">
-                    <span className="w-7 h-7 rounded-full bg-[#0F172A] text-white flex items-center justify-center transition-all group-hover:scale-110 group-hover:bg-[#DC2626]">
-                      <ArrowRight className="w-3.5 h-3.5" />
-                    </span>
-                  </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
 
       {/* =========================================================================
-          4. REAL MOMENTS SECTION (Spacious Pale-Blue Card with Video Reels)
+          4. REAL MOMENTS SECTION (Interactive Video Reels with in-place controls)
           ========================================================================= */}
-      <section id="gallery" className="py-6 lg:py-10">
-        <div className="max-w-[1200px] mx-auto px-6 lg:px-8">
-          <div className="bg-[#F0F5FA] rounded-3xl p-7 lg:p-9 border border-[#E2ECF5]">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-              {/* Left Text Column */}
-              <div className="lg:col-span-4 space-y-3">
-                <p className="text-[11px] font-bold text-[#DC2626] tracking-wider uppercase">
-                  REAL MOMENTS
-                </p>
-                <h2 className="text-2xl sm:text-3xl lg:text-[34px] font-extrabold text-[#0F172A] tracking-tight leading-tight">
-                  Real people. <br />
-                  Real parcels.
-                </h2>
-                <p className="text-[13px] text-slate-600 leading-relaxed max-w-xs pt-1">
-                  A closer look at our operations, team and the people behind every delivery.
-                </p>
-                <div className="pt-2">
-                  <a
-                    href={BUSINESS_INFO.instagramUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-red-500 text-red-600 bg-white hover:bg-red-50 text-[13px] font-semibold shadow-2xs transition-all cursor-pointer"
-                  >
-                    <InstagramIcon size={15} className="text-[#DC2626]" />
-                    <span>Watch our Instagram reels</span>
-                    <ArrowRight className="w-3.5 h-3.5 text-[#DC2626]" />
-                  </a>
-                </div>
-              </div>
-
-              {/* Right Reels Row (1 Wide + 3 Narrow Cards) */}
-              <div
-                ref={reelsScrollRef}
-                className="lg:col-span-8 flex items-center gap-3.5 overflow-x-auto pb-2 scrollbar-none scroll-smooth"
-              >
-                {/* Reel 1 (Featured Wide Reel) */}
-                <a
-                  href={BUSINESS_INFO.instagramUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  title="Watch 'Inside eCS' on Instagram"
-                  className="relative w-64 lg:w-[280px] h-44 shrink-0 rounded-xl overflow-hidden shadow-2xs group cursor-pointer hover:shadow-md transition-all"
-                >
-                  <Image
-                    src="/assets/social/reel-1-inside-ecs.jpg"
-                    alt="Inside eCS"
-                    fill
-                    sizes="(max-width: 1024px) 260px, 280px"
-                    className="object-cover transition-transform duration-300 group-hover:scale-105"
-                  />
-                </a>
-
-                {/* Reel 2 (#TeamECS) */}
-                <a
-                  href={BUSINESS_INFO.instagramUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  title="Watch '#TeamECS' on Instagram"
-                  className="relative w-28 lg:w-[120px] h-44 shrink-0 rounded-xl overflow-hidden shadow-2xs group cursor-pointer hover:shadow-md transition-all"
-                >
-                  <Image
-                    src="/assets/social/reel-2-team.jpg"
-                    alt="#TeamECS"
-                    fill
-                    sizes="(max-width: 1024px) 112px, 120px"
-                    className="object-cover transition-transform duration-300 group-hover:scale-105"
-                  />
-                </a>
-
-                {/* Reel 3 (Packing Process) */}
-                <a
-                  href={BUSINESS_INFO.instagramUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  title="Watch 'Packing Process' on Instagram"
-                  className="relative w-28 lg:w-[120px] h-44 shrink-0 rounded-xl overflow-hidden shadow-2xs group cursor-pointer hover:shadow-md transition-all"
-                >
-                  <Image
-                    src="/assets/social/reel-3-packing.jpg"
-                    alt="Packing Process"
-                    fill
-                    sizes="(max-width: 1024px) 112px, 120px"
-                    className="object-cover transition-transform duration-300 group-hover:scale-105"
-                  />
-                </a>
-
-                {/* Reel 4 (Dispatch) */}
-                <a
-                  href={BUSINESS_INFO.instagramUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  title="Watch 'Dispatch' on Instagram"
-                  className="relative w-28 lg:w-[120px] h-44 shrink-0 rounded-xl overflow-hidden shadow-2xs group cursor-pointer hover:shadow-md transition-all"
-                >
-                  <Image
-                    src="/assets/social/reel-4-dispatch.jpg"
-                    alt="Dispatch"
-                    fill
-                    sizes="(max-width: 1024px) 112px, 120px"
-                    className="object-cover transition-transform duration-300 group-hover:scale-105"
-                  />
-                </a>
-
-                {/* Next Arrow Button */}
-                <button
-                  type="button"
-                  onClick={scrollReels}
-                  aria-label="Scroll next real moments"
-                  className="w-9 h-9 rounded-full bg-white shadow-md border border-slate-100 flex items-center justify-center text-slate-700 shrink-0 hover:bg-slate-50 cursor-pointer active:scale-95 transition-all"
-                >
-                  <ChevronRight className="w-4 h-4" />
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <RealMomentsSection />
 
       {/* =========================================================================
           5. ABOUT US SECTION (Desktop Collage Left + Copy Right)
@@ -473,7 +377,7 @@ export default function HomePage() {
         <div className="max-w-[1200px] mx-auto px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
             {/* Left Photo Collage */}
-            <div className="lg:col-span-6 relative flex justify-center lg:justify-start">
+            <div className="lg:col-span-6 relative flex justify-center lg:justify-start reveal-init reveal-slide-left">
               <div className="relative w-full max-w-[540px]">
                 <Image
                   src="/assets/office/about-collage.jpg"
@@ -486,15 +390,16 @@ export default function HomePage() {
             </div>
 
             {/* Right Content */}
-            <div className="lg:col-span-6 space-y-4">
-              <p className="text-[11px] font-bold text-[#DC2626] tracking-wider uppercase">
-                ABOUT US
-              </p>
-              <h2 className="text-2xl sm:text-3xl lg:text-[38px] font-extrabold text-[#0F172A] tracking-tight leading-tight">
-                A local team, <br />
-                ready to help.
+            <div className="lg:col-span-6 space-y-4 reveal-init reveal-slide-right">
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-red-50 border border-red-200/80 text-[#DC2626] text-[11px] font-extrabold tracking-widest uppercase shadow-2xs mb-1">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#DC2626] animate-pulse" />
+                <span>ABOUT US</span>
+              </div>
+              <h2 className="text-3xl sm:text-4xl lg:text-[42px] font-black tracking-[-0.035em] leading-[1.08]">
+                <span className="bg-gradient-to-b from-slate-900 to-slate-800 bg-clip-text text-transparent">A local team,</span> <br />
+                <span className="bg-gradient-to-r from-[#DC2626] via-[#E11D48] to-[#EF4444] bg-clip-text text-transparent">ready to help.</span>
               </h2>
-              <p className="text-sm sm:text-base text-slate-600 leading-relaxed max-w-lg pt-1">
+              <p className="text-sm sm:text-base text-slate-600 leading-relaxed max-w-lg pt-1 font-normal">
                 Economic Courier is a trusted name in Bhilwara, providing domestic and international courier services with a strong focus on reliability, safety and customer satisfaction.
               </p>
               <div className="pt-3">
@@ -516,30 +421,29 @@ export default function HomePage() {
           6. CONTACT / LOCATION STRIP (Refined Desktop Dimensions)
           ========================================================================= */}
       <section id="contact" className="py-4 sm:py-6 mb-6">
-        <div className="max-w-[1200px] mx-auto px-6 lg:px-8">
+        <div className="max-w-[1200px] mx-auto px-6 lg:px-8 reveal-init delay-100">
           <div className="bg-[#F0F7FD] rounded-2xl border border-[#E0EDF8] flex flex-col md:flex-row items-center justify-between shadow-2xs overflow-hidden">
-            {/* Left: Call Us */}
-            <div
+            {/* Left: Call Us / Inquire Online */}
+            <button
+              type="button"
               onClick={() => handleOpenInquiry()}
-              role="button"
-              tabIndex={0}
-              onKeyDown={(e) => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                  e.preventDefault();
-                  handleOpenInquiry();
-                }
-              }}
-              className="flex items-center gap-3.5 py-4 pl-8 cursor-pointer group hover:bg-sky-50/60 transition-colors"
-              title="Click to open Customer & Rate Inquiry Desk"
+              className="flex items-center gap-3.5 py-4 pl-8 text-left bg-transparent border-0 cursor-pointer group hover:bg-sky-50/60 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-600 focus-visible:ring-inset"
+              aria-label="Open Customer & Rate Inquiry Desk (+91 89551 44444, line pending owner confirmation)"
+              title="Click to open Customer & Rate Inquiry Desk (Phone line pending confirmation)"
             >
               <div className="w-9 h-9 rounded-full bg-red-100/70 flex items-center justify-center text-[#DC2626] shrink-0 group-hover:scale-105 transition-transform">
                 <Phone className="w-4 h-4 fill-current" />
               </div>
               <div>
-                <p className="text-[11px] font-semibold text-slate-500">Call Us &bull; Inquire Online</p>
-                <p className="text-base font-bold text-[#0F172A] tracking-tight">+91 89551 44444</p>
+                <p className="text-[11px] font-semibold text-slate-500 flex items-center gap-1.5 flex-wrap">
+                  <span>Call Us &bull; Inquire Online</span>
+                  <span className="text-[9px] font-mono font-medium px-1.5 py-0.2 rounded bg-amber-100/80 text-amber-800 border border-amber-200">
+                    Pending Confirmation
+                  </span>
+                </p>
+                <p className="text-base font-bold text-slate-800 tracking-tight group-hover:text-[#DC2626] transition-colors">+91 89551 44444</p>
               </div>
-            </div>
+            </button>
 
             {/* Divider */}
             <div className="hidden md:block h-9 w-px bg-[#D4E4F3]" />
@@ -550,7 +454,7 @@ export default function HomePage() {
               target="_blank"
               rel="noopener noreferrer"
               title="Open Bhilwara Hub location on Google Maps"
-              className="flex items-center gap-3.5 py-4 px-6 flex-1 max-w-lg hover:bg-sky-50/60 transition-colors group"
+              className="flex items-center gap-3.5 py-4 px-6 flex-1 max-w-lg hover:bg-sky-50/60 transition-colors group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-600 focus-visible:ring-inset"
             >
               <div className="w-9 h-9 rounded-full bg-red-100/70 flex items-center justify-center text-[#DC2626] shrink-0 group-hover:scale-105 transition-transform">
                 <MapPin className="w-4 h-4 text-[#DC2626]" />

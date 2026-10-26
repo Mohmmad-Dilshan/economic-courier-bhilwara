@@ -22,7 +22,7 @@ import { SERVICES_DATA } from '@/lib/servicesData';
 import { ServiceCategory, ServiceItem } from '@/types/service';
 import { ServiceTypeOption } from '@/types/inquiry';
 import {
-  DEMO_TRACKING_DISCLAIMER,
+  BUSINESS_INFO,
   CARRIER_TRADEMARK_DISCLAIMER,
 } from '@/lib/constants';
 
@@ -85,26 +85,32 @@ export function ServicesView() {
 
           <div className="max-w-3xl space-y-4">
             {/* Location & Authority Badge */}
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FFF5F5] border border-red-100 text-[#DC2626] text-[11px] font-bold tracking-wider uppercase shadow-2xs">
-              <MapPin className="w-3.5 h-3.5 text-[#DC2626] fill-red-100" />
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-gradient-to-r from-red-50 via-white to-red-50/50 border border-red-200/80 text-[#DC2626] text-[11px] font-extrabold tracking-widest uppercase shadow-xs reveal-init delay-75">
+              <span className="w-2 h-2 rounded-full bg-[#DC2626] shadow-[0_0_8px_rgba(220,38,38,0.7)] animate-pulse" />
+              <MapPin className="w-3.5 h-3.5 text-[#DC2626]" />
               <span>BHILWARA LOGISTICS CORRIDOR &bull; eCS EXPRESS</span>
             </div>
 
-            {/* Main Headline */}
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#0F172A] tracking-tight leading-[1.12]">
-              Courier &amp; Cargo Services{' '}
-              <span className="text-[#DC2626]">Built for Dependability.</span>
+            {/* Main Modern Headline */}
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-[54px] font-black tracking-[-0.035em] leading-[1.08] reveal-init delay-150">
+              <span className="bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900 bg-clip-text text-transparent">
+                Courier &amp; Cargo Services{' '}
+              </span>
+              <br className="hidden sm:inline" />
+              <span className="bg-gradient-to-r from-[#DC2626] via-[#E11D48] to-[#EF4444] bg-clip-text text-transparent">
+                Built for Dependability.
+              </span>
             </h1>
 
             {/* Subtitle */}
-            <p className="text-sm sm:text-base text-slate-600 leading-relaxed max-w-2xl">
+            <p className="text-sm sm:text-base text-slate-600 leading-relaxed max-w-2xl font-normal reveal-init delay-225">
               Connecting Bhilwara&apos;s weaving mills, trade offices, and retail senders with
               priority domestic transit across India and worldwide express air courier reaching 220+
               countries.
             </p>
 
             {/* Client Transparency Notice */}
-            <div className="pt-2">
+            <div className="pt-2 reveal-init delay-300">
               <NoticeBanner variant="info" title="Operational Standard Notice">
                 Consignment quotations are provided upon parcel specification (weight, dimensions,
                 destination). Live carrier API tracking connects upon franchise system activation.
@@ -128,7 +134,7 @@ export function ServicesView() {
                   onClick={() => setActiveCategory(tab.id)}
                   className={`px-4 py-2 rounded-full text-xs sm:text-sm font-bold whitespace-nowrap transition-all cursor-pointer ${
                     isActive
-                      ? 'bg-[#0F172A] text-white shadow-xs'
+                      ? 'bg-[#DC2626] text-white shadow-xs shadow-red-500/25'
                       : 'bg-slate-100 text-slate-600 hover:bg-slate-200 hover:text-slate-900'
                   }`}
                   aria-pressed={isActive}
@@ -154,7 +160,7 @@ export function ServicesView() {
               <article
                 key={service.id}
                 id={service.id}
-                className="bg-white rounded-3xl border border-slate-200/90 shadow-2xs hover:shadow-md transition-all duration-300 overflow-hidden"
+                className="bg-white rounded-3xl border border-slate-200/90 shadow-2xs hover:shadow-md transition-all duration-300 overflow-hidden reveal-init delay-75"
               >
                 <div
                   className={`grid grid-cols-1 lg:grid-cols-12 items-center ${
@@ -200,7 +206,7 @@ export function ServicesView() {
                         </span>
                       </div>
 
-                      <h2 className="hidden lg:block text-2xl sm:text-3xl font-extrabold text-[#0F172A] tracking-tight">
+                      <h2 className="hidden lg:block text-2xl sm:text-3xl font-extrabold text-slate-900 group-hover:text-[#DC2626] transition-colors tracking-tight">
                         {service.title}
                       </h2>
                       <p className="text-xs sm:text-sm font-semibold text-slate-500">
@@ -300,14 +306,16 @@ export function ServicesView() {
           ========================================================================= */}
       <section className="py-12 lg:py-16 bg-[#F8FAFC] border-y border-slate-100">
         <div className="max-w-[1200px] mx-auto px-6 lg:px-8 space-y-10">
-          <div className="text-center max-w-2xl mx-auto space-y-2">
-            <span className="text-[11px] font-bold text-[#DC2626] uppercase tracking-wider">
-              OPERATIONAL WORKFLOW
+          <div className="text-center max-w-2xl mx-auto space-y-3 reveal-init">
+            <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-50/80 border border-red-200/60 text-xs font-semibold text-[#DC2626] tracking-wide uppercase">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#DC2626] animate-pulse" />
+              Operational Workflow
             </span>
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-[#0F172A] tracking-tight">
-              How Your Consignments Move
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight">
+              <span className="bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 bg-clip-text text-transparent">How Your Consignments</span>{' '}
+              <span className="bg-gradient-to-r from-[#DC2626] via-[#E11D48] to-[#EF4444] bg-clip-text text-transparent">Move</span>
             </h2>
-            <p className="text-xs sm:text-sm text-slate-500 leading-relaxed">
+            <p className="text-xs sm:text-sm text-slate-500 leading-relaxed max-w-xl mx-auto">
               Transparent four-step logistics standard for individual senders and Bhilwara commercial
               trading accounts.
             </p>
@@ -315,7 +323,7 @@ export function ServicesView() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {/* Step 1 */}
-            <div className="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-2xs space-y-3">
+            <div className="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-2xs space-y-3 reveal-init delay-75">
               <div className="w-10 h-10 rounded-xl bg-red-50 text-[#DC2626] font-extrabold flex items-center justify-center text-sm">
                 01
               </div>
@@ -327,7 +335,7 @@ export function ServicesView() {
             </div>
 
             {/* Step 2 */}
-            <div className="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-2xs space-y-3">
+            <div className="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-2xs space-y-3 reveal-init delay-150">
               <div className="w-10 h-10 rounded-xl bg-slate-100 text-slate-800 font-extrabold flex items-center justify-center text-sm">
                 02
               </div>
@@ -339,7 +347,7 @@ export function ServicesView() {
             </div>
 
             {/* Step 3 */}
-            <div className="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-2xs space-y-3">
+            <div className="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-2xs space-y-3 reveal-init delay-225">
               <div className="w-10 h-10 rounded-xl bg-slate-100 text-slate-800 font-extrabold flex items-center justify-center text-sm">
                 03
               </div>
@@ -351,7 +359,7 @@ export function ServicesView() {
             </div>
 
             {/* Step 4 */}
-            <div className="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-2xs space-y-3">
+            <div className="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-2xs space-y-3 reveal-init delay-300">
               <div className="w-10 h-10 rounded-xl bg-slate-100 text-slate-800 font-extrabold flex items-center justify-center text-sm">
                 04
               </div>
@@ -366,82 +374,141 @@ export function ServicesView() {
       </section>
 
       {/* =========================================================================
-          5. MANDATORY COMPLIANCE & PROTOCOL ADVISORY
+          5. SERVICE TRANSPARENCY & OPERATIONAL STANDARDS
           ========================================================================= */}
-      <section className="py-10">
+      <section className="py-8 sm:py-12">
         <div className="max-w-[1200px] mx-auto px-6 lg:px-8">
-          <div className="bg-[#FFFDF7] rounded-3xl p-6 sm:p-8 border border-amber-200/90 space-y-4">
-            <div className="flex items-center gap-2 text-amber-900 font-bold text-sm">
-              <ShieldCheck className="w-4 h-4 text-amber-700 shrink-0" />
-              <span>Compliance &amp; Prototype Operational Standards</span>
+          <div className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/90 shadow-2xs space-y-4 reveal-init delay-75">
+            <div className="flex items-center gap-2 text-slate-900 font-bold text-sm">
+              <ShieldCheck className="w-4 h-4 text-[#DC2626] shrink-0" />
+              <span>Service Transparency &amp; Dispatch Standards</span>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs text-amber-950/90 leading-relaxed">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs text-slate-600 leading-relaxed">
               <div>
-                <span className="font-bold block mb-1">Pricing &amp; Freight Rates</span>
+                <span className="font-bold text-slate-900 block mb-1">Tailored Freight Pricing</span>
                 <p>
-                  Formal courier quotations are calculated individually based on package dimensions,
-                  dead weight vs. volumetric weight, and applicable fuel/carrier surcharges. Generic
-                  rate cards are not published to prevent inaccurate estimations.
+                  Courier quotations are calculated accurately per shipment based on parcel dimensions,
+                  dead weight versus volumetric weight, and destination delivery zone.
                 </p>
               </div>
 
               <div>
-                <span className="font-bold block mb-1">Carrier Network Disclaimers</span>
+                <span className="font-bold text-slate-900 block mb-1">Priority Forwarding Networks</span>
                 <p>{CARRIER_TRADEMARK_DISCLAIMER}</p>
               </div>
             </div>
-
-            <p className="text-[11px] text-amber-800/80 pt-2 border-t border-amber-200/60 italic">
-              Prototype Note: {DEMO_TRACKING_DISCLAIMER}
-            </p>
           </div>
         </div>
       </section>
 
       {/* =========================================================================
-          6. CONVERSION / CALL-TO-ACTION SECTION
+          6. FLOATING CONVERSION / CALL-TO-ACTION CARD
           ========================================================================= */}
-      <section className="py-12 lg:py-16 bg-[#07132D] text-white">
-        <div className="max-w-[1200px] mx-auto px-6 lg:px-8 text-center space-y-6">
-          <span className="inline-block px-3 py-1 rounded-full bg-white/10 text-slate-300 text-xs font-semibold tracking-wider uppercase">
-            Bhilwara Dispatch Counter
-          </span>
+      <section className="py-4 sm:py-6">
+        <div className="max-w-[1200px] mx-auto px-6 lg:px-8">
+          <div className="relative rounded-3xl bg-gradient-to-br from-[#0B1736] via-[#071026] to-[#040814] p-8 sm:p-12 lg:p-14 text-center border border-white/[0.08] shadow-lg overflow-hidden space-y-5 reveal-init reveal-scale">
+            <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-red-500/10 border border-red-500/25 text-xs font-semibold text-red-300 tracking-wider uppercase">
+              <span className="w-1.5 h-1.5 rounded-full bg-red-400 animate-pulse" />
+              Bhilwara Dispatch Counter
+            </span>
 
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight max-w-2xl mx-auto">
-            Ready to Send Your Parcel or Fabric Samples?
-          </h2>
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight max-w-2xl mx-auto leading-tight text-white">
+              <span className="text-white">Ready to Send Your Parcel or </span>
+              <span className="bg-gradient-to-r from-red-400 via-rose-300 to-amber-300 bg-clip-text text-transparent">
+                Fabric Samples?
+              </span>
+            </h2>
 
-          <p className="text-xs sm:text-sm text-slate-300 max-w-xl mx-auto leading-relaxed">
-            Submit your courier requirements through our interactive inquiry desk or visit our
-            location near Bhilwara Textile Market on Pur Road.
-          </p>
+            <p className="text-xs sm:text-sm text-slate-300 max-w-xl mx-auto leading-relaxed">
+              Submit your parcel details through our quick rate inquiry desk or reach our Pur Road hub counter in Bhilwara directly.
+            </p>
 
-          <div className="pt-2 flex flex-wrap items-center justify-center gap-3.5">
-            <Button
-              variant="primary"
-              size="lg"
+            <div className="pt-2 flex flex-wrap items-center justify-center gap-3.5">
+              <Button
+                variant="primary"
+                size="lg"
+                onClick={() => handleOpenInquiry('domestic')}
+                rightIcon={<ArrowRight className="w-4 h-4" />}
+              >
+                Open Rate Inquiry Desk
+              </Button>
+
+              <button
+                type="button"
+                onClick={() => handleOpenInquiry('domestic')}
+                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl border border-white/15 bg-white/10 hover:bg-white/15 text-white text-sm font-semibold transition-all cursor-pointer"
+              >
+                <Phone className="w-4 h-4 text-red-400" />
+                <span>Call Bhilwara Desk</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* =========================================================================
+          7. BHILWARA HUB CONTACT & LOCATION STRIP
+          ========================================================================= */}
+      <section className="py-4 sm:py-6 mb-4">
+        <div className="max-w-[1200px] mx-auto px-6 lg:px-8">
+          <div className="bg-[#F0F7FD] rounded-2xl border border-[#E0EDF8] flex flex-col md:flex-row items-center justify-between shadow-2xs overflow-hidden reveal-init delay-100">
+            {/* Left: Call Us / Inquire Online */}
+            <button
+              type="button"
               onClick={() => handleOpenInquiry('domestic')}
-              rightIcon={<ArrowRight className="w-4 h-4" />}
+              className="flex items-center gap-3.5 py-4 pl-8 text-left bg-transparent border-0 cursor-pointer group hover:bg-sky-50/60 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-600 focus-visible:ring-inset"
+              aria-label="Open Customer & Rate Inquiry Desk (+91 89551 44444)"
             >
-              Open Rate Inquiry Desk
-            </Button>
+              <div className="w-9 h-9 rounded-full bg-red-100/70 flex items-center justify-center text-[#DC2626] shrink-0 group-hover:scale-105 transition-transform">
+                <Phone className="w-4 h-4 fill-current" />
+              </div>
+              <div>
+                <p className="text-[11px] font-semibold text-slate-500">Call Us &bull; Inquire Online</p>
+                <p className="text-base font-bold text-slate-800 tracking-tight group-hover:text-[#DC2626] transition-colors">
+                  +91 89551 44444
+                </p>
+              </div>
+            </button>
 
-            <Link
-              href="/#tracking"
-              className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl border border-slate-700 bg-slate-900/60 hover:bg-slate-800 text-white text-sm font-semibold transition-all"
-            >
-              <span>Sample Tracking Lookup</span>
-              <ExternalLink className="w-4 h-4" />
-            </Link>
+            {/* Divider */}
+            <div className="hidden md:block h-9 w-px bg-[#D4E4F3]" />
 
-            <Link
-              href="/#contact"
-              className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl border border-slate-700 bg-slate-900/60 hover:bg-slate-800 text-white text-sm font-semibold transition-all"
+            {/* Middle: Our Location */}
+            <a
+              href={BUSINESS_INFO.googleMapsUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              title="Open Bhilwara Hub location on Google Maps"
+              className="flex items-center gap-3.5 py-4 px-6 flex-1 max-w-lg hover:bg-sky-50/60 transition-colors group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-600 focus-visible:ring-inset"
             >
-              <Phone className="w-4 h-4 text-[#DC2626]" />
-              <span>Contact Bhilwara Desk</span>
-            </Link>
+              <div className="w-9 h-9 rounded-full bg-red-100/70 flex items-center justify-center text-[#DC2626] shrink-0 group-hover:scale-105 transition-transform">
+                <MapPin className="w-4 h-4 text-[#DC2626]" />
+              </div>
+              <div>
+                <p className="text-[11px] font-semibold text-slate-500">Our Location &bull; Open in Maps</p>
+                <p className="text-[13px] font-medium text-slate-700 leading-snug group-hover:text-[#DC2626] transition-colors">
+                  C-74, Bhilwara Textile Market, Pur Road, Bhilwara, Rajasthan 311001
+                </p>
+              </div>
+            </a>
+
+            {/* Right: Map Graphic */}
+            <a
+              href={BUSINESS_INFO.googleMapsUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              title="Open location on Google Maps"
+              className="relative w-56 h-20 shrink-0 hidden sm:block overflow-hidden group cursor-pointer"
+            >
+              <Image
+                src="/assets/office/map-graphic.jpg"
+                alt="Economic Courier location map marker"
+                fill
+                sizes="224px"
+                className="object-cover object-right group-hover:scale-105 transition-transform duration-300"
+              />
+            </a>
           </div>
         </div>
       </section>

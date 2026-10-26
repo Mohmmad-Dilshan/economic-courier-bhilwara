@@ -59,6 +59,7 @@ export const metadata: Metadata = {
 
 import { Header } from '@/components/sections/Header';
 import { Footer } from '@/components/sections/Footer';
+import { ScrollObserver } from '@/components/common/ScrollObserver';
 
 export default function RootLayout({
   children,
@@ -68,6 +69,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={cn(plusJakarta.variable, jetbrainsMono.variable)}>
       <body className="font-sans min-h-screen flex flex-col bg-[var(--color-bg-primary)] text-[var(--color-text-primary)] antialiased">
+        <ScrollObserver />
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />

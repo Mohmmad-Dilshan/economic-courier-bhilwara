@@ -40,7 +40,25 @@ export function validateInquiryForm(data: CustomerInquiryFormData): InquiryField
     errors.serviceType = 'Please select a service category.';
   }
 
-  // 4. Message / Inquiry Details validation
+  // 4. Optional Courier Details validation
+  if (data.originCity && data.originCity.trim().length > 60) {
+    errors.originCity = 'Origin city cannot exceed 60 characters.';
+  }
+  if (data.destination && data.destination.trim().length > 80) {
+    errors.destination = 'Destination cannot exceed 80 characters.';
+  }
+  const validWeights: string[] = [
+    'under-0.5kg',
+    '0.5-2kg',
+    '2-5kg',
+    '5kg-plus',
+    'commercial-freight',
+  ];
+  if (data.approxWeight && !validWeights.includes(data.approxWeight)) {
+    errors.approxWeight = 'Please select a valid weight bracket.';
+  }
+
+  // 5. Message / Inquiry Details validation
   const message = data.message.trim();
   if (!message) {
     errors.message = 'Please describe your inquiry or shipment requirement.';

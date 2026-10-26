@@ -45,58 +45,69 @@
 /* ==========================================================================
    Base Layout, Typography & Reset Rules
    ========================================================================== */
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    color-scheme: light;
+    text-size-adjust: 100%;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--color-bg-primary);
+    color: var(--color-text-primary);
+    font-family: var(--font-family-sans);
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-normal);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+
+  /* Accessible focus ring */
+  :focus-visible {
+    outline: 2px solid var(--color-accent-600);
+    outline-offset: 2px;
+  }
+
+  /* Headings base */
+  h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    color: var(--color-primary-800);
+    font-family: var(--font-family-sans);
+    font-weight: var(--font-weight-bold);
+    line-height: var(--line-height-tight);
+  }
+
+  p {
+    margin: 0;
+    color: var(--color-text-secondary);
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  button {
+    font-family: inherit;
+  }
 }
 
-html {
-  scroll-behavior: smooth;
-  color-scheme: light;
-  text-size-adjust: 100%;
-}
-
-body {
-  margin: 0;
-  padding: 0;
-  background-color: var(--color-bg-primary);
-  color: var(--color-text-primary);
-  font-family: var(--font-family-sans);
-  font-size: var(--font-size-base);
-  line-height: var(--line-height-normal);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  overflow-x: hidden;
-}
-
-/* Accessible focus ring */
-:focus-visible {
-  outline: 2px solid var(--color-accent-600);
-  outline-offset: 2px;
-}
-
-/* Headings base */
-h1, h2, h3, h4, h5, h6 {
-  margin: 0;
-  color: var(--color-primary-800);
-  font-family: var(--font-family-sans);
-  font-weight: var(--font-weight-bold);
-  line-height: var(--line-height-tight);
-}
-
-p {
-  margin: 0;
-  color: var(--color-text-secondary);
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-button {
-  font-family: inherit;
+/* Guarantee pure white text for buttons and links with text-white */
+a.text-white,
+a[class*="text-white"],
+button.text-white,
+button[class*="text-white"],
+.text-white {
+  color: #FFFFFF !important;
 }
 
 /* Layout container utility */
@@ -110,6 +121,49 @@ button {
 }
 
 /* ==========================================================================
+   Scroll-Triggered Reveal Animations (ANIMATIONS.md Spec)
+   ========================================================================== */
+.reveal-init {
+  opacity: 0;
+  translate: 0 28px;
+  transition-property: opacity, translate, scale;
+  transition-duration: 650ms;
+  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, translate;
+}
+
+.reveal-init.reveal-scale {
+  scale: 0.95;
+}
+
+.reveal-init.reveal-slide-left {
+  translate: -36px 0;
+}
+
+.reveal-init.reveal-slide-right {
+  translate: 36px 0;
+}
+
+.reveal-active {
+  opacity: 1;
+  translate: 0 0;
+  scale: 1;
+}
+
+/* Staggered Delay Classes */
+.delay-75 { transition-delay: 75ms; }
+.delay-100 { transition-delay: 100ms; }
+.delay-150 { transition-delay: 150ms; }
+.delay-200 { transition-delay: 200ms; }
+.delay-225 { transition-delay: 225ms; }
+.delay-250 { transition-delay: 250ms; }
+.delay-300 { transition-delay: 300ms; }
+.delay-350 { transition-delay: 350ms; }
+.delay-375 { transition-delay: 375ms; }
+.delay-400 { transition-delay: 400ms; }
+.delay-500 { transition-delay: 500ms; }
+
+/* ==========================================================================
    Reduced Motion Accessibility (prefers-reduced-motion)
    ========================================================================== */
 @media (prefers-reduced-motion: reduce) {
@@ -120,5 +174,11 @@ button {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+
+  .reveal-init {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
   }
 }

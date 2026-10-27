@@ -66,11 +66,12 @@ interface VideoReelCardProps {
 }
 
 // Staggered floating offsets ("ek upar, ek neeche halka sa")
+// Using margin-top ensures the stagger remains rock-solid and is never overridden by scroll reveal `translate: 0 0`
 const STAGGER_CLASSES = [
-  'translate-y-0 lg:-translate-y-3',  // Card 0: Baseline / slightly raised
-  'translate-y-4 lg:translate-y-8',   // Card 1: Shifted down (SwipeTrip staggered mobile & desktop)
-  'translate-y-0 lg:-translate-y-2',  // Card 2: Baseline
-  'translate-y-4 lg:translate-y-9',   // Card 3: Shifted down
+  'mt-0 lg:mt-0',           // Card 0: Baseline
+  'mt-5 sm:mt-7 lg:mt-10',  // Card 1: Shifted down
+  'mt-0 sm:mt-1 lg:mt-2',   // Card 2: Baseline (subtle organic rhythm)
+  'mt-5 sm:mt-7 lg:mt-12',  // Card 3: Shifted down
 ];
 
 function VideoReelCard({ moment, index }: VideoReelCardProps) {
@@ -258,7 +259,7 @@ export function RealMomentsSection() {
     <section id="gallery" className="py-8 sm:py-12 lg:py-16">
       <div className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8">
         {/* Main Pale-Blue Frame */}
-        <div className="bg-[#F0F5FA] rounded-3xl p-5 sm:p-8 lg:p-10 pb-8 sm:pb-12 lg:pb-16 border border-[#E2ECF5] shadow-xs">
+        <div className="bg-[#F0F5FA] rounded-3xl p-5 sm:p-8 lg:p-10 pb-10 sm:pb-14 lg:pb-20 border border-[#E2ECF5] shadow-xs">
           {/* Top Section Header: Left Typography + Right Instagram Action */}
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6 sm:mb-12 reveal-init">
             <div className="space-y-2 sm:space-y-3 max-w-xl">

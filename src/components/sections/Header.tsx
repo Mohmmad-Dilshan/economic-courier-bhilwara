@@ -122,15 +122,15 @@ export function Header() {
             {/* Left: Official eCS Logo + Economic Courier Bhilwara Hub Lockup */}
             <Link
               href="/"
-              className="flex items-center gap-3 shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-600 focus-visible:ring-offset-2 rounded-lg group"
+              className="flex items-center gap-2 sm:gap-3 shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-600 focus-visible:ring-offset-2 rounded-lg group"
               aria-label="eCS World Wide Express - Economic Courier Bhilwara Home"
             >
               <BrandLogo size="md" />
-              <div className="hidden sm:flex flex-col border-l border-slate-200/90 pl-3">
-                <span className="text-[12px] font-bold text-slate-800 tracking-tight leading-none group-hover:text-[#DC2626] transition-colors">
+              <div className="flex flex-col border-l border-slate-200/90 pl-2 sm:pl-3">
+                <span className="text-[10.5px] xs:text-[11.5px] sm:text-[12px] font-bold text-slate-800 tracking-tight leading-none group-hover:text-[#DC2626] transition-colors">
                   Economic Courier
                 </span>
-                <span className="text-[10px] font-medium text-slate-400 tracking-wider uppercase mt-0.5">
+                <span className="text-[8px] xs:text-[9px] sm:text-[10px] font-semibold text-slate-500 tracking-wider uppercase mt-0.5">
                   Bhilwara Hub
                 </span>
               </div>

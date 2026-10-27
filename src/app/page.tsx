@@ -22,6 +22,7 @@ import { BUSINESS_INFO } from '@/lib/constants';
 import { TrackingModal } from '@/components/home/TrackingModal';
 import { InquiryModal } from '@/components/home/InquiryModal';
 import { RealMomentsSection } from '@/components/home/RealMomentsSection';
+import { HowItWorksSection } from '@/components/home/HowItWorksSection';
 
 export default function HomePage() {
   const [trackingInput, setTrackingInput] = useState('');
@@ -371,26 +372,32 @@ export default function HomePage() {
       <RealMomentsSection />
 
       {/* =========================================================================
-          5. ABOUT US SECTION (Desktop Collage Left + Copy Right)
+          5. HOW SHIPPING WORKS SECTION (4-Step Process Flow)
           ========================================================================= */}
-      <section id="about" className="py-8 lg:py-12">
-        <div className="max-w-[1200px] mx-auto px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-            {/* Left Photo Collage */}
-            <div className="lg:col-span-6 relative flex justify-center lg:justify-start reveal-init reveal-slide-left">
+      <HowItWorksSection onOpenInquiry={handleOpenInquiry} />
+
+      {/* =========================================================================
+          6. ABOUT US SECTION (Clean Reference UI: eCS Collage + Clean Copy)
+          ========================================================================= */}
+      <section id="about" className="py-8 sm:py-12 lg:py-16 scroll-mt-20 sm:scroll-mt-24">
+        <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+            {/* Left Photo Collage (eCS Wall Logo, Team & Van) */}
+            <div className="lg:col-span-6 relative flex justify-center lg:justify-start reveal-init">
               <div className="relative w-full max-w-[540px]">
                 <Image
                   src="/assets/office/about-collage.jpg"
                   alt="Economic Courier Bhilwara office team, eCS wall logo, and logistics dispatch"
                   width={580}
                   height={350}
-                  className="w-full h-auto object-contain rounded-2xl"
+                  priority
+                  className="w-full h-auto object-contain block mx-auto rounded-2xl"
                 />
               </div>
             </div>
 
-            {/* Right Content */}
-            <div className="lg:col-span-6 space-y-4 reveal-init reveal-slide-right">
+            {/* Right Content: Centered on mobile, left-aligned on desktop */}
+            <div className="lg:col-span-6 space-y-4 reveal-init delay-100 text-center lg:text-left flex flex-col items-center lg:items-start">
               <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-red-50 border border-red-200/80 text-[#DC2626] text-[11px] font-extrabold tracking-widest uppercase shadow-2xs mb-1">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#DC2626] animate-pulse" />
                 <span>ABOUT US</span>
@@ -399,14 +406,14 @@ export default function HomePage() {
                 <span className="bg-gradient-to-b from-slate-900 to-slate-800 bg-clip-text text-transparent">A local team,</span> <br />
                 <span className="bg-gradient-to-r from-[#DC2626] via-[#E11D48] to-[#EF4444] bg-clip-text text-transparent">ready to help.</span>
               </h2>
-              <p className="text-sm sm:text-base text-slate-600 leading-relaxed max-w-lg pt-1 font-normal">
+              <p className="text-sm sm:text-base text-slate-600 leading-relaxed max-w-lg pt-1 font-normal mx-auto lg:mx-0">
                 Economic Courier is a trusted name in Bhilwara, providing domestic and international courier services with a strong focus on reliability, safety and customer satisfaction.
               </p>
-              <div className="pt-3">
+              <div className="pt-3 w-full flex justify-center lg:justify-start">
                 <button
                   type="button"
                   onClick={() => handleOpenInquiry()}
-                  className="inline-flex items-center gap-2 bg-[#DC2626] hover:bg-[#B91C1C] text-white text-[14px] font-bold px-6 py-3 rounded-full shadow-xs transition-all active:scale-95 cursor-pointer"
+                  className="inline-flex items-center gap-2 bg-[#DC2626] hover:bg-[#B91C1C] text-white text-[14px] font-bold px-6 py-3 rounded-full shadow-xs hover:shadow-[0_4px_14px_rgba(220,38,38,0.25)] transition-all active:scale-95 cursor-pointer"
                 >
                   <span>Contact Economic Courier</span>
                   <ArrowRight className="w-4 h-4" />

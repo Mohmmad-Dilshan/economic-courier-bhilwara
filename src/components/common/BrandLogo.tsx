@@ -16,8 +16,8 @@ export function BrandLogo({
 
   // Exact lockup dimensions matching the reference UI
   const dimensions = {
-    sm: { width: 105, height: 44, imgClass: 'h-8' },
-    md: { width: 130, height: 54, imgClass: 'h-9 sm:h-10 lg:h-11' },
+    sm: { width: 105, height: 44, imgClass: 'h-7 sm:h-8' },
+    md: { width: 130, height: 54, imgClass: 'h-8 sm:h-10 lg:h-11' },
     lg: { width: 160, height: 66, imgClass: 'h-11 sm:h-12 lg:h-14' },
   };
 

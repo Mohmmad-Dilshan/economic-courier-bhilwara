@@ -22,6 +22,7 @@ import { BUSINESS_INFO } from '@/lib/constants';
 import { TrackingModal } from '@/components/home/TrackingModal';
 import { InquiryModal } from '@/components/home/InquiryModal';
 import { RealMomentsSection } from '@/components/home/RealMomentsSection';
+import { HowItWorksSection } from '@/components/home/HowItWorksSection';
 
 export default function HomePage() {
   const [trackingInput, setTrackingInput] = useState('');
@@ -371,7 +372,12 @@ export default function HomePage() {
       <RealMomentsSection />
 
       {/* =========================================================================
-          5. ABOUT US SECTION (Clean Reference UI: eCS Collage + Clean Copy)
+          5. HOW SHIPPING WORKS SECTION (4-Step Process Flow)
+          ========================================================================= */}
+      <HowItWorksSection onOpenInquiry={handleOpenInquiry} />
+
+      {/* =========================================================================
+          6. ABOUT US SECTION (Clean Reference UI: eCS Collage + Clean Copy)
           ========================================================================= */}
       <section id="about" className="py-8 sm:py-12 lg:py-16 scroll-mt-20 sm:scroll-mt-24">
         <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">

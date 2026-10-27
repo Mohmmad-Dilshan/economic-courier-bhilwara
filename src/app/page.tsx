@@ -390,8 +390,8 @@ export default function HomePage() {
               </div>
             </div>
 
-            {/* Right Content */}
-            <div className="lg:col-span-6 space-y-4 reveal-init delay-100 text-left">
+            {/* Right Content: Centered on mobile, left-aligned on desktop */}
+            <div className="lg:col-span-6 space-y-4 reveal-init delay-100 text-center lg:text-left flex flex-col items-center lg:items-start">
               <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-red-50 border border-red-200/80 text-[#DC2626] text-[11px] font-extrabold tracking-widest uppercase shadow-2xs mb-1">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#DC2626] animate-pulse" />
                 <span>ABOUT US</span>
@@ -400,10 +400,10 @@ export default function HomePage() {
                 <span className="bg-gradient-to-b from-slate-900 to-slate-800 bg-clip-text text-transparent">A local team,</span> <br />
                 <span className="bg-gradient-to-r from-[#DC2626] via-[#E11D48] to-[#EF4444] bg-clip-text text-transparent">ready to help.</span>
               </h2>
-              <p className="text-sm sm:text-base text-slate-600 leading-relaxed max-w-lg pt-1 font-normal">
+              <p className="text-sm sm:text-base text-slate-600 leading-relaxed max-w-lg pt-1 font-normal mx-auto lg:mx-0">
                 Economic Courier is a trusted name in Bhilwara, providing domestic and international courier services with a strong focus on reliability, safety and customer satisfaction.
               </p>
-              <div className="pt-3">
+              <div className="pt-3 w-full flex justify-center lg:justify-start">
                 <button
                   type="button"
                   onClick={() => handleOpenInquiry()}

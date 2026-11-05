@@ -33,16 +33,20 @@ export function HubLocationSection({ onOpenInquiry }: HubLocationSectionProps) {
     <section id="contact" className="py-12 sm:py-16 lg:py-20 bg-slate-50/60 scroll-mt-24 sm:scroll-mt-28 border-t border-slate-100">
       <div className="max-w-[1240px] 2xl:max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="max-w-2xl text-left mb-8 sm:mb-10">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-red-50 border border-red-200/80 text-[#DC2626] text-[11px] font-extrabold tracking-widest uppercase shadow-2xs mb-3">
-            <MapPin className="w-3 h-3 fill-current text-[#DC2626]" />
-            <span>CENTRAL BHILWARA HUB</span>
+        <div className="max-w-3xl text-left mb-8 sm:mb-10">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-red-50 border border-red-200/90 text-[#DC2626] text-[11px] font-extrabold tracking-widest uppercase shadow-2xs mb-3">
+            <MapPin className="w-3.5 h-3.5 text-[#DC2626]" />
+            <span>CENTRAL BHILWARA HUB &amp; COUNTER</span>
           </div>
-          <h2 className="text-2xl sm:text-3xl lg:text-[34px] font-black text-slate-900 tracking-[-0.03em] leading-tight">
-            Visit Our Main Dispatch Hub &amp; Counter Desk
+          <h2 className="text-2xl sm:text-3xl lg:text-[38px] font-black tracking-[-0.03em] text-slate-900 leading-[1.18]">
+            Visit Our Central Dispatch Hub <br className="hidden sm:inline" />
+            <span className="text-[#DC2626]">
+              Opposite New Cloth Market, Bhilwara
+            </span>
           </h2>
-          <p className="text-sm sm:text-base text-slate-600 leading-relaxed mt-2 font-normal">
-            Direct walk-in parcel intake, on-spot weight and dimension verification, and scheduled corridor linehaul dispatch located centrally in Bhilwara.
+          <div className="w-12 h-1 bg-[#DC2626] rounded-full mt-3 mb-3" />
+          <p className="text-sm sm:text-base text-slate-600 leading-relaxed font-normal max-w-2xl">
+            Walk in for instant parcel weighing, tamper-evident packing, and daily scheduled dispatches across Rajasthan, pan-India corridors, and 220+ international destinations.
           </p>
         </div>
 
@@ -231,3 +235,4 @@ export function HubLocationSection({ onOpenInquiry }: HubLocationSectionProps) {
 }
 
 export default HubLocationSection;
+

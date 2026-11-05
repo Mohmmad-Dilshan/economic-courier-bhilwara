@@ -8,11 +8,21 @@ export function Footer() {
   const navLinks = [
     { label: 'Home', href: '/' },
     { label: 'Services', href: '/services' },
-    { label: 'Tracking', href: '/#tracking' },
-    { label: 'Business', href: '/#business' },
-    { label: 'Gallery', href: '/#gallery' },
-    { label: 'About', href: '/#about' },
-    { label: 'Contact', href: '/#contact' },
+    { label: 'Track Shipment', href: '/track-shipment' },
+    { label: 'Textile Logistics', href: '/textile-logistics' },
+    { label: 'Business Solutions', href: '/business-solutions' },
+    { label: 'Gallery', href: '/gallery' },
+    { label: 'About', href: '/about' },
+    { label: 'Contact', href: '/contact' },
+  ];
+
+  // Verified service section anchor IDs in src/components/services/ServicesView.tsx
+  const serviceLinks = [
+    { label: 'Domestic Express', href: '/services#domestic' },
+    { label: 'International Cargo', href: '/services#international' },
+    { label: 'Documents & Parcels', href: '/services#documents' },
+    { label: 'Textile Logistics', href: '/textile-logistics' },
+    { label: 'Business Solutions', href: '/business-solutions' },
   ];
 
   return (
@@ -39,9 +49,9 @@ export function Footer() {
             </p>
           </div>
 
-          {/* Navigation Links with Human Hover Polish */}
+          {/* Primary Navigation Links with Human Hover Polish */}
           <nav
-            aria-label="Footer Navigation"
+            aria-label="Footer Primary Navigation"
             className="flex flex-wrap items-center justify-center gap-x-6 sm:gap-x-7 gap-y-2.5 text-[13px] font-medium text-slate-300"
           >
             {navLinks.map((link) => (
@@ -70,6 +80,27 @@ export function Footer() {
           </div>
         </div>
 
+        {/* Secondary Navigation Row: Verified Express Services */}
+        <div className="mt-6 pt-5 border-t border-white/[0.05] flex flex-col sm:flex-row items-center justify-between gap-3 text-xs">
+          <div className="flex items-center gap-2 text-slate-400 font-semibold tracking-wider uppercase text-[11px]">
+            <span>Specialized Services:</span>
+          </div>
+          <nav
+            aria-label="Footer Services Navigation"
+            className="flex flex-wrap items-center justify-center gap-x-5 sm:gap-x-6 gap-y-2 text-slate-400 font-normal"
+          >
+            {serviceLinks.map((service) => (
+              <Link
+                key={service.label}
+                href={service.href}
+                className="hover:text-red-400 transition-colors"
+              >
+                {service.label}
+              </Link>
+            ))}
+          </nav>
+        </div>
+
         {/* Crisp Hairline Divider */}
         <div className="border-t border-white/[0.08] my-6" />
 
@@ -80,7 +111,7 @@ export function Footer() {
           </p>
 
           <div className="flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-slate-400 text-center sm:text-right text-[11px] sm:text-xs">
-            <span>Pur Road, Bhilwara 311001</span>
+            <a href={BUSINESS_INFO.googleMapsUrl} target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Economic Courier Hub &bull; Bhilwara, Rajasthan 311001</a>
             <span className="hidden sm:inline text-slate-600">&bull;</span>
             <span className="text-slate-300 font-medium">Domestic &amp; International Express</span>
           </div>

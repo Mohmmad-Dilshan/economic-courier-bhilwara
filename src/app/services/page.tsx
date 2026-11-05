@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { ServicesView } from '@/components/services/ServicesView';
 
 export const metadata: Metadata = {
-  title: 'Courier & Freight Services | Economic Courier Bhilwara',
+  title: 'Courier & Freight Services',
   description:
     'Dedicated express courier services in Bhilwara: Priority domestic delivery across India, worldwide air cargo via eCS World Wide Express, secure document transit, and textile fabric sample logistics.',
   keywords: [
@@ -15,13 +15,13 @@ export const metadata: Metadata = {
     'express cargo bhilwara',
   ],
   alternates: {
-    canonical: 'https://economiccourierbhilwara.com/services',
+    canonical: '/services',
   },
   openGraph: {
     title: 'Courier & Freight Services | Economic Courier & eCS World Wide Express Bhilwara',
     description:
       'Explore dependable domestic express, international air cargo, document shipping, and textile swatch sample logistics in Bhilwara, Rajasthan.',
-    url: 'https://economiccourierbhilwara.com/services',
+    url: '/services',
     type: 'website',
   },
   twitter: {

@@ -2,6 +2,10 @@ import type { Metadata } from 'next';
 import { Plus_Jakarta_Sans, JetBrains_Mono } from 'next/font/google';
 import '../styles/globals.css';
 import { cn } from '@/lib/utils';
+import { Header } from '@/components/sections/Header';
+import { Footer } from '@/components/sections/Footer';
+import { ScrollObserver } from '@/components/common/ScrollObserver';
+import { WhatsAppFloat } from '@/components/ui/WhatsAppFloat';
 
 const plusJakarta = Plus_Jakarta_Sans({
   subsets: ['latin'],
@@ -17,8 +21,14 @@ const jetbrainsMono = JetBrains_Mono({
   weight: ['400', '500', '600'],
 });
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL
+  ? process.env.NEXT_PUBLIC_SITE_URL
+  : process.env.VERCEL_URL
+  ? `https://${process.env.VERCEL_URL}`
+  : 'http://localhost:3000';
+
 export const metadata: Metadata = {
-  metadataBase: new URL('https://economiccourierbhilwara.com'),
+  metadataBase: new URL(siteUrl),
   title: {
     default: 'Economic Courier | eCS World Wide Express Bhilwara',
     template: '%s | Economic Courier Bhilwara',
@@ -39,7 +49,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_IN',
-    url: 'https://economiccourierbhilwara.com',
+    url: '/',
     title: 'Economic Courier | eCS World Wide Express Bhilwara',
     description:
       'Prompt, dependable domestic parcel delivery & worldwide express cargo serving Bhilwara textile trade and community.',
@@ -55,11 +65,16 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
+  icons: {
+    icon: [
+      { url: '/assets/logo/ecs-logo.png', sizes: '150x150', type: 'image/png' },
+    ],
+    apple: [
+      { url: '/assets/logo/ecs-logo.png', sizes: '150x150', type: 'image/png' },
+    ],
+    shortcut: '/assets/logo/ecs-logo.png',
+  },
 };
-
-import { Header } from '@/components/sections/Header';
-import { Footer } from '@/components/sections/Footer';
-import { ScrollObserver } from '@/components/common/ScrollObserver';
 
 export default function RootLayout({
   children,
@@ -73,8 +88,8 @@ export default function RootLayout({
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />
+        <WhatsAppFloat />
       </body>
     </html>
   );
 }
-

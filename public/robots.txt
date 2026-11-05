@@ -1,0 +1,6 @@
+# Robots.txt for Economic Courier / eCS World Wide Express, Bhilwara
+# Production Note: Sitemap URL is deferred until final client domain confirmation.
+
+User-agent: *
+Allow: /
+

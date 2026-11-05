@@ -329,7 +329,7 @@ export function ServicesView() {
               </div>
               <h3 className="text-sm font-bold text-[#0F172A]">Requirement &amp; Quote</h3>
               <p className="text-xs text-slate-500 leading-relaxed">
-                Submit your parcel details via the inquiry desk or contact our Pur Road office with
+                Submit your parcel details via the inquiry desk or contact our Bhilwara office with
                 destination and estimated weight.
               </p>
             </div>
@@ -421,7 +421,7 @@ export function ServicesView() {
             </h2>
 
             <p className="text-xs sm:text-sm text-slate-300 max-w-xl mx-auto leading-relaxed">
-              Submit your parcel details through our quick rate inquiry desk or reach our Pur Road hub counter in Bhilwara directly.
+              Submit your parcel details through our quick rate inquiry desk or reach our Bhilwara hub counter directly.
             </p>
 
             <div className="pt-2 flex flex-wrap items-center justify-center gap-3.5">
@@ -488,7 +488,7 @@ export function ServicesView() {
               <div>
                 <p className="text-[11px] font-semibold text-slate-500">Our Location &bull; Open in Maps</p>
                 <p className="text-[13px] font-medium text-slate-700 leading-snug group-hover:text-[#DC2626] transition-colors">
-                  C-74, Bhilwara Textile Market, Pur Road, Bhilwara, Rajasthan 311001
+                  Economic Courier & eCS Bhilwara Hub, Rajasthan 311001
                 </p>
               </div>
             </a>

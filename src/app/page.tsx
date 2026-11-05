@@ -11,23 +11,24 @@ import {
   Globe,
   FileText,
   Layers,
-  Phone,
   MessageCircle,
   AlertCircle,
   Loader2,
 } from 'lucide-react';
-import { DEMO_SHIPMENTS } from '@/lib/trackingData';
-import { ConsignmentDemoResult } from '@/types/tracking';
 import { BUSINESS_INFO } from '@/lib/constants';
-import { TrackingModal } from '@/components/home/TrackingModal';
+import { TrackingNoticeModal } from '@/components/home/TrackingNoticeModal';
+import { NetworkPartnersSection } from '@/components/home/NetworkPartnersSection';
+import { DailyRouteSection } from '@/components/home/DailyRouteSection';
 import { InquiryModal } from '@/components/home/InquiryModal';
 import { RealMomentsSection } from '@/components/home/RealMomentsSection';
 import { HowItWorksSection } from '@/components/home/HowItWorksSection';
+import { ReviewsSection } from '@/components/home/ReviewsSection';
+import { FAQSection } from '@/components/home/FAQSection';
+import { CTABand } from '@/components/home/CTABand';
 
 export default function HomePage() {
   const [trackingInput, setTrackingInput] = useState('');
   const [modalOpen, setModalOpen] = useState(false);
-  const [activeShipment, setActiveShipment] = useState<ConsignmentDemoResult | null>(null);
   const [searchedId, setSearchedId] = useState('');
   const [isSearching, setIsSearching] = useState(false);
   const [inputError, setInputError] = useState<string | null>(null);
@@ -41,7 +42,7 @@ export default function HomePage() {
     setInquiryModalOpen(true);
   };
 
-  // Handle tracking submission with validation and simulated feedback
+  // Truthful tracking input submission: Validates and opens the transparent notice modal
   const handleTrackSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const query = trackingInput.trim().toUpperCase();
@@ -55,23 +56,12 @@ export default function HomePage() {
     setInputError(null);
     setIsSearching(true);
 
-    // 2. Realistic subtle simulated lookup (200ms) for tactile user feedback
+    // 2. Tactile feedback transition before opening status notice modal
     setTimeout(() => {
       setSearchedId(query);
-      const found = DEMO_SHIPMENTS[query] || null;
-      setActiveShipment(found);
       setIsSearching(false);
       setModalOpen(true);
-    }, 200);
-  };
-
-  const handleSelectSample = (sampleId: string) => {
-    setTrackingInput(sampleId);
-    setSearchedId(sampleId);
-    setInputError(null);
-    const found = DEMO_SHIPMENTS[sampleId] || null;
-    setActiveShipment(found);
-    setModalOpen(true);
+    }, 150);
   };
 
   const services = [
@@ -80,16 +70,16 @@ export default function HomePage() {
       title: 'Domestic Courier',
       caption: 'domestic · all-india',
       subtext: 'Surface & air express across India',
-      image: '/assets/services/card-domestic.jpg',
+      image: '/assets/services/card-domestic.webp',
       icon: Truck,
       rotation: 'lg:-rotate-2',
     },
     {
       id: 'international',
       title: 'International Courier',
-      caption: 'international · 220+ countries',
+      caption: 'international · eCS express',
       subtext: 'Global air cargo & priority transit',
-      image: '/assets/services/card-international.jpg',
+      image: '/assets/services/card-international.webp',
       icon: Globe,
       rotation: 'lg:rotate-1',
     },
@@ -98,7 +88,7 @@ export default function HomePage() {
       title: 'Documents & Parcels',
       caption: 'documents · priority desk',
       subtext: 'Secure paperwork & dossiers',
-      image: '/assets/services/card-documents.jpg',
+      image: '/assets/services/card-documents.webp',
       icon: FileText,
       rotation: 'lg:-rotate-1',
     },
@@ -107,7 +97,7 @@ export default function HomePage() {
       title: 'Commercial & Textile Cargo',
       caption: 'commercial · textile freight',
       subtext: 'Bhilwara mills to national hubs',
-      image: '/assets/services/card-textiles.jpg',
+      image: '/assets/services/card-textiles.webp',
       icon: Layers,
       rotation: 'lg:rotate-2',
     },
@@ -118,9 +108,12 @@ export default function HomePage() {
       {/* =========================================================================
           1. HERO SECTION (Desktop Proportioned, 1200px Container, Sky-wash Radial)
           ========================================================================= */}
-      <section id="tracking" className="relative pt-6 pb-6 lg:pt-10 lg:pb-8 overflow-hidden bg-[radial-gradient(ellipse_at_top_left,#EBF5FB_0%,#F8FBFE_50%,#FFFFFF_100%)]">
-        <div className="max-w-[1200px] mx-auto px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
+      <section
+        id="tracking"
+        className="relative pt-6 pb-8 lg:pt-10 lg:pb-12 overflow-hidden bg-[radial-gradient(ellipse_at_top_left,#EBF5FB_0%,#F8FBFE_50%,#FFFFFF_100%)]"
+      >
+        <div className="max-w-[1240px] 2xl:max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 xl:gap-12 items-center">
             {/* Left Content Column */}
             <div className="lg:col-span-6 space-y-5">
               {/* Location Badge */}
@@ -164,7 +157,7 @@ export default function HomePage() {
               </p>
 
               {/* Search / Tracking Box */}
-              <div className="pt-1 max-w-[440px] reveal-init delay-300">
+              <div className="pt-1 max-w-[460px] reveal-init delay-300">
                 <form
                   onSubmit={handleTrackSubmit}
                   noValidate
@@ -184,7 +177,7 @@ export default function HomePage() {
                       if (inputError) setInputError(null);
                     }}
                     disabled={isSearching}
-                    placeholder="Enter your tracking number"
+                    placeholder="Enter consignment or tracking number"
                     className="w-full text-xs sm:text-sm text-slate-800 placeholder-slate-400 bg-transparent outline-none disabled:opacity-60"
                     aria-label="Tracking consignment number"
                     aria-invalid={inputError ? 'true' : 'false'}
@@ -222,7 +215,7 @@ export default function HomePage() {
                 )}
               </div>
 
-              {/* WhatsApp / Inquiry Action Button */}
+              {/* Inquiry Action Button */}
               <div className="pt-0.5 reveal-init delay-375">
                 <button
                   type="button"
@@ -236,16 +229,17 @@ export default function HomePage() {
               </div>
             </div>
 
-            {/* Right Hero Image Card */}
+            {/* Right Hero Image Card (Optimized WebP with preserved layout) */}
             <div className="lg:col-span-6 relative flex justify-center lg:justify-end reveal-init reveal-scale delay-200">
               <div className="relative w-full max-w-[560px]">
                 <Image
-                  src="/assets/hero/hero-courier.jpg"
+                  src="/assets/hero/hero-courier.webp"
                   alt="eCS Courier Delivery staff in Bhilwara with van and happy customer"
                   width={580}
                   height={390}
                   priority
-                  className="w-full h-auto object-contain rounded-r-3xl"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 560px"
+                  className="w-full h-auto object-contain rounded-3xl shadow-[0_12px_40px_rgba(15,23,42,0.06)] border border-slate-100/80"
                 />
               </div>
             </div>
@@ -254,9 +248,9 @@ export default function HomePage() {
       </section>
 
       {/* =========================================================================
-          2. SERVICE HIGHLIGHTS BAR (Single Pale Blue Bar Evenly Spaced)
+          2. SERVICE HIGHLIGHTS BAR (Single Pale Blue Bar Evenly Spaced, Directly Under Hero)
           ========================================================================= */}
-      <section id="business" className="py-2 lg:py-3">
+      <section className="py-2 lg:py-3">
         <div className="max-w-[1200px] mx-auto px-6 lg:px-8">
           <div className="bg-[#F0F7FD] rounded-2xl py-3 px-6 sm:px-8 border border-[#E0EDF8] flex flex-wrap md:flex-nowrap items-center justify-between gap-4 sm:gap-6 shadow-2xs reveal-init">
             <div className="flex items-center gap-2.5 text-[13px] font-bold text-slate-800 flex-1 justify-center md:justify-start reveal-init delay-75">
@@ -291,14 +285,24 @@ export default function HomePage() {
       </section>
 
       {/* =========================================================================
-          3. OUR SERVICES SECTION (SwipeTrip-Inspired Floating Polaroid Photo Cards)
+          3. COURIER PARTNER TRACKING (Verified official partners: Blue Dart & Akash Ganga)
           ========================================================================= */}
-      <section id="services" className="py-10 lg:py-16 bg-[#FAF7F2]/60">
+      <NetworkPartnersSection />
+
+      {/* =========================================================================
+          4. DAILY REGIONAL ROUTE & SAME-DAY DELIVERY CORRIDOR (Client Dispatch Circuit)
+          ========================================================================= */}
+      <DailyRouteSection onOpenInquiry={handleOpenInquiry} />
+
+      {/* =========================================================================
+          5. OUR SERVICES SECTION (SwipeTrip-Inspired Floating Polaroid Photo Cards)
+          ========================================================================= */}
+      <section id="services" className="py-10 lg:py-16 bg-[#FAF7F2]/60 scroll-mt-20 sm:scroll-mt-24">
         <div className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8">
           {/* Section Header */}
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 mb-8 reveal-init">
-            <div>
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-red-50 border border-red-200/80 text-[#DC2626] text-[11px] font-extrabold tracking-widest uppercase shadow-2xs mb-2">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 mb-8 reveal-init relative">
+            <div className="max-w-xl space-y-2.5 z-10">
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-red-50 border border-red-200/80 text-[#DC2626] text-[11px] font-extrabold tracking-widest uppercase shadow-2xs">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#DC2626] animate-pulse" />
                 <span>OUR SERVICES</span>
               </div>
@@ -306,17 +310,46 @@ export default function HomePage() {
                 <span className="bg-gradient-to-b from-slate-900 to-slate-800 bg-clip-text text-transparent">Courier,</span>{' '}
                 <span className="bg-gradient-to-r from-[#DC2626] via-[#E11D48] to-[#EF4444] bg-clip-text text-transparent">made simpler.</span>
               </h2>
-              <p className="text-sm sm:text-base text-slate-500 mt-2 max-w-md font-normal leading-relaxed">
+              <p className="text-sm sm:text-base text-slate-500 font-normal leading-relaxed">
                 Reliable, secure and efficient courier solutions for your personal and business needs.
               </p>
+              <div className="pt-1">
+                <Link
+                  href="/services"
+                  className="text-[13px] font-bold text-slate-700 hover:text-[#DC2626] inline-flex items-center gap-1.5 transition-colors group"
+                >
+                  <span>View all services</span>
+                  <ArrowRight className="w-3.5 h-3.5 text-[#DC2626] group-hover:translate-x-0.5 transition-transform" />
+                </Link>
+              </div>
             </div>
-            <Link
-              href="/services"
-              className="text-[13px] font-semibold text-slate-700 hover:text-[#DC2626] inline-flex items-center gap-1.5 transition-colors self-start sm:self-end group"
-            >
-              <span>View all services</span>
-              <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
-            </Link>
+
+            {/* Right: Courier Delivery Duo (3D eCS Parcel Boxes + Scooter Rider) */}
+            <div className="relative shrink-0 hidden sm:flex items-center justify-center lg:justify-end gap-3 lg:gap-4 z-10 pointer-events-none select-none">
+              {/* 3D eCS Branded Carton Boxes (Where User Circled) */}
+              <div className="relative w-36 sm:w-44 md:w-48 lg:w-[210px] xl:w-[230px] aspect-[951/570] transition-transform duration-700 ease-out hover:scale-105 filter drop-shadow-[0_12px_24px_rgba(15,23,42,0.10)]">
+                <Image
+                  src="/assets/services/ecs-boxes-3d.png"
+                  alt="eCS World Wide Express 3D Courier Parcel Boxes"
+                  fill
+                  sizes="(max-width: 1024px) 210px, 230px"
+                  className="object-contain"
+                  priority
+                />
+              </div>
+
+              {/* Inward-Facing eCS Scooter Delivery Rider */}
+              <div className="relative w-40 sm:w-48 md:w-52 lg:w-[220px] xl:w-[240px] aspect-[645/550] transition-transform duration-700 ease-out hover:scale-105 filter drop-shadow-[0_12px_24px_rgba(220,38,38,0.12)]">
+                <Image
+                  src="/assets/services/ecs-scooter-rider-facing-inward.png"
+                  alt="eCS World Wide Express Scooter Delivery Rider Object"
+                  fill
+                  sizes="(max-width: 1024px) 220px, 240px"
+                  className="object-contain"
+                  priority
+                />
+              </div>
+            </div>
           </div>
 
           {/* SwipeTrip-Style Polaroid Cards: 2x2 on Mobile, 4 Across on Desktop with Floating Tilts */}
@@ -367,17 +400,22 @@ export default function HomePage() {
       </section>
 
       {/* =========================================================================
-          4. REAL MOMENTS SECTION (Interactive Video Reels with in-place controls)
+          6. REAL MOMENTS SECTION (Interactive Video Reels with in-place controls)
           ========================================================================= */}
       <RealMomentsSection />
 
       {/* =========================================================================
-          5. HOW SHIPPING WORKS SECTION (4-Step Process Flow)
+          8. HOW SHIPPING WORKS SECTION (4-Step Process Flow)
           ========================================================================= */}
       <HowItWorksSection onOpenInquiry={handleOpenInquiry} />
 
       {/* =========================================================================
-          6. ABOUT US SECTION (Clean Reference UI: eCS Collage + Clean Copy)
+          8.5. CUSTOMER REVIEWS & GOOGLE RATINGS SECTION (Corridor Businesses)
+          ========================================================================= */}
+      <ReviewsSection />
+
+      {/* =========================================================================
+          9. ABOUT US SECTION (Clean Reference UI: eCS Collage + Clean Copy)
           ========================================================================= */}
       <section id="about" className="py-8 sm:py-12 lg:py-16 scroll-mt-20 sm:scroll-mt-24">
         <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
@@ -407,7 +445,7 @@ export default function HomePage() {
                 <span className="bg-gradient-to-r from-[#DC2626] via-[#E11D48] to-[#EF4444] bg-clip-text text-transparent">ready to help.</span>
               </h2>
               <p className="text-sm sm:text-base text-slate-600 leading-relaxed max-w-lg pt-1 font-normal mx-auto lg:mx-0">
-                Economic Courier is a trusted name in Bhilwara, providing domestic and international courier services with a strong focus on reliability, safety and customer satisfaction.
+                Economic Courier is a courier service in Bhilwara, providing domestic and international courier services for trade correspondence, parcels, and document consignments.
               </p>
               <div className="pt-3 w-full flex justify-center lg:justify-start">
                 <button
@@ -415,7 +453,7 @@ export default function HomePage() {
                   onClick={() => handleOpenInquiry()}
                   className="inline-flex items-center gap-2 bg-[#DC2626] hover:bg-[#B91C1C] text-white text-[14px] font-bold px-6 py-3 rounded-full shadow-xs hover:shadow-[0_4px_14px_rgba(220,38,38,0.25)] transition-all active:scale-95 cursor-pointer"
                 >
-                  <span>Contact Economic Courier</span>
+                  <span>Prepare Consignment Inquiry</span>
                   <ArrowRight className="w-4 h-4" />
                 </button>
               </div>
@@ -425,68 +463,85 @@ export default function HomePage() {
       </section>
 
       {/* =========================================================================
-          6. CONTACT / LOCATION STRIP (Refined Desktop Dimensions)
+          10. FREQUENTLY ASKED QUESTIONS (Interactive Accordion)
           ========================================================================= */}
-      <section id="contact" className="py-4 sm:py-6 mb-6">
-        <div className="max-w-[1200px] mx-auto px-6 lg:px-8 reveal-init delay-100">
-          <div className="bg-[#F0F7FD] rounded-2xl border border-[#E0EDF8] flex flex-col md:flex-row items-center justify-between shadow-2xs overflow-hidden">
-            {/* Left: Call Us / Inquire Online */}
-            <button
-              type="button"
-              onClick={() => handleOpenInquiry()}
-              className="flex items-center gap-3.5 py-4 pl-8 text-left bg-transparent border-0 cursor-pointer group hover:bg-sky-50/60 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-600 focus-visible:ring-inset"
-              aria-label="Open Customer & Rate Inquiry Desk (+91 89551 44444, line pending owner confirmation)"
-              title="Click to open Customer & Rate Inquiry Desk (Phone line pending confirmation)"
-            >
-              <div className="w-9 h-9 rounded-full bg-red-100/70 flex items-center justify-center text-[#DC2626] shrink-0 group-hover:scale-105 transition-transform">
-                <Phone className="w-4 h-4 fill-current" />
+      <FAQSection />
+
+      {/* =========================================================================
+          11. CALL TO ACTION BAND (Shipment Inquiry Preparation)
+          ========================================================================= */}
+      <CTABand onOpenInquiry={handleOpenInquiry} />
+
+      {/* =========================================================================
+          12. CONTACT / LOCATION STRIP (Refined Desktop Dimensions & Honest Status)
+          ========================================================================= */}
+      <section id="contact" className="py-6 sm:py-8 mb-6 scroll-mt-20 sm:scroll-mt-24">
+        <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 reveal-init delay-100">
+          <div className="bg-[#F0F7FD] rounded-2xl border border-[#E0EDF8] p-5 sm:p-6 flex flex-col md:flex-row items-center justify-between gap-6 shadow-2xs">
+            {/* Left: Prepare Rate & Shipment Inquiry */}
+            <div className="flex items-center gap-4 text-left w-full md:w-auto">
+              <div className="w-10 h-10 rounded-full bg-red-100/70 flex items-center justify-center text-[#DC2626] shrink-0">
+                <FileText className="w-5 h-5 text-[#DC2626]" />
               </div>
               <div>
-                <p className="text-[11px] font-semibold text-slate-500 flex items-center gap-1.5 flex-wrap">
-                  <span>Call Us &bull; Inquire Online</span>
-                  <span className="text-[9px] font-mono font-medium px-1.5 py-0.2 rounded bg-amber-100/80 text-amber-800 border border-amber-200">
-                    Pending Confirmation
-                  </span>
+                <p className="text-[11px] font-semibold text-slate-500 uppercase tracking-wider">
+                  Customer Inquiry Desk
                 </p>
-                <p className="text-base font-bold text-slate-800 tracking-tight group-hover:text-[#DC2626] transition-colors">+91 89551 44444</p>
+                <button
+                  type="button"
+                  onClick={() => handleOpenInquiry()}
+                  className="text-sm sm:text-base font-bold text-slate-900 hover:text-[#DC2626] transition-colors inline-flex items-center gap-1.5 cursor-pointer text-left"
+                >
+                  <span>Prepare Rate &amp; Shipment Inquiry</span>
+                  <ArrowRight className="w-4 h-4 text-[#DC2626]" />
+                </button>
               </div>
-            </button>
+            </div>
 
             {/* Divider */}
-            <div className="hidden md:block h-9 w-px bg-[#D4E4F3]" />
+            <div className="hidden md:block h-10 w-px bg-[#D4E4F3]" />
 
-            {/* Middle: Our Location */}
-            <a
-              href={BUSINESS_INFO.googleMapsUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              title="Open Bhilwara Hub location on Google Maps"
-              className="flex items-center gap-3.5 py-4 px-6 flex-1 max-w-lg hover:bg-sky-50/60 transition-colors group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-600 focus-visible:ring-inset"
-            >
-              <div className="w-9 h-9 rounded-full bg-red-100/70 flex items-center justify-center text-[#DC2626] shrink-0 group-hover:scale-105 transition-transform">
-                <MapPin className="w-4 h-4 text-[#DC2626]" />
+            {/* Middle: City Presence & Address Status */}
+            <div className="flex items-start gap-3.5 flex-1 max-w-md w-full">
+              <div className="w-10 h-10 rounded-full bg-red-100/70 flex items-center justify-center text-[#DC2626] shrink-0 mt-0.5">
+                <MapPin className="w-5 h-5 text-[#DC2626]" />
               </div>
-              <div>
-                <p className="text-[11px] font-semibold text-slate-500">Our Location &bull; Open in Maps</p>
-                <p className="text-[13px] font-medium text-slate-700 leading-snug group-hover:text-[#DC2626] transition-colors">
-                  C-74, Bhilwara Textile Market, Pur Road, Bhilwara, Rajasthan 311001
+              <div className="space-y-1">
+                <div className="flex items-center gap-2 flex-wrap">
+                  <p className="text-sm font-bold text-slate-900">
+                    Bhilwara, Rajasthan, India
+                  </p>
+                  <span className="text-[10px] font-mono font-medium px-2 py-0.5 rounded bg-amber-100/80 text-amber-800 border border-amber-200">
+                    Address [Pending Confirmation]
+                  </span>
+                </div>
+                <p className="text-xs text-slate-600 leading-relaxed">
+                  Street location and operating hours awaiting client verification.{' '}
+                  <a
+                    href={BUSINESS_INFO.googleMapsUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[#DC2626] hover:underline font-medium inline-block"
+                  >
+                    View reference map pin &rarr;
+                  </a>
                 </p>
               </div>
-            </a>
+            </div>
 
-            {/* Right: Map Graphic */}
+            {/* Right: Map Graphic thumbnail with disclaimer */}
             <a
               href={BUSINESS_INFO.googleMapsUrl}
               target="_blank"
               rel="noopener noreferrer"
-              title="Open location on Google Maps"
-              className="relative w-56 h-20 shrink-0 hidden sm:block overflow-hidden group cursor-pointer"
+              title="Open reference map pin (unverified)"
+              className="relative w-48 h-20 shrink-0 hidden lg:block rounded-xl overflow-hidden border border-slate-200 group cursor-pointer"
             >
               <Image
                 src="/assets/office/map-graphic.jpg"
-                alt="Economic Courier location map marker"
+                alt="Economic Courier Bhilwara reference map marker"
                 fill
-                sizes="224px"
+                sizes="192px"
                 className="object-cover object-right group-hover:scale-105 transition-transform duration-300"
               />
             </a>
@@ -494,13 +549,12 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Demonstration Tracking Modal */}
-      <TrackingModal
+      {/* Verified Courier Partner Tracking Dialog */}
+      <TrackingNoticeModal
+        key={modalOpen ? (searchedId || 'open') : 'closed'}
         isOpen={modalOpen}
         onClose={() => setModalOpen(false)}
-        result={activeShipment}
         searchedQuery={searchedId}
-        onSelectSample={handleSelectSample}
       />
 
       {/* Customer & Rate Inquiry Modal */}

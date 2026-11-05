@@ -3,17 +3,24 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Phone, Menu, X } from 'lucide-react';
+import { Menu, X, ChevronDown, Truck, Briefcase, ArrowRight } from 'lucide-react';
 import { BrandLogo } from '@/components/common/BrandLogo';
 import { InstagramIcon } from '@/components/common/InstagramIcon';
 import { BUSINESS_INFO } from '@/lib/constants';
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [servicesDropdownOpen, setServicesDropdownOpen] = useState(false);
   const [activeNav, setActiveNav] = useState('Home');
   const [isScrolled, setIsScrolled] = useState(false);
   const pathname = usePathname();
   const isServicesPage = pathname === '/services';
+  const isAboutPage = pathname === '/about';
+  const isGalleryPage = pathname === '/gallery';
+  const isContactPage = pathname === '/contact';
+  const isTextilePage = pathname === '/textile-logistics';
+  const isBusinessSolutionsPage = pathname === '/business-solutions';
+  const isTrackShipmentPage = pathname === '/track-shipment';
   const isHomePage = pathname === '/';
 
   const menuButtonRef = useRef<HTMLButtonElement>(null);
@@ -49,18 +56,22 @@ export function Header() {
     prevMobileMenuOpen.current = mobileMenuOpen;
   }, [mobileMenuOpen]);
 
-  // Keyboard accessibility: Escape to close drawer, Tab trapping
+  // Keyboard accessibility: Escape to close drawer or dropdown, Tab trapping
   useEffect(() => {
-    if (!mobileMenuOpen) return;
-
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
-        e.preventDefault();
-        setMobileMenuOpen(false);
-        return;
+        if (servicesDropdownOpen) {
+          setServicesDropdownOpen(false);
+          return;
+        }
+        if (mobileMenuOpen) {
+          e.preventDefault();
+          setMobileMenuOpen(false);
+          return;
+        }
       }
 
-      if (e.key === 'Tab' && drawerRef.current) {
+      if (mobileMenuOpen && e.key === 'Tab' && drawerRef.current) {
         const focusables = Array.from(
           drawerRef.current.querySelectorAll<HTMLElement>(
             'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'
@@ -88,19 +99,22 @@ export function Header() {
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [mobileMenuOpen]);
+  }, [mobileMenuOpen, servicesDropdownOpen]);
 
-  const navLinks = [
+  // Mobile drawer links (Comprehensive vertical hierarchy)
+  const mobileNavLinks = [
     { label: 'Home', href: '/' },
-    { label: 'Services', href: '/services' },
-    { label: 'Tracking', href: isHomePage ? '#tracking' : '/#tracking' },
-    { label: 'Business', href: isHomePage ? '#business' : '/#business' },
-    { label: 'Gallery', href: isHomePage ? '#gallery' : '/#gallery' },
-    { label: 'About', href: isHomePage ? '#about' : '/#about' },
-    { label: 'Contact', href: isHomePage ? '#contact' : '/#contact' },
+    { label: 'All Services', href: '/services' },
+    { label: 'Textile Logistics', href: '/textile-logistics' },
+    { label: 'Business Solutions', href: '/business-solutions' },
+    { label: 'Track Shipment', href: '/track-shipment' },
+    { label: 'Operations Gallery', href: '/gallery' },
+    { label: 'About Economic Courier', href: '/about' },
+    { label: 'Contact Bhilwara Desk', href: '/contact' },
   ];
 
-  const contactHref = isHomePage ? '#contact' : '/#contact';
+  const contactHref = isContactPage ? '#inquiry-form' : '/contact';
+  const isServicesDropdownActive = isServicesPage || isBusinessSolutionsPage;
 
   return (
     <>
@@ -136,56 +150,217 @@ export function Header() {
               </div>
             </Link>
 
-            {/* Center: Desktop & Tablet Navigation (768px+ avoids premature hamburger) */}
+            {/* Center: Desktop Navigation (Zero wrapping, spacious, professional hierarchy) */}
             <nav
-              className="hidden md:flex items-center gap-1.5 lg:gap-3 xl:gap-5"
+              className="hidden lg:flex items-center gap-1.5 xl:gap-3 2xl:gap-5"
               aria-label="Main Navigation"
             >
-              {navLinks.map((link) => {
-                const isActive = isServicesPage
-                  ? link.label === 'Services'
-                  : activeNav === link.label;
-                return (
-                  <Link
-                    key={link.label}
-                    href={link.href}
-                    onClick={() => setActiveNav(link.label)}
-                    className={`relative py-1.5 px-2.5 lg:px-3 text-[13px] lg:text-[14px] rounded-lg transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-600 ${
-                      isActive
-                        ? 'text-[#DC2626] font-bold bg-red-50/70'
-                        : 'text-slate-600 font-medium hover:text-[#DC2626] hover:bg-red-50/40'
+              {/* 1. Home */}
+              <Link
+                href="/"
+                onClick={() => setActiveNav('Home')}
+                className={`relative py-1.5 px-2.5 xl:px-3 text-[13px] xl:text-[14px] font-semibold rounded-lg whitespace-nowrap transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-600 ${
+                  isHomePage && activeNav === 'Home'
+                    ? 'text-[#DC2626] font-bold bg-red-50/70'
+                    : 'text-slate-600 hover:text-[#DC2626] hover:bg-red-50/40'
+                }`}
+              >
+                <span>Home</span>
+                <span
+                  className={`absolute bottom-0 left-1/2 -translate-x-1/2 h-[2.5px] rounded-full bg-[#DC2626] transition-all duration-200 ${
+                    isHomePage && activeNav === 'Home' ? 'w-5 opacity-100' : 'w-0 opacity-0'
+                  }`}
+                  aria-hidden="true"
+                />
+              </Link>
+
+              {/* 2. Services (Interactive Dropdown with Courier & Cargo + Business Solutions) */}
+              <div
+                className="relative group"
+                onMouseEnter={() => setServicesDropdownOpen(true)}
+                onMouseLeave={() => setServicesDropdownOpen(false)}
+              >
+                <Link
+                  href="/services"
+                  onClick={() => {
+                    setActiveNav('Services');
+                    setServicesDropdownOpen(false);
+                  }}
+                  className={`relative py-1.5 px-2.5 xl:px-3 text-[13px] xl:text-[14px] font-semibold rounded-lg whitespace-nowrap transition-all inline-flex items-center gap-1.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-600 ${
+                    isServicesDropdownActive
+                      ? 'text-[#DC2626] font-bold bg-red-50/70'
+                      : 'text-slate-600 hover:text-[#DC2626] hover:bg-red-50/40'
+                  }`}
+                  aria-expanded={servicesDropdownOpen}
+                  aria-haspopup="true"
+                >
+                  <span>Services</span>
+                  <ChevronDown
+                    className={`w-3.5 h-3.5 transition-transform duration-200 ${
+                      servicesDropdownOpen ? 'rotate-180 text-[#DC2626]' : 'text-slate-400 group-hover:text-[#DC2626]'
                     }`}
-                  >
-                    <span>{link.label}</span>
-                    <span
-                      className={`absolute bottom-0 left-1/2 -translate-x-1/2 h-[2.5px] rounded-full bg-[#DC2626] transition-all duration-200 ${
-                        isActive ? 'w-5 opacity-100' : 'w-0 opacity-0'
+                  />
+                  <span
+                    className={`absolute bottom-0 left-1/2 -translate-x-1/2 h-[2.5px] rounded-full bg-[#DC2626] transition-all duration-200 ${
+                      isServicesDropdownActive ? 'w-5 opacity-100' : 'w-0 opacity-0'
+                    }`}
+                    aria-hidden="true"
+                  />
+                </Link>
+
+                {/* Dropdown Card */}
+                <div
+                  className={`absolute top-full left-0 pt-2 w-[320px] z-50 transition-all duration-200 ${
+                    servicesDropdownOpen
+                      ? 'opacity-100 visible translate-y-0 pointer-events-auto'
+                      : 'opacity-0 invisible -translate-y-1 pointer-events-none'
+                  }`}
+                >
+                  <div className="bg-white rounded-2xl shadow-xl border border-slate-200/90 p-2.5 space-y-1">
+                    <div className="px-3 pt-2 pb-1 text-[10px] font-mono font-bold tracking-wider uppercase text-slate-400">
+                      Express &amp; Cargo Capabilities
+                    </div>
+
+                    <Link
+                      href="/services"
+                      onClick={() => setServicesDropdownOpen(false)}
+                      className={`flex items-start gap-3 p-2.5 rounded-xl transition-colors ${
+                        isServicesPage ? 'bg-red-50/80 text-[#DC2626]' : 'hover:bg-slate-50 text-slate-700 hover:text-[#DC2626]'
                       }`}
-                      aria-hidden="true"
-                    />
-                  </Link>
-                );
-              })}
+                    >
+                      <div className="w-8 h-8 rounded-lg bg-red-50 text-[#DC2626] flex items-center justify-center shrink-0 border border-red-100 mt-0.5">
+                        <Truck className="w-4 h-4 text-[#DC2626]" />
+                      </div>
+                      <div className="space-y-0.5">
+                        <span className="text-xs font-bold block leading-tight">All Courier Services</span>
+                        <span className="text-[11px] text-slate-500 leading-tight block font-normal">
+                          Domestic express, worldwide air cargo &amp; documents.
+                        </span>
+                      </div>
+                    </Link>
+
+                    <Link
+                      href="/business-solutions"
+                      onClick={() => setServicesDropdownOpen(false)}
+                      className={`flex items-start gap-3 p-2.5 rounded-xl transition-colors ${
+                        isBusinessSolutionsPage ? 'bg-red-50/80 text-[#DC2626]' : 'hover:bg-slate-50 text-slate-700 hover:text-[#DC2626]'
+                      }`}
+                    >
+                      <div className="w-8 h-8 rounded-lg bg-red-50 text-[#DC2626] flex items-center justify-center shrink-0 border border-red-100 mt-0.5">
+                        <Briefcase className="w-4 h-4 text-[#DC2626]" />
+                      </div>
+                      <div className="space-y-0.5">
+                        <span className="text-xs font-bold block leading-tight">Business Solutions</span>
+                        <span className="text-[11px] text-slate-500 leading-tight block font-normal">
+                          B2B trade accounts, scheduled linehauls &amp; commercial parcels.
+                        </span>
+                      </div>
+                    </Link>
+
+                    <div className="pt-2 mt-1 border-t border-slate-100 px-3 pb-1 flex items-center justify-between text-[11px] text-slate-500">
+                      <span>Bhilwara Dispatch Desk</span>
+                      <Link
+                        href="/contact"
+                        onClick={() => setServicesDropdownOpen(false)}
+                        className="text-[#DC2626] font-bold hover:underline inline-flex items-center gap-0.5"
+                      >
+                        <span>Inquire</span>
+                        <ArrowRight className="w-3 h-3" />
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* 3. Textile Logistics (Star Signature Service for Bhilwara) */}
+              <Link
+                href="/textile-logistics"
+                onClick={() => setActiveNav('Textile Logistics')}
+                className={`relative py-1.5 px-2.5 xl:px-3 text-[13px] xl:text-[14px] font-semibold rounded-lg whitespace-nowrap transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-600 ${
+                  isTextilePage
+                    ? 'text-[#DC2626] font-bold bg-red-50/70'
+                    : 'text-slate-600 hover:text-[#DC2626] hover:bg-red-50/40'
+                }`}
+              >
+                <span>Textile Logistics</span>
+                <span
+                  className={`absolute bottom-0 left-1/2 -translate-x-1/2 h-[2.5px] rounded-full bg-[#DC2626] transition-all duration-200 ${
+                    isTextilePage ? 'w-5 opacity-100' : 'w-0 opacity-0'
+                  }`}
+                  aria-hidden="true"
+                />
+              </Link>
+
+              {/* 4. Track Shipment */}
+              <Link
+                href="/track-shipment"
+                onClick={() => setActiveNav('Track Shipment')}
+                className={`relative py-1.5 px-2.5 xl:px-3 text-[13px] xl:text-[14px] font-semibold rounded-lg whitespace-nowrap transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-600 ${
+                  isTrackShipmentPage
+                    ? 'text-[#DC2626] font-bold bg-red-50/70'
+                    : 'text-slate-600 hover:text-[#DC2626] hover:bg-red-50/40'
+                }`}
+              >
+                <span>Track Shipment</span>
+                <span
+                  className={`absolute bottom-0 left-1/2 -translate-x-1/2 h-[2.5px] rounded-full bg-[#DC2626] transition-all duration-200 ${
+                    isTrackShipmentPage ? 'w-5 opacity-100' : 'w-0 opacity-0'
+                  }`}
+                  aria-hidden="true"
+                />
+              </Link>
+
+              {/* 5. Gallery */}
+              <Link
+                href="/gallery"
+                onClick={() => setActiveNav('Gallery')}
+                className={`relative py-1.5 px-2.5 xl:px-3 text-[13px] xl:text-[14px] font-semibold rounded-lg whitespace-nowrap transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-600 ${
+                  isGalleryPage
+                    ? 'text-[#DC2626] font-bold bg-red-50/70'
+                    : 'text-slate-600 hover:text-[#DC2626] hover:bg-red-50/40'
+                }`}
+              >
+                <span>Gallery</span>
+                <span
+                  className={`absolute bottom-0 left-1/2 -translate-x-1/2 h-[2.5px] rounded-full bg-[#DC2626] transition-all duration-200 ${
+                    isGalleryPage ? 'w-5 opacity-100' : 'w-0 opacity-0'
+                  }`}
+                  aria-hidden="true"
+                />
+              </Link>
+
+              {/* 6. About */}
+              <Link
+                href="/about"
+                onClick={() => setActiveNav('About')}
+                className={`relative py-1.5 px-2.5 xl:px-3 text-[13px] xl:text-[14px] font-semibold rounded-lg whitespace-nowrap transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-600 ${
+                  isAboutPage
+                    ? 'text-[#DC2626] font-bold bg-red-50/70'
+                    : 'text-slate-600 hover:text-[#DC2626] hover:bg-red-50/40'
+                }`}
+              >
+                <span>About</span>
+                <span
+                  className={`absolute bottom-0 left-1/2 -translate-x-1/2 h-[2.5px] rounded-full bg-[#DC2626] transition-all duration-200 ${
+                    isAboutPage ? 'w-5 opacity-100' : 'w-0 opacity-0'
+                  }`}
+                  aria-hidden="true"
+                />
+              </Link>
             </nav>
 
-            {/* Right Action Elements: Call CTA + Instagram Icon (768px+) */}
-            <div className="hidden md:flex items-center gap-2.5 lg:gap-3.5">
-              {/* Call Us Red Pill Button - Crisp White Text and Icon */}
+            {/* Right Action Elements: Contact Hub CTA + Instagram Icon (Visible on lg: 1024px+) */}
+            <div className="hidden lg:flex items-center gap-2.5 lg:gap-3.5 shrink-0">
+              {/* Contact Us Red Pill Button - Crisp White Text */}
               <Link
                 href={contactHref}
                 style={{ color: '#FFFFFF' }}
-                className="inline-flex items-center gap-2 bg-[#DC2626] hover:bg-[#B91C1C] text-white text-[12px] lg:text-[13px] font-bold px-3.5 lg:px-5 py-2 rounded-full shadow-xs hover:shadow-[0_4px_14px_rgba(220,38,38,0.25)] transition-all active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-600 focus-visible:ring-offset-2"
-                title="Call Us: +91 89551 44444 (Line pending owner confirmation)"
-                aria-label="Call Us at +91 89551 44444 (Line pending owner confirmation)"
+                className="inline-flex items-center gap-2 bg-[#DC2626] hover:bg-[#B91C1C] text-white text-[12.5px] lg:text-[13px] font-bold px-4 lg:px-5 py-2 rounded-full shadow-xs hover:shadow-[0_4px_14px_rgba(220,38,38,0.25)] transition-all active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-600 focus-visible:ring-offset-2 whitespace-nowrap"
+                title="Contact Economic Courier Bhilwara"
+                aria-label="Contact Economic Courier Bhilwara"
               >
-                <div className="w-5 h-5 rounded-full bg-white/20 flex items-center justify-center shrink-0">
-                  <Phone className="w-3 h-3 text-white fill-white" style={{ color: '#FFFFFF', fill: '#FFFFFF' }} />
-                </div>
-                <span className="hidden xl:inline text-white font-bold tracking-tight" style={{ color: '#FFFFFF' }}>
-                  +91 89551 44444
-                </span>
-                <span className="xl:hidden text-white font-bold" style={{ color: '#FFFFFF' }}>
-                  Call Us
+                <span className="text-white font-bold tracking-tight" style={{ color: '#FFFFFF' }}>
+                  Contact Us
                 </span>
               </Link>
 
@@ -201,17 +376,16 @@ export function Header() {
               </a>
             </div>
 
-            {/* Mobile Navigation Toggle Button (< 768px) */}
-            <div className="flex md:hidden items-center gap-2">
+            {/* Mobile & Tablet Navigation Toggle (< 1024px: 360px up to 1023px) */}
+            <div className="flex lg:hidden items-center gap-2">
               <Link
                 href={contactHref}
                 style={{ color: '#FFFFFF' }}
-                className="inline-flex items-center gap-1.5 bg-[#DC2626] hover:bg-[#B91C1C] text-white text-[11px] font-bold px-3 py-1.5 rounded-full shadow-xs transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-600"
-                title="Call Us: +91 89551 44444 (Line pending owner confirmation)"
-                aria-label="Call Us"
+                className="inline-flex items-center gap-1.5 bg-[#DC2626] hover:bg-[#B91C1C] text-white text-[11px] font-bold px-3 py-1.5 rounded-full shadow-xs transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-600 whitespace-nowrap"
+                title="Contact Economic Courier Bhilwara"
+                aria-label="Contact Economic Courier"
               >
-                <Phone className="w-3 h-3 text-white fill-white" style={{ color: '#FFFFFF', fill: '#FFFFFF' }} />
-                <span className="text-white font-bold" style={{ color: '#FFFFFF' }}>Call</span>
+                <span className="text-white font-bold" style={{ color: '#FFFFFF' }}>Contact</span>
               </Link>
 
               <button
@@ -229,14 +403,14 @@ export function Header() {
         </div>
       </header>
 
-      {/* Mobile Drawer Overlay / Backdrop & Container (< 768px) */}
+      {/* Mobile & Tablet Drawer Overlay / Backdrop & Container (< 1024px) */}
       {mobileMenuOpen && (
         <>
           {/* Semi-transparent Backdrop Overlay */}
           <div
             onClick={() => setMobileMenuOpen(false)}
             aria-hidden="true"
-            className="fixed inset-0 top-[67px] sm:top-[71px] z-40 bg-slate-950/45 backdrop-blur-xs md:hidden animate-in fade-in duration-200"
+            className="fixed inset-0 top-[67px] sm:top-[71px] z-40 bg-slate-950/45 backdrop-blur-xs lg:hidden animate-in fade-in duration-200"
           />
 
           {/* Slide-down Drawer Container */}
@@ -245,13 +419,25 @@ export function Header() {
             id="mobile-navigation-drawer"
             role="dialog"
             aria-modal="true"
-            aria-label="Mobile Navigation Menu"
-            className="fixed top-[67px] sm:top-[71px] left-0 right-0 z-50 md:hidden bg-white border-b-2 border-b-[#DC2626] shadow-2xl rounded-b-3xl px-5 pt-3 pb-6 space-y-4 max-h-[calc(100dvh-5rem)] overflow-y-auto animate-in slide-in-from-top-2 duration-200"
+            aria-label="Navigation Menu"
+            className="fixed top-[67px] sm:top-[71px] left-0 right-0 z-50 lg:hidden bg-white border-b-2 border-b-[#DC2626] shadow-2xl rounded-b-3xl px-5 pt-3 pb-6 space-y-4 max-h-[calc(100dvh-5rem)] overflow-y-auto animate-in slide-in-from-top-2 duration-200"
           >
-            <nav className="flex flex-col space-y-1" aria-label="Mobile menu links">
-              {navLinks.map((link) => {
+            <nav className="flex flex-col space-y-1" aria-label="Mobile and tablet menu links">
+              {mobileNavLinks.map((link) => {
                 const isActive = isServicesPage
-                  ? link.label === 'Services'
+                  ? link.label === 'All Services'
+                  : isAboutPage
+                  ? link.label === 'About Economic Courier'
+                  : isGalleryPage
+                  ? link.label === 'Operations Gallery'
+                  : isContactPage
+                  ? link.label === 'Contact Bhilwara Desk'
+                  : isTextilePage
+                  ? link.label === 'Textile Logistics'
+                  : isBusinessSolutionsPage
+                  ? link.label === 'Business Solutions'
+                  : isTrackShipmentPage
+                  ? link.label === 'Track Shipment'
                   : activeNav === link.label;
                 return (
                   <Link
@@ -273,12 +459,12 @@ export function Header() {
               })}
             </nav>
 
-            {/* Mobile Contact & Verified Channel Action Bar */}
+            {/* Mobile/Tablet Contact & Verified Channel Action Bar */}
             <div className="pt-3 border-t border-slate-100 space-y-2">
               <div className="flex items-center justify-between text-[11px] text-slate-500 font-medium px-1">
-                <span>Direct Inquiry Line</span>
-                <span className="text-[9px] font-mono font-medium px-1.5 py-0.5 rounded bg-amber-100/80 text-amber-800 border border-amber-200">
-                  Pending Confirmation
+                <span>Customer Inquiry Desk</span>
+                <span className="text-[9px] font-mono font-medium px-1.5 py-0.5 rounded bg-slate-100 text-slate-600 border border-slate-200">
+                  Bhilwara Hub
                 </span>
               </div>
 
@@ -289,8 +475,7 @@ export function Header() {
                   style={{ color: '#FFFFFF' }}
                   className="flex-1 inline-flex items-center justify-center gap-2 bg-[#DC2626] hover:bg-[#B91C1C] text-white text-xs font-bold py-2.5 rounded-full shadow-xs transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-600"
                 >
-                  <Phone className="w-3.5 h-3.5 text-white fill-white" style={{ color: '#FFFFFF', fill: '#FFFFFF' }} />
-                  <span className="text-white font-bold" style={{ color: '#FFFFFF' }}>+91 89551 44444</span>
+                  <span className="text-white font-bold" style={{ color: '#FFFFFF' }}>Contact Hub</span>
                 </Link>
 
                 <a
@@ -312,3 +497,4 @@ export function Header() {
 }
 
 export default Header;
+

@@ -318,7 +318,7 @@ export function ReviewsSection() {
                               {renderCategoryIcon(review.categoryIcon)}
                               <span>{review.category}</span>
                             </div>
-                            <span className="text-[10.5px] text-slate-400 font-medium">
+                            <span className="text-[10.5px] text-slate-500 font-medium">
                               {review.date}
                             </span>
                           </div>
@@ -336,25 +336,29 @@ export function ReviewsSection() {
                   type="button"
                   onClick={handlePrev}
                   aria-label="Previous review"
-                  className="md:hidden w-7 h-7 rounded-full bg-white border border-slate-200 shadow-2xs text-slate-700 hover:text-[#DC2626] active:scale-90 flex items-center justify-center cursor-pointer"
+                  className="md:hidden w-8 h-8 rounded-full bg-white border border-slate-200 shadow-2xs text-slate-700 hover:text-[#DC2626] active:scale-90 flex items-center justify-center cursor-pointer"
                 >
-                  <ChevronLeft className="w-3.5 h-3.5" />
+                  <ChevronLeft className="w-4 h-4" />
                 </button>
 
-                {/* Dots */}
-                <div className="flex items-center gap-1.5 px-1">
+                {/* Dots with accessible 28px touch target */}
+                <div className="flex items-center gap-0.5 px-1">
                   {[...Array(maxIndex + 1)].map((_, idx) => (
                     <button
                       key={idx}
                       type="button"
                       onClick={() => setCurrentIndex(idx)}
                       aria-label={`Go to review slide ${idx + 1}`}
-                      className={`transition-all duration-300 rounded-full cursor-pointer ${
-                        currentIndex === idx
-                          ? 'w-6 h-1.5 bg-[#DC2626]'
-                          : 'w-1.5 h-1.5 bg-slate-300 hover:bg-slate-400'
-                      }`}
-                    />
+                      className="h-7 w-7 flex items-center justify-center cursor-pointer p-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-600 rounded-full"
+                    >
+                      <span
+                        className={`transition-all duration-300 rounded-full ${
+                          currentIndex === idx
+                            ? 'w-6 h-1.5 bg-[#DC2626]'
+                            : 'w-1.5 h-1.5 bg-slate-300 hover:bg-slate-400'
+                        }`}
+                      />
+                    </button>
                   ))}
                 </div>
 
@@ -363,9 +367,9 @@ export function ReviewsSection() {
                   type="button"
                   onClick={handleNext}
                   aria-label="Next review"
-                  className="md:hidden w-7 h-7 rounded-full bg-white border border-slate-200 shadow-2xs text-slate-700 hover:text-[#DC2626] active:scale-90 flex items-center justify-center cursor-pointer"
+                  className="md:hidden w-8 h-8 rounded-full bg-white border border-slate-200 shadow-2xs text-slate-700 hover:text-[#DC2626] active:scale-90 flex items-center justify-center cursor-pointer"
                 >
-                  <ChevronRight className="w-3.5 h-3.5" />
+                  <ChevronRight className="w-4 h-4" />
                 </button>
               </div>
             </div>

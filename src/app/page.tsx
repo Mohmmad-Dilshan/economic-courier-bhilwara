@@ -118,9 +118,9 @@ export default function HomePage() {
             {/* Left Content Column */}
             <div className="lg:col-span-6 space-y-5">
               {/* Location Badge */}
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-gradient-to-r from-red-50 via-white to-red-50/50 border border-red-200/80 text-[#DC2626] text-[11px] font-extrabold tracking-widest uppercase shadow-xs reveal-init delay-75">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-gradient-to-r from-red-50 via-white to-red-50/50 border border-red-200/80 text-red-700 text-[11px] font-extrabold tracking-widest uppercase shadow-xs reveal-init delay-75">
                 <span className="w-2 h-2 rounded-full bg-[#DC2626] shadow-[0_0_8px_rgba(220,38,38,0.7)] animate-pulse" />
-                <MapPin className="w-3.5 h-3.5 text-[#DC2626]" />
+                <MapPin className="w-3.5 h-3.5 text-red-700" />
                 <span>BHILWARA · INDIA</span>
               </div>
 
@@ -305,7 +305,7 @@ export default function HomePage() {
           {/* Section Header */}
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 mb-8 reveal-init relative">
             <div className="max-w-xl space-y-2.5 z-10">
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-red-50 border border-red-200/80 text-[#DC2626] text-[11px] font-extrabold tracking-widest uppercase shadow-2xs">
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-red-50 border border-red-200/80 text-red-700 text-[11px] font-extrabold tracking-widest uppercase shadow-2xs">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#DC2626] animate-pulse" />
                 <span>OUR SERVICES</span>
               </div>
@@ -439,7 +439,7 @@ export default function HomePage() {
 
             {/* Right Content: Centered on mobile, left-aligned on desktop */}
             <div className="lg:col-span-6 space-y-4 reveal-init delay-100 text-center lg:text-left flex flex-col items-center lg:items-start">
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-red-50 border border-red-200/80 text-[#DC2626] text-[11px] font-extrabold tracking-widest uppercase shadow-2xs mb-1">
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-red-50 border border-red-200/80 text-red-700 text-[11px] font-extrabold tracking-widest uppercase shadow-2xs mb-1">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#DC2626] animate-pulse" />
                 <span>ABOUT US</span>
               </div>

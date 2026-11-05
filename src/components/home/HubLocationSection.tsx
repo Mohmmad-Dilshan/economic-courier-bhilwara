@@ -37,8 +37,8 @@ export function HubLocationSection({ onOpenInquiry }: HubLocationSectionProps) {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center mb-8 sm:mb-10">
           {/* Left Title & Information */}
           <div className="lg:col-span-7 text-left space-y-3">
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-red-50 border border-red-200/90 text-[#DC2626] text-[11px] font-extrabold tracking-widest uppercase shadow-2xs">
-              <MapPin className="w-3.5 h-3.5 text-[#DC2626]" />
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-red-50 border border-red-200/90 text-red-700 text-[11px] font-extrabold tracking-widest uppercase shadow-2xs">
+              <MapPin className="w-3.5 h-3.5 text-red-700" />
               <span>CENTRAL BHILWARA HUB &amp; COUNTER</span>
             </div>
             <h2 className="text-2xl sm:text-3xl lg:text-[36px] xl:text-[38px] font-black tracking-[-0.03em] text-slate-900 leading-[1.18]">
@@ -97,7 +97,7 @@ export function HubLocationSection({ onOpenInquiry }: HubLocationSectionProps) {
                   <MapPin className="w-5 h-5" />
                 </div>
                 <div className="space-y-1">
-                  <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider block">
+                  <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider block">
                     Physical Address
                   </span>
                   <p className="text-sm font-bold text-slate-900 leading-snug">
@@ -115,7 +115,7 @@ export function HubLocationSection({ onOpenInquiry }: HubLocationSectionProps) {
                   <Clock className="w-5 h-5" />
                 </div>
                 <div className="space-y-1">
-                  <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider block">
+                  <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider block">
                     Operating Timings
                   </span>
                   <p className="text-sm font-bold text-slate-900">
@@ -133,7 +133,7 @@ export function HubLocationSection({ onOpenInquiry }: HubLocationSectionProps) {
                   <Phone className="w-5 h-5" />
                 </div>
                 <div className="space-y-1">
-                  <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider block">
+                  <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider block">
                     Hub Helpline &amp; Dispatch Desk
                   </span>
                   <p className="text-sm font-black text-slate-900">

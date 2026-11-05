@@ -137,7 +137,6 @@ export function Header() {
             <Link
               href="/"
               className="flex items-center gap-2 sm:gap-3 shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-600 focus-visible:ring-offset-2 rounded-lg group"
-              aria-label="eCS World Wide Express - Economic Courier Bhilwara Home"
             >
               <BrandLogo size="md" />
               <div className="flex flex-col border-l border-slate-200/90 pl-2 sm:pl-3">
@@ -357,7 +356,7 @@ export function Header() {
                 style={{ color: '#FFFFFF' }}
                 className="inline-flex items-center gap-2 bg-[#DC2626] hover:bg-[#B91C1C] text-white text-[12.5px] lg:text-[13px] font-bold px-4 lg:px-5 py-2 rounded-full shadow-xs hover:shadow-[0_4px_14px_rgba(220,38,38,0.25)] transition-all active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-600 focus-visible:ring-offset-2 whitespace-nowrap"
                 title="Contact Economic Courier Bhilwara"
-                aria-label="Contact Economic Courier Bhilwara"
+                aria-label="Contact Us — Economic Courier Bhilwara"
               >
                 <span className="text-white font-bold tracking-tight" style={{ color: '#FFFFFF' }}>
                   Contact Us
@@ -383,7 +382,7 @@ export function Header() {
                 style={{ color: '#FFFFFF' }}
                 className="inline-flex items-center gap-1.5 bg-[#DC2626] hover:bg-[#B91C1C] text-white text-[11px] font-bold px-3 py-1.5 rounded-full shadow-xs transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-600 whitespace-nowrap"
                 title="Contact Economic Courier Bhilwara"
-                aria-label="Contact Economic Courier"
+                aria-label="Contact — Economic Courier Bhilwara"
               >
                 <span className="text-white font-bold" style={{ color: '#FFFFFF' }}>Contact</span>
               </Link>

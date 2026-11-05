@@ -717,7 +717,6 @@ export function AnimatedRouteMap({ onOpenInquiry }: AnimatedRouteMapProps) {
                     handleSelectStop(stop, idx);
                   }
                 }}
-                aria-label={`View ${stop.name} route details`}
               >
                 {isOrigin ? (
                   // Compact Origin Pill
@@ -746,7 +745,7 @@ export function AnimatedRouteMap({ onOpenInquiry }: AnimatedRouteMapProps) {
                     <span className="font-bold text-[11px] text-slate-900 tracking-tight leading-tight block truncate">
                       {stop.name}
                     </span>
-                    <span className="text-[8.5px] text-slate-500 font-medium block truncate leading-none mt-0.5">
+                    <span className="text-[9px] text-slate-600 font-semibold block truncate leading-none mt-0.5">
                       {stop.tag}
                     </span>
 
@@ -782,7 +781,7 @@ export function AnimatedRouteMap({ onOpenInquiry }: AnimatedRouteMapProps) {
                     {selectedStop.name}
                   </h4>
                   {selectedStop.hindiName && (
-                    <span className="text-xs text-slate-400 font-semibold">
+                    <span className="text-xs text-slate-500 font-semibold">
                       {selectedStop.hindiName}
                     </span>
                   )}
@@ -802,7 +801,7 @@ export function AnimatedRouteMap({ onOpenInquiry }: AnimatedRouteMapProps) {
                   <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
                   Same-Day Transit
                 </span>
-                <span className="font-mono text-slate-400">10:00 AM Dispatch</span>
+                <span className="font-mono text-slate-500">10:00 AM Dispatch</span>
               </div>
 
               {onOpenInquiry ? (
@@ -1070,7 +1069,7 @@ export function AnimatedRouteMap({ onOpenInquiry }: AnimatedRouteMapProps) {
                     <span className="font-bold text-[10px] text-slate-900 block truncate leading-tight">
                       {stop.name}
                     </span>
-                    <span className="text-[8px] text-slate-500 font-medium block truncate leading-none mt-0.5">
+                    <span className="text-[9px] text-slate-600 font-semibold block truncate leading-none mt-0.5">
                       {stop.tag}
                     </span>
                   </div>
@@ -1088,7 +1087,7 @@ export function AnimatedRouteMap({ onOpenInquiry }: AnimatedRouteMapProps) {
                 {selectedStop.name}
               </h4>
               {selectedStop.hindiName && (
-                <span className="text-[10px] text-slate-400 font-medium block">
+                <span className="text-[10px] text-slate-500 font-medium block">
                   {selectedStop.hindiName}
                 </span>
               )}

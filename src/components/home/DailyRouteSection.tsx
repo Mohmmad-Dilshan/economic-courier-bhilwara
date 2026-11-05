@@ -37,9 +37,9 @@ export function DailyRouteSection({ onOpenInquiry }: DailyRouteSectionProps) {
         {/* ── 1. SECTION HEADER (Title & Standalone 3D eCS Truck Object) ───────── */}
         <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 pb-4 border-b border-slate-200/70 relative">
           <div className="max-w-2xl space-y-3 sm:space-y-4 z-10">
-            <div className="inline-flex items-center gap-2 px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full bg-red-50 border border-red-200/80 text-[#DC2626] text-[10px] sm:text-[11px] font-extrabold tracking-widest uppercase shadow-2xs">
+            <div className="inline-flex items-center gap-2 px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full bg-red-50 border border-red-200/80 text-red-700 text-[10px] sm:text-[11px] font-extrabold tracking-widest uppercase shadow-2xs">
               <span className="w-2 h-2 rounded-full bg-[#DC2626] animate-pulse" />
-              <Truck className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#DC2626]" />
+              <Truck className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-red-700" />
               <span>DAILY REGIONAL ROUTE &amp; SAME-DAY DISPATCH</span>
             </div>
 
@@ -120,7 +120,7 @@ export function DailyRouteSection({ onOpenInquiry }: DailyRouteSectionProps) {
           {/* High-Contrast Operational Action Bar (Desktop + Mobile Friendly) */}
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3.5 p-3.5 sm:p-4 rounded-xl sm:rounded-2xl bg-white border border-slate-200/90 shadow-2xs">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-red-50 text-[#DC2626] flex items-center justify-center shrink-0 border border-red-100 font-black font-mono text-xs shadow-2xs">
+              <div className="w-10 h-10 rounded-xl bg-red-50 text-red-700 flex items-center justify-center shrink-0 border border-red-100 font-black font-mono text-xs shadow-2xs">
                 10 AM
               </div>
               <div className="space-y-0.5 text-xs">

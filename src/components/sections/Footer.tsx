@@ -46,13 +46,13 @@ export function Footer() {
             ========================================================================= */}
         <div className="py-8 sm:py-10 border-b border-slate-200/80 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
           <div className="flex items-start gap-3.5 p-4 rounded-2xl bg-slate-50/80 border border-slate-200/80 shadow-2xs hover:border-slate-300 transition-colors">
-            <div className="w-10 h-10 rounded-xl bg-red-50 border border-red-100 text-[#DC2626] flex items-center justify-center shrink-0 shadow-2xs">
+            <div className="w-10 h-10 rounded-xl bg-red-50 border border-red-100 text-[#B91C1C] flex items-center justify-center shrink-0 shadow-2xs">
               <Truck className="w-5 h-5" />
             </div>
             <div>
-              <h4 className="text-xs font-extrabold text-slate-900 uppercase tracking-wider">
+              <h3 className="text-xs font-extrabold text-slate-900 uppercase tracking-wider">
                 Rajasthan Linehaul
-              </h4>
+              </h3>
               <p className="text-[12px] text-slate-600 leading-snug mt-0.5 font-normal">
                 Daily dispatches to Jaipur, Jodhpur, Udaipur, Kota &amp; 19,000+ pin codes.
               </p>
@@ -60,13 +60,13 @@ export function Footer() {
           </div>
 
           <div className="flex items-start gap-3.5 p-4 rounded-2xl bg-slate-50/80 border border-slate-200/80 shadow-2xs hover:border-slate-300 transition-colors">
-            <div className="w-10 h-10 rounded-xl bg-blue-50 border border-blue-100 text-blue-600 flex items-center justify-center shrink-0 shadow-2xs">
+            <div className="w-10 h-10 rounded-xl bg-blue-50 border border-blue-100 text-blue-700 flex items-center justify-center shrink-0 shadow-2xs">
               <Globe2 className="w-5 h-5" />
             </div>
             <div>
-              <h4 className="text-xs font-extrabold text-slate-900 uppercase tracking-wider">
+              <h3 className="text-xs font-extrabold text-slate-900 uppercase tracking-wider">
                 Worldwide Air Express
-              </h4>
+              </h3>
               <p className="text-[12px] text-slate-600 leading-snug mt-0.5 font-normal">
                 220+ countries connectivity with commercial export invoice support.
               </p>
@@ -74,13 +74,13 @@ export function Footer() {
           </div>
 
           <div className="flex items-start gap-3.5 p-4 rounded-2xl bg-slate-50/80 border border-slate-200/80 shadow-2xs hover:border-slate-300 transition-colors">
-            <div className="w-10 h-10 rounded-xl bg-purple-50 border border-purple-100 text-purple-600 flex items-center justify-center shrink-0 shadow-2xs">
+            <div className="w-10 h-10 rounded-xl bg-purple-50 border border-purple-100 text-purple-700 flex items-center justify-center shrink-0 shadow-2xs">
               <Package className="w-5 h-5" />
             </div>
             <div>
-              <h4 className="text-xs font-extrabold text-slate-900 uppercase tracking-wider">
+              <h3 className="text-xs font-extrabold text-slate-900 uppercase tracking-wider">
                 Textile Hub Specialists
-              </h4>
+              </h3>
               <p className="text-[12px] text-slate-600 leading-snug mt-0.5 font-normal">
                 Tamper-evident poly strapping for fabric shade cards &amp; swatch mailers.
               </p>
@@ -88,13 +88,13 @@ export function Footer() {
           </div>
 
           <div className="flex items-start gap-3.5 p-4 rounded-2xl bg-slate-50/80 border border-slate-200/80 shadow-2xs hover:border-slate-300 transition-colors">
-            <div className="w-10 h-10 rounded-xl bg-emerald-50 border border-emerald-100 text-emerald-600 flex items-center justify-center shrink-0 shadow-2xs">
+            <div className="w-10 h-10 rounded-xl bg-emerald-50 border border-emerald-100 text-emerald-700 flex items-center justify-center shrink-0 shadow-2xs">
               <ShieldCheck className="w-5 h-5" />
             </div>
             <div>
-              <h4 className="text-xs font-extrabold text-slate-900 uppercase tracking-wider">
+              <h3 className="text-xs font-extrabold text-slate-900 uppercase tracking-wider">
                 Central Bhilwara Hub
-              </h4>
+              </h3>
               <p className="text-[12px] text-slate-600 leading-snug mt-0.5 font-normal">
                 Opposite New Cloth Market, open Mon–Sat 9:30 AM – 8:30 PM.
               </p>
@@ -112,7 +112,6 @@ export function Footer() {
             <Link
               href="/"
               className="inline-flex items-center gap-2.5 sm:gap-3 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-600 rounded-lg"
-              aria-label="Economic Courier Bhilwara Home"
             >
               <BrandLogo size="md" variant="light" />
               <div className="flex flex-col border-l border-slate-200/90 pl-2.5 sm:pl-3">

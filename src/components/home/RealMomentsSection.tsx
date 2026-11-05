@@ -268,7 +268,7 @@ function VideoReelCard({
         <div className="w-8 sm:w-10 h-1 bg-slate-700/90 rounded-full" />
       </div>
 
-      {/* HTML5 Video Element (Crisp, zero blur) */}
+      {/* HTML5 Video Element (Crisp, zero blur, lazy video streaming) */}
       <video
         ref={videoRef}
         src={moment.videoUrl}
@@ -276,7 +276,7 @@ function VideoReelCard({
         playsInline
         loop
         muted={isMuted}
-        preload="metadata"
+        preload="none"
         className="w-full h-full object-cover"
         onPlay={() => setIsPlaying(true)}
         onPause={() => setIsPlaying(false)}

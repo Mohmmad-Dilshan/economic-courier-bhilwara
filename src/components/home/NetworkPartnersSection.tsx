@@ -128,9 +128,9 @@ export function NetworkPartnersSection() {
         {/* ── 1. SECTION HEADER (Title & 3D Logistics Visual Object) ─────────────────────────── */}
         <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 sm:gap-8 pb-4 border-b border-slate-200/70">
           <div className="max-w-2xl space-y-3 sm:space-y-4">
-            <div className="inline-flex items-center gap-2 px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full bg-red-50 border border-red-200/80 text-[#DC2626] text-[10px] sm:text-[11px] font-extrabold tracking-widest uppercase shadow-2xs">
+            <div className="inline-flex items-center gap-2 px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full bg-red-50 border border-red-200/80 text-red-700 text-[10px] sm:text-[11px] font-extrabold tracking-widest uppercase shadow-2xs">
               <span className="w-2 h-2 rounded-full bg-[#DC2626] animate-pulse" />
-              <Truck className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#DC2626]" />
+              <Truck className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-red-700" />
               <span>DISPATCH &amp; LINEHAUL CONNECTIONS</span>
             </div>
 
@@ -274,8 +274,8 @@ export function NetworkPartnersSection() {
                           <span>{partner.categoryLabel}</span>
                         </span>
 
-                        <span className="inline-flex items-center gap-1 text-[10px] sm:text-[10.5px] font-medium text-emerald-600">
-                          <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+                        <span className="inline-flex items-center gap-1 text-[10px] sm:text-[10.5px] font-semibold text-emerald-700">
+                          <span className="w-1.5 h-1.5 rounded-full bg-emerald-600" />
                           <span>Live Portal ↗</span>
                         </span>
                       </div>
@@ -298,7 +298,6 @@ export function NetworkPartnersSection() {
                       target="_blank"
                       rel="noopener noreferrer"
                       className="group/btn relative inline-flex items-center justify-between w-full py-2.5 sm:py-3.5 lg:py-4 px-3 sm:px-5 rounded-xl sm:rounded-2xl text-xs sm:text-sm font-bold text-white bg-slate-900 group-hover:bg-[#DC2626] shadow-[0_2px_8px_rgba(15,23,42,0.1)] group-hover:shadow-[0_8px_20px_rgba(220,38,38,0.25)] transition-all duration-200 active:scale-[0.98] cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-600"
-                      aria-label={`Open official tracking portal for ${partner.name} in a new tab`}
                     >
                       <span className="sm:hidden">Track on Portal</span>
                       <span className="hidden sm:inline">Track on {partner.shortName} Portal</span>
@@ -342,14 +341,14 @@ export function NetworkPartnersSection() {
                     </span>
 
                     {isDirect ? (
-                      <span className="inline-flex items-center gap-1 text-[8.5px] sm:text-[10px] font-medium text-emerald-600 shrink-0">
-                        <span className="w-1 h-1 sm:w-1.5 sm:h-1.5 rounded-full bg-emerald-500" />
+                      <span className="inline-flex items-center gap-1 text-[8.5px] sm:text-[10px] font-semibold text-emerald-700 shrink-0">
+                        <span className="w-1 h-1 sm:w-1.5 sm:h-1.5 rounded-full bg-emerald-600" />
                         <span className="hidden sm:inline">Live Portal ↗</span>
                         <span className="sm:hidden">Live</span>
                       </span>
                     ) : (
-                      <span className="inline-flex items-center gap-1 text-[8.5px] sm:text-[10px] font-medium text-amber-700 shrink-0">
-                        <span className="w-1 h-1 sm:w-1.5 sm:h-1.5 rounded-full bg-amber-500" />
+                      <span className="inline-flex items-center gap-1 text-[8.5px] sm:text-[10px] font-semibold text-amber-800 shrink-0">
+                        <span className="w-1 h-1 sm:w-1.5 sm:h-1.5 rounded-full bg-amber-600" />
                         <span>Counter</span>
                       </span>
                     )}
@@ -374,7 +373,6 @@ export function NetworkPartnersSection() {
                       target="_blank"
                       rel="noopener noreferrer"
                       className="group/btn relative inline-flex items-center justify-between w-full py-2 sm:py-3 px-2 sm:px-3.5 rounded-xl sm:rounded-2xl text-[11px] sm:text-xs lg:text-sm font-bold text-white bg-slate-900 group-hover:bg-[#DC2626] shadow-xs group-hover:shadow-md transition-all duration-200 active:scale-[0.98] cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-600"
-                      aria-label={`Open official tracking portal for ${partner.name} in a new tab`}
                     >
                       <span className="sm:hidden">Track ↗</span>
                       <span className="hidden sm:inline">Track on {partner.shortName} Portal</span>

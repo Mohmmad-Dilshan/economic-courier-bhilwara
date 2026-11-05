@@ -52,8 +52,8 @@ export function FAQSection({ onOpenInquiry }: FAQSectionProps) {
       <div className="max-w-[1240px] 2xl:max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-10 space-y-3">
-          <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-red-50 border border-red-200/90 text-[#DC2626] text-[11px] font-extrabold tracking-widest uppercase shadow-2xs">
-            <HelpCircle className="w-3.5 h-3.5 text-[#DC2626]" />
+          <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-red-50 border border-red-200/90 text-red-700 text-[11px] font-extrabold tracking-widest uppercase shadow-2xs">
+            <HelpCircle className="w-3.5 h-3.5 text-red-700" />
             <span>HELP &amp; KNOWLEDGE BASE</span>
           </div>
 
@@ -96,11 +96,11 @@ export function FAQSection({ onOpenInquiry }: FAQSectionProps) {
                   >
                     <div className="space-y-1 pr-1 min-w-0 flex-1">
                       <div className="flex items-center gap-2">
-                        <span className="text-[10.5px] font-extrabold uppercase tracking-wider text-slate-400">
+                        <span className="text-[10.5px] font-extrabold uppercase tracking-wider text-slate-500">
                           0{index + 1}
                         </span>
                         <span className="text-slate-300">•</span>
-                        <span className="text-[11px] font-bold text-red-600 uppercase tracking-wider">
+                        <span className="text-[11px] font-bold text-red-700 uppercase tracking-wider">
                           {item.categoryLabel}
                         </span>
                       </div>
@@ -136,7 +136,7 @@ export function FAQSection({ onOpenInquiry }: FAQSectionProps) {
                     className="px-5 sm:px-6 pb-5 pt-2 border-t border-slate-100/90 bg-white"
                   >
                     {item.highlight && (
-                      <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-red-50 text-[#DC2626] text-[11px] font-bold mb-2.5 border border-red-100">
+                      <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-red-50 text-red-700 text-[11px] font-bold mb-2.5 border border-red-100">
                         <Sparkles className="w-3.5 h-3.5 shrink-0" />
                         <span>{item.highlight}</span>
                       </div>

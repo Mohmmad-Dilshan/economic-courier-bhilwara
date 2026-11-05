@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Image from 'next/image';
 import {
   MapPin,
   Clock,
@@ -32,22 +33,39 @@ export function HubLocationSection({ onOpenInquiry }: HubLocationSectionProps) {
   return (
     <section id="contact" className="py-12 sm:py-16 lg:py-20 bg-slate-50/60 scroll-mt-24 sm:scroll-mt-28 border-t border-slate-100">
       <div className="max-w-[1240px] 2xl:max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
-        <div className="max-w-3xl text-left mb-8 sm:mb-10">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-red-50 border border-red-200/90 text-[#DC2626] text-[11px] font-extrabold tracking-widest uppercase shadow-2xs mb-3">
-            <MapPin className="w-3.5 h-3.5 text-[#DC2626]" />
-            <span>CENTRAL BHILWARA HUB &amp; COUNTER</span>
+        {/* Section Header with 3D Hub Building Model */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center mb-8 sm:mb-10">
+          {/* Left Title & Information */}
+          <div className="lg:col-span-7 text-left space-y-3">
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-red-50 border border-red-200/90 text-[#DC2626] text-[11px] font-extrabold tracking-widest uppercase shadow-2xs">
+              <MapPin className="w-3.5 h-3.5 text-[#DC2626]" />
+              <span>CENTRAL BHILWARA HUB &amp; COUNTER</span>
+            </div>
+            <h2 className="text-2xl sm:text-3xl lg:text-[36px] xl:text-[38px] font-black tracking-[-0.03em] text-slate-900 leading-[1.18]">
+              Visit Our Central Dispatch Hub <br className="hidden sm:inline" />
+              <span className="text-[#DC2626]">
+                Opposite New Cloth Market, Bhilwara
+              </span>
+            </h2>
+            <div className="w-12 h-1 bg-[#DC2626] rounded-full mt-2 mb-2" />
+            <p className="text-sm sm:text-base text-slate-600 leading-relaxed font-normal max-w-xl">
+              Walk in for instant parcel weighing, tamper-evident packing, and daily scheduled dispatches across Rajasthan, pan-India corridors, and 220+ international destinations.
+            </p>
           </div>
-          <h2 className="text-2xl sm:text-3xl lg:text-[38px] font-black tracking-[-0.03em] text-slate-900 leading-[1.18]">
-            Visit Our Central Dispatch Hub <br className="hidden sm:inline" />
-            <span className="text-[#DC2626]">
-              Opposite New Cloth Market, Bhilwara
-            </span>
-          </h2>
-          <div className="w-12 h-1 bg-[#DC2626] rounded-full mt-3 mb-3" />
-          <p className="text-sm sm:text-base text-slate-600 leading-relaxed font-normal max-w-2xl">
-            Walk in for instant parcel weighing, tamper-evident packing, and daily scheduled dispatches across Rajasthan, pan-India corridors, and 220+ international destinations.
-          </p>
+
+          {/* Right: 3D Model Building (Isometric Hub Render) */}
+          <div className="lg:col-span-5 flex justify-center lg:justify-end">
+            <div className="relative w-full max-w-[340px] sm:max-w-[380px] lg:max-w-[420px]">
+              <Image
+                src="/assets/hub-3d-model.webp"
+                alt="eCS World Wide Express Bhilwara Central Dispatch Hub 3D Model"
+                width={480}
+                height={320}
+                priority
+                className="w-full h-auto object-contain drop-shadow-[0_12px_28px_rgba(15,23,42,0.12)] hover:scale-[1.03] transition-transform duration-300 pointer-events-auto"
+              />
+            </div>
+          </div>
         </div>
 
         {/* 2-Column Bento Grid: Left (Hub Info & Counter Services) + Right (Interactive Google Map) */}

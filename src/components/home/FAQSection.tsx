@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useMemo } from 'react';
+import React, { useState } from 'react';
 import {
   ChevronDown,
   HelpCircle,
@@ -9,12 +9,9 @@ import {
   ArrowRight,
   Sparkles,
   MapPin,
-  Tag,
 } from 'lucide-react';
 import {
   FAQ_ITEMS,
-  FAQ_CATEGORIES,
-  FAQCategoryKey,
   FAQItem,
 } from '@/lib/faqData';
 import { BUSINESS_INFO } from '@/lib/constants';
@@ -24,7 +21,7 @@ interface FAQSectionProps {
 }
 
 /**
- * FAQSection — Enhanced Interactive Accordion with Category Filters & Direct Support Desk
+ * FAQSection — Clean Interactive Accordion with Direct Support Desk
  *
  * FACTUAL SAFEGUARDS:
  * 1. Pulls verified items from `@/lib/faqData`.
@@ -33,17 +30,11 @@ interface FAQSectionProps {
  * 4. Full WCAG 2.1 AA accessibility (ARIA states, keyboard focusable).
  */
 export function FAQSection({ onOpenInquiry }: FAQSectionProps) {
-  const [selectedCategory, setSelectedCategory] = useState<FAQCategoryKey>('all');
   const [openId, setOpenId] = useState<string | null>(FAQ_ITEMS[0]?.id ?? null);
 
   const toggleItem = (id: string) => {
     setOpenId((prev) => (prev === id ? null : id));
   };
-
-  const filteredItems = useMemo(() => {
-    if (selectedCategory === 'all') return FAQ_ITEMS;
-    return FAQ_ITEMS.filter((item) => item.category === selectedCategory);
-  }, [selectedCategory]);
 
   // Valid FAQPage JSON-LD Schema strictly matching the visible questions and answers
   const faqSchema = {
@@ -90,54 +81,9 @@ export function FAQSection({ onOpenInquiry }: FAQSectionProps) {
           </p>
         </div>
 
-        {/* Category Filter Pills */}
-        <div className="flex flex-wrap items-center justify-center gap-2 mb-8 max-w-3xl mx-auto">
-          {FAQ_CATEGORIES.map((cat) => {
-            const isActive = selectedCategory === cat.key;
-            const count =
-              cat.key === 'all'
-                ? FAQ_ITEMS.length
-                : FAQ_ITEMS.filter((i) => i.category === cat.key).length;
-
-            return (
-              <button
-                key={cat.key}
-                type="button"
-                onClick={() => {
-                  setSelectedCategory(cat.key);
-                  // If current open item isn't in new category, open the first one in the new category
-                  const newFiltered =
-                    cat.key === 'all'
-                      ? FAQ_ITEMS
-                      : FAQ_ITEMS.filter((i) => i.category === cat.key);
-                  if (newFiltered.length > 0 && !newFiltered.some((i) => i.id === openId)) {
-                    setOpenId(newFiltered[0].id);
-                  }
-                }}
-                className={`inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold transition-all active:scale-95 cursor-pointer ${
-                  isActive
-                    ? 'bg-slate-900 text-white shadow-xs'
-                    : 'bg-white text-slate-600 border border-slate-200/90 hover:bg-slate-50 hover:text-slate-900'
-                }`}
-              >
-                <span>{cat.label}</span>
-                <span
-                  className={`text-[10px] px-1.5 py-0.2 rounded-full font-extrabold ${
-                    isActive
-                      ? 'bg-red-600 text-white'
-                      : 'bg-slate-100 text-slate-500'
-                  }`}
-                >
-                  {count}
-                </span>
-              </button>
-            );
-          })}
-        </div>
-
         {/* Accordion List Container */}
         <div className="max-w-3xl mx-auto space-y-3">
-          {filteredItems.map((item, index) => {
+          {FAQ_ITEMS.map((item, index) => {
             const isOpen = openId === item.id;
             const headingId = `faq-heading-${item.id}`;
             const panelId = `faq-panel-${item.id}`;

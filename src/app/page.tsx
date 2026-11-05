@@ -469,14 +469,14 @@ export default function HomePage() {
       <FAQSection />
 
       {/* =========================================================================
-          11. CALL TO ACTION BAND (Shipment Inquiry Preparation)
-          ========================================================================= */}
-      <CTABand onOpenInquiry={handleOpenInquiry} />
-
-      {/* =========================================================================
-          12. BHILWARA CENTRAL HUB & INTERACTIVE MAP (Real Verified Data)
+          11. BHILWARA CENTRAL HUB & INTERACTIVE MAP (Real Verified Data)
           ========================================================================= */}
       <HubLocationSection onOpenInquiry={handleOpenInquiry} />
+
+      {/* =========================================================================
+          12. CALL TO ACTION BAND (Shipment Inquiry Preparation - Above Footer)
+          ========================================================================= */}
+      <CTABand onOpenInquiry={handleOpenInquiry} />
 
       {/* Verified Courier Partner Tracking Dialog */}
       <TrackingNoticeModal

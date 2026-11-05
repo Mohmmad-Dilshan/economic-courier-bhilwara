@@ -345,70 +345,30 @@ export function TrackShipmentView() {
               </div>
             </div>
 
-            {/* Right Column: Visual Booking Docket Schematic */}
-            <div className="lg:col-span-5">
-              <div className="bg-white rounded-3xl p-5 sm:p-6 border border-slate-200/90 shadow-md space-y-4">
-                <div className="flex items-center justify-between pb-3 border-b border-slate-100">
+            {/* Right Column: 3D Isometric Shipment Tracking & Routing Model */}
+            <div className="lg:col-span-5 flex flex-col items-center justify-center">
+              <div className="relative w-full max-w-[360px] xs:max-w-[420px] sm:max-w-[480px] lg:max-w-[540px] group">
+                {/* Soft ambient glow */}
+                <div className="absolute -inset-4 bg-gradient-to-tr from-red-500/10 via-rose-500/5 to-amber-500/10 rounded-3xl blur-2xl -z-10 opacity-70 group-hover:opacity-100 transition-opacity" />
+
+                <Image
+                  src="/assets/tracking-3d-model.webp"
+                  alt="eCS World Wide Express 3D Isometric Consignment Tracking, Air Cargo and Road Linehaul Model"
+                  width={1024}
+                  height={576}
+                  priority
+                  className="w-full h-auto object-contain drop-shadow-[0_16px_36px_rgba(15,23,42,0.12)] hover:scale-[1.02] transition-transform duration-300 pointer-events-auto"
+                />
+
+                {/* Micro Live Routing Status Ribbon */}
+                <div className="mt-2.5 flex items-center justify-between gap-2 px-4 py-2.5 rounded-2xl bg-white/95 backdrop-blur-md border border-slate-200/90 shadow-2xs text-xs">
                   <div className="flex items-center gap-2">
-                    <FileText className="w-4 h-4 text-red-700" />
-                    <span className="text-xs font-bold uppercase tracking-wider text-slate-800">
-                      Bhilwara Booking Slip Guide
-                    </span>
+                    <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse shrink-0" />
+                    <span className="font-bold text-slate-900">Direct Carrier Dispatch</span>
                   </div>
-                  <span className="text-[10px] font-mono font-bold text-slate-600 uppercase">
-                    Counter Docket
+                  <span className="text-[11px] text-slate-600 font-semibold truncate">
+                    Bhilwara Hub · 220+ Destinations
                   </span>
-                </div>
-
-                {/* Diagrammatic Booking Slip Graphic */}
-                <div className="rounded-2xl border-2 border-dashed border-red-200 bg-red-50/40 p-4 space-y-3 font-mono text-xs">
-                  <div className="flex items-center justify-between border-b border-red-200/70 pb-2.5">
-                    <div>
-                      <span className="font-sans font-black text-slate-900 block text-xs">
-                        eCS WORLD WIDE EXPRESS
-                      </span>
-                      <span className="font-sans text-[10px] text-slate-600 font-medium">
-                        Economic Courier · Bhilwara Central Hub
-                      </span>
-                    </div>
-                    <div className="text-right">
-                      <span className="text-[10px] text-slate-600 block font-sans font-semibold">DOCKET / AWB</span>
-                      <span className="font-bold text-red-700 text-xs sm:text-sm bg-white px-2 py-0.5 rounded border border-red-200">
-                        {searchedAwb || 'BD908234123'}
-                      </span>
-                    </div>
-                  </div>
-
-                  <div className="grid grid-cols-2 gap-2 text-[11px] text-slate-700 font-sans">
-                    <div>
-                      <span className="text-[10px] text-slate-600 block font-semibold">ORIGIN</span>
-                      <span className="font-bold text-slate-900">Bhilwara Hub</span>
-                      <span className="text-[10px] text-slate-600 block truncate font-medium">Opp. New Cloth Market</span>
-                    </div>
-                    <div>
-                      <span className="text-[10px] text-slate-600 block font-semibold">LINEHAUL CARRIER</span>
-                      <span className="font-bold text-slate-900">
-                        {detectedCarrier?.name || 'Assigned Network Partner'}
-                      </span>
-                      <span className="text-[10px] text-slate-600 block font-medium">Verified Routing</span>
-                    </div>
-                  </div>
-
-                  <div className="pt-2 border-t border-red-200/60 flex items-center justify-between text-[10px] font-sans text-slate-600 font-medium">
-                    <span>* Retain slip for delivery proof</span>
-                    <span className="text-emerald-800 font-bold">✓ Verified Origin</span>
-                  </div>
-                </div>
-
-                <div className="space-y-1.5 text-xs text-slate-600 font-sans">
-                  <p className="font-medium">
-                    Look at the top-right corner of your pink/white counter receipt for your tracking
-                    reference.
-                  </p>
-                  <div className="flex items-center gap-2 pt-1 text-[11px] text-red-700 font-bold">
-                    <Building2 className="w-3.5 h-3.5" />
-                    <span>Walk-in Counter: Opposite New Cloth Market, Bhilwara</span>
-                  </div>
                 </div>
               </div>
             </div>
@@ -678,6 +638,145 @@ export function TrackShipmentView() {
                 </div>
               );
             })}
+          </div>
+        </div>
+      </section>
+
+      {/* =========================================================================
+          3B. BHILWARA BOOKING DOCKET & RECEIPT GUIDE
+          ========================================================================= */}
+      <section className="py-12 sm:py-16 bg-white border-b border-slate-200">
+        <div className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+          <div className="max-w-2xl space-y-2">
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-red-50 border border-red-200/80 text-red-700 text-[11px] font-extrabold tracking-widest uppercase shadow-2xs">
+              <FileText className="w-3.5 h-3.5 text-red-700" />
+              <span>BOOKING RECEIPT ANATOMY</span>
+            </div>
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight text-[#0F172A]">
+              How to Read Your Physical Counter Docket
+            </h2>
+            <p className="text-xs sm:text-sm text-slate-600 font-normal leading-relaxed">
+              When booking at our Bhilwara dispatch counter, your printed pink/white slip contains all
+              the reference numbers needed for instant tracking:
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            {/* Left: Interactive Diagrammatic Slip Graphic */}
+            <div className="lg:col-span-6 bg-slate-50/80 rounded-3xl p-5 sm:p-7 border border-slate-200 shadow-sm space-y-4">
+              <div className="flex items-center justify-between pb-3 border-b border-slate-200">
+                <div className="flex items-center gap-2">
+                  <FileText className="w-4 h-4 text-red-700" />
+                  <span className="text-xs font-bold uppercase tracking-wider text-slate-800">
+                    Physical Slip Schematic
+                  </span>
+                </div>
+                <span className="text-[10px] font-mono font-bold text-slate-600 uppercase">
+                  Counter Docket
+                </span>
+              </div>
+
+              {/* Diagrammatic Slip Graphic */}
+              <div className="rounded-2xl border-2 border-dashed border-red-200 bg-red-50/50 p-4 sm:p-5 space-y-3 font-mono text-xs">
+                <div className="flex items-center justify-between border-b border-red-200/70 pb-3">
+                  <div>
+                    <span className="font-sans font-black text-slate-900 block text-xs sm:text-sm">
+                      eCS WORLD WIDE EXPRESS
+                    </span>
+                    <span className="font-sans text-[10px] text-slate-600 font-medium">
+                      Economic Courier · Bhilwara Central Hub
+                    </span>
+                  </div>
+                  <div className="text-right">
+                    <span className="text-[10px] text-slate-600 block font-sans font-semibold">
+                      ① DOCKET / AWB NO.
+                    </span>
+                    <span className="font-bold text-red-700 text-xs sm:text-sm bg-white px-2.5 py-1 rounded-md border border-red-200 inline-block shadow-2xs">
+                      {searchedAwb || 'BD908234123'}
+                    </span>
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-2 gap-3 text-[11px] text-slate-700 font-sans">
+                  <div>
+                    <span className="text-[10px] text-slate-600 block font-semibold">② ORIGIN</span>
+                    <span className="font-bold text-slate-900">Bhilwara Hub</span>
+                    <span className="text-[10px] text-slate-600 block truncate font-medium">
+                      Opp. New Cloth Market
+                    </span>
+                  </div>
+                  <div>
+                    <span className="text-[10px] text-slate-600 block font-semibold">
+                      ③ CARRIER LINEHAUL
+                    </span>
+                    <span className="font-bold text-slate-900">
+                      {detectedCarrier?.name || 'Assigned Partner Linehaul'}
+                    </span>
+                    <span className="text-[10px] text-slate-600 block font-medium">
+                      Direct Highway / Air Dispatch
+                    </span>
+                  </div>
+                </div>
+
+                <div className="pt-2.5 border-t border-red-200/60 flex items-center justify-between text-[10px] font-sans text-slate-600 font-medium">
+                  <span>* Retain original slip for proof of delivery</span>
+                  <span className="text-emerald-800 font-bold">✓ Verified Origin</span>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-2 pt-1 text-xs text-red-700 font-bold">
+                <Building2 className="w-4 h-4 shrink-0" />
+                <span>Walk-in Counter: Opposite New Cloth Market, Bhilwara</span>
+              </div>
+            </div>
+
+            {/* Right: 3 Step Guidance Cards */}
+            <div className="lg:col-span-6 space-y-3.5">
+              <div className="p-4 sm:p-5 rounded-2xl bg-slate-50 border border-slate-200 space-y-1.5">
+                <div className="flex items-center gap-2">
+                  <span className="w-6 h-6 rounded-full bg-red-100 text-red-700 text-xs font-bold flex items-center justify-center shrink-0">
+                    1
+                  </span>
+                  <h3 className="text-sm font-bold text-slate-900">
+                    Locate Your Docket Reference
+                  </h3>
+                </div>
+                <p className="text-xs text-slate-600 pl-8 leading-relaxed">
+                  Look at the top-right corner of your booking slip for the printed 8-11 digit numeric or
+                  alphanumeric barcode reference.
+                </p>
+              </div>
+
+              <div className="p-4 sm:p-5 rounded-2xl bg-slate-50 border border-slate-200 space-y-1.5">
+                <div className="flex items-center gap-2">
+                  <span className="w-6 h-6 rounded-full bg-red-100 text-red-700 text-xs font-bold flex items-center justify-center shrink-0">
+                    2
+                  </span>
+                  <h3 className="text-sm font-bold text-slate-900">
+                    Identify the Assigned Carrier Linehaul
+                  </h3>
+                </div>
+                <p className="text-xs text-slate-600 pl-8 leading-relaxed">
+                  Your slip denotes whether the consignment moves via Blue Dart, Akash Ganga, AFEX, UPS,
+                  or our internal Bhilwara highway corridor linehaul.
+                </p>
+              </div>
+
+              <div className="p-4 sm:p-5 rounded-2xl bg-slate-50 border border-slate-200 space-y-1.5">
+                <div className="flex items-center gap-2">
+                  <span className="w-6 h-6 rounded-full bg-red-100 text-red-700 text-xs font-bold flex items-center justify-center shrink-0">
+                    3
+                  </span>
+                  <h3 className="text-sm font-bold text-slate-900">
+                    Direct Deep Link or WhatsApp Status
+                  </h3>
+                </div>
+                <p className="text-xs text-slate-600 pl-8 leading-relaxed">
+                  Enter your number above to jump straight to the verified carrier portal with your AWB
+                  prefilled, or message our Bhilwara desk on WhatsApp for immediate offline verification.
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </section>

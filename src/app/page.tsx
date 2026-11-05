@@ -25,6 +25,7 @@ import { HowItWorksSection } from '@/components/home/HowItWorksSection';
 import { ReviewsSection } from '@/components/home/ReviewsSection';
 import { FAQSection } from '@/components/home/FAQSection';
 import { CTABand } from '@/components/home/CTABand';
+import { HubLocationSection } from '@/components/home/HubLocationSection';
 
 export default function HomePage() {
   const [trackingInput, setTrackingInput] = useState('');
@@ -473,81 +474,9 @@ export default function HomePage() {
       <CTABand onOpenInquiry={handleOpenInquiry} />
 
       {/* =========================================================================
-          12. CONTACT / LOCATION STRIP (Refined Desktop Dimensions & Honest Status)
+          12. BHILWARA CENTRAL HUB & INTERACTIVE MAP (Real Verified Data)
           ========================================================================= */}
-      <section id="contact" className="py-6 sm:py-8 mb-6 scroll-mt-20 sm:scroll-mt-24">
-        <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 reveal-init delay-100">
-          <div className="bg-[#F0F7FD] rounded-2xl border border-[#E0EDF8] p-5 sm:p-6 flex flex-col md:flex-row items-center justify-between gap-6 shadow-2xs">
-            {/* Left: Prepare Rate & Shipment Inquiry */}
-            <div className="flex items-center gap-4 text-left w-full md:w-auto">
-              <div className="w-10 h-10 rounded-full bg-red-100/70 flex items-center justify-center text-[#DC2626] shrink-0">
-                <FileText className="w-5 h-5 text-[#DC2626]" />
-              </div>
-              <div>
-                <p className="text-[11px] font-semibold text-slate-500 uppercase tracking-wider">
-                  Customer Inquiry Desk
-                </p>
-                <button
-                  type="button"
-                  onClick={() => handleOpenInquiry()}
-                  className="text-sm sm:text-base font-bold text-slate-900 hover:text-[#DC2626] transition-colors inline-flex items-center gap-1.5 cursor-pointer text-left"
-                >
-                  <span>Prepare Rate &amp; Shipment Inquiry</span>
-                  <ArrowRight className="w-4 h-4 text-[#DC2626]" />
-                </button>
-              </div>
-            </div>
-
-            {/* Divider */}
-            <div className="hidden md:block h-10 w-px bg-[#D4E4F3]" />
-
-            {/* Middle: City Presence & Address Status */}
-            <div className="flex items-start gap-3.5 flex-1 max-w-md w-full">
-              <div className="w-10 h-10 rounded-full bg-red-100/70 flex items-center justify-center text-[#DC2626] shrink-0 mt-0.5">
-                <MapPin className="w-5 h-5 text-[#DC2626]" />
-              </div>
-              <div className="space-y-1">
-                <div className="flex items-center gap-2 flex-wrap">
-                  <p className="text-sm font-bold text-slate-900">
-                    Bhilwara, Rajasthan, India
-                  </p>
-                  <span className="text-[10px] font-mono font-medium px-2 py-0.5 rounded bg-amber-100/80 text-amber-800 border border-amber-200">
-                    Address [Pending Confirmation]
-                  </span>
-                </div>
-                <p className="text-xs text-slate-600 leading-relaxed">
-                  Street location and operating hours awaiting client verification.{' '}
-                  <a
-                    href={BUSINESS_INFO.googleMapsUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-[#DC2626] hover:underline font-medium inline-block"
-                  >
-                    View reference map pin &rarr;
-                  </a>
-                </p>
-              </div>
-            </div>
-
-            {/* Right: Map Graphic thumbnail with disclaimer */}
-            <a
-              href={BUSINESS_INFO.googleMapsUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              title="Open reference map pin (unverified)"
-              className="relative w-48 h-20 shrink-0 hidden lg:block rounded-xl overflow-hidden border border-slate-200 group cursor-pointer"
-            >
-              <Image
-                src="/assets/office/map-graphic.jpg"
-                alt="Economic Courier Bhilwara reference map marker"
-                fill
-                sizes="192px"
-                className="object-cover object-right group-hover:scale-105 transition-transform duration-300"
-              />
-            </a>
-          </div>
-        </div>
-      </section>
+      <HubLocationSection onOpenInquiry={handleOpenInquiry} />
 
       {/* Verified Courier Partner Tracking Dialog */}
       <TrackingNoticeModal

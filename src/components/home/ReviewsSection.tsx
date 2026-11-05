@@ -27,16 +27,17 @@ export function ReviewsSection() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const [visibleCount, setVisibleCount] = useState(2);
+  const [touchStart, setTouchStart] = useState<number | null>(null);
+  const [touchEnd, setTouchEnd] = useState<number | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleResize = () => {
       // 1 card on mobile, exactly 2 spacious cards on tablet and desktop
-      if (window.innerWidth < 768) {
-        setVisibleCount(1);
-      } else {
-        setVisibleCount(2);
-      }
+      const isMobile = window.innerWidth < 768;
+      const count = isMobile ? 1 : 2;
+      setVisibleCount(count);
+      setCurrentIndex((prev) => Math.min(prev, Math.max(0, GOOGLE_REVIEWS_LIST.length - count)));
     };
 
     handleResize();
@@ -62,6 +63,25 @@ export function ReviewsSection() {
 
   const handleNext = () => {
     setCurrentIndex((prev) => (prev >= maxIndex ? 0 : prev + 1));
+  };
+
+  // Touch handlers for smooth mobile swipe
+  const minSwipeDistance = 45;
+  const onTouchStart = (e: React.TouchEvent) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+  const onTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+  const onTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    const distance = touchStart - touchEnd;
+    if (distance > minSwipeDistance) {
+      handleNext();
+    } else if (distance < -minSwipeDistance) {
+      handlePrev();
+    }
   };
 
   const renderCategoryIcon = (iconType: GoogleReview['categoryIcon']) => {
@@ -201,32 +221,38 @@ export function ReviewsSection() {
               onMouseEnter={() => setIsPaused(true)}
               onMouseLeave={() => setIsPaused(false)}
             >
-              {/* Carousel Frame with Side Arrows */}
+              {/* Carousel Frame with Side Arrows on Desktop */}
               <div className="relative">
-                {/* Arrow Left */}
+                {/* Arrow Left (Desktop) */}
                 <button
                   type="button"
                   onClick={handlePrev}
                   aria-label="Previous reviews"
-                  className="absolute -left-2.5 sm:-left-4 top-1/2 -translate-y-1/2 z-20 w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white border border-slate-200 shadow-md text-slate-700 hover:text-[#DC2626] hover:border-red-200 hover:scale-105 active:scale-95 transition-all flex items-center justify-center cursor-pointer"
+                  className="hidden md:flex absolute -left-4 top-1/2 -translate-y-1/2 z-20 w-9 h-9 rounded-full bg-white border border-slate-200 shadow-md text-slate-700 hover:text-[#DC2626] hover:border-red-200 hover:scale-105 active:scale-95 transition-all items-center justify-center cursor-pointer"
                 >
                   <ChevronLeft className="w-4 h-4" />
                 </button>
 
-                {/* Arrow Right */}
+                {/* Arrow Right (Desktop) */}
                 <button
                   type="button"
                   onClick={handleNext}
                   aria-label="Next reviews"
-                  className="absolute -right-2.5 sm:-right-4 top-1/2 -translate-y-1/2 z-20 w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white border border-slate-200 shadow-md text-slate-700 hover:text-[#DC2626] hover:border-red-200 hover:scale-105 active:scale-95 transition-all flex items-center justify-center cursor-pointer"
+                  className="hidden md:flex absolute -right-4 top-1/2 -translate-y-1/2 z-20 w-9 h-9 rounded-full bg-white border border-slate-200 shadow-md text-slate-700 hover:text-[#DC2626] hover:border-red-200 hover:scale-105 active:scale-95 transition-all items-center justify-center cursor-pointer"
                 >
                   <ChevronRight className="w-4 h-4" />
                 </button>
 
-                {/* Cards Viewport */}
-                <div ref={containerRef} className="overflow-hidden px-1 py-1">
+                {/* Cards Viewport (Zero-drift pixel-perfect translation track + Touch Swipe) */}
+                <div
+                  ref={containerRef}
+                  className="overflow-hidden py-1 w-full"
+                  onTouchStart={onTouchStart}
+                  onTouchMove={onTouchMove}
+                  onTouchEnd={onTouchEnd}
+                >
                   <div
-                    className="flex transition-transform duration-500 ease-out gap-4 sm:gap-5"
+                    className="flex transition-transform duration-500 ease-out"
                     style={{
                       transform: `translateX(-${currentIndex * (100 / visibleCount)}%)`,
                     }}
@@ -234,17 +260,16 @@ export function ReviewsSection() {
                     {GOOGLE_REVIEWS_LIST.map((review) => (
                       <div
                         key={review.id}
-                        className="shrink-0 transition-all duration-300"
-                        style={{
-                          width: `calc(${100 / visibleCount}% - ${((visibleCount - 1) * 20) / visibleCount}px)`,
-                        }}
+                        className={`shrink-0 transition-all duration-300 ${
+                          visibleCount === 1 ? 'w-full px-1' : 'w-1/2 px-2.5'
+                        }`}
                       >
                         {/* Review Card: Crisp White Tile on Soft Blue Canvas (NO PHOTO DP!) */}
                         <div className="h-full bg-white rounded-2xl p-5 sm:p-5.5 border border-slate-200/90 shadow-[0_4px_16px_rgba(15,23,42,0.05)] hover:shadow-[0_8px_24px_rgba(15,23,42,0.08)] hover:border-slate-300 transition-all duration-300 flex flex-col justify-between">
                           <div>
                             {/* Card Header: Google Initial Badge (NO PHOTO DP) + Meta + Stars + Quote Mark */}
                             <div className="flex items-start justify-between gap-2.5 mb-3">
-                              <div className="flex items-center gap-3 min-w-0">
+                              <div className="flex items-center gap-3 min-w-0 flex-1">
                                 {/* Google Style Initial Circle */}
                                 <div
                                   className={`w-9 h-9 rounded-full ${review.avatarColor} text-white font-black text-xs flex items-center justify-center shrink-0 shadow-2xs select-none`}
@@ -253,14 +278,14 @@ export function ReviewsSection() {
                                 </div>
 
                                 {/* Author Meta (Full text, no truncation!) */}
-                                <div className="min-w-0">
-                                  <div className="flex items-center gap-1.5">
+                                <div className="min-w-0 flex-1">
+                                  <div className="flex items-center gap-1.5 flex-wrap">
                                     <h3 className="text-[14.5px] font-bold text-slate-900 tracking-tight leading-snug">
                                       {review.name}
                                     </h3>
                                     <CheckCircle2 className="w-3.5 h-3.5 text-blue-500 shrink-0" />
                                   </div>
-                                  <p className="text-[11.5px] font-medium text-slate-500 leading-tight mt-0.5">
+                                  <p className="text-[11.5px] font-medium text-slate-500 leading-tight mt-0.5 truncate">
                                     {review.role}, {review.location}
                                   </p>
                                   {/* 5 Stars directly under role */}
@@ -304,21 +329,44 @@ export function ReviewsSection() {
                 </div>
               </div>
 
-              {/* Pagination Indicators */}
-              <div className="flex items-center justify-center gap-2 mt-4">
-                {[...Array(maxIndex + 1)].map((_, idx) => (
-                  <button
-                    key={idx}
-                    type="button"
-                    onClick={() => setCurrentIndex(idx)}
-                    aria-label={`Go to review slide ${idx + 1}`}
-                    className={`transition-all duration-300 rounded-full cursor-pointer ${
-                      currentIndex === idx
-                        ? 'w-6 h-1.5 bg-[#DC2626]'
-                        : 'w-1.5 h-1.5 bg-slate-300 hover:bg-slate-400'
-                    }`}
-                  />
-                ))}
+              {/* Pagination Indicators & Mobile Nav Controls */}
+              <div className="flex items-center justify-center gap-2.5 mt-4">
+                {/* Mobile Prev Button */}
+                <button
+                  type="button"
+                  onClick={handlePrev}
+                  aria-label="Previous review"
+                  className="md:hidden w-7 h-7 rounded-full bg-white border border-slate-200 shadow-2xs text-slate-700 hover:text-[#DC2626] active:scale-90 flex items-center justify-center cursor-pointer"
+                >
+                  <ChevronLeft className="w-3.5 h-3.5" />
+                </button>
+
+                {/* Dots */}
+                <div className="flex items-center gap-1.5 px-1">
+                  {[...Array(maxIndex + 1)].map((_, idx) => (
+                    <button
+                      key={idx}
+                      type="button"
+                      onClick={() => setCurrentIndex(idx)}
+                      aria-label={`Go to review slide ${idx + 1}`}
+                      className={`transition-all duration-300 rounded-full cursor-pointer ${
+                        currentIndex === idx
+                          ? 'w-6 h-1.5 bg-[#DC2626]'
+                          : 'w-1.5 h-1.5 bg-slate-300 hover:bg-slate-400'
+                      }`}
+                    />
+                  ))}
+                </div>
+
+                {/* Mobile Next Button */}
+                <button
+                  type="button"
+                  onClick={handleNext}
+                  aria-label="Next review"
+                  className="md:hidden w-7 h-7 rounded-full bg-white border border-slate-200 shadow-2xs text-slate-700 hover:text-[#DC2626] active:scale-90 flex items-center justify-center cursor-pointer"
+                >
+                  <ChevronRight className="w-3.5 h-3.5" />
+                </button>
               </div>
             </div>
           </div>

@@ -125,7 +125,7 @@ export default function HomePage() {
               </div>
 
               {/* Large Modern Gradient Headline with Flight Trail and Airplane */}
-              <h1 className="text-4xl sm:text-5xl lg:text-[54px] xl:text-[58px] font-black tracking-[-0.035em] leading-[1.06] reveal-init delay-150">
+              <h1 className="text-3xl xs:text-4xl sm:text-5xl lg:text-[54px] xl:text-[58px] font-black tracking-[-0.035em] leading-[1.08] sm:leading-[1.06] reveal-init delay-150">
                 <span className="bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900 bg-clip-text text-transparent">
                   From Bhilwara to
                 </span>{' '}
@@ -133,7 +133,7 @@ export default function HomePage() {
                 <span className="bg-gradient-to-r from-[#DC2626] via-[#EF4444] to-[#B91C1C] bg-clip-text text-transparent inline-flex items-center relative drop-shadow-[0_2px_12px_rgba(220,38,38,0.18)]">
                   the world.
                   <svg
-                    className="w-14 h-11 -mt-7 ml-2.5 inline-block overflow-visible shrink-0"
+                    className="w-10 h-8 xs:w-12 xs:h-9 sm:w-14 sm:h-11 -mt-5 sm:-mt-7 ml-2 sm:ml-2.5 inline-block overflow-visible shrink-0"
                     viewBox="0 0 50 40"
                     fill="none"
                     aria-hidden="true"
@@ -153,7 +153,7 @@ export default function HomePage() {
               </h1>
 
               {/* Subtitle */}
-              <p className="text-base sm:text-lg text-slate-600 leading-relaxed max-w-md font-normal reveal-init delay-225">
+              <p className="text-sm sm:text-base lg:text-lg text-slate-600 leading-relaxed max-w-md font-normal reveal-init delay-225">
                 Priority domestic express &amp; worldwide air cargo connectivity, tailored for Bhilwara trade, documents, and parcels.
               </p>
 
@@ -162,13 +162,13 @@ export default function HomePage() {
                 <form
                   onSubmit={handleTrackSubmit}
                   noValidate
-                  className={`relative flex items-center bg-white rounded-full p-1.5 pl-4 shadow-[0_4px_25px_rgba(0,0,0,0.06)] border transition-all ${
+                  className={`relative flex items-center bg-white rounded-full p-1 sm:p-1.5 pl-3 sm:pl-4 shadow-[0_4px_25px_rgba(0,0,0,0.06)] border transition-all ${
                     inputError
                       ? 'border-red-400 ring-2 ring-red-400/20'
                       : 'border-slate-200/80 focus-within:ring-2 focus-within:ring-red-500/20'
                   }`}
                 >
-                  <Package className="w-4 h-4 text-slate-400 shrink-0 mr-2.5" />
+                  <Package className="w-4 h-4 text-slate-400 shrink-0 mr-2 sm:mr-2.5" />
                   <input
                     type="text"
                     id="tracking-number-input"
@@ -178,8 +178,8 @@ export default function HomePage() {
                       if (inputError) setInputError(null);
                     }}
                     disabled={isSearching}
-                    placeholder="Enter consignment or tracking number"
-                    className="w-full text-xs sm:text-sm text-slate-800 placeholder-slate-400 bg-transparent outline-none disabled:opacity-60"
+                    placeholder="Enter consignment / tracking no."
+                    className="w-full min-w-0 text-xs sm:text-sm text-slate-800 placeholder-slate-400 bg-transparent outline-none disabled:opacity-60"
                     aria-label="Tracking consignment number"
                     aria-invalid={inputError ? 'true' : 'false'}
                     aria-describedby={inputError ? 'tracking-error-msg' : undefined}
@@ -188,16 +188,18 @@ export default function HomePage() {
                     type="submit"
                     disabled={isSearching}
                     aria-busy={isSearching}
-                    className="shrink-0 bg-[#DC2626] hover:bg-[#B91C1C] text-white text-[13px] font-bold px-5 py-2.5 rounded-full inline-flex items-center gap-1.5 transition-all shadow-xs cursor-pointer active:scale-95 disabled:opacity-75 disabled:cursor-not-allowed"
+                    className="shrink-0 bg-[#DC2626] hover:bg-[#B91C1C] text-white text-[12px] sm:text-[13px] font-bold px-3.5 sm:px-5 py-2 sm:py-2.5 rounded-full inline-flex items-center gap-1 sm:gap-1.5 transition-all shadow-xs cursor-pointer active:scale-95 disabled:opacity-75 disabled:cursor-not-allowed whitespace-nowrap"
                   >
                     {isSearching ? (
                       <>
                         <Loader2 className="w-3.5 h-3.5 animate-spin" />
-                        <span>Searching...</span>
+                        <span className="hidden xs:inline">Searching...</span>
+                        <span className="xs:hidden">...</span>
                       </>
                     ) : (
                       <>
-                        <span>Track shipment</span>
+                        <span className="hidden xs:inline">Track shipment</span>
+                        <span className="xs:hidden">Track</span>
                         <ArrowRight className="w-3.5 h-3.5" />
                       </>
                     )}
@@ -251,35 +253,35 @@ export default function HomePage() {
       {/* =========================================================================
           2. SERVICE HIGHLIGHTS BAR (Single Pale Blue Bar Evenly Spaced, Directly Under Hero)
           ========================================================================= */}
-      <section className="py-2 lg:py-3">
-        <div className="max-w-[1200px] mx-auto px-6 lg:px-8">
-          <div className="bg-[#F0F7FD] rounded-2xl py-3 px-6 sm:px-8 border border-[#E0EDF8] flex flex-wrap md:flex-nowrap items-center justify-between gap-4 sm:gap-6 shadow-2xs reveal-init">
-            <div className="flex items-center gap-2.5 text-[13px] font-bold text-slate-800 flex-1 justify-center md:justify-start reveal-init delay-75">
+      <section className="py-2 sm:py-3">
+        <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="bg-[#F0F7FD] rounded-2xl py-3 px-4 sm:px-8 border border-[#E0EDF8] grid grid-cols-2 md:flex md:items-center md:justify-between gap-3 sm:gap-4 md:gap-6 shadow-2xs reveal-init">
+            <div className="flex items-center gap-2 sm:gap-2.5 text-[12px] sm:text-[13px] font-bold text-slate-800 flex-1 justify-start reveal-init delay-75">
               <div className="w-6 h-6 rounded-md bg-white text-[#DC2626] shadow-2xs flex items-center justify-center shrink-0 border border-red-100/60">
                 <Truck className="w-3.5 h-3.5 text-[#DC2626]" />
               </div>
-              <span>Domestic shipping</span>
+              <span className="truncate">Domestic shipping</span>
             </div>
-            <div className="hidden md:block h-6 w-px bg-[#D4E4F3]" />
-            <div className="flex items-center gap-2.5 text-[13px] font-bold text-slate-800 flex-1 justify-center md:justify-start reveal-init delay-150">
+            <div className="hidden md:block h-6 w-px bg-[#D4E4F3] shrink-0" />
+            <div className="flex items-center gap-2 sm:gap-2.5 text-[12px] sm:text-[13px] font-bold text-slate-800 flex-1 justify-start reveal-init delay-150">
               <div className="w-6 h-6 rounded-md bg-white text-[#DC2626] shadow-2xs flex items-center justify-center shrink-0 border border-red-100/60">
                 <Globe className="w-3.5 h-3.5 text-[#DC2626]" />
               </div>
-              <span>International courier</span>
+              <span className="truncate">International courier</span>
             </div>
-            <div className="hidden md:block h-6 w-px bg-[#D4E4F3]" />
-            <div className="flex items-center gap-2.5 text-[13px] font-bold text-slate-800 flex-1 justify-center md:justify-start reveal-init delay-225">
+            <div className="hidden md:block h-6 w-px bg-[#D4E4F3] shrink-0" />
+            <div className="flex items-center gap-2 sm:gap-2.5 text-[12px] sm:text-[13px] font-bold text-slate-800 flex-1 justify-start reveal-init delay-225">
               <div className="w-6 h-6 rounded-md bg-white text-[#DC2626] shadow-2xs flex items-center justify-center shrink-0 border border-red-100/60">
                 <FileText className="w-3.5 h-3.5 text-[#DC2626]" />
               </div>
-              <span>Documents &amp; parcels</span>
+              <span className="truncate">Documents &amp; parcels</span>
             </div>
-            <div className="hidden md:block h-6 w-px bg-[#D4E4F3]" />
-            <div className="flex items-center gap-2.5 text-[13px] font-bold text-slate-800 flex-1 justify-center md:justify-start reveal-init delay-300">
+            <div className="hidden md:block h-6 w-px bg-[#D4E4F3] shrink-0" />
+            <div className="flex items-center gap-2 sm:gap-2.5 text-[12px] sm:text-[13px] font-bold text-slate-800 flex-1 justify-start reveal-init delay-300">
               <div className="w-6 h-6 rounded-md bg-white text-[#DC2626] shadow-2xs flex items-center justify-center shrink-0 border border-red-100/60">
                 <MapPin className="w-3.5 h-3.5 text-[#DC2626]" />
               </div>
-              <span>Bhilwara-based service</span>
+              <span className="truncate">Bhilwara-based</span>
             </div>
           </div>
         </div>

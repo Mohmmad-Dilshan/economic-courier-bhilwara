@@ -55,7 +55,7 @@ export function HubLocationSection({ onOpenInquiry }: HubLocationSectionProps) {
 
           {/* Right: 3D Model Building (Isometric Hub Render) */}
           <div className="lg:col-span-5 flex justify-center lg:justify-end">
-            <div className="relative w-full max-w-[340px] sm:max-w-[380px] lg:max-w-[420px]">
+            <div className="relative w-full max-w-[280px] xs:max-w-[340px] sm:max-w-[380px] lg:max-w-[420px]">
               <Image
                 src="/assets/hub-3d-model.webp"
                 alt="eCS World Wide Express Bhilwara Central Dispatch Hub 3D Model"
@@ -195,15 +195,15 @@ export function HubLocationSection({ onOpenInquiry }: HubLocationSectionProps) {
           {/* =========================================================
               RIGHT CARD: Live Interactive Google Map with Overlay
               ========================================================= */}
-          <div className="lg:col-span-7 bg-white rounded-3xl border border-slate-200/90 shadow-xs overflow-hidden flex flex-col relative min-h-[420px] lg:min-h-[500px]">
+          <div className="lg:col-span-7 bg-white rounded-3xl border border-slate-200/90 shadow-xs overflow-hidden flex flex-col relative min-h-[360px] sm:min-h-[420px] lg:min-h-[500px]">
             {/* Interactive Google Map iframe */}
-            <div className="relative w-full h-full flex-1">
+            <div className="relative w-full h-full flex-1 min-h-[360px]">
               <iframe
                 title="Economic Courier Bhilwara Hub Google Maps Location"
                 src={mapEmbedUrl}
                 width="100%"
                 height="100%"
-                style={{ border: 0, minHeight: '400px' }}
+                style={{ border: 0, minHeight: '340px' }}
                 allowFullScreen
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
@@ -211,7 +211,7 @@ export function HubLocationSection({ onOpenInquiry }: HubLocationSectionProps) {
               />
 
               {/* Floating Top-Left Hub Badge Overlay */}
-              <div className="absolute top-4 left-4 z-10 max-w-xs bg-white/95 backdrop-blur-md rounded-2xl p-3.5 border border-slate-200/80 shadow-md pointer-events-auto">
+              <div className="absolute top-3 left-3 sm:top-4 sm:left-4 z-10 max-w-[calc(100%-1.5rem)] sm:max-w-xs bg-white/95 backdrop-blur-md rounded-2xl p-2.5 sm:p-3.5 border border-slate-200/80 shadow-md pointer-events-auto">
                 <div className="flex items-center gap-2 mb-1">
                   <div className="w-6 h-6 rounded-lg bg-red-600 text-white flex items-center justify-center font-bold text-xs shrink-0">
                     eCS
@@ -223,25 +223,25 @@ export function HubLocationSection({ onOpenInquiry }: HubLocationSectionProps) {
                 <p className="text-[11px] text-slate-600 leading-snug">
                   Opposite New Cloth Market, Bhilwara
                 </p>
-                <div className="flex items-center gap-1 mt-1.5 text-amber-500 text-[11px] font-bold">
+                <div className="flex items-center gap-1 mt-1 text-amber-500 text-[10.5px] sm:text-[11px] font-bold">
                   <span>★ 4.9</span>
                   <span className="text-slate-400 font-normal">(396+ Google Reviews)</span>
                 </div>
               </div>
 
               {/* Proximity Corridor Chips Overlay at Bottom */}
-              <div className="absolute bottom-4 left-4 right-4 z-10 flex flex-wrap items-center gap-2 pointer-events-none">
-                <div className="pointer-events-auto bg-slate-900/90 text-white backdrop-blur-md text-[11px] font-semibold px-3 py-1.5 rounded-xl shadow-md flex items-center gap-1.5">
-                  <Truck className="w-3.5 h-3.5 text-red-400" />
+              <div className="absolute bottom-3 left-3 right-3 sm:bottom-4 sm:left-4 sm:right-4 z-10 flex flex-wrap items-center gap-1.5 sm:gap-2 pointer-events-none">
+                <div className="pointer-events-auto bg-slate-900/90 text-white backdrop-blur-md text-[10px] sm:text-[11px] font-semibold px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-xl shadow-md flex items-center gap-1 sm:gap-1.5">
+                  <Truck className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-red-400" />
                   <span>Station: ~350m (2 min)</span>
                 </div>
-                <div className="pointer-events-auto bg-slate-900/90 text-white backdrop-blur-md text-[11px] font-semibold px-3 py-1.5 rounded-xl shadow-md flex items-center gap-1.5">
-                  <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
-                  <span>New Cloth Market: Opposite (1 min)</span>
+                <div className="pointer-events-auto bg-slate-900/90 text-white backdrop-blur-md text-[10px] sm:text-[11px] font-semibold px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-xl shadow-md flex items-center gap-1 sm:gap-1.5">
+                  <ShieldCheck className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-emerald-400" />
+                  <span>Cloth Market: Opposite</span>
                 </div>
-                <div className="pointer-events-auto bg-slate-900/90 text-white backdrop-blur-md text-[11px] font-semibold px-3 py-1.5 rounded-xl shadow-md flex items-center gap-1.5 hidden sm:flex">
-                  <MapPin className="w-3.5 h-3.5 text-blue-400" />
-                  <span>Pur Road Corridor: 5 mins</span>
+                <div className="pointer-events-auto bg-slate-900/90 text-white backdrop-blur-md text-[10px] sm:text-[11px] font-semibold px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-xl shadow-md flex items-center gap-1 sm:gap-1.5 hidden sm:flex">
+                  <MapPin className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-blue-400" />
+                  <span>Pur Road: 5 mins</span>
                 </div>
               </div>
             </div>

@@ -141,9 +141,10 @@ export function DailyRouteSection({ onOpenInquiry }: DailyRouteSectionProps) {
                 <button
                   type="button"
                   onClick={() => onOpenInquiry('Daily Route Delivery')}
-                  className="flex-1 sm:flex-none inline-flex items-center justify-center gap-1.5 py-2.5 px-4 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-[#DC2626] to-[#B91C1C] hover:from-[#EF4444] hover:to-[#DC2626] shadow-xs hover:shadow-md transition-all cursor-pointer active:scale-95"
+                  className="flex-1 sm:flex-none inline-flex items-center justify-center gap-1.5 py-2.5 px-3.5 sm:px-4 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-[#DC2626] to-[#B91C1C] hover:from-[#EF4444] hover:to-[#DC2626] shadow-xs hover:shadow-md transition-all cursor-pointer active:scale-95 whitespace-nowrap"
                 >
-                  <span>Book Before 10 AM</span>
+                  <span className="hidden xs:inline">Book Before 10 AM</span>
+                  <span className="xs:hidden">Book 10 AM</span>
                   <ArrowRight className="w-3.5 h-3.5" />
                 </button>
               ) : (
@@ -151,9 +152,10 @@ export function DailyRouteSection({ onOpenInquiry }: DailyRouteSectionProps) {
                   href="https://wa.me/918955144444?text=Hello%20Economic%20Courier,%20I%20want%20to%20book%20on%20today%27s%2010%20AM%20daily%20route."
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex-1 sm:flex-none inline-flex items-center justify-center gap-1.5 py-2.5 px-4 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-[#DC2626] to-[#B91C1C] hover:from-[#EF4444] hover:to-[#DC2626] shadow-xs hover:shadow-md transition-all active:scale-95"
+                  className="flex-1 sm:flex-none inline-flex items-center justify-center gap-1.5 py-2.5 px-3.5 sm:px-4 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-[#DC2626] to-[#B91C1C] hover:from-[#EF4444] hover:to-[#DC2626] shadow-xs hover:shadow-md transition-all active:scale-95 whitespace-nowrap"
                 >
-                  <span>Book on WhatsApp</span>
+                  <span className="hidden xs:inline">Book Before 10 AM</span>
+                  <span className="xs:hidden">Book 10 AM</span>
                   <ArrowRight className="w-3.5 h-3.5" />
                 </a>
               )}
@@ -161,7 +163,7 @@ export function DailyRouteSection({ onOpenInquiry }: DailyRouteSectionProps) {
                 href="https://share.google/XGfOCGnHDKHlCOUaw"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-1 py-2.5 px-3 rounded-xl text-xs font-semibold text-slate-700 bg-slate-50 hover:bg-slate-100 border border-slate-200 transition-colors"
+                className="inline-flex items-center justify-center gap-1 py-2.5 px-3 rounded-xl text-xs font-semibold text-slate-700 bg-slate-50 hover:bg-slate-100 border border-slate-200 transition-colors whitespace-nowrap shrink-0"
                 title="View Bhilwara Hub on Google Maps"
               >
                 <MapPin className="w-3.5 h-3.5 text-red-600" />

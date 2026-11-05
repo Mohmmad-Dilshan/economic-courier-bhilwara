@@ -464,9 +464,9 @@ export default function HomePage() {
       </section>
 
       {/* =========================================================================
-          10. FREQUENTLY ASKED QUESTIONS (Interactive Accordion)
+          10. FREQUENTLY ASKED QUESTIONS (Interactive Accordion & Support Desk)
           ========================================================================= */}
-      <FAQSection />
+      <FAQSection onOpenInquiry={handleOpenInquiry} />
 
       {/* =========================================================================
           11. BHILWARA CENTRAL HUB & INTERACTIVE MAP (Real Verified Data)

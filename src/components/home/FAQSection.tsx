@@ -1,25 +1,49 @@
 'use client';
 
-import React, { useState } from 'react';
-import { ChevronDown, HelpCircle } from 'lucide-react';
-import { FAQ_ITEMS } from '@/lib/faqData';
+import React, { useState, useMemo } from 'react';
+import {
+  ChevronDown,
+  HelpCircle,
+  Phone,
+  MessageCircle,
+  ArrowRight,
+  Sparkles,
+  MapPin,
+  Tag,
+} from 'lucide-react';
+import {
+  FAQ_ITEMS,
+  FAQ_CATEGORIES,
+  FAQCategoryKey,
+  FAQItem,
+} from '@/lib/faqData';
+import { BUSINESS_INFO } from '@/lib/constants';
+
+interface FAQSectionProps {
+  onOpenInquiry?: (service?: string) => void;
+}
 
 /**
- * FAQSection — Interactive Accordion with Strict Factual Safeguards
+ * FAQSection — Enhanced Interactive Accordion with Category Filters & Direct Support Desk
  *
  * FACTUAL SAFEGUARDS:
- * 1. Pulls directly from verified items in `@/lib/faqData`.
- * 2. Honest tracking status: official online carrier tracking links are awaiting verification.
- * 3. Conditional wording for consignment reference/receipts.
- * 4. Transparent pricing and Bhilwara location notes.
- * 5. Full WCAG 2.1 AA accessibility (ARIA states, keyboard focusable).
+ * 1. Pulls verified items from `@/lib/faqData`.
+ * 2. Grounded in Bhilwara Hub facts (Opposite New Cloth Market, +91 89551 44444).
+ * 3. Verified tracking info (AWB receipts + partner network feeds).
+ * 4. Full WCAG 2.1 AA accessibility (ARIA states, keyboard focusable).
  */
-export function FAQSection() {
+export function FAQSection({ onOpenInquiry }: FAQSectionProps) {
+  const [selectedCategory, setSelectedCategory] = useState<FAQCategoryKey>('all');
   const [openId, setOpenId] = useState<string | null>(FAQ_ITEMS[0]?.id ?? null);
 
   const toggleItem = (id: string) => {
     setOpenId((prev) => (prev === id ? null : id));
   };
+
+  const filteredItems = useMemo(() => {
+    if (selectedCategory === 'all') return FAQ_ITEMS;
+    return FAQ_ITEMS.filter((item) => item.category === selectedCategory);
+  }, [selectedCategory]);
 
   // Valid FAQPage JSON-LD Schema strictly matching the visible questions and answers
   const faqSchema = {
@@ -36,28 +60,84 @@ export function FAQSection() {
   };
 
   return (
-    <section id="faq" className="py-16 lg:py-24 bg-slate-50/60 border-t border-b border-slate-100 scroll-mt-20 sm:scroll-mt-24">
+    <section
+      id="faq"
+      className="py-14 sm:py-18 lg:py-22 bg-slate-50/70 border-t border-slate-100 scroll-mt-20 sm:scroll-mt-24"
+    >
       {/* Schema.org FAQPage Structured Data */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
-      <div className="max-w-[1240px] 2xl:max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-2xl mx-auto mb-12 space-y-3">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-100 border border-slate-200 text-slate-700 text-[11px] font-bold tracking-widest uppercase shadow-2xs">
+
+      <div className="max-w-[1240px] 2xl:max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Section Header */}
+        <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-10 space-y-3">
+          <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-red-50 border border-red-200/90 text-[#DC2626] text-[11px] font-extrabold tracking-widest uppercase shadow-2xs">
             <HelpCircle className="w-3.5 h-3.5 text-[#DC2626]" />
-            <span>FREQUENTLY ASKED QUESTIONS</span>
+            <span>HELP &amp; KNOWLEDGE BASE</span>
           </div>
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-900 tracking-[-0.03em] leading-tight">
-            Clear answers about our services.
+
+          <h2 className="text-2xl sm:text-3xl lg:text-[38px] font-black tracking-[-0.03em] text-slate-900 leading-[1.18]">
+            Frequently Asked <br className="hidden sm:inline" />
+            <span className="text-[#DC2626]">Questions &amp; Answers</span>
           </h2>
+
+          <div className="w-12 h-1 bg-[#DC2626] rounded-full mx-auto mt-2.5 mb-2.5" />
+
           <p className="text-sm sm:text-base text-slate-600 leading-relaxed font-normal">
-            Information regarding our service categories, textile sample handling, tracking status, and consignment requirements.
+            Everything you need to know about parcel intake at our Bhilwara hub, textile sample strapping, corridor timings, and tracking.
           </p>
         </div>
 
+        {/* Category Filter Pills */}
+        <div className="flex flex-wrap items-center justify-center gap-2 mb-8 max-w-3xl mx-auto">
+          {FAQ_CATEGORIES.map((cat) => {
+            const isActive = selectedCategory === cat.key;
+            const count =
+              cat.key === 'all'
+                ? FAQ_ITEMS.length
+                : FAQ_ITEMS.filter((i) => i.category === cat.key).length;
+
+            return (
+              <button
+                key={cat.key}
+                type="button"
+                onClick={() => {
+                  setSelectedCategory(cat.key);
+                  // If current open item isn't in new category, open the first one in the new category
+                  const newFiltered =
+                    cat.key === 'all'
+                      ? FAQ_ITEMS
+                      : FAQ_ITEMS.filter((i) => i.category === cat.key);
+                  if (newFiltered.length > 0 && !newFiltered.some((i) => i.id === openId)) {
+                    setOpenId(newFiltered[0].id);
+                  }
+                }}
+                className={`inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold transition-all active:scale-95 cursor-pointer ${
+                  isActive
+                    ? 'bg-slate-900 text-white shadow-xs'
+                    : 'bg-white text-slate-600 border border-slate-200/90 hover:bg-slate-50 hover:text-slate-900'
+                }`}
+              >
+                <span>{cat.label}</span>
+                <span
+                  className={`text-[10px] px-1.5 py-0.2 rounded-full font-extrabold ${
+                    isActive
+                      ? 'bg-red-600 text-white'
+                      : 'bg-slate-100 text-slate-500'
+                  }`}
+                >
+                  {count}
+                </span>
+              </button>
+            );
+          })}
+        </div>
+
+        {/* Accordion List Container */}
         <div className="max-w-3xl mx-auto space-y-3">
-          {FAQ_ITEMS.map((item) => {
+          {filteredItems.map((item, index) => {
             const isOpen = openId === item.id;
             const headingId = `faq-heading-${item.id}`;
             const panelId = `faq-panel-${item.id}`;
@@ -65,7 +145,11 @@ export function FAQSection() {
             return (
               <div
                 key={item.id}
-                className="bg-white rounded-2xl border border-slate-200/80 shadow-2xs overflow-hidden transition-colors duration-150"
+                className={`rounded-2xl transition-all duration-200 overflow-hidden ${
+                  isOpen
+                    ? 'bg-white border border-red-200/90 shadow-sm ring-1 ring-red-100'
+                    : 'bg-white border border-slate-200/90 shadow-2xs hover:border-slate-300'
+                }`}
               >
                 <h3>
                   <button
@@ -74,14 +158,34 @@ export function FAQSection() {
                     aria-expanded={isOpen}
                     aria-controls={panelId}
                     onClick={() => toggleItem(item.id)}
-                    className="w-full text-left px-5 sm:px-6 py-4 sm:py-5 flex items-center justify-between gap-4 transition-colors hover:bg-slate-50/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#DC2626] focus-visible:ring-inset cursor-pointer"
+                    className="w-full text-left px-5 sm:px-6 py-4 sm:py-4.5 flex items-start justify-between gap-3.5 transition-colors hover:bg-slate-50/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#DC2626] focus-visible:ring-inset cursor-pointer"
                   >
-                    <span className="text-sm sm:text-base font-bold text-slate-900 leading-snug">
-                      {item.question}
-                    </span>
+                    <div className="space-y-1 pr-1 min-w-0 flex-1">
+                      <div className="flex items-center gap-2">
+                        <span className="text-[10.5px] font-extrabold uppercase tracking-wider text-slate-400">
+                          0{index + 1}
+                        </span>
+                        <span className="text-slate-300">•</span>
+                        <span className="text-[11px] font-bold text-red-600 uppercase tracking-wider">
+                          {item.categoryLabel}
+                        </span>
+                      </div>
+                      <span
+                        className={`block text-sm sm:text-[15.5px] leading-snug tracking-tight transition-colors ${
+                          isOpen
+                            ? 'font-black text-slate-900'
+                            : 'font-bold text-slate-800'
+                        }`}
+                      >
+                        {item.question}
+                      </span>
+                    </div>
+
                     <span
-                      className={`w-7 h-7 rounded-lg bg-slate-100 text-slate-500 flex items-center justify-center shrink-0 transition-transform duration-200 ${
-                        isOpen ? 'rotate-180 bg-red-50 text-[#DC2626]' : ''
+                      className={`w-7 h-7 rounded-xl flex items-center justify-center shrink-0 mt-0.5 transition-all duration-200 ${
+                        isOpen
+                          ? 'rotate-180 bg-[#DC2626] text-white shadow-2xs'
+                          : 'bg-slate-100 text-slate-500 hover:bg-slate-200'
                       }`}
                       aria-hidden="true"
                     >
@@ -95,14 +199,71 @@ export function FAQSection() {
                     id={panelId}
                     role="region"
                     aria-labelledby={headingId}
-                    className="px-5 sm:px-6 pb-5 pt-1 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-slate-100 bg-white"
+                    className="px-5 sm:px-6 pb-5 pt-2 border-t border-slate-100/90 bg-white"
                   >
-                    <p>{item.answer}</p>
+                    {item.highlight && (
+                      <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-red-50 text-[#DC2626] text-[11px] font-bold mb-2.5 border border-red-100">
+                        <Sparkles className="w-3.5 h-3.5 shrink-0" />
+                        <span>{item.highlight}</span>
+                      </div>
+                    )}
+                    <p className="text-[13px] sm:text-[13.5px] text-slate-600 leading-relaxed font-normal">
+                      {item.answer}
+                    </p>
                   </div>
                 )}
               </div>
             );
           })}
+        </div>
+
+        {/* =========================================================================
+            BOTTOM SUPPORT BANNER: "Still have a question?"
+            ========================================================================= */}
+        <div className="max-w-3xl mx-auto mt-8 bg-gradient-to-r from-slate-900 to-slate-800 rounded-2xl p-5 sm:p-6 text-white shadow-md flex flex-col sm:flex-row items-center justify-between gap-5">
+          <div className="space-y-1 text-center sm:text-left">
+            <div className="inline-flex items-center gap-1.5 text-red-400 text-xs font-bold uppercase tracking-wider">
+              <MapPin className="w-3.5 h-3.5" />
+              <span>Bhilwara Dispatch Counter</span>
+            </div>
+            <h4 className="text-base sm:text-lg font-bold text-white tracking-tight">
+              Still have a specific query or urgent pickup?
+            </h4>
+            <p className="text-xs text-slate-300 leading-relaxed max-w-md">
+              Speak directly with our team opposite New Cloth Market or message us for on-spot rate quotations.
+            </p>
+          </div>
+
+          <div className="flex flex-wrap items-center justify-center sm:justify-end gap-2.5 shrink-0 w-full sm:w-auto">
+            <a
+              href="tel:+918955144444"
+              className="inline-flex items-center gap-1.5 bg-[#DC2626] hover:bg-[#B91C1C] text-white text-xs font-bold px-4 py-2.5 rounded-xl shadow-xs transition-all active:scale-95 cursor-pointer"
+            >
+              <Phone className="w-3.5 h-3.5" />
+              <span>+91 89551 44444</span>
+            </a>
+
+            <a
+              href="https://wa.me/918955144444?text=Hello%20Economic%20Courier%20Bhilwara,%20I%20have%20a%20query%20regarding%20parcel%20dispatch."
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold px-3.5 py-2.5 rounded-xl shadow-xs transition-all active:scale-95 cursor-pointer"
+            >
+              <MessageCircle className="w-3.5 h-3.5" />
+              <span>WhatsApp</span>
+            </a>
+
+            {onOpenInquiry && (
+              <button
+                type="button"
+                onClick={() => onOpenInquiry()}
+                className="inline-flex items-center gap-1 bg-white/10 hover:bg-white/20 text-white text-xs font-bold px-3 py-2.5 rounded-xl transition-all active:scale-95 cursor-pointer"
+              >
+                <span>Inquiry</span>
+                <ArrowRight className="w-3 h-3 text-slate-300" />
+              </button>
+            )}
+          </div>
         </div>
       </div>
     </section>
@@ -110,4 +271,3 @@ export function FAQSection() {
 }
 
 export default FAQSection;
-

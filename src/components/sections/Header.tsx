@@ -157,6 +157,7 @@ export function Header() {
               {/* 1. Home */}
               <Link
                 href="/"
+                prefetch={false}
                 onClick={() => setActiveNav('Home')}
                 className={`relative py-1.5 px-2.5 xl:px-3 text-[13px] xl:text-[14px] font-semibold rounded-lg whitespace-nowrap transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-600 ${
                   isHomePage && activeNav === 'Home'
@@ -181,6 +182,7 @@ export function Header() {
               >
                 <Link
                   href="/services"
+                  prefetch={false}
                   onClick={() => {
                     setActiveNav('Services');
                     setServicesDropdownOpen(false);
@@ -222,6 +224,7 @@ export function Header() {
 
                     <Link
                       href="/services"
+                      prefetch={false}
                       onClick={() => setServicesDropdownOpen(false)}
                       className={`flex items-start gap-3 p-2.5 rounded-xl transition-colors ${
                         isServicesPage ? 'bg-red-50/80 text-[#DC2626]' : 'hover:bg-slate-50 text-slate-700 hover:text-[#DC2626]'
@@ -240,6 +243,7 @@ export function Header() {
 
                     <Link
                       href="/business-solutions"
+                      prefetch={false}
                       onClick={() => setServicesDropdownOpen(false)}
                       className={`flex items-start gap-3 p-2.5 rounded-xl transition-colors ${
                         isBusinessSolutionsPage ? 'bg-red-50/80 text-[#DC2626]' : 'hover:bg-slate-50 text-slate-700 hover:text-[#DC2626]'
@@ -260,6 +264,7 @@ export function Header() {
                       <span>Bhilwara Dispatch Desk</span>
                       <Link
                         href="/contact"
+                        prefetch={false}
                         onClick={() => setServicesDropdownOpen(false)}
                         className="text-[#DC2626] font-bold hover:underline inline-flex items-center gap-0.5"
                       >
@@ -274,6 +279,7 @@ export function Header() {
               {/* 3. Textile Logistics (Star Signature Service for Bhilwara) */}
               <Link
                 href="/textile-logistics"
+                prefetch={false}
                 onClick={() => setActiveNav('Textile Logistics')}
                 className={`relative py-1.5 px-2.5 xl:px-3 text-[13px] xl:text-[14px] font-semibold rounded-lg whitespace-nowrap transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-600 ${
                   isTextilePage
@@ -293,6 +299,7 @@ export function Header() {
               {/* 4. Track Shipment */}
               <Link
                 href="/track-shipment"
+                prefetch={false}
                 onClick={() => setActiveNav('Track Shipment')}
                 className={`relative py-1.5 px-2.5 xl:px-3 text-[13px] xl:text-[14px] font-semibold rounded-lg whitespace-nowrap transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-600 ${
                   isTrackShipmentPage
@@ -312,6 +319,7 @@ export function Header() {
               {/* 5. Gallery */}
               <Link
                 href="/gallery"
+                prefetch={false}
                 onClick={() => setActiveNav('Gallery')}
                 className={`relative py-1.5 px-2.5 xl:px-3 text-[13px] xl:text-[14px] font-semibold rounded-lg whitespace-nowrap transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-600 ${
                   isGalleryPage
@@ -331,6 +339,7 @@ export function Header() {
               {/* 6. About */}
               <Link
                 href="/about"
+                prefetch={false}
                 onClick={() => setActiveNav('About')}
                 className={`relative py-1.5 px-2.5 xl:px-3 text-[13px] xl:text-[14px] font-semibold rounded-lg whitespace-nowrap transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-600 ${
                   isAboutPage
@@ -442,6 +451,7 @@ export function Header() {
                   <Link
                     key={link.label}
                     href={link.href}
+                    prefetch={false}
                     onClick={() => {
                       setActiveNav(link.label);
                       setMobileMenuOpen(false);
@@ -470,6 +480,7 @@ export function Header() {
               <div className="flex items-center gap-2.5">
                 <Link
                   href={contactHref}
+                  prefetch={false}
                   onClick={() => setMobileMenuOpen(false)}
                   style={{ color: '#FFFFFF' }}
                   className="flex-1 inline-flex items-center justify-center gap-2 bg-[#DC2626] hover:bg-[#B91C1C] text-white text-xs font-bold py-2.5 rounded-full shadow-xs transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-600"

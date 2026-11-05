@@ -114,42 +114,25 @@ function VideoReelCard({
     }
   }, [isActive, activeVideoId, isManuallyMuted]);
 
-  // Viewport-aware playback when NO video is active yet (silent preview)
-  // or pausing active video when scrolled completely out of view.
+  // Viewport-aware observer: Only pause playing video when scrolled completely out of view.
+  // Video does NOT auto-buffer on scroll to preserve mobile bandwidth and sub-second load times.
   useEffect(() => {
     const container = containerRef.current;
     const video = videoRef.current;
     if (!container || !video) return;
-
-    const prefersReducedMotion =
-      typeof window !== 'undefined' &&
-      window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-    if (prefersReducedMotion) return;
 
     const observer = new IntersectionObserver(
       (entries) => {
         const entry = entries[0];
         if (!entry) return;
 
-        const isVisible = entry.isIntersecting && entry.intersectionRatio >= 0.3;
-
-        if (isVisible) {
-          if (activeVideoId === null) {
-            video.muted = true;
-            const playPromise = video.play();
-            if (playPromise !== undefined) {
-              playPromise.catch(() => {});
-            }
-          }
-        } else {
-          if (!video.paused) {
-            video.pause();
-          }
+        // If card is scrolled out of view and video is playing, pause it to save battery & data
+        if (!entry.isIntersecting && !video.paused) {
+          video.pause();
         }
       },
       {
-        threshold: [0, 0.3, 0.6],
+        threshold: 0.1,
       }
     );
 
@@ -158,7 +141,7 @@ function VideoReelCard({
     return () => {
       observer.disconnect();
     };
-  }, [activeVideoId]);
+  }, []);
 
   // Clicking the whole phone card:
   // - If not active: activate it immediately with AUTO VOICE ON!

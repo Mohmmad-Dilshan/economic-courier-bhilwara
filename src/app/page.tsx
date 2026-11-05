@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import dynamic from 'next/dynamic';
 import {
   MapPin,
   Package,
@@ -16,16 +17,40 @@ import {
   Loader2,
 } from 'lucide-react';
 import { BUSINESS_INFO } from '@/lib/constants';
-import { TrackingNoticeModal } from '@/components/home/TrackingNoticeModal';
-import { NetworkPartnersSection } from '@/components/home/NetworkPartnersSection';
-import { DailyRouteSection } from '@/components/home/DailyRouteSection';
-import { InquiryModal } from '@/components/home/InquiryModal';
-import { RealMomentsSection } from '@/components/home/RealMomentsSection';
-import { HowItWorksSection } from '@/components/home/HowItWorksSection';
-import { ReviewsSection } from '@/components/home/ReviewsSection';
-import { FAQSection } from '@/components/home/FAQSection';
-import { CTABand } from '@/components/home/CTABand';
-import { HubLocationSection } from '@/components/home/HubLocationSection';
+
+// Below-the-fold sections and modals dynamically imported for instant sub-second initial LCP
+const TrackingNoticeModal = dynamic(
+  () => import('@/components/home/TrackingNoticeModal').then((mod) => mod.TrackingNoticeModal),
+  { ssr: false }
+);
+const InquiryModal = dynamic(
+  () => import('@/components/home/InquiryModal').then((mod) => mod.InquiryModal),
+  { ssr: false }
+);
+const NetworkPartnersSection = dynamic(
+  () => import('@/components/home/NetworkPartnersSection').then((mod) => mod.NetworkPartnersSection)
+);
+const DailyRouteSection = dynamic(
+  () => import('@/components/home/DailyRouteSection').then((mod) => mod.DailyRouteSection)
+);
+const RealMomentsSection = dynamic(
+  () => import('@/components/home/RealMomentsSection').then((mod) => mod.RealMomentsSection)
+);
+const HowItWorksSection = dynamic(
+  () => import('@/components/home/HowItWorksSection').then((mod) => mod.HowItWorksSection)
+);
+const ReviewsSection = dynamic(
+  () => import('@/components/home/ReviewsSection').then((mod) => mod.ReviewsSection)
+);
+const FAQSection = dynamic(
+  () => import('@/components/home/FAQSection').then((mod) => mod.FAQSection)
+);
+const CTABand = dynamic(
+  () => import('@/components/home/CTABand').then((mod) => mod.CTABand)
+);
+const HubLocationSection = dynamic(
+  () => import('@/components/home/HubLocationSection').then((mod) => mod.HubLocationSection)
+);
 
 export default function HomePage() {
   const [trackingInput, setTrackingInput] = useState('');
@@ -319,6 +344,7 @@ export default function HomePage() {
               <div className="pt-1">
                 <Link
                   href="/services"
+                  prefetch={false}
                   className="text-[13px] font-bold text-slate-700 hover:text-[#DC2626] inline-flex items-center gap-1.5 transition-colors group"
                 >
                   <span>View all services</span>

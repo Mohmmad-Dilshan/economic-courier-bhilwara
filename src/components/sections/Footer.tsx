@@ -179,6 +179,7 @@ export function Footer() {
                 <li key={item.label}>
                   <Link
                     href={item.href}
+                    prefetch={false}
                     className="text-slate-600 hover:text-[#DC2626] transition-colors flex items-center gap-1.5 group font-medium"
                   >
                     <span className="w-1 h-1 rounded-full bg-slate-300 group-hover:bg-[#DC2626] transition-colors" />
@@ -203,6 +204,7 @@ export function Footer() {
                 <li key={item.label}>
                   <Link
                     href={item.href}
+                    prefetch={false}
                     className="text-slate-600 hover:text-[#DC2626] transition-colors flex items-center gap-1.5 group font-medium"
                   >
                     <span className="w-1 h-1 rounded-full bg-slate-300 group-hover:bg-[#DC2626] transition-colors" />

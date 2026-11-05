@@ -60,12 +60,11 @@ export function DailyRouteSection({ onOpenInquiry }: DailyRouteSectionProps) {
           <div className="relative shrink-0 hidden sm:flex items-center justify-center lg:justify-end z-10 pointer-events-none select-none">
             <div className="relative w-64 sm:w-72 lg:w-[320px] xl:w-[360px] aspect-[1024/682] transition-transform duration-700 ease-out hover:scale-105 filter drop-shadow-[0_12px_28px_rgba(220,38,38,0.14)]">
               <Image
-                src="/assets/routes/ecs-truck-3d.png"
+                src="/assets/routes/ecs-truck-3d.webp"
                 alt="eCS World Wide Express 3D Linehaul Cargo Truck Object"
                 fill
                 sizes="(max-width: 1024px) 280px, 360px"
                 className="object-contain"
-                priority
               />
             </div>
           </div>
@@ -105,14 +104,11 @@ export function DailyRouteSection({ onOpenInquiry }: DailyRouteSectionProps) {
           >
             <div className="relative w-full aspect-[1024/341]">
               <Image
-                src="/assets/routes/daily-dispatch-banner-hd.png"
+                src="/assets/routes/daily-dispatch-banner-hd.webp"
                 alt="10:00 AM ECS Office Cutoff — Daily Regional Route & Same-Day Delivery from Bhilwara Hub"
                 fill
                 sizes="(max-width: 768px) 100vw, 1240px"
                 className="object-cover object-center transition-transform duration-500 group-hover:scale-[1.01]"
-                style={{ imageRendering: '-webkit-optimize-contrast' }}
-                priority
-                unoptimized
               />
             </div>
           </div>

@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
 import {
   MapPin,
@@ -29,6 +29,32 @@ export function HubLocationSection({ onOpenInquiry }: HubLocationSectionProps) {
 
   const mapEmbedUrl =
     'https://maps.google.com/maps?q=Economic+Courier+Opposite+New+Cloth+Market+Bhilwara+Rajasthan&t=&z=15&ie=UTF8&iwloc=&output=embed';
+
+  const mapContainerRef = useRef<HTMLDivElement>(null);
+  const [isMapVisible, setIsMapVisible] = useState(false);
+
+  useEffect(() => {
+    const el = mapContainerRef.current;
+    if (!el) return;
+
+    if (typeof IntersectionObserver === 'undefined') {
+      setIsMapVisible(true);
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0]?.isIntersecting) {
+          setIsMapVisible(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: '300px' }
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <section id="contact" className="py-12 sm:py-16 lg:py-20 bg-slate-50/60 scroll-mt-24 sm:scroll-mt-28 border-t border-slate-100">
@@ -61,7 +87,6 @@ export function HubLocationSection({ onOpenInquiry }: HubLocationSectionProps) {
                 alt="eCS World Wide Express Bhilwara Central Dispatch Hub 3D Model"
                 width={480}
                 height={320}
-                priority
                 className="w-full h-auto object-contain drop-shadow-[0_12px_28px_rgba(15,23,42,0.12)] hover:scale-[1.03] transition-transform duration-300 pointer-events-auto"
               />
             </div>
@@ -195,20 +220,40 @@ export function HubLocationSection({ onOpenInquiry }: HubLocationSectionProps) {
           {/* =========================================================
               RIGHT CARD: Live Interactive Google Map with Overlay
               ========================================================= */}
-          <div className="lg:col-span-7 bg-white rounded-3xl border border-slate-200/90 shadow-xs overflow-hidden flex flex-col relative min-h-[360px] sm:min-h-[420px] lg:min-h-[500px]">
-            {/* Interactive Google Map iframe */}
-            <div className="relative w-full h-full flex-1 min-h-[360px]">
-              <iframe
-                title="Economic Courier Bhilwara Hub Google Maps Location"
-                src={mapEmbedUrl}
-                width="100%"
-                height="100%"
-                style={{ border: 0, minHeight: '340px' }}
-                allowFullScreen
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                className="w-full h-full block"
-              />
+          <div
+            ref={mapContainerRef}
+            className="lg:col-span-7 bg-white rounded-3xl border border-slate-200/90 shadow-xs overflow-hidden flex flex-col relative min-h-[360px] sm:min-h-[420px] lg:min-h-[500px]"
+          >
+            {/* Interactive Google Map iframe (Deferred until scrolled near viewport) */}
+            <div className="relative w-full h-full flex-1 min-h-[360px] bg-slate-100">
+              {isMapVisible ? (
+                <iframe
+                  title="Economic Courier Bhilwara Hub Google Maps Location"
+                  src={mapEmbedUrl}
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0, minHeight: '340px' }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  className="w-full h-full block"
+                />
+              ) : (
+                <div
+                  onClick={() => setIsMapVisible(true)}
+                  className="w-full h-full flex flex-col items-center justify-center p-6 text-center cursor-pointer group"
+                >
+                  <div className="w-12 h-12 rounded-2xl bg-red-100 text-[#DC2626] flex items-center justify-center mb-3 group-hover:scale-110 transition-transform shadow-xs">
+                    <MapPin className="w-6 h-6" />
+                  </div>
+                  <p className="text-sm font-bold text-slate-800">
+                    Bhilwara Central Hub Location Map
+                  </p>
+                  <p className="text-xs text-slate-700 font-semibold mt-1 max-w-xs">
+                    Click to load interactive Google Map
+                  </p>
+                </div>
+              )}
 
               {/* Floating Top-Left Hub Badge Overlay */}
               <div className="absolute top-3 left-3 sm:top-4 sm:left-4 z-10 max-w-[calc(100%-1.5rem)] sm:max-w-xs bg-white/95 backdrop-blur-md rounded-2xl p-2.5 sm:p-3.5 border border-slate-200/80 shadow-md pointer-events-auto">
@@ -223,9 +268,9 @@ export function HubLocationSection({ onOpenInquiry }: HubLocationSectionProps) {
                 <p className="text-[11px] text-slate-600 leading-snug">
                   Opposite New Cloth Market, Bhilwara
                 </p>
-                <div className="flex items-center gap-1 mt-1 text-amber-500 text-[10.5px] sm:text-[11px] font-bold">
-                  <span>★ 4.9</span>
-                  <span className="text-slate-400 font-normal">(396+ Google Reviews)</span>
+                <div className="flex items-center gap-1 mt-1 text-[10.5px] sm:text-[11px] font-bold">
+                  <span className="text-amber-800 font-extrabold">★ 4.9</span>
+                  <span className="text-slate-600 font-medium">(396+ Google Reviews)</span>
                 </div>
               </div>
 

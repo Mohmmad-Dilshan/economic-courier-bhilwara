@@ -19,6 +19,8 @@ import {
   Image as ImageIcon,
   ChevronLeft,
   ChevronRight,
+  ChevronDown,
+  Filter,
   LayoutGrid,
   Rows,
 } from 'lucide-react';
@@ -550,7 +552,36 @@ export function GalleryView() {
           ========================================================================= */}
       <section className="sticky top-[67px] sm:top-[71px] lg:top-[75px] z-30 py-2.5 sm:py-3 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-2xs">
         <div className="max-w-[1240px] xl:max-w-[1360px] 2xl:max-w-[1480px] min-[1800px]:max-w-[1560px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 flex items-center justify-between gap-3">
-          <div className="flex items-center gap-1.5 sm:gap-2 overflow-x-auto no-scrollbar py-0.5 w-full sm:w-auto scroll-smooth">
+          {/* 1. Mobile App Native Dropdown Picker (Single Sleek Row • No Stacking) */}
+          <div className="block sm:hidden w-full">
+            <div className="relative flex items-center">
+              <div className="absolute left-3.5 flex items-center gap-1.5 pointer-events-none text-[#DC2626]">
+                <Filter className="w-4 h-4 text-[#DC2626]" />
+                <span className="text-[11px] font-extrabold uppercase tracking-wider text-slate-500">
+                  Filter:
+                </span>
+              </div>
+              <select
+                id="gallery-category-select"
+                aria-label="Filter gallery media category"
+                value={activeTab}
+                onChange={(e) => setActiveTab(e.target.value as 'all' | 'reels' | 'photos' | 'hub' | 'fleet')}
+                className="w-full pl-[78px] pr-10 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200/70 border border-slate-200 text-xs font-bold text-slate-900 shadow-2xs appearance-none focus:outline-hidden focus:ring-2 focus:ring-[#DC2626] transition-all cursor-pointer font-sans"
+              >
+                <option value="all">All Media ({GALLERY_VIDEOS.length + GALLERY_PHOTOS.length})</option>
+                <option value="reels">Video Reels ({GALLERY_VIDEOS.length})</option>
+                <option value="photos">Photos ({GALLERY_PHOTOS.length})</option>
+                <option value="hub">Hub &amp; Office Counter</option>
+                <option value="fleet">Fleet &amp; Textiles</option>
+              </select>
+              <div className="absolute right-3.5 flex items-center pointer-events-none text-slate-500">
+                <ChevronDown className="w-4 h-4" />
+              </div>
+            </div>
+          </div>
+
+          {/* 2. Desktop / Tablet Horizontal Category Filter Pills */}
+          <div className="hidden sm:flex items-center gap-1.5 sm:gap-2">
             <button
               type="button"
               onClick={() => setActiveTab('all')}

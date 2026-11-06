@@ -1,16 +1,9 @@
 'use client';
 
-import React, { useState, useRef, useEffect } from 'react';
+import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import {
-  Camera,
-  ArrowRight,
-  Maximize2,
-  X,
-  ChevronLeft,
-  ChevronRight,
-} from 'lucide-react';
+import { Camera, ArrowRight, ExternalLink } from 'lucide-react';
 
 interface ShowcasePhoto {
   id: string;
@@ -106,80 +99,10 @@ const TRACK_2_PHOTOS: ShowcasePhoto[] = [
   },
 ];
 
-// Combined list for the full-screen phone-style lightbox slider
-const ALL_SHOWCASE_PHOTOS = [...TRACK_1_PHOTOS, ...TRACK_2_PHOTOS];
-
 export function OperationsShowcaseSection() {
-  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
-
-  // Touch Swipe coordinates for phone gallery sliding
-  const touchStartX = useRef<number | null>(null);
-  const touchEndX = useRef<number | null>(null);
-
-  const handlePrevPhoto = (e?: React.MouseEvent) => {
-    if (e) e.stopPropagation();
-    if (lightboxIndex === null) return;
-    setLightboxIndex((prev) =>
-      prev !== null ? (prev - 1 + ALL_SHOWCASE_PHOTOS.length) % ALL_SHOWCASE_PHOTOS.length : 0
-    );
-  };
-
-  const handleNextPhoto = (e?: React.MouseEvent) => {
-    if (e) e.stopPropagation();
-    if (lightboxIndex === null) return;
-    setLightboxIndex((prev) =>
-      prev !== null ? (prev + 1) % ALL_SHOWCASE_PHOTOS.length : 0
-    );
-  };
-
-  // Keyboard navigation
-  useEffect(() => {
-    if (lightboxIndex === null) return;
-
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
-        setLightboxIndex(null);
-      } else if (e.key === 'ArrowRight') {
-        setLightboxIndex((prev) =>
-          prev !== null ? (prev + 1) % ALL_SHOWCASE_PHOTOS.length : 0
-        );
-      } else if (e.key === 'ArrowLeft') {
-        setLightboxIndex((prev) =>
-          prev !== null ? (prev - 1 + ALL_SHOWCASE_PHOTOS.length) % ALL_SHOWCASE_PHOTOS.length : 0
-        );
-      }
-    };
-
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [lightboxIndex]);
-
-  // Touch swipe handlers
-  const handleTouchStart = (e: React.TouchEvent) => {
-    touchStartX.current = e.touches[0].clientX;
-    touchEndX.current = null;
-  };
-
-  const handleTouchMove = (e: React.TouchEvent) => {
-    touchEndX.current = e.touches[0].clientX;
-  };
-
-  const handleTouchEnd = () => {
-    if (!touchStartX.current || !touchEndX.current) return;
-    const distance = touchStartX.current - touchEndX.current;
-    const minSwipeDistance = 40;
-    if (distance > minSwipeDistance) {
-      handleNextPhoto();
-    } else if (distance < -minSwipeDistance) {
-      handlePrevPhoto();
-    }
-    touchStartX.current = null;
-    touchEndX.current = null;
-  };
-
   return (
     <section className="relative py-12 sm:py-16 lg:py-20 bg-[#F8FAFC] border-y border-slate-200/80 overflow-hidden select-none">
-      <div className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 mb-8 sm:mb-10 text-center">
+      <div className="max-w-[1240px] xl:max-w-[1360px] 2xl:max-w-[1480px] min-[1800px]:max-w-[1560px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 mb-8 sm:mb-10 text-center">
         {/* Top Badge */}
         <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-red-50 border border-red-200 text-[#DC2626] text-[11px] font-extrabold tracking-wider uppercase shadow-2xs mb-3">
           <span className="w-2 h-2 rounded-full bg-[#DC2626] animate-pulse" />
@@ -199,7 +122,7 @@ export function OperationsShowcaseSection() {
       </div>
 
       {/* =========================================================================
-          DUAL-TRACK INFINITE AUTO-SLIDING MARQUEE
+          DUAL-TRACK INFINITE AUTO-SLIDING MARQUEE (Clicking navigates to /gallery)
           ========================================================================= */}
       <div className="relative w-full space-y-3.5 sm:space-y-4">
         {/* Left & Right Gradient Fade Masks */}
@@ -209,62 +132,58 @@ export function OperationsShowcaseSection() {
         {/* Track 1: Slides Left to Right Continuously */}
         <div className="overflow-hidden py-1">
           <div className="animate-marquee-slow flex items-center gap-3.5 sm:gap-4.5 group">
-            {[...TRACK_1_PHOTOS, ...TRACK_1_PHOTOS].map((photo, idx) => {
-              const originalIndex = idx % TRACK_1_PHOTOS.length;
-              return (
-                <div
-                  key={`t1-${idx}`}
-                  onClick={() => setLightboxIndex(originalIndex)}
-                  className="group/card relative shrink-0 w-56 xs:w-64 sm:w-72 lg:w-80 rounded-2xl sm:rounded-3xl overflow-hidden bg-slate-900 border border-slate-200 shadow-sm hover:shadow-2xl hover:scale-105 hover:-translate-y-1 transition-all duration-300 cursor-pointer aspect-[4/3]"
-                >
-                  <Image
-                    src={photo.imageSrc}
-                    alt={photo.title}
-                    fill
-                    sizes="(max-width: 640px) 256px, 320px"
-                    className="object-cover group-hover/card:scale-108 transition-transform duration-500 ease-out"
-                  />
+            {[...TRACK_1_PHOTOS, ...TRACK_1_PHOTOS].map((photo, idx) => (
+              <Link
+                key={`t1-${photo.id}-${idx}`}
+                href="/gallery"
+                aria-label={`View ${photo.title} in operations gallery`}
+                className="group/card relative shrink-0 w-56 xs:w-64 sm:w-72 lg:w-80 rounded-2xl sm:rounded-3xl overflow-hidden bg-slate-900 border border-slate-200 shadow-sm hover:shadow-2xl hover:scale-105 hover:-translate-y-1 transition-all duration-300 cursor-pointer aspect-[4/3] block"
+              >
+                <Image
+                  src={photo.imageSrc}
+                  alt={photo.title}
+                  fill
+                  sizes="(max-width: 640px) 256px, 320px"
+                  className="object-cover group-hover/card:scale-108 transition-transform duration-500 ease-out"
+                />
 
-                  {/* Clean Hover Zoom Overlay */}
-                  <div className="absolute inset-0 bg-slate-950/25 opacity-0 group-hover/card:opacity-100 transition-opacity duration-300 flex items-center justify-center pointer-events-none">
-                    <span className="w-9 h-9 rounded-full bg-white/30 backdrop-blur-md flex items-center justify-center text-white shadow-lg transform scale-90 group-hover/card:scale-100 transition-transform">
-                      <Maximize2 className="w-4 h-4" />
-                    </span>
-                  </div>
+                {/* Clean Hover Zoom Overlay */}
+                <div className="absolute inset-0 bg-slate-950/25 opacity-0 group-hover/card:opacity-100 transition-opacity duration-300 flex items-center justify-center pointer-events-none">
+                  <span className="w-9 h-9 rounded-full bg-white/30 backdrop-blur-md flex items-center justify-center text-white shadow-lg transform scale-90 group-hover/card:scale-100 transition-transform">
+                    <ExternalLink className="w-4 h-4" />
+                  </span>
                 </div>
-              );
-            })}
+              </Link>
+            ))}
           </div>
         </div>
 
         {/* Track 2: Slides Right to Left Continuously */}
         <div className="overflow-hidden py-1">
           <div className="animate-marquee-reverse flex items-center gap-3.5 sm:gap-4.5 group">
-            {[...TRACK_2_PHOTOS, ...TRACK_2_PHOTOS].map((photo, idx) => {
-              const originalIndex = TRACK_1_PHOTOS.length + (idx % TRACK_2_PHOTOS.length);
-              return (
-                <div
-                  key={`t2-${idx}`}
-                  onClick={() => setLightboxIndex(originalIndex)}
-                  className="group/card relative shrink-0 w-56 xs:w-64 sm:w-72 lg:w-80 rounded-2xl sm:rounded-3xl overflow-hidden bg-slate-900 border border-slate-200 shadow-sm hover:shadow-2xl hover:scale-105 hover:-translate-y-1 transition-all duration-300 cursor-pointer aspect-[4/3]"
-                >
-                  <Image
-                    src={photo.imageSrc}
-                    alt={photo.title}
-                    fill
-                    sizes="(max-width: 640px) 256px, 320px"
-                    className="object-cover group-hover/card:scale-108 transition-transform duration-500 ease-out"
-                  />
+            {[...TRACK_2_PHOTOS, ...TRACK_2_PHOTOS].map((photo, idx) => (
+              <Link
+                key={`t2-${photo.id}-${idx}`}
+                href="/gallery"
+                aria-label={`View ${photo.title} in operations gallery`}
+                className="group/card relative shrink-0 w-56 xs:w-64 sm:w-72 lg:w-80 rounded-2xl sm:rounded-3xl overflow-hidden bg-slate-900 border border-slate-200 shadow-sm hover:shadow-2xl hover:scale-105 hover:-translate-y-1 transition-all duration-300 cursor-pointer aspect-[4/3] block"
+              >
+                <Image
+                  src={photo.imageSrc}
+                  alt={photo.title}
+                  fill
+                  sizes="(max-width: 640px) 256px, 320px"
+                  className="object-cover group-hover/card:scale-108 transition-transform duration-500 ease-out"
+                />
 
-                  {/* Clean Hover Zoom Overlay */}
-                  <div className="absolute inset-0 bg-slate-950/25 opacity-0 group-hover/card:opacity-100 transition-opacity duration-300 flex items-center justify-center pointer-events-none">
-                    <span className="w-9 h-9 rounded-full bg-white/30 backdrop-blur-md flex items-center justify-center text-white shadow-lg transform scale-90 group-hover/card:scale-100 transition-transform">
-                      <Maximize2 className="w-4 h-4" />
-                    </span>
-                  </div>
+                {/* Clean Hover Zoom Overlay */}
+                <div className="absolute inset-0 bg-slate-950/25 opacity-0 group-hover/card:opacity-100 transition-opacity duration-300 flex items-center justify-center pointer-events-none">
+                  <span className="w-9 h-9 rounded-full bg-white/30 backdrop-blur-md flex items-center justify-center text-white shadow-lg transform scale-90 group-hover/card:scale-100 transition-transform">
+                    <ExternalLink className="w-4 h-4" />
+                  </span>
                 </div>
-              );
-            })}
+              </Link>
+            ))}
           </div>
         </div>
       </div>
@@ -279,115 +198,11 @@ export function OperationsShowcaseSection() {
           <ArrowRight className="w-4 h-4 text-white" />
         </Link>
         <span className="text-xs text-slate-400 font-medium hidden sm:inline">
-          Tap any photo to expand &bull; Hover to pause
+          Click any photo to open in gallery &bull; Hover to pause
         </span>
       </div>
-
-      {/* =========================================================================
-          PHONE-STYLE FULL-SCREEN PHOTO VIEWER (SWIPE / SLIDE • PURE PHOTOS)
-          ========================================================================= */}
-      {lightboxIndex !== null && ALL_SHOWCASE_PHOTOS[lightboxIndex] && (
-        <div
-          role="dialog"
-          aria-modal="true"
-          onClick={() => setLightboxIndex(null)}
-          onTouchStart={handleTouchStart}
-          onTouchMove={handleTouchMove}
-          onTouchEnd={handleTouchEnd}
-          className="fixed inset-0 z-50 bg-black/96 backdrop-blur-2xl flex flex-col justify-between p-3 sm:p-6 select-none animate-in fade-in duration-200"
-        >
-          {/* Top Bar: Counter & Close Only (No text tags, no buttons) */}
-          <div
-            onClick={(e) => e.stopPropagation()}
-            className="flex items-center justify-between z-20 w-full max-w-6xl mx-auto px-2"
-          >
-            <div className="px-3 py-1 rounded-full bg-white/10 backdrop-blur-md text-white/90 font-mono text-xs font-bold tracking-widest border border-white/10">
-              {String(lightboxIndex + 1).padStart(2, '0')} / {String(ALL_SHOWCASE_PHOTOS.length).padStart(2, '0')}
-            </div>
-
-            <button
-              type="button"
-              onClick={() => setLightboxIndex(null)}
-              className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 active:scale-95 text-white flex items-center justify-center transition-all cursor-pointer border border-white/15"
-              aria-label="Close photo view"
-            >
-              <X className="w-5 h-5" />
-            </button>
-          </div>
-
-          {/* Center Carousel Area */}
-          <div
-            onClick={(e) => e.stopPropagation()}
-            className="relative flex-1 w-full max-w-6xl mx-auto flex items-center justify-center my-auto px-2 sm:px-14 overflow-hidden"
-          >
-            {/* Desktop Previous Button */}
-            <button
-              type="button"
-              onClick={handlePrevPhoto}
-              className="hidden sm:flex absolute left-2 z-20 w-11 h-11 rounded-full bg-white/10 hover:bg-white/25 active:scale-90 text-white items-center justify-center transition-all cursor-pointer border border-white/15 backdrop-blur-md"
-              aria-label="Previous photo"
-            >
-              <ChevronLeft className="w-6 h-6" />
-            </button>
-
-            {/* Photo Container */}
-            <div className="relative w-full h-[70vh] sm:h-[80vh] flex items-center justify-center">
-              <Image
-                src={ALL_SHOWCASE_PHOTOS[lightboxIndex].imageSrc}
-                alt={ALL_SHOWCASE_PHOTOS[lightboxIndex].title}
-                fill
-                priority
-                sizes="100vw"
-                className="object-contain"
-              />
-            </div>
-
-            {/* Desktop Next Button */}
-            <button
-              type="button"
-              onClick={handleNextPhoto}
-              className="hidden sm:flex absolute right-2 z-20 w-11 h-11 rounded-full bg-white/10 hover:bg-white/25 active:scale-90 text-white items-center justify-center transition-all cursor-pointer border border-white/15 backdrop-blur-md"
-              aria-label="Next photo"
-            >
-              <ChevronRight className="w-6 h-6" />
-            </button>
-          </div>
-
-          {/* Bottom Bar: Touch Navigation Indicators */}
-          <div
-            onClick={(e) => e.stopPropagation()}
-            className="flex flex-col items-center gap-2 z-20 w-full max-w-md mx-auto pb-1 text-center"
-          >
-            {/* Mobile Swipe Buttons (For Easy 1-Tap Thumb Navigation) */}
-            <div className="flex sm:hidden items-center justify-center gap-6">
-              <button
-                type="button"
-                onClick={handlePrevPhoto}
-                className="px-4 py-2 rounded-full bg-white/10 active:bg-white/25 text-white text-xs font-bold flex items-center gap-1 border border-white/15"
-              >
-                <ChevronLeft className="w-4 h-4" />
-                <span>Prev</span>
-              </button>
-
-              <span className="text-[11px] text-white/50 font-medium">Swipe to browse</span>
-
-              <button
-                type="button"
-                onClick={handleNextPhoto}
-                className="px-4 py-2 rounded-full bg-white/10 active:bg-white/25 text-white text-xs font-bold flex items-center gap-1 border border-white/15"
-              >
-                <span>Next</span>
-                <ChevronRight className="w-4 h-4" />
-              </button>
-            </div>
-
-            <p className="hidden sm:block text-[11px] text-white/40 font-medium tracking-wide">
-              Use arrow keys or click arrows to slide &bull; Tap outside to close
-            </p>
-          </div>
-        </div>
-      )}
     </section>
   );
 }
 
+export default OperationsShowcaseSection;

@@ -62,7 +62,7 @@ export function ServicesView() {
           1. HERO & BREADCRUMB HEADER
           ========================================================================= */}
       <section className="relative pt-6 pb-10 lg:pt-10 lg:pb-14 bg-[radial-gradient(ellipse_at_top_left,#EBF5FB_0%,#F8FBFE_50%,#FFFFFF_100%)] border-b border-slate-100">
-        <div className="max-w-[1200px] mx-auto px-6 lg:px-8">
+        <div className="max-w-[1240px] xl:max-w-[1360px] 2xl:max-w-[1480px] min-[1800px]:max-w-[1560px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-10">
           {/* Breadcrumb Navigation */}
           <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-xs text-slate-500 mb-5">
             <Link href="/" className="hover:text-[#DC2626] transition-colors font-medium">
@@ -115,7 +115,7 @@ export function ServicesView() {
           2. CATEGORY FILTER TABS
           ========================================================================= */}
       <section className="py-6 border-b border-slate-100 sticky top-16 lg:top-[72px] z-20 bg-white/95 backdrop-blur-md shadow-2xs">
-        <div className="max-w-[1200px] mx-auto px-6 lg:px-8">
+        <div className="max-w-[1240px] xl:max-w-[1360px] 2xl:max-w-[1480px] min-[1800px]:max-w-[1560px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-10">
           <div className="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-none">
             {filterTabs.map((tab) => {
               const isActive = activeCategory === tab.id;
@@ -142,7 +142,7 @@ export function ServicesView() {
           3. COMPREHENSIVE SERVICES CATALOG
           ========================================================================= */}
       <section className="py-10 lg:py-16">
-        <div className="max-w-[1200px] mx-auto px-6 lg:px-8 space-y-12">
+        <div className="max-w-[1240px] xl:max-w-[1360px] 2xl:max-w-[1480px] min-[1800px]:max-w-[1560px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 space-y-12">
           {filteredServices.map((service: ServiceItem, index: number) => {
             const IconComponent = getServiceIcon(service.iconName);
             const isReversed = index % 2 === 1;
@@ -299,7 +299,7 @@ export function ServicesView() {
           4. PROCESS EXPLAINER: HOW OUR DESK OPERATES
           ========================================================================= */}
       <section className="py-12 lg:py-16 bg-[#F8FAFC] border-y border-slate-100">
-        <div className="max-w-[1200px] mx-auto px-6 lg:px-8 space-y-10">
+        <div className="max-w-[1240px] xl:max-w-[1360px] 2xl:max-w-[1480px] min-[1800px]:max-w-[1560px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 space-y-10">
           <div className="text-center max-w-2xl mx-auto space-y-3 reveal-init">
             <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-50/80 border border-red-200/60 text-xs font-semibold text-[#DC2626] tracking-wide uppercase">
               <span className="w-1.5 h-1.5 rounded-full bg-[#DC2626] animate-pulse" />
@@ -371,7 +371,7 @@ export function ServicesView() {
           5. SERVICE TRANSPARENCY & OPERATIONAL STANDARDS
           ========================================================================= */}
       <section className="py-8 sm:py-12">
-        <div className="max-w-[1200px] mx-auto px-6 lg:px-8">
+        <div className="max-w-[1240px] xl:max-w-[1360px] 2xl:max-w-[1480px] min-[1800px]:max-w-[1560px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-10">
           <div className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/90 shadow-2xs space-y-4 reveal-init delay-75">
             <div className="flex items-center gap-2 text-slate-900 font-bold text-sm">
               <ShieldCheck className="w-4 h-4 text-[#DC2626] shrink-0" />
@@ -400,7 +400,7 @@ export function ServicesView() {
           6. FLOATING CONVERSION / CALL-TO-ACTION CARD
           ========================================================================= */}
       <section className="py-4 sm:py-6">
-        <div className="max-w-[1200px] mx-auto px-6 lg:px-8">
+        <div className="max-w-[1240px] xl:max-w-[1360px] 2xl:max-w-[1480px] min-[1800px]:max-w-[1560px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-10">
           <div className="relative rounded-3xl bg-gradient-to-br from-[#0B1736] via-[#071026] to-[#040814] p-8 sm:p-12 lg:p-14 text-center border border-white/[0.08] shadow-lg overflow-hidden space-y-5 reveal-init reveal-scale">
             <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-red-500/10 border border-red-500/25 text-xs font-semibold text-red-300 tracking-wider uppercase">
               <span className="w-1.5 h-1.5 rounded-full bg-red-400 animate-pulse" />
@@ -443,7 +443,7 @@ export function ServicesView() {
           7. BHILWARA HUB CONTACT & LOCATION STRIP
           ========================================================================= */}
       <section className="py-4 sm:py-6 mb-4">
-        <div className="max-w-[1200px] mx-auto px-6 lg:px-8">
+        <div className="max-w-[1240px] xl:max-w-[1360px] 2xl:max-w-[1480px] min-[1800px]:max-w-[1560px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-10">
           <div className="bg-[#F0F7FD] rounded-2xl border border-[#E0EDF8] flex flex-col md:flex-row items-center justify-between shadow-2xs overflow-hidden reveal-init delay-100">
             {/* Left: Call Us / Inquire Online */}
             <a

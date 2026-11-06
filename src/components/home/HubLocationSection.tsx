@@ -55,7 +55,7 @@ export function HubLocationSection() {
 
   return (
     <section id="contact" className="py-12 sm:py-16 lg:py-20 bg-slate-50/60 scroll-mt-24 sm:scroll-mt-28 border-t border-slate-100">
-      <div className="max-w-[1240px] 2xl:max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-[1240px] xl:max-w-[1360px] 2xl:max-w-[1480px] min-[1800px]:max-w-[1560px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-10">
         {/* Section Header with 3D Hub Building Model */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center mb-8 sm:mb-10">
           {/* Left Title & Information */}
@@ -236,9 +236,11 @@ export function HubLocationSection() {
                   className="w-full h-full block"
                 />
               ) : (
-                <div
+                <button
+                  type="button"
                   onClick={() => setIsMapVisible(true)}
-                  className="w-full h-full flex flex-col items-center justify-center p-6 text-center cursor-pointer group"
+                  className="w-full h-full flex flex-col items-center justify-center p-6 text-center cursor-pointer group bg-transparent border-0"
+                  aria-label="Click to load interactive Google Map"
                 >
                   <div className="w-12 h-12 rounded-2xl bg-red-100 text-[#DC2626] flex items-center justify-center mb-3 group-hover:scale-110 transition-transform shadow-xs">
                     <MapPin className="w-6 h-6" />
@@ -249,7 +251,7 @@ export function HubLocationSection() {
                   <p className="text-xs text-slate-700 font-semibold mt-1 max-w-xs">
                     Click to load interactive Google Map
                   </p>
-                </div>
+                </button>
               )}
 
               {/* Floating Top-Left Hub Badge Overlay */}

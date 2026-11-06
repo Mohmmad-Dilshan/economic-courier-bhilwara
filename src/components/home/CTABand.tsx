@@ -27,7 +27,7 @@ export function CTABand() {
         aria-hidden="true"
       />
 
-      <div className="max-w-[1240px] 2xl:max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-[1240px] xl:max-w-[1360px] 2xl:max-w-[1480px] min-[1800px]:max-w-[1560px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 relative z-10">
         <div className="max-w-3xl mx-auto text-center space-y-6">
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 border border-white/15 text-slate-200 text-[11px] font-bold tracking-widest uppercase backdrop-blur-xs">
             <span>DISPATCH PLANNING</span>

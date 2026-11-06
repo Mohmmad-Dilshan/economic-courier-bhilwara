@@ -113,7 +113,7 @@ export function TextileLogisticsView() {
           1. HERO SECTION (Crisp, High-Impact & Easy to Understand)
           ========================================================================= */}
       <section className="relative pt-6 sm:pt-8 lg:pt-10 pb-8 sm:pb-12 bg-white border-b border-slate-200">
-        <div className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 space-y-5">
+        <div className="max-w-[1240px] xl:max-w-[1360px] 2xl:max-w-[1480px] min-[1800px]:max-w-[1560px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 space-y-5">
           {/* Breadcrumb & Hub Badge */}
           <div className="flex flex-wrap items-center justify-between gap-3 text-xs font-semibold text-slate-500">
             <nav aria-label="Breadcrumb" className="flex items-center gap-2">
@@ -160,7 +160,7 @@ export function TextileLogisticsView() {
           2. WHAT CAN YOU SHIP? (4 Clear, Practical Categories)
           ========================================================================= */}
       <section className="py-10 sm:py-14 bg-white border-b border-slate-200">
-        <div className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+        <div className="max-w-[1240px] xl:max-w-[1360px] 2xl:max-w-[1480px] min-[1800px]:max-w-[1560px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 space-y-8">
           <div className="max-w-2xl space-y-1.5">
             <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-[#DC2626] block">
               SUPPORTED TEXTILE SHIPMENTS
@@ -281,7 +281,7 @@ export function TextileLogisticsView() {
           3. KEY TEXTILE CORRIDORS (Where It Goes from Bhilwara)
           ========================================================================= */}
       <section className="py-10 sm:py-14 bg-[#F8FAFC] border-b border-slate-200">
-        <div className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+        <div className="max-w-[1240px] xl:max-w-[1360px] 2xl:max-w-[1480px] min-[1800px]:max-w-[1560px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 space-y-8">
           <div className="max-w-2xl space-y-1.5">
             <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-[#DC2626] block">
               TRADE CONNECTIVITY
@@ -382,7 +382,7 @@ export function TextileLogisticsView() {
           4. PACKAGING SAFETY & REAL VIDEO DEMO (Grounded Protection)
           ========================================================================= */}
       <section className="py-12 sm:py-16 bg-white border-b border-slate-200">
-        <div className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-[1240px] xl:max-w-[1360px] 2xl:max-w-[1480px] min-[1800px]:max-w-[1560px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
             {/* Left: Compact Phone-Style Video Reel Card (Balanced Height) */}
             <div className="lg:col-span-5 flex justify-center items-center">
@@ -408,14 +408,16 @@ export function TextileLogisticsView() {
 
                   {/* Paused Play Button Overlay */}
                   {!isPlaying && (
-                    <div
+                    <button
+                      type="button"
+                      aria-label="Play textile packaging video"
                       onClick={() => togglePlay()}
-                      className="absolute inset-0 flex items-center justify-center bg-black/35 cursor-pointer"
+                      className="absolute inset-0 w-full h-full flex items-center justify-center bg-black/35 cursor-pointer border-0"
                     >
                       <div className="w-12 h-12 rounded-full bg-[#DC2626] text-white flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
                         <Play className="w-5 h-5 fill-current ml-0.5 text-white" />
                       </div>
-                    </div>
+                    </button>
                   )}
 
                   {/* Clean Bottom Controls Pill (Icons Only, Zero Text Tags) */}
@@ -535,7 +537,7 @@ export function TextileLogisticsView() {
           5. HOW BOOKING WORKS (3 Simple Steps for Merchants)
           ========================================================================= */}
       <section className="py-10 sm:py-14 bg-[#F8FAFC] border-b border-slate-200">
-        <div className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+        <div className="max-w-[1240px] xl:max-w-[1360px] 2xl:max-w-[1480px] min-[1800px]:max-w-[1560px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 space-y-8">
           <div className="max-w-2xl text-center mx-auto space-y-1.5">
             <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-[#DC2626] block">
               SIMPLE 3-STEP PROCESS
@@ -595,7 +597,7 @@ export function TextileLogisticsView() {
           6. B2B CORPORATE CALL TO ACTION CARD
           ========================================================================= */}
       <section className="pt-8 sm:pt-12">
-        <div className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-[1240px] xl:max-w-[1360px] 2xl:max-w-[1480px] min-[1800px]:max-w-[1560px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-10">
           <div className="rounded-3xl bg-gradient-to-br from-slate-900 via-slate-900 to-slate-950 text-white p-6 sm:p-8 lg:p-10 shadow-xl border border-slate-800 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
             <div className="space-y-2 max-w-2xl">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#DC2626]/30 border border-red-500/40 text-red-400 text-[11px] font-bold uppercase tracking-wider">

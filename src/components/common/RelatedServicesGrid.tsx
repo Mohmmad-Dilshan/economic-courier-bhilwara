@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import Link from 'next/link';
 import {
@@ -77,7 +79,7 @@ export function RelatedServicesGrid({
 
   return (
     <section className="py-8 sm:py-12 bg-white border-t border-slate-100">
-      <div className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
+      <div className="max-w-[1240px] xl:max-w-[1360px] 2xl:max-w-[1480px] min-[1800px]:max-w-[1560px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 space-y-6">
         <div className="flex items-center justify-between">
           <div>
             <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-[#DC2626] block">
@@ -121,3 +123,6 @@ export function RelatedServicesGrid({
     </section>
   );
 }
+
+export default RelatedServicesGrid;
+

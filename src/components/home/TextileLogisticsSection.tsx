@@ -35,7 +35,7 @@ export function TextileLogisticsSection() {
 
   return (
     <section id="business" className="py-12 lg:py-20 bg-slate-50/60 border-t border-b border-slate-100 scroll-mt-20 sm:scroll-mt-24">
-      <div className="max-w-[1240px] 2xl:max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-[1240px] xl:max-w-[1360px] 2xl:max-w-[1480px] min-[1800px]:max-w-[1560px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
           {/* Left Column: Factual Copy & Feature Grid */}
           <div className="lg:col-span-7 space-y-6">

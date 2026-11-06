@@ -19,19 +19,10 @@ import {
   Truck,
   ShieldCheck,
   Clock,
-  Phone,
   MessageCircle,
-  ExternalLink,
-  ChevronRight,
-  Sparkles,
 } from 'lucide-react';
-import { InquiryModal } from '@/components/home/InquiryModal';
-import { BUSINESS_INFO } from '@/lib/constants';
 
 export function TextileLogisticsView() {
-  const [inquiryModalOpen, setInquiryModalOpen] = useState(false);
-  const [inquiryService, setInquiryService] = useState<string>('textiles');
-
   // Video reel state for packing demo
   const videoRef = useRef<HTMLVideoElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -116,11 +107,6 @@ export function TextileLogisticsView() {
     }
   };
 
-  const handleOpenInquiry = (serviceKey: string = 'textiles') => {
-    setInquiryService(serviceKey);
-    setInquiryModalOpen(true);
-  };
-
   return (
     <div className="min-h-screen bg-[#F8FAFC] text-slate-900 pb-16">
       {/* =========================================================================
@@ -147,9 +133,9 @@ export function TextileLogisticsView() {
           </div>
 
           {/* Full-Width Visual Hero Banner Card (Custom Textile Logistics Artwork) */}
-          <div
-            onClick={() => handleOpenInquiry('textiles')}
-            className="relative w-full rounded-2xl sm:rounded-3xl overflow-hidden border border-slate-200 shadow-md bg-white aspect-[2/1] cursor-pointer group"
+          <Link
+            href="/contact?service=textiles#inquiry-form"
+            className="block relative w-full rounded-2xl sm:rounded-3xl overflow-hidden border border-slate-200 shadow-md bg-white aspect-[2/1] cursor-pointer group"
           >
             <Image
               src="/assets/services/textile-logistics-hero.webp"
@@ -161,7 +147,7 @@ export function TextileLogisticsView() {
               sizes="(max-width: 1240px) 100vw, 1240px"
               className="object-cover object-center group-hover:scale-[1.01] transition-transform duration-300"
             />
-          </div>
+          </Link>
 
           {/* Screen Reader & SEO Heading */}
           <h1 className="sr-only">
@@ -625,14 +611,13 @@ export function TextileLogisticsView() {
             </div>
 
             <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto shrink-0">
-              <button
-                type="button"
-                onClick={() => handleOpenInquiry('textiles')}
+              <Link
+                href="/contact?service=textiles#inquiry-form"
                 className="inline-flex items-center justify-center gap-2 bg-[#DC2626] hover:bg-[#B91C1C] text-white text-xs sm:text-sm font-bold px-6 py-3.5 rounded-xl shadow-md transition-all active:scale-95 cursor-pointer whitespace-nowrap"
               >
                 <span>Prepare Sample Inquiry</span>
                 <ArrowRight className="w-4 h-4 text-white" />
-              </button>
+              </Link>
 
               <a
                 href="https://wa.me/918955144444?text=Hello%20Economic%20Courier%20Bhilwara,%20I%20want%20to%20inquire%20about%20Textile%20Logistics%20pickup."
@@ -647,14 +632,6 @@ export function TextileLogisticsView() {
           </div>
         </div>
       </section>
-
-      {/* Reusable Inquiry Modal */}
-      <InquiryModal
-        key={inquiryModalOpen ? inquiryService || 'open' : 'closed'}
-        isOpen={inquiryModalOpen}
-        onClose={() => setInquiryModalOpen(false)}
-        initialService={inquiryService}
-      />
     </div>
   );
 }

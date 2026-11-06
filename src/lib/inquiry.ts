@@ -6,6 +6,46 @@ import {
 import { BUSINESS_INFO } from './constants';
 
 /**
+ * Formats internal service keys into human-readable customer labels.
+ */
+export function formatServiceType(type?: string): string {
+  switch (type) {
+    case 'domestic':
+      return 'Domestic Express Courier (All India)';
+    case 'international':
+      return 'International Air Cargo (eCS Worldwide Express)';
+    case 'documents':
+      return 'Documents & Confidential Parcels';
+    case 'textiles':
+      return 'Bhilwara Textile / Fabric Swatch Samples';
+    case 'other':
+      return 'B2B Commercial Logistics & Rate Inquiry';
+    default:
+      return type || 'General Inquiry';
+  }
+}
+
+/**
+ * Formats weight keys into customer-friendly weight bracket descriptions.
+ */
+export function formatWeightBracket(weight?: string): string {
+  switch (weight) {
+    case 'under-0.5kg':
+      return 'Under 0.5 kg (Letters, Docs & Packets)';
+    case '0.5-2kg':
+      return '0.5–2 kg (Standard Parcel & Swatches)';
+    case '2-5kg':
+      return '2–5 kg (Medium Box / Fabric Bundles)';
+    case '5kg-plus':
+      return '5+ kg (Heavy Parcels)';
+    case 'commercial-freight':
+      return 'Commercial Freight (B2B Cargo & Bulk Textiles)';
+    default:
+      return weight || 'Not specified';
+  }
+}
+
+/**
  * Validates the Customer Inquiry form fields.
  * Returns an object containing any field-level error messages.
  */
@@ -22,16 +62,19 @@ export function validateInquiryForm(data: CustomerInquiryFormData): InquiryField
     errors.customerName = 'Name cannot exceed 60 characters.';
   }
 
-  // 2. Contact (Phone or Email) validation
+  // 2. Contact (Phone or Email) validation - ReDoS-safe linear checks
   const contact = data.contact.trim();
-  const phoneRegex = /^(?:\+?\d{1,3}[\s-]?)?\(?\d{3}\)?[\s-]?\d{3}[\s-]?\d{4}$|^[6-9]\d{9}$/;
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+  const digitsOnly = contact.replace(/\D/g, '');
+  const isIndianMobile = digitsOnly.length === 10 && /^[6-9]/.test(digitsOnly);
+  const isPrefixedIndianMobile =
+    digitsOnly.length === 12 && digitsOnly.startsWith('91') && /^[6-9]/.test(digitsOnly.slice(2));
+  const isEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(contact);
 
   if (!contact) {
     errors.contact = 'Please provide a phone number or email address.';
   } else if (contact.length > 80) {
     errors.contact = 'Contact information cannot exceed 80 characters.';
-  } else if (!phoneRegex.test(contact.replace(/\s+/g, '')) && !emailRegex.test(contact)) {
+  } else if (!isIndianMobile && !isPrefixedIndianMobile && !isEmail) {
     errors.contact = 'Please enter a valid 10-digit mobile number or email address.';
   }
 
@@ -62,10 +105,15 @@ export function validateInquiryForm(data: CustomerInquiryFormData): InquiryField
   const message = data.message.trim();
   if (!message) {
     errors.message = 'Please describe your inquiry or shipment requirement.';
-  } else if (message.length < 10) {
-    errors.message = 'Please provide at least 10 characters describing your inquiry.';
+  } else if (message.length < 5) {
+    errors.message = 'Please provide at least 5 characters describing your inquiry.';
   } else if (message.length > 600) {
     errors.message = 'Inquiry details cannot exceed 600 characters.';
+  }
+
+  // 6. User Consent validation (when consentGiven is tracked)
+  if (data.consentGiven !== undefined && !data.consentGiven) {
+    errors.consentGiven = 'Kripya WhatsApp/Phone updates ke liye consent checkbox tick kijiye.';
   }
 
   return errors;

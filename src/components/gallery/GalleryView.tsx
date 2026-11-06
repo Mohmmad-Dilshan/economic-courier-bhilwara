@@ -8,7 +8,6 @@ import {
   Pause,
   Volume2,
   VolumeX,
-  MapPin,
   Camera,
   Film,
   ArrowRight,
@@ -22,7 +21,6 @@ import {
   ChevronRight,
 } from 'lucide-react';
 import { InstagramIcon } from '@/components/common/InstagramIcon';
-import { InquiryModal } from '@/components/home/InquiryModal';
 import { BUSINESS_INFO } from '@/lib/constants';
 
 // ─── Video Reels Data ──────────────────────────────────────────────────────────
@@ -194,15 +192,66 @@ const GALLERY_PHOTOS: GalleryPhoto[] = [
   },
 ];
 
+// ─── Reusable Editorial Photo Card Component ──────────────────────────────────
+interface EditorialPhotoCardProps {
+  photo: GalleryPhoto;
+  index: number;
+  aspectClass: string;
+  isHero?: boolean;
+  priority?: boolean;
+  onSelect: (index: number) => void;
+}
+
+function EditorialPhotoCard({
+  photo,
+  index,
+  aspectClass,
+  isHero = false,
+  priority = false,
+  onSelect,
+}: EditorialPhotoCardProps) {
+  return (
+    <button
+      type="button"
+      onClick={() => onSelect(index)}
+      aria-label={`View photograph: ${photo.title}`}
+      className={`group relative overflow-hidden bg-slate-100 border border-slate-200/90 hover:border-slate-400/90 shadow-2xs hover:shadow-2xl hover:-translate-y-1 transition-all duration-500 ease-out cursor-pointer select-none w-full min-w-0 text-left p-0 focus:outline-hidden focus:ring-2 focus:ring-[#DC2626] ${
+        isHero
+          ? 'rounded-2xl sm:rounded-3xl'
+          : 'rounded-xl sm:rounded-2xl'
+      } ${aspectClass}`}
+    >
+      <Image
+        src={photo.imageSrc}
+        alt={photo.title}
+        fill
+        priority={priority || index < 3}
+        sizes={
+          isHero
+            ? '(max-width: 768px) 100vw, (max-width: 1240px) 66vw, 820px'
+            : '(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 420px'
+        }
+        className="object-cover group-hover:scale-[1.04] transition-transform duration-700 ease-out"
+      />
+
+      {/* Pure Editorial Hover Veil & Maximize Icon */}
+      <div className="absolute inset-0 bg-slate-950/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center pointer-events-none">
+        <span className="w-10 h-10 rounded-full bg-white/35 backdrop-blur-md flex items-center justify-center text-white shadow-xl transform scale-90 group-hover:scale-100 transition-transform duration-300">
+          <Maximize2 className="w-4 h-4" />
+        </span>
+      </div>
+    </button>
+  );
+}
+
 // ─── Single Video Reel Card Component ─────────────────────────────────────────
 interface VideoCardProps {
   video: GalleryVideo;
-  index: number;
   activeVideoId: string | null;
   onActivate: (id: string) => void;
 }
 
-function VideoCard({ video, index, activeVideoId, onActivate }: VideoCardProps) {
+function VideoCard({ video, activeVideoId, onActivate }: VideoCardProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
@@ -349,7 +398,6 @@ export function GalleryView() {
   const [activeTab, setActiveTab] = useState<'all' | 'reels' | 'photos' | 'hub' | 'fleet'>('all');
   const [activeVideoId, setActiveVideoId] = useState<string | null>(null);
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
-  const [inquiryModalOpen, setInquiryModalOpen] = useState(false);
 
   // Touch Swipe coordinates for phone gallery sliding
   const touchStartX = useRef<number | null>(null);
@@ -565,11 +613,10 @@ export function GalleryView() {
 
             {/* Video Reels Grid: 2 cols on mobile, 4 cols on desktop */}
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-5">
-              {GALLERY_VIDEOS.map((video, idx) => (
+              {GALLERY_VIDEOS.map((video) => (
                 <VideoCard
                   key={video.id}
                   video={video}
-                  index={idx}
                   activeVideoId={activeVideoId}
                   onActivate={(id) => setActiveVideoId(id)}
                 />
@@ -580,12 +627,12 @@ export function GalleryView() {
       )}
 
       {/* =========================================================================
-          4. PHOTO GALLERY SECTION (PURE PHOTOS ONLY - ZERO TEXT CARDS OR TAGS)
+          4. PHOTO GALLERY SECTION (PREMIUM EDITORIAL PHOTO SHOWCASE)
           ========================================================================= */}
       {showPhotos && (
         <section className="py-8 sm:py-12">
-          <div className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 space-y-5 sm:space-y-6">
-            <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-2 pb-2 border-b border-slate-200">
+          <div className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 space-y-6 sm:space-y-8">
+            <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-2 pb-3 border-b border-slate-200">
               <div>
                 <div className="inline-flex items-center gap-1.5 text-xs font-extrabold uppercase tracking-wider text-[#DC2626] mb-1">
                   <Camera className="w-3.5 h-3.5 text-[#DC2626]" />
@@ -600,32 +647,204 @@ export function GalleryView() {
               </p>
             </div>
 
-            {/* Pure Photos Grid: 2 cols on mobile, 3 on tablet, 4 on desktop, 5 on wide screens */}
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2.5 sm:gap-3.5 lg:gap-4">
-              {filteredPhotos.map((photo, idx) => (
-                <div
-                  key={photo.id}
-                  onClick={() => setLightboxIndex(idx)}
-                  className="group relative rounded-xl sm:rounded-2xl overflow-hidden bg-slate-950 border border-slate-200/90 shadow-2xs hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-pointer aspect-[4/3] select-none"
-                >
-                  {/* Photo Image */}
-                  <Image
-                    src={photo.imageSrc}
-                    alt={photo.title}
-                    fill
-                    sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 20vw"
-                    className="object-cover group-hover:scale-108 transition-transform duration-500 ease-out"
-                  />
-
-                  {/* Pure Hover Zoom Overlay - Zero text tags or buttons */}
-                  <div className="absolute inset-0 bg-slate-950/25 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center pointer-events-none">
-                    <span className="w-9 h-9 rounded-full bg-white/30 backdrop-blur-md flex items-center justify-center text-white shadow-lg transform scale-90 group-hover:scale-100 transition-transform">
-                      <Maximize2 className="w-4 h-4" />
-                    </span>
+            {/* Curated Editorial Story Blocks (8 Isolated Passages • Zero Overlap • Zero Cutoff) */}
+            {filteredPhotos.length === GALLERY_PHOTOS.length ? (
+              <div className="space-y-4 sm:space-y-6">
+                {/* Passage 1: Lead Hero Showcase + Vertical Duet (Photos 0, 1, 2) */}
+                <div className="grid grid-cols-1 md:grid-cols-12 gap-4 lg:gap-6 items-stretch">
+                  <div className="md:col-span-8 min-w-0">
+                    <EditorialPhotoCard
+                      photo={filteredPhotos[0]}
+                      index={0}
+                      aspectClass="aspect-[16/10] md:aspect-auto h-full min-h-[300px] sm:min-h-[400px] md:min-h-[490px]"
+                      isHero
+                      priority
+                      onSelect={setLightboxIndex}
+                    />
+                  </div>
+                  <div className="md:col-span-4 min-w-0 flex flex-col sm:flex-row md:flex-col gap-4 lg:gap-6 justify-between">
+                    <div className="flex-1 min-w-0">
+                      <EditorialPhotoCard
+                        photo={filteredPhotos[1]}
+                        index={1}
+                        aspectClass="aspect-[16/10] sm:aspect-auto md:aspect-[16/10] h-full min-h-[160px] sm:min-h-[190px] md:min-h-[233px]"
+                        priority
+                        onSelect={setLightboxIndex}
+                      />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <EditorialPhotoCard
+                        photo={filteredPhotos[2]}
+                        index={2}
+                        aspectClass="aspect-[16/10] sm:aspect-auto md:aspect-[16/10] h-full min-h-[160px] sm:min-h-[190px] md:min-h-[233px]"
+                        priority
+                        onSelect={setLightboxIndex}
+                      />
+                    </div>
                   </div>
                 </div>
-              ))}
-            </div>
+
+                {/* Passage 2: Ground Fleet Diptych (Photos 3, 4) */}
+                <div className="grid grid-cols-1 sm:grid-cols-12 gap-4 lg:gap-6 items-stretch">
+                  <div className="sm:col-span-7 min-w-0">
+                    <EditorialPhotoCard
+                      photo={filteredPhotos[3]}
+                      index={3}
+                      aspectClass="aspect-[16/10]"
+                      onSelect={setLightboxIndex}
+                    />
+                  </div>
+                  <div className="sm:col-span-5 min-w-0">
+                    <EditorialPhotoCard
+                      photo={filteredPhotos[4]}
+                      index={4}
+                      aspectClass="aspect-[16/10] sm:aspect-auto h-full min-h-[220px]"
+                      onSelect={setLightboxIndex}
+                    />
+                  </div>
+                </div>
+
+                {/* Passage 3: Intake Desk & Documentation Pair (Photos 5, 6) */}
+                <div className="grid grid-cols-1 sm:grid-cols-12 gap-4 lg:gap-6 items-stretch">
+                  <div className="sm:col-span-5 min-w-0">
+                    <EditorialPhotoCard
+                      photo={filteredPhotos[5]}
+                      index={5}
+                      aspectClass="aspect-[16/10] sm:aspect-auto h-full min-h-[240px]"
+                      onSelect={setLightboxIndex}
+                    />
+                  </div>
+                  <div className="sm:col-span-7 min-w-0">
+                    <EditorialPhotoCard
+                      photo={filteredPhotos[6]}
+                      index={6}
+                      aspectClass="aspect-[16/10]"
+                      onSelect={setLightboxIndex}
+                    />
+                  </div>
+                </div>
+
+                {/* Passage 4: Industrial Freight & Textile Triplet (Photos 7, 8, 9) */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 lg:gap-6">
+                  <div className="min-w-0">
+                    <EditorialPhotoCard
+                      photo={filteredPhotos[7]}
+                      index={7}
+                      aspectClass="aspect-[4/3]"
+                      onSelect={setLightboxIndex}
+                    />
+                  </div>
+                  <div className="min-w-0">
+                    <EditorialPhotoCard
+                      photo={filteredPhotos[8]}
+                      index={8}
+                      aspectClass="aspect-[4/3]"
+                      onSelect={setLightboxIndex}
+                    />
+                  </div>
+                  <div className="min-w-0 sm:col-span-2 md:col-span-1">
+                    <EditorialPhotoCard
+                      photo={filteredPhotos[9]}
+                      index={9}
+                      aspectClass="aspect-[4/3]"
+                      onSelect={setLightboxIndex}
+                    />
+                  </div>
+                </div>
+
+                {/* Passage 5: Highway Transit & Station Sector (Photos 10, 11) */}
+                <div className="grid grid-cols-1 sm:grid-cols-12 gap-4 lg:gap-6 items-stretch">
+                  <div className="sm:col-span-8 min-w-0">
+                    <EditorialPhotoCard
+                      photo={filteredPhotos[10]}
+                      index={10}
+                      aspectClass="aspect-[16/9]"
+                      onSelect={setLightboxIndex}
+                    />
+                  </div>
+                  <div className="sm:col-span-4 min-w-0">
+                    <EditorialPhotoCard
+                      photo={filteredPhotos[11]}
+                      index={11}
+                      aspectClass="aspect-[16/10] sm:aspect-auto h-full min-h-[220px]"
+                      onSelect={setLightboxIndex}
+                    />
+                  </div>
+                </div>
+
+                {/* Passage 6: Operational Evening Hub & Walk-In Floor (Photos 12, 13) */}
+                <div className="grid grid-cols-1 sm:grid-cols-12 gap-4 lg:gap-6 items-stretch">
+                  <div className="sm:col-span-5 min-w-0">
+                    <EditorialPhotoCard
+                      photo={filteredPhotos[12]}
+                      index={12}
+                      aspectClass="aspect-[16/10] sm:aspect-auto h-full min-h-[240px]"
+                      onSelect={setLightboxIndex}
+                    />
+                  </div>
+                  <div className="sm:col-span-7 min-w-0">
+                    <EditorialPhotoCard
+                      photo={filteredPhotos[13]}
+                      index={13}
+                      aspectClass="aspect-[16/10]"
+                      onSelect={setLightboxIndex}
+                    />
+                  </div>
+                </div>
+
+                {/* Passage 7: National Routing & Air Parcel Dispatch Triplet (Photos 14, 15, 16) */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 lg:gap-6">
+                  <div className="min-w-0">
+                    <EditorialPhotoCard
+                      photo={filteredPhotos[14]}
+                      index={14}
+                      aspectClass="aspect-[4/3]"
+                      onSelect={setLightboxIndex}
+                    />
+                  </div>
+                  <div className="min-w-0">
+                    <EditorialPhotoCard
+                      photo={filteredPhotos[15]}
+                      index={15}
+                      aspectClass="aspect-[4/3]"
+                      onSelect={setLightboxIndex}
+                    />
+                  </div>
+                  <div className="min-w-0 sm:col-span-2 md:col-span-1">
+                    <EditorialPhotoCard
+                      photo={filteredPhotos[16]}
+                      index={16}
+                      aspectClass="aspect-[4/3]"
+                      onSelect={setLightboxIndex}
+                    />
+                  </div>
+                </div>
+
+                {/* Passage 8: Grand Booking Counter Finale (Photo 17) */}
+                <div className="w-full min-w-0">
+                  <EditorialPhotoCard
+                    photo={filteredPhotos[17]}
+                    index={17}
+                    aspectClass="aspect-[16/9] sm:aspect-[21/9]"
+                    onSelect={setLightboxIndex}
+                  />
+                </div>
+              </div>
+            ) : (
+              /* Filtered View (Clean Responsive Editorial Grid) */
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 lg:gap-6">
+                {filteredPhotos.map((photo, idx) => (
+                  <div key={photo.id} className="min-w-0">
+                    <EditorialPhotoCard
+                      photo={photo}
+                      index={idx}
+                      aspectClass="aspect-[4/3]"
+                      onSelect={setLightboxIndex}
+                    />
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
         </section>
       )}
@@ -651,14 +870,13 @@ export function GalleryView() {
             </div>
 
             <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto shrink-0">
-              <button
-                type="button"
-                onClick={() => setInquiryModalOpen(true)}
+              <Link
+                href="/contact#inquiry-form"
                 className="inline-flex items-center justify-center gap-2 bg-[#DC2626] hover:bg-[#B91C1C] text-white text-xs sm:text-sm font-bold px-6 py-3.5 rounded-xl shadow-md transition-all active:scale-95 cursor-pointer whitespace-nowrap"
               >
                 <span>Prepare Consignment Inquiry</span>
                 <ArrowRight className="w-4 h-4 text-white" />
-              </button>
+              </Link>
 
               <a
                 href="https://wa.me/918955144444?text=Hello%20Economic%20Courier%20Bhilwara,%20I%20have%20an%20inquiry%20regarding%20parcel%20dispatch."
@@ -778,14 +996,6 @@ export function GalleryView() {
           </div>
         </div>
       )}
-
-      {/* Inquiry Modal */}
-      <InquiryModal
-        key={inquiryModalOpen ? 'open' : 'closed'}
-        isOpen={inquiryModalOpen}
-        onClose={() => setInquiryModalOpen(false)}
-        initialService="other"
-      />
     </div>
   );
 }

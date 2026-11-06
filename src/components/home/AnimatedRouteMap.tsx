@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useEffect, useRef, useState, useCallback } from 'react';
+import Link from 'next/link';
 import {
   CheckCircle2,
   Building2,
@@ -170,11 +171,7 @@ const MOB_CHEVRONS = [
   { lengthFraction: 0.92 },
 ];
 
-interface AnimatedRouteMapProps {
-  onOpenInquiry?: (service?: string) => void;
-}
-
-export function AnimatedRouteMap({ onOpenInquiry }: AnimatedRouteMapProps) {
+export function AnimatedRouteMap() {
   const containerRef = useRef<HTMLDivElement>(null);
   const desktopPathRef = useRef<SVGPathElement>(null);
   const mobilePathRef = useRef<SVGPathElement>(null);
@@ -206,7 +203,6 @@ export function AnimatedRouteMap({ onOpenInquiry }: AnimatedRouteMapProps) {
   // Animation progress refs
   const targetProgressRef = useRef(0);
   const currentProgressRef = useRef(0);
-  const animFrameIdRef = useRef<number | null>(null);
 
   const stopDistancesRef = useRef<number[]>([]);
   const mobStopDistancesRef = useRef<number[]>([]);
@@ -216,8 +212,8 @@ export function AnimatedRouteMap({ onOpenInquiry }: AnimatedRouteMapProps) {
     const container = containerRef.current;
     if (!container) return;
     if (typeof IntersectionObserver === 'undefined') {
-      setIsNearViewport(true);
-      return;
+      const timer = setTimeout(() => setIsNearViewport(true), 0);
+      return () => clearTimeout(timer);
     }
     const observer = new IntersectionObserver(
       (entries) => {
@@ -846,28 +842,13 @@ export function AnimatedRouteMap({ onOpenInquiry }: AnimatedRouteMapProps) {
                 <span className="font-mono text-slate-500">10:00 AM Dispatch</span>
               </div>
 
-              {onOpenInquiry ? (
-                <button
-                  type="button"
-                  onClick={() => onOpenInquiry(`Linehaul Delivery: ${selectedStop.name}`)}
-                  className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-[#DC2626] to-[#B91C1C] hover:from-[#EF4444] hover:to-[#DC2626] shadow-xs hover:shadow-md transition-all active:scale-95 cursor-pointer"
-                >
-                  <span>Book to {selectedStop.name}</span>
-                  <ArrowRight className="w-3.5 h-3.5" />
-                </button>
-              ) : (
-                <a
-                  href={`https://wa.me/918955144444?text=Hello%20Economic%20Courier,%20I%20want%20to%20dispatch%20to%20${encodeURIComponent(
-                    selectedStop.name
-                  )}%20on%20today%27s%2010%20AM%20daily%20route.`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-[#DC2626] to-[#B91C1C] hover:from-[#EF4444] hover:to-[#DC2626] shadow-xs hover:shadow-md transition-all active:scale-95"
-                >
-                  <span>Book to {selectedStop.name}</span>
-                  <ArrowRight className="w-3.5 h-3.5" />
-                </a>
-              )}
+              <Link
+                href="/contact#inquiry-form"
+                className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-[#DC2626] to-[#B91C1C] hover:from-[#EF4444] hover:to-[#DC2626] shadow-xs hover:shadow-md transition-all active:scale-95 cursor-pointer"
+              >
+                <span>Book to {selectedStop.name}</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </Link>
             </div>
           </div>
         </div>
@@ -1148,28 +1129,13 @@ export function AnimatedRouteMap({ onOpenInquiry }: AnimatedRouteMapProps) {
               <CheckCircle2 className="w-3 h-3 text-emerald-600" />
               Same-Day Transit
             </span>
-            {onOpenInquiry ? (
-              <button
-                type="button"
-                onClick={() => onOpenInquiry(`Linehaul Delivery: ${selectedStop.name}`)}
-                className="text-[11px] font-bold text-red-600 inline-flex items-center gap-1"
-              >
-                <span>Book to {selectedStop.name}</span>
-                <ArrowRight className="w-3 h-3" />
-              </button>
-            ) : (
-              <a
-                href={`https://wa.me/918955144444?text=Hello%20Economic%20Courier,%20I%20want%20to%20book%20to%20${encodeURIComponent(
-                  selectedStop.name
-                )}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-[11px] font-bold text-red-600 inline-flex items-center gap-1"
-              >
-                <span>Book to {selectedStop.name}</span>
-                <ArrowRight className="w-3 h-3" />
-              </a>
-            )}
+            <Link
+              href="/contact#inquiry-form"
+              className="text-[11px] font-bold text-red-600 inline-flex items-center gap-1 hover:underline"
+            >
+              <span>Book to {selectedStop.name}</span>
+              <ArrowRight className="w-3 h-3" />
+            </Link>
           </div>
         </div>
 

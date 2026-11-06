@@ -228,9 +228,6 @@ function VideoReelCard({
   // Mobile requirement: Exactly 2 videos on mobile (index 0 and 1), 3 & 4 hidden on mobile, visible on sm+
   const mobileVisibilityClass = index >= 2 ? 'hidden sm:block' : 'block';
 
-  const delays = ['delay-75', 'delay-150', 'delay-225', 'delay-300'];
-  const delayClass = delays[index % delays.length];
-
   const activeStyles =
     isActive && isPlaying
       ? 'border-[#DC2626] ring-3 sm:ring-4 ring-[#DC2626]/40 shadow-[0_22px_60px_rgba(220,38,38,0.28)] scale-[1.02] -translate-y-1'

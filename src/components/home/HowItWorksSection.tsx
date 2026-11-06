@@ -2,13 +2,10 @@
 
 import React from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { Sparkles, ArrowRight } from 'lucide-react';
 
-interface HowItWorksSectionProps {
-  onOpenInquiry?: (service?: string) => void;
-}
-
-export function HowItWorksSection({ onOpenInquiry }: HowItWorksSectionProps) {
+export function HowItWorksSection() {
   return (
     <section
       id="how-it-works"
@@ -87,14 +84,13 @@ export function HowItWorksSection({ onOpenInquiry }: HowItWorksSectionProps) {
           </div>
 
           <div className="flex items-center gap-2.5 w-full sm:w-auto shrink-0 justify-center">
-            <button
-              type="button"
-              onClick={() => onOpenInquiry?.()}
+            <Link
+              href="/contact#inquiry-form"
               className="inline-flex items-center justify-center gap-2 bg-[#DC2626] hover:bg-[#B91C1C] text-white text-xs sm:text-sm font-bold px-5 py-2.5 rounded-full shadow-xs hover:shadow-md transition-all active:scale-95 cursor-pointer w-full sm:w-auto"
             >
               <span>Book Consignment Pickup</span>
               <ArrowRight className="w-3.5 h-3.5" />
-            </button>
+            </Link>
           </div>
         </div>
       </div>

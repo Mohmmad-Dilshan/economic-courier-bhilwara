@@ -341,7 +341,7 @@ export default function HomePage() {
             </div>
 
             {/* Right: Courier Delivery Duo (3D eCS Parcel Boxes + Scooter Rider) */}
-            <div className="relative shrink-0 flex items-center justify-center lg:justify-end gap-3 lg:gap-4 z-10 pointer-events-none select-none">
+            <div className="relative shrink-0 flex items-center justify-center lg:justify-end gap-3 lg:gap-4 z-10 pointer-events-none select-none pt-3 sm:pt-0">
               {/* 3D eCS Branded Carton Boxes (Where User Circled) */}
               <div
                 className="relative w-32 xs:w-36 sm:w-44 md:w-48 lg:w-[210px] xl:w-[230px] transition-transform duration-700 ease-out hover:scale-105 filter drop-shadow-[0_12px_24px_rgba(15,23,42,0.10)]"

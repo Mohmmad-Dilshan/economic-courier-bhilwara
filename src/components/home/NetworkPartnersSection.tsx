@@ -148,16 +148,20 @@ export function NetworkPartnersSection() {
             </p>
           </div>
 
-          {/* Right: Standalone Floating 3D eCS Aircraft Object (Icon Style) */}
-          <div className="relative shrink-0 hidden sm:flex items-center justify-center lg:justify-end z-10 pointer-events-none select-none">
-            <div className="relative w-64 sm:w-72 lg:w-[320px] xl:w-[360px] transition-transform duration-700 ease-out hover:scale-105 filter drop-shadow-[0_12px_28px_rgba(220,38,38,0.14)]" style={{ aspectRatio: '1024/682' }}>
+          {/* Standalone Floating 3D eCS Aircraft Object (Icon Style) — Visible on All Devices (Mobile + Desktop) */}
+          <div className="relative shrink-0 flex items-center justify-center lg:justify-end z-10 pointer-events-none select-none pt-3 sm:pt-0">
+            <div
+              className="relative w-48 xs:w-56 sm:w-72 lg:w-[320px] xl:w-[360px] transition-transform duration-700 ease-out hover:scale-105 filter drop-shadow-[0_12px_28px_rgba(220,38,38,0.14)]"
+              style={{ aspectRatio: '1024/682' }}
+            >
               <Image
                 src="/assets/network/ecs-airplane-3d.webp"
                 alt="eCS World Wide Express 3D Air Cargo Airplane Object"
-                fill
-                sizes="(max-width: 1024px) 280px, 360px"
+                width={1024}
+                height={682}
+                sizes="(max-width: 640px) 220px, (max-width: 1024px) 280px, 360px"
                 style={{ aspectRatio: '1024/682' }}
-                className="object-contain"
+                className="w-full h-auto object-contain"
               />
             </div>
           </div>

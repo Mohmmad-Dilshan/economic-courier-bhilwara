@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
 import {
   Building2,
@@ -8,12 +9,10 @@ import {
   Layers,
   FileText,
   Truck,
-  Globe,
   ArrowRight,
   MapPin,
   Package,
   Scissors,
-  CheckCircle2,
   Clock,
   ShieldCheck,
   Phone,
@@ -49,65 +48,27 @@ export function BusinessSolutionsView() {
             </div>
           </div>
 
-          {/* Hero Content (Clean, Luminous, Pure Text & Action • Zero Dark Cards) */}
-          <div className="max-w-4xl space-y-5 sm:space-y-6">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-red-50 border border-red-200 text-[#DC2626] text-xs font-black tracking-wider uppercase">
-              <Briefcase className="w-3.5 h-3.5 text-[#DC2626]" />
-              <span>B2B &amp; CORPORATE COURIER ACCOUNTS</span>
-            </div>
+          {/* Full-Width Visual Hero Banner Card (Custom B2B & Textile Business Solutions Artwork) */}
+          <Link
+            href="/contact?service=business#inquiry-form"
+            className="block relative w-full rounded-2xl sm:rounded-3xl overflow-hidden border border-slate-200 shadow-md bg-white aspect-[2/1] cursor-pointer group"
+          >
+            <Image
+              src="/assets/services/business-solutions-hero.webp"
+              alt="Bhilwara Businesses & Factories Dedicated Courier Solutions - Economic Courier & eCS World Wide Express"
+              fill
+              priority
+              unoptimized
+              quality={100}
+              sizes="(max-width: 1240px) 100vw, 1240px"
+              className="object-cover object-center group-hover:scale-[1.01] transition-transform duration-300"
+            />
+          </Link>
 
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-slate-900 leading-[1.15]">
-              Bhilwara Ke Businesses &amp; Factories Ke Liye{' '}
-              <span className="text-[#DC2626]">Dedicated Courier Solutions.</span>
-            </h1>
-
-            <p className="text-sm sm:text-base lg:text-lg text-slate-600 leading-relaxed font-normal max-w-3xl">
-              Rozana counter aane aur cash payment ki jhanjhat khatam. Textile weaving mills,
-              garment units, machinery traders, aur corporate offices ke liye daily scheduled
-              doorstep pickup, priority commercial trade corridors, aur monthly consolidated GST billing.
-            </p>
-
-            {/* Quick Feature Badges (Balanced 4 Columns) */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 pt-1 text-xs font-bold text-slate-700">
-              <div className="flex items-center gap-2.5 p-3 rounded-xl bg-slate-50 border border-slate-200/90 shadow-2xs">
-                <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
-                <span>Daily Factory/Office Pickup</span>
-              </div>
-              <div className="flex items-center gap-2.5 p-3 rounded-xl bg-slate-50 border border-slate-200/90 shadow-2xs">
-                <Receipt className="w-4 h-4 text-emerald-600 shrink-0" />
-                <span>Monthly Consolidated GST Bill</span>
-              </div>
-              <div className="flex items-center gap-2.5 p-3 rounded-xl bg-slate-50 border border-slate-200/90 shadow-2xs">
-                <Truck className="w-4 h-4 text-[#DC2626] shrink-0" />
-                <span>Priority Linehauls (Surat/Delhi)</span>
-              </div>
-              <div className="flex items-center gap-2.5 p-3 rounded-xl bg-slate-50 border border-slate-200/90 shadow-2xs">
-                <Globe className="w-4 h-4 text-[#DC2626] shrink-0" />
-                <span>Worldwide Air Express Cargo</span>
-              </div>
-            </div>
-
-            {/* Call to Actions */}
-            <div className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
-              <Link
-                href="/contact?service=business#inquiry-form"
-                className="inline-flex items-center justify-center gap-2 bg-[#DC2626] hover:bg-[#B91C1C] text-white text-xs sm:text-sm font-bold px-6 py-3.5 rounded-xl shadow-md transition-all active:scale-95 cursor-pointer whitespace-nowrap"
-              >
-                <span>Open Business Account / Inquire</span>
-                <ArrowRight className="w-4 h-4 text-white" />
-              </Link>
-
-              <a
-                href="https://wa.me/918955144444?text=Hello%20Economic%20Courier%20Bhilwara,%20I%20want%20to%20inquire%20about%20a%20Business%20Courier%20Account."
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white text-xs sm:text-sm font-bold px-5 py-3.5 rounded-xl shadow-md transition-all active:scale-95 cursor-pointer whitespace-nowrap"
-              >
-                <MessageCircle className="w-4 h-4 text-white" />
-                <span>WhatsApp Commercial Desk</span>
-              </a>
-            </div>
-          </div>
+          {/* Screen Reader & SEO Heading */}
+          <h1 className="sr-only">
+            Bhilwara Businesses &amp; Factories Dedicated Courier Solutions | Economic Courier &amp; eCS World Wide Express
+          </h1>
         </div>
       </section>
 

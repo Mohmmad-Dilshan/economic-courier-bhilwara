@@ -148,24 +148,22 @@ button[class*="text-white"],
    Scroll-Triggered Reveal Animations (ANIMATIONS.md Spec)
    ========================================================================== */
 .reveal-init {
-  opacity: 0;
-  translate: 0 28px;
-  transition-property: opacity, translate, scale;
-  transition-duration: 650ms;
-  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: opacity, translate;
+  opacity: 1;
+  translate: 0 0;
+  scale: 1;
+  transition: none;
 }
 
 .reveal-init.reveal-scale {
-  scale: 0.95;
+  scale: 1;
 }
 
 .reveal-init.reveal-slide-left {
-  translate: -36px 0;
+  translate: 0 0;
 }
 
 .reveal-init.reveal-slide-right {
-  translate: 36px 0;
+  translate: 0 0;
 }
 
 .reveal-active {
@@ -174,18 +172,12 @@ button[class*="text-white"],
   scale: 1;
 }
 
-/* Staggered Delay Classes */
-.delay-75 { transition-delay: 75ms; }
-.delay-100 { transition-delay: 100ms; }
-.delay-150 { transition-delay: 150ms; }
-.delay-200 { transition-delay: 200ms; }
-.delay-225 { transition-delay: 225ms; }
-.delay-250 { transition-delay: 250ms; }
-.delay-300 { transition-delay: 300ms; }
-.delay-350 { transition-delay: 350ms; }
-.delay-375 { transition-delay: 375ms; }
-.delay-400 { transition-delay: 400ms; }
-.delay-500 { transition-delay: 500ms; }
+/* Instant Display (Zero Animation Delays for High-Speed Mobile & Low-Bandwidth) */
+.delay-75, .delay-100, .delay-150, .delay-200, .delay-225,
+.delay-250, .delay-300, .delay-350, .delay-375, .delay-400, .delay-500 {
+  transition-delay: 0ms !important;
+  transition: none !important;
+}
 
 /* ==========================================================================
    Reduced Motion Accessibility (prefers-reduced-motion)

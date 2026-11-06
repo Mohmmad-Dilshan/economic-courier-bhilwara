@@ -344,13 +344,11 @@ export function AnimatedRouteMap({ onOpenInquiry }: AnimatedRouteMapProps) {
     };
   }, []);
 
-  // Animation loop with smooth lerping
+  // Animation loop: Only runs when movement is needed, zero CPU when stationary!
   useEffect(() => {
-    const updateRiders = () => {
-      const diff = targetProgressRef.current - currentProgressRef.current;
-      currentProgressRef.current += diff * 0.1;
-      const progress = currentProgressRef.current;
+    let animId: number | null = null;
 
+    const renderRiders = (progress: number) => {
       // Update Desktop Rider
       const dPath = desktopPathRef.current;
       if (dPath && totalLength > 0) {
@@ -416,15 +414,36 @@ export function AnimatedRouteMap({ onOpenInquiry }: AnimatedRouteMapProps) {
       }
 
       setHasCompleted(progress > 0.96);
-
-      animFrameIdRef.current = requestAnimationFrame(updateRiders);
     };
 
-    animFrameIdRef.current = requestAnimationFrame(updateRiders);
+    const updateRiders = () => {
+      const diff = targetProgressRef.current - currentProgressRef.current;
+      if (Math.abs(diff) < 0.001) {
+        currentProgressRef.current = targetProgressRef.current;
+        renderRiders(currentProgressRef.current);
+        animId = null;
+        return; // Complete - stop animation frame loop to free main thread
+      }
+
+      currentProgressRef.current += diff * 0.15;
+      renderRiders(currentProgressRef.current);
+      animId = requestAnimationFrame(updateRiders);
+    };
+
+    renderRiders(currentProgressRef.current);
+
+    const checkAnimation = () => {
+      if (animId === null && Math.abs(targetProgressRef.current - currentProgressRef.current) > 0.001) {
+        animId = requestAnimationFrame(updateRiders);
+      }
+    };
+
+    const interval = setInterval(checkAnimation, 100);
 
     return () => {
-      if (animFrameIdRef.current) {
-        cancelAnimationFrame(animFrameIdRef.current);
+      clearInterval(interval);
+      if (animId) {
+        cancelAnimationFrame(animId);
       }
     };
   }, [totalLength, mobTotalLength]);

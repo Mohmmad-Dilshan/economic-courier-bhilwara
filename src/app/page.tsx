@@ -18,7 +18,7 @@ import {
 } from 'lucide-react';
 import { BUSINESS_INFO } from '@/lib/constants';
 
-// Below-the-fold sections and modals dynamically imported for instant sub-second initial LCP
+// Modals dynamically imported on demand
 const TrackingNoticeModal = dynamic(
   () => import('@/components/home/TrackingNoticeModal').then((mod) => mod.TrackingNoticeModal),
   { ssr: false }
@@ -27,30 +27,16 @@ const InquiryModal = dynamic(
   () => import('@/components/home/InquiryModal').then((mod) => mod.InquiryModal),
   { ssr: false }
 );
-const NetworkPartnersSection = dynamic(
-  () => import('@/components/home/NetworkPartnersSection').then((mod) => mod.NetworkPartnersSection)
-);
-const DailyRouteSection = dynamic(
-  () => import('@/components/home/DailyRouteSection').then((mod) => mod.DailyRouteSection)
-);
-const RealMomentsSection = dynamic(
-  () => import('@/components/home/RealMomentsSection').then((mod) => mod.RealMomentsSection)
-);
-const HowItWorksSection = dynamic(
-  () => import('@/components/home/HowItWorksSection').then((mod) => mod.HowItWorksSection)
-);
-const ReviewsSection = dynamic(
-  () => import('@/components/home/ReviewsSection').then((mod) => mod.ReviewsSection)
-);
-const FAQSection = dynamic(
-  () => import('@/components/home/FAQSection').then((mod) => mod.FAQSection)
-);
-const CTABand = dynamic(
-  () => import('@/components/home/CTABand').then((mod) => mod.CTABand)
-);
-const HubLocationSection = dynamic(
-  () => import('@/components/home/HubLocationSection').then((mod) => mod.HubLocationSection)
-);
+
+// Core sections pre-rendered via SSR so entire HTML renders on first paint
+import { NetworkPartnersSection } from '@/components/home/NetworkPartnersSection';
+import { DailyRouteSection } from '@/components/home/DailyRouteSection';
+import { RealMomentsSection } from '@/components/home/RealMomentsSection';
+import { HowItWorksSection } from '@/components/home/HowItWorksSection';
+import { ReviewsSection } from '@/components/home/ReviewsSection';
+import { FAQSection } from '@/components/home/FAQSection';
+import { CTABand } from '@/components/home/CTABand';
+import { HubLocationSection } from '@/components/home/HubLocationSection';
 
 export default function HomePage() {
   const [trackingInput, setTrackingInput] = useState('');
@@ -143,14 +129,14 @@ export default function HomePage() {
             {/* Left Content Column */}
             <div className="lg:col-span-6 space-y-5">
               {/* Location Badge */}
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-gradient-to-r from-red-50 via-white to-red-50/50 border border-red-200/80 text-red-700 text-[11px] font-extrabold tracking-widest uppercase shadow-xs reveal-init delay-75">
-                <span className="w-2 h-2 rounded-full bg-[#DC2626] shadow-[0_0_8px_rgba(220,38,38,0.7)] animate-pulse" />
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-gradient-to-r from-red-50 via-white to-red-50/50 border border-red-200/80 text-red-700 text-[11px] font-extrabold tracking-widest uppercase shadow-xs ">
+                <span className="w-2 h-2 rounded-full bg-[#DC2626] shadow-[0_0_8px_rgba(220,38,38,0.7)] " />
                 <MapPin className="w-3.5 h-3.5 text-red-700" />
                 <span>BHILWARA · INDIA</span>
               </div>
 
               {/* Large Modern Gradient Headline with Flight Trail and Airplane */}
-              <h1 className="text-3xl xs:text-4xl sm:text-5xl lg:text-[54px] xl:text-[58px] font-black tracking-[-0.035em] leading-[1.08] sm:leading-[1.06] reveal-init delay-150">
+              <h1 className="text-3xl xs:text-4xl sm:text-5xl lg:text-[54px] xl:text-[58px] font-black tracking-[-0.035em] leading-[1.08] sm:leading-[1.06] ">
                 <span className="bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900 bg-clip-text text-transparent">
                   From Bhilwara to
                 </span>{' '}
@@ -178,12 +164,12 @@ export default function HomePage() {
               </h1>
 
               {/* Subtitle */}
-              <p className="text-sm sm:text-base lg:text-lg text-slate-600 leading-relaxed max-w-md font-normal reveal-init delay-225">
+              <p className="text-sm sm:text-base lg:text-lg text-slate-600 leading-relaxed max-w-md font-normal ">
                 Priority domestic express &amp; worldwide air cargo connectivity, tailored for Bhilwara trade, documents, and parcels.
               </p>
 
               {/* Search / Tracking Box */}
-              <div className="pt-1 max-w-[460px] reveal-init delay-300">
+              <div className="pt-1 max-w-[460px] ">
                 <form
                   onSubmit={handleTrackSubmit}
                   noValidate
@@ -244,7 +230,7 @@ export default function HomePage() {
               </div>
 
               {/* Inquiry Action Button */}
-              <div className="pt-0.5 reveal-init delay-375">
+              <div className="pt-0.5 ">
                 <button
                   type="button"
                   onClick={() => handleOpenInquiry()}
@@ -258,7 +244,7 @@ export default function HomePage() {
             </div>
 
             {/* Right Hero Image Card (Optimized WebP with preserved layout) */}
-            <div className="lg:col-span-6 relative flex justify-center lg:justify-end reveal-init reveal-scale delay-200">
+            <div className="lg:col-span-6 relative flex justify-center lg:justify-end ">
               <div className="relative w-full max-w-[560px]">
                 <Image
                   src="/assets/hero/hero-courier.webp"
@@ -280,29 +266,29 @@ export default function HomePage() {
           ========================================================================= */}
       <section className="py-2 sm:py-3">
         <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-[#F0F7FD] rounded-2xl py-3 px-4 sm:px-8 border border-[#E0EDF8] grid grid-cols-2 md:flex md:items-center md:justify-between gap-3 sm:gap-4 md:gap-6 shadow-2xs reveal-init">
-            <div className="flex items-center gap-2 sm:gap-2.5 text-[12px] sm:text-[13px] font-bold text-slate-800 flex-1 justify-start reveal-init delay-75">
+          <div className="bg-[#F0F7FD] rounded-2xl py-3 px-4 sm:px-8 border border-[#E0EDF8] grid grid-cols-2 md:flex md:items-center md:justify-between gap-3 sm:gap-4 md:gap-6 shadow-2xs ">
+            <div className="flex items-center gap-2 sm:gap-2.5 text-[12px] sm:text-[13px] font-bold text-slate-800 flex-1 justify-start ">
               <div className="w-6 h-6 rounded-md bg-white text-[#DC2626] shadow-2xs flex items-center justify-center shrink-0 border border-red-100/60">
                 <Truck className="w-3.5 h-3.5 text-[#DC2626]" />
               </div>
               <span className="truncate">Domestic shipping</span>
             </div>
             <div className="hidden md:block h-6 w-px bg-[#D4E4F3] shrink-0" />
-            <div className="flex items-center gap-2 sm:gap-2.5 text-[12px] sm:text-[13px] font-bold text-slate-800 flex-1 justify-start reveal-init delay-150">
+            <div className="flex items-center gap-2 sm:gap-2.5 text-[12px] sm:text-[13px] font-bold text-slate-800 flex-1 justify-start ">
               <div className="w-6 h-6 rounded-md bg-white text-[#DC2626] shadow-2xs flex items-center justify-center shrink-0 border border-red-100/60">
                 <Globe className="w-3.5 h-3.5 text-[#DC2626]" />
               </div>
               <span className="truncate">International courier</span>
             </div>
             <div className="hidden md:block h-6 w-px bg-[#D4E4F3] shrink-0" />
-            <div className="flex items-center gap-2 sm:gap-2.5 text-[12px] sm:text-[13px] font-bold text-slate-800 flex-1 justify-start reveal-init delay-225">
+            <div className="flex items-center gap-2 sm:gap-2.5 text-[12px] sm:text-[13px] font-bold text-slate-800 flex-1 justify-start ">
               <div className="w-6 h-6 rounded-md bg-white text-[#DC2626] shadow-2xs flex items-center justify-center shrink-0 border border-red-100/60">
                 <FileText className="w-3.5 h-3.5 text-[#DC2626]" />
               </div>
               <span className="truncate">Documents &amp; parcels</span>
             </div>
             <div className="hidden md:block h-6 w-px bg-[#D4E4F3] shrink-0" />
-            <div className="flex items-center gap-2 sm:gap-2.5 text-[12px] sm:text-[13px] font-bold text-slate-800 flex-1 justify-start reveal-init delay-300">
+            <div className="flex items-center gap-2 sm:gap-2.5 text-[12px] sm:text-[13px] font-bold text-slate-800 flex-1 justify-start ">
               <div className="w-6 h-6 rounded-md bg-white text-[#DC2626] shadow-2xs flex items-center justify-center shrink-0 border border-red-100/60">
                 <MapPin className="w-3.5 h-3.5 text-[#DC2626]" />
               </div>
@@ -328,10 +314,10 @@ export default function HomePage() {
       <section id="services" className="py-10 lg:py-16 bg-[#FAF7F2]/60 scroll-mt-20 sm:scroll-mt-24">
         <div className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8">
           {/* Section Header */}
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 mb-8 reveal-init relative">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 mb-8  relative">
             <div className="max-w-xl space-y-2.5 z-10">
               <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-red-50 border border-red-200/80 text-red-700 text-[11px] font-extrabold tracking-widest uppercase shadow-2xs">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#DC2626] animate-pulse" />
+                <span className="w-1.5 h-1.5 rounded-full bg-[#DC2626] " />
                 <span>OUR SERVICES</span>
               </div>
               <h2 className="text-3xl sm:text-4xl lg:text-[40px] font-black tracking-[-0.035em] leading-[1.12]">
@@ -358,24 +344,14 @@ export default function HomePage() {
               {/* 3D eCS Branded Carton Boxes (Where User Circled) */}
               <div className="relative w-36 sm:w-44 md:w-48 lg:w-[210px] xl:w-[230px] aspect-[951/570] transition-transform duration-700 ease-out hover:scale-105 filter drop-shadow-[0_12px_24px_rgba(15,23,42,0.10)]">
                 <Image
-                  src="/assets/services/ecs-boxes-3d.png"
-                  alt="eCS World Wide Express 3D Courier Parcel Boxes"
-                  fill
-                  sizes="(max-width: 1024px) 210px, 230px"
-                  className="object-contain"
-                  priority
+                  src="/assets/services/ecs-boxes-3d.webp" alt="eCS World Wide Express 3D Courier Parcel Boxes" fill sizes="(max-width: 1024px) 210px, 230px" className="object-contain"
                 />
               </div>
 
               {/* Inward-Facing eCS Scooter Delivery Rider */}
               <div className="relative w-40 sm:w-48 md:w-52 lg:w-[220px] xl:w-[240px] aspect-[645/550] transition-transform duration-700 ease-out hover:scale-105 filter drop-shadow-[0_12px_24px_rgba(220,38,38,0.12)]">
                 <Image
-                  src="/assets/services/ecs-scooter-rider-facing-inward.png"
-                  alt="eCS World Wide Express Scooter Delivery Rider Object"
-                  fill
-                  sizes="(max-width: 1024px) 220px, 240px"
-                  className="object-contain"
-                  priority
+                  src="/assets/services/ecs-scooter-rider-facing-inward.webp" alt="eCS World Wide Express Scooter Delivery Rider Object" fill sizes="(max-width: 1024px) 220px, 240px" className="object-contain"
                 />
               </div>
             </div>
@@ -399,7 +375,7 @@ export default function HomePage() {
                       handleOpenInquiry(service.id);
                     }
                   }}
-                  className={`bg-white rounded-2xl sm:rounded-3xl p-2.5 sm:p-3.5 lg:p-4 pb-3 sm:pb-4.5 lg:pb-5 shadow-[0_10px_30px_rgba(15,23,42,0.06)] hover:shadow-[0_22px_44px_rgba(15,23,42,0.12)] border border-slate-100/90 flex flex-col group cursor-pointer transition-all duration-300 ease-out hover:scale-[1.03] hover:-translate-y-1.5 hover:z-10 ${service.rotation} hover:rotate-0 reveal-init reveal-scale ${delayClass}`}
+                  className={`bg-white rounded-2xl sm:rounded-3xl p-2.5 sm:p-3.5 lg:p-4 pb-3 sm:pb-4.5 lg:pb-5 shadow-[0_10px_30px_rgba(15,23,42,0.06)] hover:shadow-[0_22px_44px_rgba(15,23,42,0.12)] border border-slate-100/90 flex flex-col group cursor-pointer transition-all duration-300 ease-out hover:scale-[1.03] hover:-translate-y-1.5 hover:z-10 ${service.rotation} hover:rotate-0 `}
                 >
                   {/* Photo Frame with Clean Rounded Corners */}
                   <div className="relative w-full aspect-[4/3] rounded-xl sm:rounded-2xl overflow-hidden bg-slate-100">
@@ -450,23 +426,19 @@ export default function HomePage() {
         <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
             {/* Left Photo Collage (eCS Wall Logo, Team & Van) */}
-            <div className="lg:col-span-6 relative flex justify-center lg:justify-start reveal-init">
+            <div className="lg:col-span-6 relative flex justify-center lg:justify-start ">
               <div className="relative w-full max-w-[540px]">
                 <Image
-                  src="/assets/office/about-collage.jpg"
-                  alt="Economic Courier Bhilwara office team, eCS wall logo, and logistics dispatch"
-                  width={580}
-                  height={350}
-                  priority
+                  src="/assets/office/about-collage.jpg" alt="Economic Courier Bhilwara office team, eCS wall logo, and logistics dispatch" width={580} height={350}
                   className="w-full h-auto object-contain block mx-auto rounded-2xl"
                 />
               </div>
             </div>
 
             {/* Right Content: Centered on mobile, left-aligned on desktop */}
-            <div className="lg:col-span-6 space-y-4 reveal-init delay-100 text-center lg:text-left flex flex-col items-center lg:items-start">
+            <div className="lg:col-span-6 space-y-4  text-center lg:text-left flex flex-col items-center lg:items-start">
               <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-red-50 border border-red-200/80 text-red-700 text-[11px] font-extrabold tracking-widest uppercase shadow-2xs mb-1">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#DC2626] animate-pulse" />
+                <span className="w-1.5 h-1.5 rounded-full bg-[#DC2626] " />
                 <span>ABOUT US</span>
               </div>
               <h2 className="text-3xl sm:text-4xl lg:text-[42px] font-black tracking-[-0.035em] leading-[1.08]">

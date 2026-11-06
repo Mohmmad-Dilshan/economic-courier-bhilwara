@@ -206,7 +206,6 @@ button[class*="text-white"],
 /* Instant Display (Zero Animation Delays for High-Speed Mobile & Low-Bandwidth) */
 .delay-75, .delay-100, .delay-150, .delay-200, .delay-225,
 .delay-250, .delay-300, .delay-350, .delay-375, .delay-400, .delay-500 {
-  transition-delay: 0ms !important;
   transition: none !important;
 }
 

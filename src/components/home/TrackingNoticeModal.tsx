@@ -94,6 +94,10 @@ export function TrackingNoticeModal({
       role="dialog"
       aria-modal="true"
       aria-labelledby="tracking-dialog-title"
+      tabIndex={-1}
+      onKeyDown={(e) => {
+        if (e.key === 'Escape') handleClose();
+      }}
       onClick={(e) => {
         if (e.target === e.currentTarget) handleClose();
       }}

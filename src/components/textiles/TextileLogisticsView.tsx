@@ -4,8 +4,8 @@ import React, { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import {
-  Layers,
   Scissors,
+  Layers,
   Package,
   FileText,
   CheckCircle2,
@@ -16,23 +16,29 @@ import {
   Pause,
   Volume2,
   VolumeX,
-  AlertCircle,
   Truck,
-  Camera,
+  ShieldCheck,
+  Clock,
+  Phone,
+  MessageCircle,
+  ExternalLink,
+  ChevronRight,
+  Sparkles,
 } from 'lucide-react';
 import { InquiryModal } from '@/components/home/InquiryModal';
+import { BUSINESS_INFO } from '@/lib/constants';
 
 export function TextileLogisticsView() {
   const [inquiryModalOpen, setInquiryModalOpen] = useState(false);
   const [inquiryService, setInquiryService] = useState<string>('textiles');
 
-  // Video reel state for packing demo
+  // Video reel state for packing demo (Voice Auto Enabled)
   const videoRef = useRef<HTMLVideoElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const [isPlaying, setIsPlaying] = useState(false);
-  const [isMuted, setIsMuted] = useState(true);
+  const [isMuted, setIsMuted] = useState(false);
 
-  // Viewport-aware autoplay & pause with prefers-reduced-motion check
+  // Viewport-aware autoplay & automatic voice activation
   useEffect(() => {
     const container = containerRef.current;
     const el = videoRef.current;
@@ -44,27 +50,61 @@ export function TextileLogisticsView() {
 
     if (prefersReducedMotion) return;
 
+    // Helper to auto-unmute as soon as the user interacts anywhere with the page
+    const enableAudioOnFirstGesture = () => {
+      if (el) {
+        el.muted = false;
+        setIsMuted(false);
+        if (el.paused) {
+          el.play().then(() => setIsPlaying(true)).catch(() => {});
+        }
+      }
+      window.removeEventListener('click', enableAudioOnFirstGesture);
+      window.removeEventListener('touchstart', enableAudioOnFirstGesture);
+      window.removeEventListener('keydown', enableAudioOnFirstGesture);
+    };
+
+    window.addEventListener('click', enableAudioOnFirstGesture, { passive: true });
+    window.addEventListener('touchstart', enableAudioOnFirstGesture, { passive: true });
+    window.addEventListener('keydown', enableAudioOnFirstGesture, { passive: true });
+
     const observer = new IntersectionObserver(
       (entries) => {
         const entry = entries[0];
         if (!entry) return;
 
-        if (entry.isIntersecting && entry.intersectionRatio >= 0.4) {
-          el.muted = true;
+        if (entry.isIntersecting && entry.intersectionRatio >= 0.35) {
+          // Attempt 1: Try autoplaying with voice directly
+          el.muted = false;
           const p = el.play();
           if (p !== undefined) {
-            p.then(() => setIsPlaying(true)).catch(() => setIsPlaying(false));
+            p.then(() => {
+              setIsPlaying(true);
+              setIsMuted(false);
+            }).catch(() => {
+              // If browser blocks unmuted autoplay, fallback to muted temporarily until user touches
+              el.muted = true;
+              setIsMuted(true);
+              el.play()
+                .then(() => setIsPlaying(true))
+                .catch(() => setIsPlaying(false));
+            });
           }
         } else if (!entry.isIntersecting && !el.paused) {
           el.pause();
           setIsPlaying(false);
         }
       },
-      { threshold: [0, 0.4] }
+      { threshold: [0, 0.35] }
     );
 
     observer.observe(container);
-    return () => observer.disconnect();
+    return () => {
+      observer.disconnect();
+      window.removeEventListener('click', enableAudioOnFirstGesture);
+      window.removeEventListener('touchstart', enableAudioOnFirstGesture);
+      window.removeEventListener('keydown', enableAudioOnFirstGesture);
+    };
   }, []);
 
   const togglePlay = (e?: React.MouseEvent) => {
@@ -73,9 +113,16 @@ export function TextileLogisticsView() {
     if (!el) return;
 
     if (el.paused) {
+      // Always play unmuted with voice when user taps
+      el.muted = false;
+      setIsMuted(false);
       el.play()
         .then(() => setIsPlaying(true))
-        .catch(() => {});
+        .catch(() => {
+          el.muted = true;
+          setIsMuted(true);
+          el.play().then(() => setIsPlaying(true)).catch(() => {});
+        });
     } else {
       el.pause();
       setIsPlaying(false);
@@ -88,6 +135,10 @@ export function TextileLogisticsView() {
     if (!el) return;
     el.muted = !el.muted;
     setIsMuted(el.muted);
+    // If unmuting while paused, resume play
+    if (!el.muted && el.paused) {
+      el.play().then(() => setIsPlaying(true)).catch(() => {});
+    }
   };
 
   const handleOpenInquiry = (serviceKey: string = 'textiles') => {
@@ -96,112 +147,86 @@ export function TextileLogisticsView() {
   };
 
   return (
-    <div className="min-h-screen bg-[#F8FAFC] text-slate-800">
+    <div className="min-h-screen bg-[#F8FAFC] text-slate-900 pb-16">
       {/* =========================================================================
-          1. HERO SECTION (Bhilwara Textile Trade Focus)
+          1. HERO SECTION (Crisp, High-Impact & Easy to Understand)
           ========================================================================= */}
-      <section className="relative pt-8 sm:pt-12 lg:pt-16 pb-12 sm:pb-16 bg-gradient-to-b from-white via-slate-50 to-[#F0F5FA] border-b border-slate-200/80">
-        <div className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Breadcrumbs & Location Tag */}
-          <div className="flex flex-wrap items-center justify-between gap-3 mb-6 sm:mb-8 text-xs font-medium text-slate-500">
+      <section className="relative pt-6 sm:pt-8 lg:pt-10 pb-8 sm:pb-12 bg-white border-b border-slate-200">
+        <div className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 space-y-5">
+          {/* Breadcrumb & Hub Badge */}
+          <div className="flex flex-wrap items-center justify-between gap-3 text-xs font-semibold text-slate-500">
             <nav aria-label="Breadcrumb" className="flex items-center gap-2">
-              <Link href="/" className="hover:text-red-600 transition-colors">
+              <Link href="/" className="hover:text-[#DC2626] transition-colors">
                 Home
               </Link>
-              <span>/</span>
-              <span className="text-slate-900 font-semibold" aria-current="page">
+              <span className="text-slate-300">/</span>
+              <span className="text-slate-900 font-bold" aria-current="page">
                 Textile Logistics
               </span>
             </nav>
 
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-slate-200 shadow-2xs text-[11px] font-semibold text-slate-700">
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-100 border border-slate-200 text-[11px] font-bold text-slate-700">
               <MapPin className="w-3.5 h-3.5 text-[#DC2626]" />
-              <span>BHILWARA · TEXTILE CLUSTER HUB</span>
+              <span>BHILWARA · OPP. NEW CLOTH MARKET</span>
             </div>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-            {/* Left Content */}
-            <div className="lg:col-span-7 space-y-5">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-red-50 border border-red-200 text-[#DC2626] text-xs font-extrabold tracking-wider uppercase shadow-2xs">
-                <span className="w-2 h-2 rounded-full bg-[#DC2626] animate-pulse" />
-                <span>SPECIALIZED CLUSTER COURIER</span>
-              </div>
+          {/* Visual Hero Banner Card */}
+          <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden bg-slate-950 border border-slate-200 shadow-xl aspect-[16/9] xs:aspect-[16/8] sm:aspect-[21/9]">
+            <Image
+              src="/assets/services/card-textiles.webp"
+              alt="Bhilwara textile fabric sample bundles and swatch mailers ready for priority courier dispatch"
+              fill
+              priority
+              sizes="(max-width: 1240px) 100vw, 1240px"
+              className="object-cover object-center"
+            />
+            {/* Dark Vignette Overlay */}
+            <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/60 to-slate-950/25" />
 
-              <h1 className="text-3xl sm:text-5xl lg:text-[54px] font-black tracking-[-0.035em] text-[#0F172A] leading-[1.1]">
-                Fabric sample logistics.{' '}
-                <span className="bg-gradient-to-r from-[#DC2626] via-[#E11D48] to-[#EF4444] bg-clip-text text-transparent">
-                  Grounded in Bhilwara.
-                </span>
-              </h1>
-
-              <p className="text-sm sm:text-base lg:text-lg text-slate-600 leading-relaxed font-normal pt-1 max-w-2xl">
-                Bhilwara is recognized nationally as a major center for synthetic fabric and suiting
-                production. For local weaving mills, process houses, and trading agents, fabric swatches
-                are active commercial sales tools. Our textile logistics category supports reliable,
-                protective courier transit for sample swatches and trade correspondence.
-              </p>
-
-              {/* Operational Capability Badges */}
-              <div className="pt-2 flex flex-wrap gap-2 text-xs font-semibold text-slate-700">
-                <span className="px-3 py-1.5 rounded-full bg-white border border-slate-200 shadow-2xs inline-flex items-center gap-1.5">
-                  <Scissors className="w-3.5 h-3.5 text-[#DC2626]" />
-                  Swatch &amp; Sample Books
-                </span>
-                <span className="px-3 py-1.5 rounded-full bg-white border border-slate-200 shadow-2xs inline-flex items-center gap-1.5">
-                  <Layers className="w-3.5 h-3.5 text-[#DC2626]" />
-                  Suiting &amp; Shirting Samples
-                </span>
-                <span className="px-3 py-1.5 rounded-full bg-white border border-slate-200 shadow-2xs inline-flex items-center gap-1.5">
-                  <FileText className="w-3.5 h-3.5 text-[#DC2626]" />
-                  Mill Trade Paperwork
-                </span>
-              </div>
-
-              {/* CTA & Disclaimer */}
-              <div className="pt-3 flex flex-col sm:flex-row items-start sm:items-center gap-4">
-                <button
-                  type="button"
-                  onClick={() => handleOpenInquiry('textiles')}
-                  className="inline-flex items-center gap-2 bg-[#DC2626] hover:bg-[#B91C1C] text-white text-xs sm:text-sm font-bold px-6 py-3.5 rounded-full shadow-md transition-all active:scale-95 cursor-pointer"
-                >
-                  <span>Inquire for Textile Shipping</span>
-                  <ArrowRight className="w-4 h-4 text-white" />
-                </button>
-
-                <p className="text-[11px] text-slate-500 italic max-w-xs">
-                  * Forwarding options and freight estimates are determined upon parcel review at our
-                  Bhilwara desk.
-                </p>
-              </div>
-            </div>
-
-            {/* Right Authentic Visual */}
-            <div className="lg:col-span-5">
-              <div className="relative rounded-3xl overflow-hidden bg-slate-900 border border-slate-200 shadow-xl aspect-[4/3] group">
-                <Image
-                  src="/assets/services/card-textiles.webp"
-                  alt="Packaged textile fabric swatch bundles ready for Economic Courier dispatch in Bhilwara"
-                  fill
-                  sizes="(max-width: 1024px) 100vw, 450px"
-                  priority
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/20 to-transparent" />
-
-                <div className="absolute top-4 left-4">
-                  <span className="px-3 py-1 rounded-full bg-slate-950/90 text-white border border-white/20 text-[10px] font-mono font-bold tracking-wide uppercase">
-                    BHILWARA TRADE ASSET
-                  </span>
+            {/* Banner Content */}
+            <div className="absolute inset-0 flex flex-col justify-end p-5 sm:p-8 lg:p-12 text-white">
+              <div className="max-w-3xl space-y-2.5 sm:space-y-3.5">
+                {/* Sector Badge */}
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#DC2626] text-white text-[10px] sm:text-xs font-black tracking-wider uppercase shadow-md">
+                  <span className="w-2 h-2 rounded-full bg-white animate-pulse" />
+                  <span>SPECIALIZED COURIER FOR BHILWARA TEXTILE MILLS</span>
                 </div>
 
-                <div className="absolute bottom-4 left-4 right-4 text-white space-y-1">
-                  <span className="text-xs font-semibold text-red-400 block">
-                    Authentic Service Archive
+                {/* Hero Title */}
+                <h1 className="text-2xl xs:text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-[1.1] text-white">
+                  Fabric Sample Logistics.{' '}
+                  <span className="bg-gradient-to-r from-red-400 via-rose-300 to-amber-300 bg-clip-text text-transparent">
+                    Fast &amp; Protected.
                   </span>
-                  <p className="text-xs sm:text-sm font-medium text-slate-200">
-                    Sealed textile swatch packet prepared for domestic express dispatch.
-                  </p>
+                </h1>
+
+                {/* Subtitle */}
+                <p className="text-xs sm:text-sm lg:text-base text-slate-200 leading-relaxed font-normal max-w-2xl">
+                  Bhilwara weaving mills, garment exporters aur cloth traders ke liye dedicated courier service.
+                  Waterproof packaging, urgent morning delivery to Surat, Mumbai, Delhi, aur instant doorstep pickup.
+                </p>
+
+                {/* Quick Action Buttons */}
+                <div className="pt-2 flex flex-wrap items-center gap-3">
+                  <button
+                    type="button"
+                    onClick={() => handleOpenInquiry('textiles')}
+                    className="inline-flex items-center gap-2 bg-[#DC2626] hover:bg-[#B91C1C] text-white text-xs sm:text-sm font-bold px-6 py-3 rounded-xl shadow-md transition-all active:scale-95 cursor-pointer"
+                  >
+                    <span>Book Textile Sample Pickup</span>
+                    <ArrowRight className="w-4 h-4 text-white" />
+                  </button>
+
+                  <a
+                    href="https://wa.me/918955144444?text=Hello%20Economic%20Courier%20Bhilwara,%20I%20have%20an%20inquiry%20regarding%20Textile%20Sample%20dispatch."
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white text-xs sm:text-sm font-bold px-5 py-3 rounded-xl shadow-md transition-all active:scale-95 cursor-pointer"
+                  >
+                    <MessageCircle className="w-4 h-4 text-white" />
+                    <span>WhatsApp Booking Desk</span>
+                  </a>
                 </div>
               </div>
             </div>
@@ -210,263 +235,221 @@ export function TextileLogisticsView() {
       </section>
 
       {/* =========================================================================
-          2. TEXTILE SHIPMENT TYPES (Only Verified Categories)
+          2. WHAT CAN YOU SHIP? (4 Clear, Practical Categories)
           ========================================================================= */}
-      <section className="py-12 sm:py-16 bg-white border-b border-slate-200">
-        <div className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-2xl mb-10 space-y-2">
+      <section className="py-10 sm:py-14 bg-white border-b border-slate-200">
+        <div className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+          <div className="max-w-2xl space-y-1.5">
             <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-[#DC2626] block">
-              Supported Consignment Categories
+              SUPPORTED TEXTILE SHIPMENTS
             </span>
-            <h2 className="text-2xl sm:text-4xl font-black tracking-tight text-[#0F172A]">
-              Textile consignments handled from Bhilwara.
+            <h2 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
+              Aap Kya-Kya Bhej Sakte Hain?
             </h2>
             <p className="text-xs sm:text-sm text-slate-600 font-normal">
-              Based on the core services of Economic Courier, these are the primary textile and
-              garment trade categories accepted at our facility.
+              Bhilwara textile cluster ke vyapariyon ke liye yeh 4 mukhya categories daily accept hoti hain:
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
-            {/* Type 1 */}
-            <div className="p-6 rounded-2xl bg-[#F8FAFC] border border-slate-200 flex flex-col justify-between space-y-4 hover:border-red-300 transition-colors shadow-2xs group">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
+            {/* Card 1 */}
+            <div className="p-5 sm:p-6 rounded-2xl bg-[#F8FAFC] border border-slate-200/90 hover:border-red-300 hover:shadow-lg transition-all duration-300 flex flex-col justify-between group">
               <div className="space-y-3">
-                <div className="w-10 h-10 rounded-xl bg-red-50 text-[#DC2626] flex items-center justify-center border border-red-100">
+                <div className="w-11 h-11 rounded-xl bg-red-50 text-[#DC2626] flex items-center justify-center border border-red-100 group-hover:scale-105 transition-transform">
                   <Scissors className="w-5 h-5 text-[#DC2626]" />
                 </div>
-                <h3 className="text-base font-extrabold text-[#0F172A] group-hover:text-[#DC2626] transition-colors">
-                  Fabric Swatches &amp; Shade Books
-                </h3>
+                <div>
+                  <span className="text-[10px] font-mono font-bold uppercase text-[#DC2626] tracking-wider block mb-0.5">
+                    SAMPLE BOOK
+                  </span>
+                  <h3 className="text-base font-extrabold text-slate-900 group-hover:text-[#DC2626] transition-colors leading-snug">
+                    Fabric Swatches &amp; Shade Cards
+                  </h3>
+                </div>
                 <p className="text-xs text-slate-600 leading-relaxed font-normal">
-                  Cut sample pieces, shade cards, and seasonal catalog swatches dispatched to apparel
-                  designers, merchandisers, and buying houses across India.
+                  Kapde ke sample cuts, naye season ke shade cards, aur catalog books jo outstation buyers aur designers ko bheje jate hain.
                 </p>
               </div>
 
-              <div className="pt-3 border-t border-slate-200/80 text-[11px] font-medium text-slate-500">
-                <span>Sample review &amp; merchandising</span>
+              <div className="pt-3 mt-4 border-t border-slate-200 text-[11px] font-bold text-slate-500 flex items-center justify-between">
+                <span>Buyer Inspection Samples</span>
+                <span className="text-[#DC2626]">Priority Air/Road</span>
               </div>
             </div>
 
-            {/* Type 2 */}
-            <div className="p-6 rounded-2xl bg-[#F8FAFC] border border-slate-200 flex flex-col justify-between space-y-4 hover:border-red-300 transition-colors shadow-2xs group">
+            {/* Card 2 */}
+            <div className="p-5 sm:p-6 rounded-2xl bg-[#F8FAFC] border border-slate-200/90 hover:border-red-300 hover:shadow-lg transition-all duration-300 flex flex-col justify-between group">
               <div className="space-y-3">
-                <div className="w-10 h-10 rounded-xl bg-red-50 text-[#DC2626] flex items-center justify-center border border-red-100">
+                <div className="w-11 h-11 rounded-xl bg-red-50 text-[#DC2626] flex items-center justify-center border border-red-100 group-hover:scale-105 transition-transform">
                   <Layers className="w-5 h-5 text-[#DC2626]" />
                 </div>
-                <h3 className="text-base font-extrabold text-[#0F172A] group-hover:text-[#DC2626] transition-colors">
-                  Suiting &amp; Shirting Sample Cuts
-                </h3>
+                <div>
+                  <span className="text-[10px] font-mono font-bold uppercase text-[#DC2626] tracking-wider block mb-0.5">
+                    CUT-LENGTH
+                  </span>
+                  <h3 className="text-base font-extrabold text-slate-900 group-hover:text-[#DC2626] transition-colors leading-snug">
+                    Suiting &amp; Shirting Trial Cuts
+                  </h3>
+                </div>
                 <p className="text-xs text-slate-600 leading-relaxed font-normal">
-                  Folded cut-lengths and sample roll packets shipped to wholesalers, tailors, and
-                  apparel production units for pre-production quality inspection.
+                  Folded fabric cuts (1m–5m pieces) testing aur bulk approval ke liye garment manufacturers aur tailors ko fast delivery.
                 </p>
               </div>
 
-              <div className="pt-2 border-t border-slate-200/80 text-[11px] font-medium text-slate-500">
-                <span>Mill prototype inspection</span>
+              <div className="pt-3 mt-4 border-t border-slate-200 text-[11px] font-bold text-slate-500 flex items-center justify-between">
+                <span>Production Prototype</span>
+                <span className="text-[#DC2626]">Next-Day Linehaul</span>
               </div>
             </div>
 
-            {/* Type 3 */}
-            <div className="p-6 rounded-2xl bg-[#F8FAFC] border border-slate-200 flex flex-col justify-between space-y-4 hover:border-red-300 transition-colors shadow-2xs group">
+            {/* Card 3 */}
+            <div className="p-5 sm:p-6 rounded-2xl bg-[#F8FAFC] border border-slate-200/90 hover:border-red-300 hover:shadow-lg transition-all duration-300 flex flex-col justify-between group">
               <div className="space-y-3">
-                <div className="w-10 h-10 rounded-xl bg-red-50 text-[#DC2626] flex items-center justify-center border border-red-100">
+                <div className="w-11 h-11 rounded-xl bg-red-50 text-[#DC2626] flex items-center justify-center border border-red-100 group-hover:scale-105 transition-transform">
                   <Package className="w-5 h-5 text-[#DC2626]" />
                 </div>
-                <h3 className="text-base font-extrabold text-[#0F172A] group-hover:text-[#DC2626] transition-colors">
-                  Garment &amp; Apparel Parcels
-                </h3>
+                <div>
+                  <span className="text-[10px] font-mono font-bold uppercase text-[#DC2626] tracking-wider block mb-0.5">
+                    APPAREL EXPORT
+                  </span>
+                  <h3 className="text-base font-extrabold text-slate-900 group-hover:text-[#DC2626] transition-colors leading-snug">
+                    Garment &amp; Retail Fashion Parcels
+                  </h3>
+                </div>
                 <p className="text-xs text-slate-600 leading-relaxed font-normal">
-                  Finished garment prototypes, stitched trial samples, and retail fashion shipments
-                  destined for commercial trade hubs.
+                  Stitched trial garments, uniforms, denim samples aur retail fashion boxes national markets aur international buying houses ke liye.
                 </p>
               </div>
 
-              <div className="pt-2 border-t border-slate-200/80 text-[11px] font-medium text-slate-500">
-                <span>Finished garment courier</span>
+              <div className="pt-3 mt-4 border-t border-slate-200 text-[11px] font-bold text-slate-500 flex items-center justify-between">
+                <span>Ready-Made Garments</span>
+                <span className="text-[#DC2626]">Global eCS Air Cargo</span>
               </div>
             </div>
 
-            {/* Type 4 */}
-            <div className="p-6 rounded-2xl bg-[#F8FAFC] border border-slate-200 flex flex-col justify-between space-y-4 hover:border-red-300 transition-colors shadow-2xs group">
+            {/* Card 4 */}
+            <div className="p-5 sm:p-6 rounded-2xl bg-[#F8FAFC] border border-slate-200/90 hover:border-red-300 hover:shadow-lg transition-all duration-300 flex flex-col justify-between group">
               <div className="space-y-3">
-                <div className="w-10 h-10 rounded-xl bg-red-50 text-[#DC2626] flex items-center justify-center border border-red-100">
+                <div className="w-11 h-11 rounded-xl bg-red-50 text-[#DC2626] flex items-center justify-center border border-red-100 group-hover:scale-105 transition-transform">
                   <FileText className="w-5 h-5 text-[#DC2626]" />
                 </div>
-                <h3 className="text-base font-extrabold text-[#0F172A] group-hover:text-[#DC2626] transition-colors">
-                  Trade Correspondence &amp; Invoices
-                </h3>
+                <div>
+                  <span className="text-[10px] font-mono font-bold uppercase text-[#DC2626] tracking-wider block mb-0.5">
+                    TRADE PAPERWORK
+                  </span>
+                  <h3 className="text-base font-extrabold text-slate-900 group-hover:text-[#DC2626] transition-colors leading-snug">
+                    Commercial Invoices &amp; Bilti
+                  </h3>
+                </div>
                 <p className="text-xs text-slate-600 leading-relaxed font-normal">
-                  Commercial bills, textile invoices, purchase orders, and transport bilties sent
-                  between mills, brokers, and outstation buyers.
+                  Textile GST invoices, transport bilties, purchase orders, aur L/C bank documents tamper-proof sealed pouches me swift transit.
                 </p>
               </div>
 
-              <div className="pt-2 border-t border-slate-200/80 text-[11px] font-medium text-slate-500">
-                <span>Commercial paperwork dispatch</span>
+              <div className="pt-3 mt-4 border-t border-slate-200 text-[11px] font-bold text-slate-500 flex items-center justify-between">
+                <span>High-Priority Dossiers</span>
+                <span className="text-[#DC2626]">Document Express</span>
               </div>
             </div>
           </div>
+        </div>
+      </section>
 
-          {/* Neutral Status Safeguard */}
-          <div className="mt-8 p-4 rounded-xl bg-slate-50 border border-slate-200 text-xs text-slate-600 flex items-start gap-2.5">
-            <AlertCircle className="w-4 h-4 text-slate-500 shrink-0 mt-0.5" />
-            <p>
-              <span className="font-semibold text-slate-800">Operational Confirmation:</span> Specific
-              transit schedules, bulk volume arrangements, and industrial pickup availability are
-              coordinated directly with the business. Rates are calculated based on physical weight,
-              packet dimensions, and destination corridor.
+      {/* =========================================================================
+          3. KEY TEXTILE CORRIDORS (Where It Goes from Bhilwara)
+          ========================================================================= */}
+      <section className="py-10 sm:py-14 bg-[#F8FAFC] border-b border-slate-200">
+        <div className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+          <div className="max-w-2xl space-y-1.5">
+            <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-[#DC2626] block">
+              TRADE CONNECTIVITY
+            </span>
+            <h2 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
+              Bhilwara Se Sabse Tez Delivery Corridors
+            </h2>
+            <p className="text-xs sm:text-sm text-slate-600 font-normal">
+              Bhilwara mills aur traders ke parcel in mukhya textile markets tak regular linehaul corridors se pahuchte hain:
             </p>
           </div>
-        </div>
-      </section>
 
-      {/* =========================================================================
-          3. PACKAGING & HANDLING (Authentic Media Grounded)
-          ========================================================================= */}
-      <section className="py-12 sm:py-16 lg:py-20 bg-[#F0F5FA] border-b border-[#E0EDF8]">
-        <div className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-            {/* Left: Authentic Reel Video Player */}
-            <div className="lg:col-span-5">
-              <div
-                ref={containerRef}
-                className="relative rounded-2xl overflow-hidden bg-slate-950 border border-slate-300 shadow-xl aspect-[9/13] sm:aspect-[9/12] max-w-sm mx-auto group"
-              >
-                <video
-                  ref={videoRef}
-                  src="/assets/social/reel-3-packing.mp4"
-                  poster="/assets/social/reel-packing.jpg"
-                  playsInline
-                  loop
-                  muted={isMuted}
-                  preload="metadata"
-                  className="w-full h-full object-cover cursor-pointer"
-                  onClick={() => togglePlay()}
-                  onPlay={() => setIsPlaying(true)}
-                  onPause={() => setIsPlaying(false)}
-                />
-
-                {/* Center Big Play Button Overlay */}
-                {!isPlaying && (
-                  <div
-                    onClick={() => togglePlay()}
-                    className="absolute inset-0 flex items-center justify-center bg-black/35 cursor-pointer"
-                  >
-                    <div className="w-14 h-14 rounded-full bg-[#DC2626] text-white flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
-                      <Play className="w-6 h-6 fill-current ml-0.5 text-white" />
-                    </div>
-                  </div>
-                )}
-
-                {/* Top Badge */}
-                <div className="absolute top-3 left-3 right-3 flex items-center justify-between pointer-events-none z-10">
-                  <span className="px-2.5 py-1 rounded-full bg-slate-950/85 text-[10px] font-bold text-white border border-white/20 uppercase tracking-wide">
-                    PACKING LAB ROUTINE
-                  </span>
-                  <span className="px-2 py-0.5 rounded-full bg-slate-950/85 text-[10px] font-mono text-white/90 border border-white/20">
-                    Authentic Reel
-                  </span>
-                </div>
-
-                {/* Bottom Controls Pill */}
-                <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between z-10 pointer-events-auto">
-                  <div className="inline-flex items-center gap-1.5 p-1 rounded-full bg-slate-950/90 border border-white/20 shadow-md">
-                    <button
-                      type="button"
-                      onClick={togglePlay}
-                      aria-label={isPlaying ? 'Pause' : 'Play'}
-                      className="w-7 h-7 rounded-full bg-white text-slate-950 flex items-center justify-center cursor-pointer shadow-xs"
-                    >
-                      {isPlaying ? (
-                        <Pause className="w-3.5 h-3.5 fill-current" />
-                      ) : (
-                        <Play className="w-3.5 h-3.5 fill-current ml-0.5" />
-                      )}
-                    </button>
-
-                    <button
-                      type="button"
-                      onClick={toggleMute}
-                      aria-label={isMuted ? 'Unmute audio' : 'Mute audio'}
-                      className={`w-7 h-7 rounded-full flex items-center justify-center cursor-pointer ${
-                        isMuted
-                          ? 'bg-slate-800 text-white'
-                          : 'bg-[#DC2626] text-white'
-                      }`}
-                    >
-                      {isMuted ? (
-                        <VolumeX className="w-3.5 h-3.5" />
-                      ) : (
-                        <Volume2 className="w-3.5 h-3.5" />
-                      )}
-                    </button>
-                  </div>
-
-                  <span className="text-[10px] text-slate-300 font-mono bg-slate-950/80 px-2 py-1 rounded-full border border-white/10">
-                    Bhilwara Hub
-                  </span>
-                </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {/* Corridor 1 */}
+            <div className="p-5 rounded-2xl bg-white border border-slate-200 shadow-xs hover:shadow-md transition-shadow">
+              <div className="flex items-center justify-between mb-3">
+                <span className="px-2.5 py-1 rounded-full bg-red-50 text-[#DC2626] font-extrabold text-[10px] uppercase">
+                  GUJARAT EXPRESS
+                </span>
+                <Clock className="w-4 h-4 text-slate-400" />
+              </div>
+              <h3 className="text-base font-extrabold text-slate-900 mb-1">
+                Surat &amp; Ahmedabad
+              </h3>
+              <p className="text-xs text-slate-600 leading-relaxed font-normal mb-3">
+                Man-made fabric trade hubs, embroidery units, and yarn trading offices.
+              </p>
+              <div className="text-[11px] font-bold text-emerald-600 flex items-center gap-1">
+                <CheckCircle2 className="w-3.5 h-3.5" />
+                <span>Next-Day Morning Delivery</span>
               </div>
             </div>
 
-            {/* Right: Packaging Methods (Visibly Grounded) */}
-            <div className="lg:col-span-7 space-y-5">
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white border border-blue-200 text-blue-800 text-[11px] font-extrabold tracking-widest uppercase shadow-2xs">
-                <Package className="w-3.5 h-3.5 text-[#DC2626]" />
-                <span>HANDLING &amp; PACKAGING METHODS</span>
+            {/* Corridor 2 */}
+            <div className="p-5 rounded-2xl bg-white border border-slate-200 shadow-xs hover:shadow-md transition-shadow">
+              <div className="flex items-center justify-between mb-3">
+                <span className="px-2.5 py-1 rounded-full bg-blue-50 text-blue-700 font-extrabold text-[10px] uppercase">
+                  MAHARASHTRA LINEHAUL
+                </span>
+                <Clock className="w-4 h-4 text-slate-400" />
               </div>
-
-              <h2 className="text-2xl sm:text-4xl font-black tracking-[-0.035em] text-[#0F172A] leading-tight">
-                Protective preparation for delicate textiles.
-              </h2>
-
-              <p className="text-sm sm:text-base text-slate-600 leading-relaxed font-normal">
-                Textile fabrics and swatches require deliberate packing to arrive clean, uncreased, and
-                intact. Based on handling methods visibly recorded inside our Bhilwara hub, here are the
-                protective practices applied during consignment preparation:
+              <h3 className="text-base font-extrabold text-slate-900 mb-1">
+                Mumbai &amp; Bhiwandi
+              </h3>
+              <p className="text-xs text-slate-600 leading-relaxed font-normal mb-3">
+                Mangaldas Market, Kalbadevi cloth merchants, and major commercial godowns.
               </p>
+              <div className="text-[11px] font-bold text-emerald-600 flex items-center gap-1">
+                <CheckCircle2 className="w-3.5 h-3.5" />
+                <span>Direct Commercial Linehauls</span>
+              </div>
+            </div>
 
-              <div className="space-y-3 pt-2">
-                <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-2xs flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0 mt-0.5" />
-                  <div>
-                    <h3 className="text-sm font-bold text-slate-900 mb-0.5">
-                      Heavy-Gauge Poly Wrapping
-                    </h3>
-                    <p className="text-xs text-slate-600 leading-relaxed font-normal">
-                      Fabric swatches and sample bundles are enveloped in tough plastic mailer sleeves
-                      to shield fabric textures against dust, moisture, and road transit grime.
-                    </p>
-                  </div>
-                </div>
+            {/* Corridor 3 */}
+            <div className="p-5 rounded-2xl bg-white border border-slate-200 shadow-xs hover:shadow-md transition-shadow">
+              <div className="flex items-center justify-between mb-3">
+                <span className="px-2.5 py-1 rounded-full bg-amber-50 text-amber-700 font-extrabold text-[10px] uppercase">
+                  NORTH TEXTILE CLUSTER
+                </span>
+                <Clock className="w-4 h-4 text-slate-400" />
+              </div>
+              <h3 className="text-base font-extrabold text-slate-900 mb-1">
+                Delhi NCR &amp; Ludhiana
+              </h3>
+              <p className="text-xs text-slate-600 leading-relaxed font-normal mb-3">
+                Gandhi Nagar, Chandni Chowk wholesalers, and garment knitting clusters.
+              </p>
+              <div className="text-[11px] font-bold text-emerald-600 flex items-center gap-1">
+                <CheckCircle2 className="w-3.5 h-3.5" />
+                <span>Priority Air &amp; Surface Transit</span>
+              </div>
+            </div>
 
-                <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-2xs flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0 mt-0.5" />
-                  <div>
-                    <h3 className="text-sm font-bold text-slate-900 mb-0.5">
-                      Reinforced Outer Strapping
-                    </h3>
-                    <p className="text-xs text-slate-600 leading-relaxed font-normal">
-                      Heavier consignments and bundled sample books are secured with cross-strapping to
-                      maintain package shape and prevent burst edges during hub sorting.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-2xs flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0 mt-0.5" />
-                  <div>
-                    <h3 className="text-sm font-bold text-slate-900 mb-0.5">
-                      Secure Adhesive Closure
-                    </h3>
-                    <p className="text-xs text-slate-600 leading-relaxed font-normal">
-                      Firm adhesive sealing along all edges to protect trade swatches and client labels
-                      from unrecorded handling during transit.
-                    </p>
-                  </div>
-                </div>
+            {/* Corridor 4 */}
+            <div className="p-5 rounded-2xl bg-white border border-slate-200 shadow-xs hover:shadow-md transition-shadow">
+              <div className="flex items-center justify-between mb-3">
+                <span className="px-2.5 py-1 rounded-full bg-purple-50 text-purple-700 font-extrabold text-[10px] uppercase">
+                  GLOBAL AIR EXPRESS
+                </span>
+                <Clock className="w-4 h-4 text-slate-400" />
+              </div>
+              <h3 className="text-base font-extrabold text-slate-900 mb-1">
+                Dubai, US &amp; Global Hubs
+              </h3>
+              <p className="text-xs text-slate-600 leading-relaxed font-normal mb-3">
+                International buyers and garment exports under eCS World Wide Express.
+              </p>
+              <div className="text-[11px] font-bold text-emerald-600 flex items-center gap-1">
+                <CheckCircle2 className="w-3.5 h-3.5" />
+                <span>220+ Countries Air Network</span>
               </div>
             </div>
           </div>
@@ -474,238 +457,262 @@ export function TextileLogisticsView() {
       </section>
 
       {/* =========================================================================
-          4. BUSINESS WORKFLOW (Inquiry to Dispatch)
+          4. PACKAGING SAFETY & REAL VIDEO DEMO (Grounded Protection)
           ========================================================================= */}
       <section className="py-12 sm:py-16 bg-white border-b border-slate-200">
         <div className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-2xl mx-auto text-center mb-12 space-y-2">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+            {/* Left: Compact Phone-Style Video Reel Card (Balanced Height) */}
+            <div className="lg:col-span-5 flex justify-center items-center">
+              <div
+                ref={containerRef}
+                className="relative rounded-[28px] sm:rounded-[32px] overflow-hidden bg-slate-950 p-1.5 sm:p-2 border-2 border-slate-800 shadow-2xl w-[230px] xs:w-[250px] sm:w-[270px] aspect-[9/16] group"
+              >
+                {/* Inner Screen Container */}
+                <div className="relative w-full h-full rounded-[22px] sm:rounded-[24px] overflow-hidden bg-slate-950">
+                  <video
+                    ref={videoRef}
+                    src="/assets/social/textile-reliable-courier.mp4"
+                    poster="/assets/social/textile-reliable-courier.jpg"
+                    playsInline
+                    loop
+                    muted={isMuted}
+                    preload="metadata"
+                    className="w-full h-full object-cover cursor-pointer"
+                    onClick={() => togglePlay()}
+                    onPlay={() => setIsPlaying(true)}
+                    onPause={() => setIsPlaying(false)}
+                  />
+
+                  {/* Paused Play Button Overlay */}
+                  {!isPlaying && (
+                    <div
+                      onClick={() => togglePlay()}
+                      className="absolute inset-0 flex items-center justify-center bg-black/35 cursor-pointer"
+                    >
+                      <div className="w-12 h-12 rounded-full bg-[#DC2626] text-white flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                        <Play className="w-5 h-5 fill-current ml-0.5 text-white" />
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Clean Bottom Controls Pill (Icons Only, Zero Text Tags) */}
+                  <div className="absolute bottom-3 left-3 z-10 pointer-events-auto">
+                    <div className="inline-flex items-center gap-1.5 p-1 rounded-full bg-slate-950/80 backdrop-blur-md border border-white/20 shadow-lg">
+                      <button
+                        type="button"
+                        onClick={togglePlay}
+                        aria-label={isPlaying ? 'Pause' : 'Play'}
+                        className="w-6 h-6 rounded-full bg-white text-slate-950 flex items-center justify-center cursor-pointer shadow-xs hover:bg-slate-100 transition-colors"
+                      >
+                        {isPlaying ? (
+                          <Pause className="w-3 h-3 fill-current text-[#DC2626]" />
+                        ) : (
+                          <Play className="w-3 h-3 fill-current ml-0.5" />
+                        )}
+                      </button>
+
+                      <button
+                        type="button"
+                        onClick={toggleMute}
+                        aria-label={isMuted ? 'Unmute' : 'Mute'}
+                        className={`w-6 h-6 rounded-full flex items-center justify-center cursor-pointer transition-colors ${
+                          isMuted
+                            ? 'bg-slate-800 text-slate-300'
+                            : 'bg-[#DC2626] text-white'
+                        }`}
+                      >
+                        {isMuted ? (
+                          <VolumeX className="w-3 h-3" />
+                        ) : (
+                          <Volume2 className="w-3 h-3" />
+                        )}
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Right: Protection Guarantee (Balanced Content) */}
+            <div className="lg:col-span-7 space-y-4">
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-red-50 border border-red-200 text-[#DC2626] text-[11px] font-extrabold uppercase tracking-wider">
+                <ShieldCheck className="w-3.5 h-3.5 text-[#DC2626]" />
+                <span>TEXTILE PROTECTION PROMISE</span>
+              </div>
+
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-900 tracking-tight leading-tight">
+                Kapda Kharaab Nahi Hoga — 3-Layer Safe Packaging
+              </h2>
+
+              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
+                Textile fabric swatches aur sample books ko uncreased aur bina daag-dhabbe pahunchane ke liye hamare Bhilwara hub par vishesh dhyan diya jata hai:
+              </p>
+
+              <div className="space-y-2.5 pt-1">
+                <div className="p-3.5 sm:p-4 rounded-xl bg-[#F8FAFC] border border-slate-200 flex items-start gap-3 hover:border-slate-300 transition-colors">
+                  <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0 mt-0.5" />
+                  <div>
+                    <h3 className="text-sm font-bold text-slate-900 mb-0.5">
+                      1. Waterproof Heavy-Duty Poly Shield
+                    </h3>
+                    <p className="text-xs text-slate-600 leading-relaxed font-normal">
+                      Baarish aur transit ke dauraan dhool ya nami se bachane ke liye thick plastic protective wrap.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="p-3.5 sm:p-4 rounded-xl bg-[#F8FAFC] border border-slate-200 flex items-start gap-3 hover:border-slate-300 transition-colors">
+                  <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0 mt-0.5" />
+                  <div>
+                    <h3 className="text-sm font-bold text-slate-900 mb-0.5">
+                      2. Reinforced Cross-Strapping
+                    </h3>
+                    <p className="text-xs text-slate-600 leading-relaxed font-normal">
+                      Bhaari sample books aur catalog bundles ke kone burst na ho, iske liye high-tension strapping tape.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="p-3.5 sm:p-4 rounded-xl bg-[#F8FAFC] border border-slate-200 flex items-start gap-3 hover:border-slate-300 transition-colors">
+                  <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0 mt-0.5" />
+                  <div>
+                    <h3 className="text-sm font-bold text-slate-900 mb-0.5">
+                      3. Tamper-Evident Adhesive Sealing
+                    </h3>
+                    <p className="text-xs text-slate-600 leading-relaxed font-normal">
+                      Sealed packet ke sath koi chhedchhad na ho, secure security adhesive seal lagayi jaati hai.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Bottom Balanced Trust Badges */}
+              <div className="pt-2 flex flex-wrap items-center gap-4 text-xs font-semibold text-slate-600">
+                <span className="inline-flex items-center gap-1.5 text-slate-700">
+                  <Truck className="w-4 h-4 text-[#DC2626]" />
+                  <span>Daily Doorstep Pickup</span>
+                </span>
+                <span className="text-slate-300">•</span>
+                <span className="inline-flex items-center gap-1.5 text-slate-700">
+                  <ShieldCheck className="w-4 h-4 text-emerald-600" />
+                  <span>100% Moisture Safe</span>
+                </span>
+                <span className="text-slate-300">•</span>
+                <span className="inline-flex items-center gap-1.5 text-slate-700">
+                  <Building2 className="w-4 h-4 text-blue-600" />
+                  <span>New Cloth Market Desk</span>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* =========================================================================
+          5. HOW BOOKING WORKS (3 Simple Steps for Merchants)
+          ========================================================================= */}
+      <section className="py-10 sm:py-14 bg-[#F8FAFC] border-b border-slate-200">
+        <div className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+          <div className="max-w-2xl text-center mx-auto space-y-1.5">
             <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-[#DC2626] block">
-              Logistics Workflow
+              SIMPLE 3-STEP PROCESS
             </span>
-            <h2 className="text-2xl sm:text-4xl font-black tracking-tight text-[#0F172A]">
-              From Bhilwara desk to destination dispatch.
+            <h2 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
+              Booking Karna Kitna Aasan Hai?
             </h2>
             <p className="text-xs sm:text-sm text-slate-600 font-normal">
-              A general explanation of how textile sample inquiries and bookings proceed through our
-              facility.
+              Bhilwara New Cloth Market vyapariyon ke liye hassle-free courier booking:
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6 relative">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
             {/* Step 1 */}
-            <div className="p-5 rounded-2xl bg-[#F8FAFC] border border-slate-200 space-y-3 relative">
-              <div className="w-10 h-10 rounded-xl bg-red-50 text-[#DC2626] font-extrabold flex items-center justify-center text-sm border border-red-100">
+            <div className="p-6 rounded-2xl bg-white border border-slate-200 shadow-xs space-y-3 relative">
+              <div className="w-10 h-10 rounded-xl bg-red-50 text-[#DC2626] font-black flex items-center justify-center text-sm border border-red-100">
                 01
               </div>
-              <h3 className="text-sm font-extrabold text-[#0F172A]">
-                Inquiry &amp; Details
+              <h3 className="text-base font-extrabold text-slate-900">
+                WhatsApp ya Counter Drop
               </h3>
               <p className="text-xs text-slate-600 leading-relaxed font-normal">
-                Share shipment details: origin, target city (e.g. Surat, Mumbai, Delhi), sample book
-                dimensions, and estimated packet weight.
+                New Cloth Market ke samne hamare counter par parcel le aaiye ya direct WhatsApp / Call karke factory/office pickup schedule kijiye.
               </p>
             </div>
 
             {/* Step 2 */}
-            <div className="p-5 rounded-2xl bg-[#F8FAFC] border border-slate-200 space-y-3 relative">
-              <div className="w-10 h-10 rounded-xl bg-red-50 text-[#DC2626] font-extrabold flex items-center justify-center text-sm border border-red-100">
+            <div className="p-6 rounded-2xl bg-white border border-slate-200 shadow-xs space-y-3 relative">
+              <div className="w-10 h-10 rounded-xl bg-red-50 text-[#DC2626] font-black flex items-center justify-center text-sm border border-red-100">
                 02
               </div>
-              <h3 className="text-sm font-extrabold text-[#0F172A]">
-                Counter Weighing
+              <h3 className="text-base font-extrabold text-slate-900">
+                Digital Weighing &amp; Docket
               </h3>
               <p className="text-xs text-slate-600 leading-relaxed font-normal">
-                Consignments are placed onto commercial digital scales at our Bhilwara counter for
-                transparent weight verification.
+                Counter par digital scale par transparent weight hoga aur turant consignment number ke sath printed docket receipt milegi.
               </p>
             </div>
 
             {/* Step 3 */}
-            <div className="p-5 rounded-2xl bg-[#F8FAFC] border border-slate-200 space-y-3 relative">
-              <div className="w-10 h-10 rounded-xl bg-red-50 text-[#DC2626] font-extrabold flex items-center justify-center text-sm border border-red-100">
+            <div className="p-6 rounded-2xl bg-white border border-slate-200 shadow-xs space-y-3 relative">
+              <div className="w-10 h-10 rounded-xl bg-red-50 text-[#DC2626] font-black flex items-center justify-center text-sm border border-red-100">
                 03
               </div>
-              <h3 className="text-sm font-extrabold text-[#0F172A]">
-                Protective Packaging
+              <h3 className="text-base font-extrabold text-slate-900">
+                Same-Day Evening Linehaul
               </h3>
               <p className="text-xs text-slate-600 leading-relaxed font-normal">
-                Sample books are secured in moisture-resistant poly wrapping and strapped where
-                necessary to preserve fabric condition.
+                Sorted packets evening schedule linehaul trucks ya connecting air flights me dispatch hote hain for next-morning delivery.
               </p>
             </div>
-
-            {/* Step 4 */}
-            <div className="p-5 rounded-2xl bg-[#F8FAFC] border border-slate-200 space-y-3 relative">
-              <div className="w-10 h-10 rounded-xl bg-red-50 text-[#DC2626] font-extrabold flex items-center justify-center text-sm border border-red-100">
-                04
-              </div>
-              <h3 className="text-sm font-extrabold text-[#0F172A]">
-                Linehaul Departure
-              </h3>
-              <p className="text-xs text-slate-600 leading-relaxed font-normal">
-                Sorted packets are staged for transfer to scheduled domestic highway linehauls or
-                connecting air express forwarders.
-              </p>
-            </div>
-          </div>
-
-          {/* Workflow Note */}
-          <div className="mt-8 text-center">
-            <p className="text-xs text-slate-500 max-w-xl mx-auto italic">
-              Note: Exact transit durations, linehaul cutoffs, and delivery milestones depend on the
-              forwarding carrier and regional routing. Real-time online tracking connects upon live API
-              integration.
-            </p>
           </div>
         </div>
       </section>
 
       {/* =========================================================================
-          5. B2B INQUIRY CTA BAND
+          6. B2B CORPORATE CALL TO ACTION CARD
           ========================================================================= */}
-      <section className="py-12 sm:py-16 bg-gradient-to-br from-[#09132B] via-[#0F1E3D] to-[#070E20] text-white">
+      <section className="pt-8 sm:pt-12">
         <div className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-2xl mx-auto text-center space-y-5">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 border border-white/20 text-white text-xs font-bold tracking-wider uppercase">
-              <Building2 className="w-3.5 h-3.5 text-red-400" />
-              <span>MILLS &amp; TRADE PARTNERS</span>
+          <div className="rounded-3xl bg-gradient-to-br from-slate-900 via-slate-900 to-slate-950 text-white p-6 sm:p-8 lg:p-10 shadow-xl border border-slate-800 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+            <div className="space-y-2 max-w-2xl">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#DC2626]/30 border border-red-500/40 text-red-400 text-[11px] font-bold uppercase tracking-wider">
+                <Building2 className="w-3.5 h-3.5 text-red-400" />
+                <span>BHILWARA MILLS &amp; CLOTH MERCHANTS DESK</span>
+              </div>
+              <h3 className="text-xl sm:text-2xl lg:text-3xl font-black text-white tracking-tight">
+                Textile Sample Dispatch Ke Liye Sampark Karein
+              </h3>
+              <p className="text-xs sm:text-sm text-slate-300 font-normal leading-relaxed">
+                Opposite New Cloth Market, Bhilwara. Regular corporate accounts, bulk sample pickup, aur reliable next-day rates ke liye call ya WhatsApp karein.
+              </p>
             </div>
 
-            <h2 className="text-2xl sm:text-4xl font-black tracking-tight text-white leading-tight">
-              Ready to ship your textile samples from Bhilwara?
-            </h2>
-
-            <p className="text-xs sm:text-sm text-slate-300 leading-relaxed max-w-xl mx-auto">
-              Whether you are sending sample swatch books to Surat, prototype cuts to Mumbai, or trade
-              paperwork to Delhi, our team can help coordinate your consignment.
-            </p>
-
-            <div className="pt-3 flex flex-wrap items-center justify-center gap-3">
+            <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto shrink-0">
               <button
                 type="button"
                 onClick={() => handleOpenInquiry('textiles')}
-                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-[#DC2626] hover:bg-[#B91C1C] text-white text-xs sm:text-sm font-bold shadow-xl transition-all active:scale-95 cursor-pointer"
+                className="inline-flex items-center justify-center gap-2 bg-[#DC2626] hover:bg-[#B91C1C] text-white text-xs sm:text-sm font-bold px-6 py-3.5 rounded-xl shadow-md transition-all active:scale-95 cursor-pointer whitespace-nowrap"
               >
-                <span>Prepare Textile Shipping Inquiry</span>
+                <span>Prepare Sample Inquiry</span>
                 <ArrowRight className="w-4 h-4 text-white" />
               </button>
 
-              <Link
-                href="/contact"
-                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-white/10 hover:bg-white/20 text-white text-xs sm:text-sm font-semibold border border-white/20 transition-all active:scale-95"
+              <a
+                href="https://wa.me/918955144444?text=Hello%20Economic%20Courier%20Bhilwara,%20I%20want%20to%20inquire%20about%20Textile%20Logistics%20pickup."
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white text-xs sm:text-sm font-bold px-5 py-3.5 rounded-xl shadow-md transition-all active:scale-95 cursor-pointer whitespace-nowrap"
               >
-                <span>Visit Bhilwara Desk</span>
-              </Link>
+                <MessageCircle className="w-4 h-4 text-white" />
+                <span>WhatsApp Desk</span>
+              </a>
             </div>
           </div>
         </div>
       </section>
 
-      {/* =========================================================================
-          6. RELATED PAGES (Only Real Existing Routes)
-          ========================================================================= */}
-      <section className="py-12 sm:py-16 bg-[#F8FAFC]">
-        <div className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="mb-8 max-w-xl">
-            <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-[#DC2626] block mb-1">
-              Explore More of Economic Courier
-            </span>
-            <h2 className="text-xl sm:text-2xl font-black tracking-tight text-[#0F172A]">
-              Related Service &amp; Information Pages
-            </h2>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            <Link
-              href="/services"
-              className="p-5 rounded-2xl bg-white border border-slate-200 hover:border-red-300 hover:shadow-md transition-all group flex flex-col justify-between space-y-3"
-            >
-              <div className="space-y-2">
-                <div className="w-9 h-9 rounded-xl bg-red-50 text-[#DC2626] flex items-center justify-center">
-                  <Truck className="w-4 h-4 text-[#DC2626]" />
-                </div>
-                <h3 className="text-sm font-bold text-slate-900 group-hover:text-[#DC2626] transition-colors">
-                  All Courier Services
-                </h3>
-                <p className="text-xs text-slate-500 leading-relaxed">
-                  Domestic express, international cargo, and document delivery options.
-                </p>
-              </div>
-              <span className="inline-flex items-center gap-1 text-xs font-bold text-[#DC2626] pt-1">
-                <span>View Services</span>
-                <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
-              </span>
-            </Link>
-
-            <Link
-              href="/about"
-              className="p-5 rounded-2xl bg-white border border-slate-200 hover:border-red-300 hover:shadow-md transition-all group flex flex-col justify-between space-y-3"
-            >
-              <div className="space-y-2">
-                <div className="w-9 h-9 rounded-xl bg-red-50 text-[#DC2626] flex items-center justify-center">
-                  <Building2 className="w-4 h-4 text-[#DC2626]" />
-                </div>
-                <h3 className="text-sm font-bold text-slate-900 group-hover:text-[#DC2626] transition-colors">
-                  About Our Hub
-                </h3>
-                <p className="text-xs text-slate-500 leading-relaxed">
-                  Dual identity distinction: Economic Courier and eCS World Wide Express.
-                </p>
-              </div>
-              <span className="inline-flex items-center gap-1 text-xs font-bold text-[#DC2626] pt-1">
-                <span>Read About Us</span>
-                <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
-              </span>
-            </Link>
-
-            <Link
-              href="/gallery"
-              className="p-5 rounded-2xl bg-white border border-slate-200 hover:border-red-300 hover:shadow-md transition-all group flex flex-col justify-between space-y-3"
-            >
-              <div className="space-y-2">
-                <div className="w-9 h-9 rounded-xl bg-red-50 text-[#DC2626] flex items-center justify-center">
-                  <Camera className="w-4 h-4 text-[#DC2626]" />
-                </div>
-                <h3 className="text-sm font-bold text-slate-900 group-hover:text-[#DC2626] transition-colors">
-                  Operations Archive
-                </h3>
-                <p className="text-xs text-slate-500 leading-relaxed">
-                  Watch authentic packaging, sorting, and dispatch reels filmed in Bhilwara.
-                </p>
-              </div>
-              <span className="inline-flex items-center gap-1 text-xs font-bold text-[#DC2626] pt-1">
-                <span>Watch Reels</span>
-                <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
-              </span>
-            </Link>
-
-            <Link
-              href="/contact"
-              className="p-5 rounded-2xl bg-white border border-slate-200 hover:border-red-300 hover:shadow-md transition-all group flex flex-col justify-between space-y-3"
-            >
-              <div className="space-y-2">
-                <div className="w-9 h-9 rounded-xl bg-red-50 text-[#DC2626] flex items-center justify-center">
-                  <MapPin className="w-4 h-4 text-[#DC2626]" />
-                </div>
-                <h3 className="text-sm font-bold text-slate-900 group-hover:text-[#DC2626] transition-colors">
-                  Contact Bhilwara Desk
-                </h3>
-                <p className="text-xs text-slate-500 leading-relaxed">
-                  Facility location context, online inquiry desk, and channel verification.
-                </p>
-              </div>
-              <span className="inline-flex items-center gap-1 text-xs font-bold text-[#DC2626] pt-1">
-                <span>Contact Us</span>
-                <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
-              </span>
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* =========================================================================
-          REUSABLE INQUIRY MODAL (Preselected for Textiles)
-          ========================================================================= */}
+      {/* Reusable Inquiry Modal */}
       <InquiryModal
         key={inquiryModalOpen ? inquiryService || 'open' : 'closed'}
         isOpen={inquiryModalOpen}

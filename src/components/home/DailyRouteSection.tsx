@@ -56,10 +56,10 @@ export function DailyRouteSection({ onOpenInquiry }: DailyRouteSectionProps) {
             </p>
           </div>
 
-          {/* Standalone Floating 3D eCS Linehaul Truck Object — Visible on All Devices (Mobile + Desktop) */}
-          <div className="relative shrink-0 flex items-center justify-center lg:justify-end z-10 pointer-events-none select-none pt-3 sm:pt-0">
+          {/* Standalone Floating 3D eCS Linehaul Truck Object — Desktop & Tablet Only */}
+          <div className="relative shrink-0 hidden sm:flex items-center justify-center lg:justify-end z-10 pointer-events-none select-none">
             <div
-              className="relative w-48 xs:w-56 sm:w-72 lg:w-[320px] xl:w-[360px] transition-transform duration-700 ease-out hover:scale-105 filter drop-shadow-[0_12px_28px_rgba(220,38,38,0.14)]"
+              className="relative w-64 sm:w-72 lg:w-[320px] xl:w-[360px] transition-transform duration-700 ease-out hover:scale-105 filter drop-shadow-[0_12px_28px_rgba(220,38,38,0.14)]"
               style={{ aspectRatio: '1024/682' }}
             >
               <Image
@@ -67,7 +67,7 @@ export function DailyRouteSection({ onOpenInquiry }: DailyRouteSectionProps) {
                 alt="eCS World Wide Express 3D Linehaul Cargo Truck Object"
                 width={1024}
                 height={682}
-                sizes="(max-width: 640px) 220px, (max-width: 1024px) 280px, 360px"
+                sizes="(max-width: 1024px) 280px, 360px"
                 style={{ aspectRatio: '1024/682' }}
                 className="w-full h-auto object-contain"
               />

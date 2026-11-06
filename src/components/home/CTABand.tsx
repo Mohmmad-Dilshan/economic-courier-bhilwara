@@ -4,10 +4,6 @@ import React from 'react';
 import Link from 'next/link';
 import { ArrowRight, Layers } from 'lucide-react';
 
-interface CTABandProps {
-  onOpenInquiry?: (service?: string) => void;
-}
-
 /**
  * CTABand — Shipment Inquiry Preparation Call to Action
  *
@@ -18,7 +14,7 @@ interface CTABandProps {
  * 4. Secondary action links directly to the /services page.
  * 5. Zero false claims of instant bookings, live rates, or dispatch guarantees.
  */
-export function CTABand({}: CTABandProps = {}) {
+export function CTABand() {
   return (
     <section className="py-14 lg:py-20 bg-gradient-to-br from-[#09132B] via-[#0F172A] to-[#1E293B] text-white relative overflow-hidden">
       {/* Ambient background glow */}

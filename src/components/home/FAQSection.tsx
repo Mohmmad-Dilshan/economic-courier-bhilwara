@@ -4,10 +4,6 @@ import React, { useState } from 'react';
 import { ChevronDown, HelpCircle, Sparkles } from 'lucide-react';
 import { FAQ_ITEMS } from '@/lib/faqData';
 
-interface FAQSectionProps {
-  onOpenInquiry?: (service?: string) => void;
-}
-
 /**
  * FAQSection — Clean Interactive Accordion
  *
@@ -17,7 +13,7 @@ interface FAQSectionProps {
  * 3. Verified tracking info (AWB receipts + partner network feeds).
  * 4. Full WCAG 2.1 AA accessibility (ARIA states, keyboard focusable).
  */
-export function FAQSection({}: FAQSectionProps = {}) {
+export function FAQSection() {
   const [openId, setOpenId] = useState<string | null>(FAQ_ITEMS[0]?.id ?? null);
 
   const toggleItem = (id: string) => {

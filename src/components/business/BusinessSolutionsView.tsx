@@ -20,9 +20,8 @@ import {
   MessageCircle,
   Receipt,
   Headphones,
-  Camera,
-  Search,
 } from 'lucide-react';
+import { RelatedServicesGrid } from '@/components/common/RelatedServicesGrid';
 
 export function BusinessSolutionsView() {
   return (
@@ -613,106 +612,7 @@ export function BusinessSolutionsView() {
       {/* =========================================================================
           7. RELATED HELPFUL PAGES
           ========================================================================= */}
-      <section className="py-8 sm:py-12 bg-white border-t border-slate-200">
-        <div className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
-          <div className="flex items-center justify-between">
-            <div>
-              <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-[#DC2626] block">
-                EXPLORE MORE
-              </span>
-              <h3 className="text-lg sm:text-xl font-bold text-slate-900">
-                Related Logistics &amp; Operations Services
-              </h3>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            <Link
-              href="/textile-logistics"
-              className="p-5 rounded-2xl bg-[#F8FAFC] border border-slate-200 hover:border-red-300 hover:shadow-md transition-all group flex flex-col justify-between space-y-3"
-            >
-              <div className="space-y-2">
-                <div className="w-9 h-9 rounded-xl bg-red-50 text-[#DC2626] flex items-center justify-center">
-                  <Scissors className="w-4 h-4 text-[#DC2626]" />
-                </div>
-                <h4 className="text-sm font-bold text-slate-900 group-hover:text-[#DC2626] transition-colors">
-                  Textile Swatch Logistics
-                </h4>
-                <p className="text-xs text-slate-600 leading-relaxed font-normal">
-                  Kapde ke sample cuts, shade cards, aur catalog books packing &amp; express dispatch.
-                </p>
-              </div>
-              <span className="inline-flex items-center gap-1 text-xs font-bold text-[#DC2626]">
-                <span>View Textile Service</span>
-                <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
-              </span>
-            </Link>
-
-            <Link
-              href="/gallery"
-              className="p-5 rounded-2xl bg-[#F8FAFC] border border-slate-200 hover:border-red-300 hover:shadow-md transition-all group flex flex-col justify-between space-y-3"
-            >
-              <div className="space-y-2">
-                <div className="w-9 h-9 rounded-xl bg-red-50 text-[#DC2626] flex items-center justify-center">
-                  <Camera className="w-4 h-4 text-[#DC2626]" />
-                </div>
-                <h4 className="text-sm font-bold text-slate-900 group-hover:text-[#DC2626] transition-colors">
-                  Operations Video Reels &amp; Photos
-                </h4>
-                <p className="text-xs text-slate-600 leading-relaxed font-normal">
-                  Bhilwara hub ke real video reels aur ground photos ka complete archive dekhein.
-                </p>
-              </div>
-              <span className="inline-flex items-center gap-1 text-xs font-bold text-[#DC2626]">
-                <span>Watch Gallery</span>
-                <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
-              </span>
-            </Link>
-
-            <Link
-              href="/track-shipment"
-              className="p-5 rounded-2xl bg-[#F8FAFC] border border-slate-200 hover:border-red-300 hover:shadow-md transition-all group flex flex-col justify-between space-y-3"
-            >
-              <div className="space-y-2">
-                <div className="w-9 h-9 rounded-xl bg-red-50 text-[#DC2626] flex items-center justify-center">
-                  <Search className="w-4 h-4 text-[#DC2626]" />
-                </div>
-                <h4 className="text-sm font-bold text-slate-900 group-hover:text-[#DC2626] transition-colors">
-                  Live Tracking Portal
-                </h4>
-                <p className="text-xs text-slate-600 leading-relaxed font-normal">
-                  Air waybill docket number enter karke parcel ka status check kijiye.
-                </p>
-              </div>
-              <span className="inline-flex items-center gap-1 text-xs font-bold text-[#DC2626]">
-                <span>Track Parcel</span>
-                <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
-              </span>
-            </Link>
-
-            <Link
-              href="/contact"
-              className="p-5 rounded-2xl bg-[#F8FAFC] border border-slate-200 hover:border-red-300 hover:shadow-md transition-all group flex flex-col justify-between space-y-3"
-            >
-              <div className="space-y-2">
-                <div className="w-9 h-9 rounded-xl bg-red-50 text-[#DC2626] flex items-center justify-center">
-                  <MapPin className="w-4 h-4 text-[#DC2626]" />
-                </div>
-                <h4 className="text-sm font-bold text-slate-900 group-hover:text-[#DC2626] transition-colors">
-                  Contact &amp; Hub Location
-                </h4>
-                <p className="text-xs text-slate-600 leading-relaxed font-normal">
-                  Opposite New Cloth Market, Pur Road. Google Maps directions aur phone details.
-                </p>
-              </div>
-              <span className="inline-flex items-center gap-1 text-xs font-bold text-[#DC2626]">
-                <span>Get Directions</span>
-                <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
-              </span>
-            </Link>
-          </div>
-        </div>
-      </section>
+      <RelatedServicesGrid currentPage="business" title="Related Logistics & Operations Services" />
     </div>
   );
 }

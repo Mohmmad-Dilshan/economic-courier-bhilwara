@@ -5,10 +5,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Layers, FileText, Calculator, ArrowRight } from 'lucide-react';
 
-interface TextileLogisticsSectionProps {
-  onOpenInquiry?: (service: string) => void;
-}
-
 /**
  * TextileLogisticsSection — Bhilwara Fabric & Sample Shipping
  *
@@ -18,7 +14,7 @@ interface TextileLogisticsSectionProps {
  * 3. No unverified packaging standards or moisture-resistant guarantees.
  * 4. Grounded strictly in servicesData.ts and project documentation.
  */
-export function TextileLogisticsSection({}: TextileLogisticsSectionProps = {}) {
+export function TextileLogisticsSection() {
   const features = [
     {
       icon: Layers,

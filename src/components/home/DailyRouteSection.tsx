@@ -10,11 +10,7 @@ import {
 } from 'lucide-react';
 import { AnimatedRouteMap } from './AnimatedRouteMap';
 
-interface DailyRouteSectionProps {
-  onOpenInquiry?: (service?: string) => void;
-}
-
-export function DailyRouteSection({}: DailyRouteSectionProps = {}) {
+export function DailyRouteSection() {
   return (
     <section
       id="daily-route"

@@ -16,11 +16,7 @@ import {
 } from 'lucide-react';
 import { BUSINESS_INFO } from '@/lib/constants';
 
-interface HubLocationSectionProps {
-  onOpenInquiry?: (service?: string) => void;
-}
-
-export function HubLocationSection({}: HubLocationSectionProps = {}) {
+export function HubLocationSection() {
   const verifiedAddress =
     'Opposite New Cloth Market, Railway Staff Quarter Area, Bhilwara, Rajasthan 311001';
   const verifiedLandmark =

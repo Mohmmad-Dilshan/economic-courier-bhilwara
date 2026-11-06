@@ -5,11 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Sparkles, ArrowRight } from 'lucide-react';
 
-interface HowItWorksSectionProps {
-  onOpenInquiry?: (service?: string) => void;
-}
-
-export function HowItWorksSection({}: HowItWorksSectionProps = {}) {
+export function HowItWorksSection() {
   return (
     <section
       id="how-it-works"

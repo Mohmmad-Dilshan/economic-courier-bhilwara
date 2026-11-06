@@ -171,11 +171,7 @@ const MOB_CHEVRONS = [
   { lengthFraction: 0.92 },
 ];
 
-interface AnimatedRouteMapProps {
-  onOpenInquiry?: (service?: string) => void;
-}
-
-export function AnimatedRouteMap({}: AnimatedRouteMapProps = {}) {
+export function AnimatedRouteMap() {
   const containerRef = useRef<HTMLDivElement>(null);
   const desktopPathRef = useRef<SVGPathElement>(null);
   const mobilePathRef = useRef<SVGPathElement>(null);

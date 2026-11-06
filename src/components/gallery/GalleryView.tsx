@@ -277,8 +277,8 @@ function VideoCard({ video, activeVideoId, onActivate }: VideoCardProps) {
     }
   }, [isActive, isMuted]);
 
-  const handleTogglePlay = (e: React.MouseEvent) => {
-    e.stopPropagation();
+  const handleTogglePlay = (e?: React.SyntheticEvent) => {
+    if (e) e.stopPropagation();
     const el = videoRef.current;
     if (!el) return;
 
@@ -312,7 +312,16 @@ function VideoCard({ video, activeVideoId, onActivate }: VideoCardProps) {
 
   return (
     <div
+      role="button"
+      tabIndex={0}
       onClick={handleTogglePlay}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          handleTogglePlay();
+        }
+      }}
+      aria-label={`Play or pause video: ${video.title}`}
       className={`group relative rounded-2xl sm:rounded-3xl overflow-hidden bg-slate-950 border-2 transition-all duration-300 cursor-pointer select-none shadow-md hover:shadow-xl hover:-translate-y-1 ${
         isActive && isPlaying
           ? 'border-[#DC2626] ring-2 ring-[#DC2626]/40 shadow-[0_12px_32px_rgba(220,38,38,0.22)]'
@@ -899,7 +908,16 @@ export function GalleryView() {
         <div
           role="dialog"
           aria-modal="true"
-          onClick={() => setLightboxIndex(null)}
+          aria-label="Full-screen photo view"
+          tabIndex={-1}
+          onClick={(e) => {
+            if (e.target === e.currentTarget) {
+              setLightboxIndex(null);
+            }
+          }}
+          onKeyDown={(e) => {
+            if (e.key === 'Escape') setLightboxIndex(null);
+          }}
           onTouchStart={handleTouchStart}
           onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}
@@ -907,7 +925,6 @@ export function GalleryView() {
         >
           {/* Top Bar: Counter & Close Only (No text tags, no buttons) */}
           <div
-            onClick={(e) => e.stopPropagation()}
             className="flex items-center justify-between z-20 w-full max-w-6xl mx-auto px-2"
           >
             <div className="px-3 py-1 rounded-full bg-white/10 backdrop-blur-md text-white/90 font-mono text-xs font-bold tracking-widest border border-white/10">
@@ -926,7 +943,6 @@ export function GalleryView() {
 
           {/* Center Carousel Area */}
           <div
-            onClick={(e) => e.stopPropagation()}
             className="relative flex-1 w-full max-w-6xl mx-auto flex items-center justify-center my-auto px-2 sm:px-14 overflow-hidden"
           >
             {/* Desktop Previous Button */}
@@ -964,7 +980,6 @@ export function GalleryView() {
 
           {/* Bottom Bar: Touch Navigation Indicators */}
           <div
-            onClick={(e) => e.stopPropagation()}
             className="flex flex-col items-center gap-2 z-20 w-full max-w-md mx-auto pb-1 text-center"
           >
             {/* Mobile Swipe Buttons (For Easy 1-Tap Thumb Navigation) */}

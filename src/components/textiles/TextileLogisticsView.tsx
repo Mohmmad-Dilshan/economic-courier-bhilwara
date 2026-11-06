@@ -408,14 +408,16 @@ export function TextileLogisticsView() {
 
                   {/* Paused Play Button Overlay */}
                   {!isPlaying && (
-                    <div
+                    <button
+                      type="button"
+                      aria-label="Play textile packaging video"
                       onClick={() => togglePlay()}
-                      className="absolute inset-0 flex items-center justify-center bg-black/35 cursor-pointer"
+                      className="absolute inset-0 w-full h-full flex items-center justify-center bg-black/35 cursor-pointer border-0"
                     >
                       <div className="w-12 h-12 rounded-full bg-[#DC2626] text-white flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
                         <Play className="w-5 h-5 fill-current ml-0.5 text-white" />
                       </div>
-                    </div>
+                    </button>
                   )}
 
                   {/* Clean Bottom Controls Pill (Icons Only, Zero Text Tags) */}

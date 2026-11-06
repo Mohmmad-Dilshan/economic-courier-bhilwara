@@ -1060,17 +1060,19 @@ export function AnimatedRouteMap() {
             }
 
             return (
-              <div
+              <button
+                type="button"
                 key={stop.id}
                 style={{
                   left: `${leftPercent}%`,
                   top: `${topPercent}%`,
                   transform: transformClass,
                 }}
-                className={`absolute z-20 cursor-pointer transition-all ${
+                className={`absolute z-20 cursor-pointer transition-all bg-transparent border-0 p-0 text-left ${
                   isSelected ? 'scale-105 z-30' : 'opacity-95'
                 }`}
                 onClick={() => handleSelectStop(stop, idx)}
+                aria-label={`Select route stop ${stop.name}`}
               >
                 {isOrigin ? (
                   <div className="bg-gradient-to-r from-[#DC2626] to-[#B91C1C] text-white px-2 py-1 rounded-lg shadow-sm border border-white text-left max-w-[130px]">
@@ -1097,7 +1099,7 @@ export function AnimatedRouteMap() {
                     </span>
                   </div>
                 )}
-              </div>
+              </button>
             );
           })}
         </div>

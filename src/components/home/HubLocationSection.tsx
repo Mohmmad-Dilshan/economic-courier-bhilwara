@@ -236,9 +236,11 @@ export function HubLocationSection() {
                   className="w-full h-full block"
                 />
               ) : (
-                <div
+                <button
+                  type="button"
                   onClick={() => setIsMapVisible(true)}
-                  className="w-full h-full flex flex-col items-center justify-center p-6 text-center cursor-pointer group"
+                  className="w-full h-full flex flex-col items-center justify-center p-6 text-center cursor-pointer group bg-transparent border-0"
+                  aria-label="Click to load interactive Google Map"
                 >
                   <div className="w-12 h-12 rounded-2xl bg-red-100 text-[#DC2626] flex items-center justify-center mb-3 group-hover:scale-110 transition-transform shadow-xs">
                     <MapPin className="w-6 h-6" />
@@ -249,7 +251,7 @@ export function HubLocationSection() {
                   <p className="text-xs text-slate-700 font-semibold mt-1 max-w-xs">
                     Click to load interactive Google Map
                   </p>
-                </div>
+                </button>
               )}
 
               {/* Floating Top-Left Hub Badge Overlay */}

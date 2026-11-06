@@ -381,7 +381,7 @@ export function RealMomentsSection() {
 
   return (
     <section id="gallery" className="py-8 sm:py-12 lg:py-16">
-      <div className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-[1240px] xl:max-w-[1360px] 2xl:max-w-[1480px] min-[1800px]:max-w-[1560px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-10">
         {/* Main Pale-Blue Frame */}
         <div className="bg-[#F0F5FA] rounded-3xl p-5 sm:p-8 lg:p-10 pb-10 sm:pb-14 lg:pb-20 border border-[#E2ECF5] shadow-xs">
           {/* Top Section Header: Left Typography + Right Instagram Action */}

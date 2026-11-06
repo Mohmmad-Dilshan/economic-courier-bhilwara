@@ -207,7 +207,7 @@ export function TrackShipmentView() {
           1. HERO SECTION & INTEGRATED SEARCH BAR
           ========================================================================= */}
       <section className="relative pt-6 sm:pt-10 lg:pt-14 pb-10 sm:pb-14 lg:pb-16 bg-gradient-to-b from-white via-slate-50 to-[#F1F5F9] border-b border-slate-200/90">
-        <div className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-[1240px] xl:max-w-[1360px] 2xl:max-w-[1480px] min-[1800px]:max-w-[1560px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-10">
           {/* Breadcrumbs & Live Operations Badge */}
           <div className="flex flex-wrap items-center justify-between gap-3 mb-5 sm:mb-8 text-xs font-medium text-slate-500">
             <nav aria-label="Breadcrumb" className="flex items-center gap-2">
@@ -384,7 +384,7 @@ export function TrackShipmentView() {
           id="tracking-result-box"
           className="py-8 sm:py-12 bg-white border-b border-slate-200 animate-in fade-in slide-in-from-top-3 duration-300"
         >
-          <div className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
+          <div className="max-w-[1240px] xl:max-w-[1360px] 2xl:max-w-[1480px] min-[1800px]:max-w-[1560px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 space-y-6">
             {/* Action Feedback Notice */}
             {actionNotice && (
               <div
@@ -494,7 +494,7 @@ export function TrackShipmentView() {
           3. FULL COURIER PARTNER NETWORK DIRECTORY ("Link Pate Ka" Grid)
           ========================================================================= */}
       <section className="py-12 sm:py-16 bg-[#F8FAFC] border-b border-slate-200">
-        <div className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+        <div className="max-w-[1240px] xl:max-w-[1360px] 2xl:max-w-[1480px] min-[1800px]:max-w-[1560px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 space-y-8">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
             <div className="max-w-2xl space-y-2">
               <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-red-50 border border-red-200/80 text-red-700 text-[11px] font-extrabold tracking-widest uppercase shadow-2xs">
@@ -646,7 +646,7 @@ export function TrackShipmentView() {
           3B. BHILWARA BOOKING DOCKET & RECEIPT GUIDE
           ========================================================================= */}
       <section className="py-12 sm:py-16 bg-white border-b border-slate-200">
-        <div className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+        <div className="max-w-[1240px] xl:max-w-[1360px] 2xl:max-w-[1480px] min-[1800px]:max-w-[1560px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 space-y-8">
           <div className="max-w-2xl space-y-2">
             <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-red-50 border border-red-200/80 text-red-700 text-[11px] font-extrabold tracking-widest uppercase shadow-2xs">
               <FileText className="w-3.5 h-3.5 text-red-700" />
@@ -785,7 +785,7 @@ export function TrackShipmentView() {
           4. BHILWARA DISPATCH COUNTER ASSISTANCE (Offline / Live Support)
           ========================================================================= */}
       <section className="py-12 sm:py-16 bg-white border-b border-slate-200">
-        <div className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-[1240px] xl:max-w-[1360px] 2xl:max-w-[1480px] min-[1800px]:max-w-[1560px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-10">
           <div className="rounded-3xl bg-gradient-to-br from-slate-900 via-slate-900 to-slate-950 text-white p-6 sm:p-8 lg:p-10 shadow-xl">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
               <div className="lg:col-span-8 space-y-3">
@@ -845,7 +845,7 @@ export function TrackShipmentView() {
           5. CARRIER INTEGRATION COMPLIANCE & TRANSPARENCY
           ========================================================================= */}
       <section className="py-12 sm:py-16 bg-[#F1F5F9] border-b border-slate-200">
-        <div className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-[1240px] xl:max-w-[1360px] 2xl:max-w-[1480px] min-[1800px]:max-w-[1560px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-10">
           <div className="max-w-3xl mx-auto rounded-3xl bg-white border border-slate-200 p-6 sm:p-8 shadow-sm space-y-4">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-xl bg-red-50 text-red-700 flex items-center justify-center border border-red-100">
@@ -897,7 +897,7 @@ export function TrackShipmentView() {
           6. TRACKING FAQ ACCORDION
           ========================================================================= */}
       <section className="py-12 sm:py-16 bg-white border-b border-slate-200">
-        <div className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-[1240px] xl:max-w-[1360px] 2xl:max-w-[1480px] min-[1800px]:max-w-[1560px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-10">
           <div className="max-w-2xl mb-8 space-y-2">
             <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-red-700 block">
               FREQUENTLY ASKED TRACKING QUESTIONS
@@ -947,7 +947,7 @@ export function TrackShipmentView() {
           7. RELATED LOGISTICS CAPABILITIES
           ========================================================================= */}
       <section className="py-12 sm:py-16 bg-[#F8FAFC]">
-        <div className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-[1240px] xl:max-w-[1360px] 2xl:max-w-[1480px] min-[1800px]:max-w-[1560px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-10">
           <div className="mb-6 sm:mb-8 max-w-xl">
             <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-red-700 block mb-1">
               EXPLORE LOGISTICS SERVICES

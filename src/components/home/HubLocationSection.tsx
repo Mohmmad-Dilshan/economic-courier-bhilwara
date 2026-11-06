@@ -55,7 +55,7 @@ export function HubLocationSection() {
 
   return (
     <section id="contact" className="py-12 sm:py-16 lg:py-20 bg-slate-50/60 scroll-mt-24 sm:scroll-mt-28 border-t border-slate-100">
-      <div className="max-w-[1240px] 2xl:max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-[1240px] xl:max-w-[1360px] 2xl:max-w-[1480px] min-[1800px]:max-w-[1560px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-10">
         {/* Section Header with 3D Hub Building Model */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center mb-8 sm:mb-10">
           {/* Left Title & Information */}

@@ -30,7 +30,7 @@ export function BusinessSolutionsView() {
           1. HERO SECTION (Clear, High-Impact & Direct for Bhilwara Businesses)
           ========================================================================= */}
       <section className="relative pt-6 sm:pt-8 lg:pt-12 pb-10 sm:pb-16 bg-white border-b border-slate-200">
-        <div className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 space-y-6 sm:space-y-8">
+        <div className="max-w-[1240px] xl:max-w-[1360px] 2xl:max-w-[1480px] min-[1800px]:max-w-[1560px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 space-y-6 sm:space-y-8">
           {/* Breadcrumbs & Hub Location Tag */}
           <div className="flex flex-wrap items-center justify-between gap-3 text-xs font-semibold text-slate-500">
             <nav aria-label="Breadcrumb" className="flex items-center gap-2">
@@ -115,7 +115,7 @@ export function BusinessSolutionsView() {
           2. CORE BUSINESS ADVANTAGES (Aapke Business Ko Kya Suvidha Milegi?)
           ========================================================================= */}
       <section className="py-10 sm:py-16 bg-[#F8FAFC] border-b border-slate-200">
-        <div className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 space-y-8 sm:space-y-10">
+        <div className="max-w-[1240px] xl:max-w-[1360px] 2xl:max-w-[1480px] min-[1800px]:max-w-[1560px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 space-y-8 sm:space-y-10">
           <div className="max-w-2xl space-y-1.5">
             <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-[#DC2626] block">
               BUSINESS ADVANTAGES
@@ -238,7 +238,7 @@ export function BusinessSolutionsView() {
           3. WHO WE SUPPORT ACROSS BHILWARA (Industry-Specific Solutions)
           ========================================================================= */}
       <section className="py-10 sm:py-16 bg-white border-b border-slate-200">
-        <div className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 space-y-8 sm:space-y-10">
+        <div className="max-w-[1240px] xl:max-w-[1360px] 2xl:max-w-[1480px] min-[1800px]:max-w-[1560px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 space-y-8 sm:space-y-10">
           <div className="max-w-2xl space-y-1.5">
             <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-[#DC2626] block">
               TARGET COMMERCIAL SECTORS
@@ -363,7 +363,7 @@ export function BusinessSolutionsView() {
           4. MAJOR TRADE CORRIDORS (Kahan-Kahan Daily Jaata Hai?)
           ========================================================================= */}
       <section className="py-10 sm:py-16 bg-[#F0F5FA] border-b border-[#E2E8F0]">
-        <div className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 space-y-8 sm:space-y-10">
+        <div className="max-w-[1240px] xl:max-w-[1360px] 2xl:max-w-[1480px] min-[1800px]:max-w-[1560px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 space-y-8 sm:space-y-10">
           <div className="max-w-2xl space-y-1.5">
             <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-[#DC2626] block">
               DAILY TRADE CORRIDORS
@@ -486,7 +486,7 @@ export function BusinessSolutionsView() {
           5. EASY 3-STEP ONBOARDING (Aapka Business Account Kaise Start Hoga?)
           ========================================================================= */}
       <section className="py-10 sm:py-16 bg-white border-b border-slate-200">
-        <div className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 space-y-8 sm:space-y-10">
+        <div className="max-w-[1240px] xl:max-w-[1360px] 2xl:max-w-[1480px] min-[1800px]:max-w-[1560px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 space-y-8 sm:space-y-10">
           <div className="max-w-2xl space-y-1.5">
             <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-[#DC2626] block">
               SIMPLE ONBOARDING
@@ -549,7 +549,7 @@ export function BusinessSolutionsView() {
           6. DIRECT ACTION BENTO CARD (Contact / Call / WhatsApp)
           ========================================================================= */}
       <section className="py-10 sm:py-16 bg-[#F8FAFC]">
-        <div className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-[1240px] xl:max-w-[1360px] 2xl:max-w-[1480px] min-[1800px]:max-w-[1560px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-10">
           <div className="rounded-2xl sm:rounded-3xl bg-gradient-to-br from-slate-900 via-slate-900 to-slate-950 text-white p-6 sm:p-10 lg:p-12 shadow-xl border border-slate-800 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8">
             <div className="space-y-3 max-w-2xl">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#DC2626]/30 border border-red-500/40 text-red-400 text-[11px] font-bold uppercase tracking-wider">

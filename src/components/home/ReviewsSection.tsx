@@ -105,7 +105,7 @@ export function ReviewsSection() {
       id="reviews"
       className="py-10 sm:py-14 lg:py-16 bg-white scroll-mt-24 sm:scroll-mt-28 overflow-hidden"
     >
-      <div className="max-w-[1240px] 2xl:max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-[1240px] xl:max-w-[1360px] 2xl:max-w-[1480px] min-[1800px]:max-w-[1560px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-10">
         {/* Master Contained Card (Exact soft-blue canvas with clean contrast) */}
         <div className="relative rounded-3xl bg-gradient-to-br from-[#F0F6FD] via-[#F5F9FE] to-[#EBF3FB] border border-[#DCE7F5] p-6 sm:p-8 lg:p-9 shadow-sm overflow-hidden">
           {/* Subtle background curved lines */}

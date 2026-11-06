@@ -30,7 +30,7 @@ export function HowItWorksSection() {
         </ol>
       </div>
 
-      <div className="max-w-[1240px] mx-auto px-3.5 sm:px-6 lg:px-8">
+      <div className="max-w-[1240px] xl:max-w-[1360px] 2xl:max-w-[1480px] min-[1800px]:max-w-[1560px] mx-auto px-3.5 sm:px-6 lg:px-8 xl:px-10">
         {/* =========================================================================
             1. DESKTOP, LARGE SIZE & TABLET VIEW (>= 640px)
             Ultra-High-Resolution (2172x724) Panoramic Infographic — 100% Crisp

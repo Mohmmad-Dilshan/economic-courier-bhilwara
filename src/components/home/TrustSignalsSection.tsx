@@ -40,7 +40,7 @@ export function TrustSignalsSection() {
 
   return (
     <section className="py-12 lg:py-16 bg-white border-b border-slate-100">
-      <div className="max-w-[1240px] 2xl:max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-[1240px] xl:max-w-[1360px] 2xl:max-w-[1480px] min-[1800px]:max-w-[1560px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-10">
         <div className="text-center max-w-2xl mx-auto mb-10 lg:mb-12 space-y-3">
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-100 border border-slate-200 text-slate-700 text-[11px] font-bold tracking-widest uppercase shadow-2xs">
             <span>OPERATIONAL FOUNDATION</span>

@@ -111,7 +111,7 @@ export default function HomePage() {
         id="tracking"
         className="relative pt-6 pb-8 lg:pt-10 lg:pb-12 overflow-hidden bg-[radial-gradient(ellipse_at_top_left,#EBF5FB_0%,#F8FBFE_50%,#FFFFFF_100%)]"
       >
-        <div className="max-w-[1240px] 2xl:max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-[1240px] xl:max-w-[1360px] 2xl:max-w-[1480px] min-[1800px]:max-w-[1560px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 xl:gap-12 items-center">
             {/* Left Content Column */}
             <div className="lg:col-span-6 space-y-5">
@@ -252,7 +252,7 @@ export default function HomePage() {
           2. SERVICE HIGHLIGHTS BAR (Single Pale Blue Bar Evenly Spaced, Directly Under Hero)
           ========================================================================= */}
       <section className="py-2 sm:py-3">
-        <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-[1240px] xl:max-w-[1360px] 2xl:max-w-[1480px] min-[1800px]:max-w-[1560px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-10">
           <div className="bg-[#F0F7FD] rounded-2xl py-3 px-4 sm:px-8 border border-[#E0EDF8] grid grid-cols-2 md:flex md:items-center md:justify-between gap-3 sm:gap-4 md:gap-6 shadow-2xs ">
             <div className="flex items-center gap-2 sm:gap-2.5 text-[12px] sm:text-[13px] font-bold text-slate-800 flex-1 justify-start ">
               <div className="w-6 h-6 rounded-md bg-white text-[#DC2626] shadow-2xs flex items-center justify-center shrink-0 border border-red-100/60">
@@ -299,7 +299,7 @@ export default function HomePage() {
           5. OUR SERVICES SECTION (SwipeTrip-Inspired Floating Polaroid Photo Cards)
           ========================================================================= */}
       <section id="services" className="py-10 lg:py-16 bg-[#FAF7F2]/60 scroll-mt-20 sm:scroll-mt-24">
-        <div className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-[1240px] xl:max-w-[1360px] 2xl:max-w-[1480px] min-[1800px]:max-w-[1560px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-10">
           {/* Section Header */}
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 mb-8  relative">
             <div className="max-w-xl space-y-2.5 z-10">
@@ -423,7 +423,7 @@ export default function HomePage() {
           9. ABOUT US SECTION (Clean Reference UI: eCS Collage + Clean Copy)
           ========================================================================= */}
       <section id="about" className="py-8 sm:py-12 lg:py-16 scroll-mt-20 sm:scroll-mt-24">
-        <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-[1240px] xl:max-w-[1360px] 2xl:max-w-[1480px] min-[1800px]:max-w-[1560px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
             {/* Left Photo Collage (eCS Wall Logo, Team & Van) */}
             <div className="lg:col-span-6 relative flex justify-center lg:justify-start ">

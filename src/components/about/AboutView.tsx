@@ -39,7 +39,7 @@ export function AboutView() {
           aria-hidden="true"
         />
 
-        <div className="relative max-w-[1240px] 2xl:max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+        <div className="relative max-w-[1240px] xl:max-w-[1360px] 2xl:max-w-[1480px] min-[1800px]:max-w-[1560px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 space-y-8">
           {/* Top Breadcrumb & Hub Location Pill */}
           <div className="flex flex-wrap items-center justify-between gap-3 text-xs font-semibold text-slate-500">
             <nav aria-label="Breadcrumb" className="flex items-center gap-2">
@@ -160,7 +160,7 @@ export function AboutView() {
           2. LEADERSHIP SHOWCASE — MR. CHANDRA SHEKHAR PANECHA (NEXT LEVEL)
           ========================================================================= */}
       <section id="leadership" className="py-12 sm:py-16 lg:py-20 bg-white border-b border-slate-200 scroll-mt-12">
-        <div className="max-w-[1240px] 2xl:max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8 space-y-10 sm:space-y-12">
+        <div className="max-w-[1240px] xl:max-w-[1360px] 2xl:max-w-[1480px] min-[1800px]:max-w-[1560px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 space-y-10 sm:space-y-12">
           {/* Section Header */}
           <div className="text-center max-w-2xl mx-auto space-y-3">
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-100 border border-slate-200 text-slate-800 text-[11px] font-extrabold tracking-wider uppercase">
@@ -341,7 +341,7 @@ export function AboutView() {
           3. DUAL BRAND OPERATIONAL STRUCTURE
           ========================================================================= */}
       <section className="py-12 sm:py-16 lg:py-20 bg-slate-50/70 border-b border-slate-200">
-        <div className="max-w-[1240px] 2xl:max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8 space-y-10 sm:space-y-12">
+        <div className="max-w-[1240px] xl:max-w-[1360px] 2xl:max-w-[1480px] min-[1800px]:max-w-[1560px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 space-y-10 sm:space-y-12">
           <div className="text-center max-w-2xl mx-auto space-y-3">
             <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white border border-slate-200 text-slate-700 text-[11px] font-bold tracking-widest uppercase shadow-2xs">
               <Building2 className="w-3.5 h-3.5 text-[#DC2626]" />
@@ -459,7 +459,7 @@ export function AboutView() {
           4. WHAT IS ECONOMIC COURIER? (OUR COMPANY, SERVICES & HOW IT WORKS)
           ========================================================================= */}
       <section className="py-12 sm:py-16 lg:py-20 bg-white border-b border-slate-200">
-        <div className="max-w-[1240px] 2xl:max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8 space-y-12 sm:space-y-16">
+        <div className="max-w-[1240px] xl:max-w-[1360px] 2xl:max-w-[1480px] min-[1800px]:max-w-[1560px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 space-y-12 sm:space-y-16">
           {/* Section Header */}
           <div className="text-center max-w-3xl mx-auto space-y-3">
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-red-50 border border-red-200 text-[#DC2626] text-[11px] font-extrabold tracking-wider uppercase">
@@ -650,7 +650,7 @@ export function AboutView() {
           6. FOUR OPERATIONAL RIGOR STANDARDS
           ========================================================================= */}
       <section className="py-12 sm:py-16 lg:py-20 bg-white border-b border-slate-200">
-        <div className="max-w-[1240px] 2xl:max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8 space-y-10 sm:space-y-12">
+        <div className="max-w-[1240px] xl:max-w-[1360px] 2xl:max-w-[1480px] min-[1800px]:max-w-[1560px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 space-y-10 sm:space-y-12">
           <div className="text-center max-w-2xl mx-auto space-y-3">
             <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-100 border border-slate-200 text-slate-700 text-[11px] font-bold tracking-widest uppercase shadow-2xs">
               <ShieldCheck className="w-3.5 h-3.5 text-[#DC2626]" />
@@ -712,7 +712,7 @@ export function AboutView() {
           7. BOTTOM ACTION CTA (BALANCED EDITORIAL STYLE — NOT OVERLY DARK)
           ========================================================================= */}
       <section className="py-12 lg:py-16 bg-gradient-to-br from-slate-900 via-[#0F172A] to-slate-900 text-white relative overflow-hidden">
-        <div className="max-w-[1240px] 2xl:max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center space-y-6">
+        <div className="max-w-[1240px] xl:max-w-[1360px] 2xl:max-w-[1480px] min-[1800px]:max-w-[1560px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 relative z-10 text-center space-y-6">
           <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-white/10 text-red-400 text-[11px] font-extrabold tracking-widest uppercase border border-white/15">
             <span>READY TO DISPATCH FROM BHILWARA?</span>
           </div>

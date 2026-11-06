@@ -40,7 +40,7 @@ export function Footer() {
 
   return (
     <footer className="relative bg-white text-slate-700 border-t border-slate-200/90 overflow-hidden">
-      <div className="max-w-[1240px] 2xl:max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-[1240px] xl:max-w-[1360px] 2xl:max-w-[1480px] min-[1800px]:max-w-[1560px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 relative z-10">
         {/* =========================================================================
             TOP PRE-FOOTER: 4 Corridor Authority Trust Badges (Clean Light Theme)
             ========================================================================= */}

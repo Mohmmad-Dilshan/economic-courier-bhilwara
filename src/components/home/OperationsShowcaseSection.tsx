@@ -102,7 +102,7 @@ const TRACK_2_PHOTOS: ShowcasePhoto[] = [
 export function OperationsShowcaseSection() {
   return (
     <section className="relative py-12 sm:py-16 lg:py-20 bg-[#F8FAFC] border-y border-slate-200/80 overflow-hidden select-none">
-      <div className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 mb-8 sm:mb-10 text-center">
+      <div className="max-w-[1240px] xl:max-w-[1360px] 2xl:max-w-[1480px] min-[1800px]:max-w-[1560px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 mb-8 sm:mb-10 text-center">
         {/* Top Badge */}
         <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-red-50 border border-red-200 text-[#DC2626] text-[11px] font-extrabold tracking-wider uppercase shadow-2xs mb-3">
           <span className="w-2 h-2 rounded-full bg-[#DC2626] animate-pulse" />

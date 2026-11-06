@@ -123,7 +123,7 @@ export function NetworkPartnersSection() {
         aria-hidden="true"
       />
 
-      <div className="relative max-w-[1240px] mx-auto px-3.5 sm:px-6 lg:px-8 space-y-8 sm:space-y-12">
+      <div className="relative max-w-[1240px] xl:max-w-[1360px] 2xl:max-w-[1480px] min-[1800px]:max-w-[1560px] mx-auto px-3.5 sm:px-6 lg:px-8 xl:px-10 space-y-8 sm:space-y-12">
 
         {/* ── 1. SECTION HEADER (Title & 3D Logistics Visual Object) ─────────────────────────── */}
         <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 sm:gap-8 pb-4 border-b border-slate-200/70">

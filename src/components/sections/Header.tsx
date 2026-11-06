@@ -131,7 +131,7 @@ export function Header() {
           aria-hidden="true"
         />
 
-        <div className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-[1240px] xl:max-w-[1360px] 2xl:max-w-[1480px] min-[1800px]:max-w-[1560px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-10">
           <div className="flex items-center justify-between h-16 sm:h-[68px] lg:h-[72px]">
             {/* Left: Official eCS Logo + Economic Courier Bhilwara Hub Lockup */}
             <Link

@@ -178,7 +178,7 @@ export function ContactView() {
           aria-hidden="true"
         />
 
-        <div className="relative max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 space-y-6 lg:space-y-8">
+        <div className="relative max-w-[1240px] xl:max-w-[1360px] 2xl:max-w-[1480px] min-[1800px]:max-w-[1560px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 space-y-6 lg:space-y-8">
           {/* Top Breadcrumb & Hub Location Pill */}
           <div className="flex flex-wrap items-center justify-between gap-3 text-xs font-semibold text-slate-500">
             <nav aria-label="Breadcrumb" className="flex items-center gap-2">
@@ -338,7 +338,7 @@ export function ContactView() {
           2. 4 QUICK-ACTION DIRECT CHANNELS (REAL VERIFIED DATA)
           ========================================================================= */}
       <section className="py-8 sm:py-12 bg-[#F8FAFC] border-b border-slate-200">
-        <div className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-[1240px] xl:max-w-[1360px] 2xl:max-w-[1480px] min-[1800px]:max-w-[1560px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-10">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
             {/* Action 1: Direct Voice Call */}
             <div className="p-5 sm:p-6 rounded-2xl bg-white border border-slate-200/90 hover:border-red-300 hover:shadow-lg transition-all flex flex-col justify-between space-y-4 group">
@@ -469,7 +469,7 @@ export function ContactView() {
           3. CORE SECTION: LOCATION & FACILITIES (LEFT) + INQUIRY FORM (RIGHT)
           ========================================================================= */}
       <section className="py-10 sm:py-16 bg-white border-b border-slate-200">
-        <div className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-[1240px] xl:max-w-[1360px] 2xl:max-w-[1480px] min-[1800px]:max-w-[1560px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
             {/* ─────────────────────────────────────────────────────────────────
                 LEFT COLUMN: Real Location Details & Counter Facilities
@@ -976,7 +976,7 @@ export function ContactView() {
           4. WALK-IN VISITOR FAQ / COMMON QUESTIONS
           ========================================================================= */}
       <section className="py-10 sm:py-16 bg-[#F8FAFC] border-b border-slate-200">
-        <div className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+        <div className="max-w-[1240px] xl:max-w-[1360px] 2xl:max-w-[1480px] min-[1800px]:max-w-[1560px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 space-y-8">
           <div className="max-w-2xl space-y-1.5">
             <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-[#DC2626] block">
               WALK-IN &amp; BOOKING GUIDELINES

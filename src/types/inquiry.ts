@@ -30,6 +30,7 @@ export interface CustomerInquiryFormData {
   destination?: string;
   approxWeight?: WeightBracketOption | '';
   message: string;
+  consentGiven?: boolean;
 }
 
 export interface InquiryFieldErrors {
@@ -40,6 +41,7 @@ export interface InquiryFieldErrors {
   destination?: string;
   approxWeight?: string;
   message?: string;
+  consentGiven?: string;
   general?: string;
 }
 

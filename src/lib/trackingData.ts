@@ -3,7 +3,7 @@ import { ConsignmentDemoResult } from '@/types/tracking';
 export const DEMO_SHIPMENTS: Record<string, ConsignmentDemoResult> = {
   'DEMO-ECS-1001': {
     consignmentId: 'DEMO-ECS-1001',
-    senderCity: 'Bhilwara (Pur Road Hub) [DEMO]',
+    senderCity: 'Bhilwara (Hub Counter) [DEMO]',
     destinationCity: 'Mumbai (Andheri Garment District) [DEMO]',
     serviceType: 'Textile Fabric Sample Express [DEMO SIMULATION]',
     status: 'In Transit',

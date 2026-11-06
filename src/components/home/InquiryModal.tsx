@@ -226,7 +226,7 @@ export function InquiryModal({ isOpen, onClose, initialService }: InquiryModalPr
     const summaryLines = [
       '========================================',
       'ECONOMIC COURIER & CARGO — INQUIRY SLIP',
-      'Bhilwara Hub: Pur Road, Bhilwara (Raj.)',
+      'Bhilwara Hub: Economic Courier, Bhilwara (Raj.)',
       '========================================',
       `Customer Name    : ${p.customerName || 'N/A'}`,
       `Contact          : ${p.contact || 'N/A'}`,

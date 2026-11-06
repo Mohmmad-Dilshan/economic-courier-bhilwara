@@ -26,16 +26,16 @@ export const BUSINESS_DATA: BusinessData = {
   },
 
   googleMaps: {
-    url: 'https://share.google/qFnFe077dnj6QUEwb',
-    provenance: 'user-provided-reference',
-    verified: false,
-    notes: 'User-provided Google Maps link. Listing ownership, address, and timings not independently verified.',
+    url: 'https://share.google/XGfOCGnHDKHlCOUaw',
+    provenance: 'verified-by-owner',
+    verified: true,
+    notes: 'Official Google Business / Maps profile verified directly from client.',
   },
 
-  // Unconfirmed placeholders
+  // Verified office address from Google Business Profile
   physicalAddressPlaceholder:
-    'Shop No. [X], Near Textile Market / Pur Road, Bhilwara, Rajasthan 311001',
-  addressVerified: false,
+    'Opposite New Cloth Market, Railway Staff Quarter Area, Bhilwara, Rajasthan 311001',
+  addressVerified: true,
 
   operatingHoursPlaceholder:
     'Monday – Saturday: 9:30 AM – 8:30 PM [Pending Client Confirmation]',

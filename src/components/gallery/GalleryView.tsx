@@ -196,12 +196,6 @@ const GALLERY_PHOTOS: GalleryPhoto[] = [
   },
 ];
 
-const PHOTO_CATEGORY_BADGES: Record<GalleryPhoto['category'], string> = {
-  hub: 'HUB & COUNTER',
-  textile: 'TEXTILE LOGISTICS',
-  fleet: 'EXPRESS FLEET',
-};
-
 // ─── Reusable Editorial Photo Card Component ──────────────────────────────────
 interface EditorialPhotoCardProps {
   photo: GalleryPhoto;
@@ -244,23 +238,8 @@ function EditorialPhotoCard({
         className="object-cover group-hover:scale-[1.04] transition-transform duration-700 ease-out"
       />
 
-      {/* Mobile App Bottom Info Card (App Feed Look) */}
-      <div className="absolute inset-x-0 bottom-0 p-2 sm:p-2.5 bg-gradient-to-t from-slate-950/85 via-slate-950/40 to-transparent pointer-events-none">
-        <div className="flex items-center justify-between gap-1">
-          <span className="px-1.5 py-0.5 rounded-md bg-white/20 backdrop-blur-md text-[9px] sm:text-[10px] font-extrabold uppercase tracking-wider text-white border border-white/20">
-            {PHOTO_CATEGORY_BADGES[photo.category]}
-          </span>
-          <span className="text-[10px] text-white/80 font-mono font-bold">
-            #{index + 1}
-          </span>
-        </div>
-        <p className="text-[11px] sm:text-xs font-semibold text-white truncate mt-0.5 sm:mt-1 drop-shadow-xs">
-          {photo.title}
-        </p>
-      </div>
-
-      {/* Desktop Hover Veil & Maximize Icon */}
-      <div className="hidden sm:flex absolute inset-0 bg-slate-950/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 items-center justify-center pointer-events-none">
+      {/* Pure Editorial Hover Veil & Maximize Icon */}
+      <div className="absolute inset-0 bg-slate-950/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center pointer-events-none">
         <span className="w-10 h-10 rounded-full bg-white/35 backdrop-blur-md flex items-center justify-center text-white shadow-xl transform scale-90 group-hover:scale-100 transition-transform duration-300">
           <Maximize2 className="w-4 h-4" />
         </span>

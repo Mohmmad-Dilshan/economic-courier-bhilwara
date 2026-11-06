@@ -29,41 +29,11 @@ import {
   InquirySubmissionResult,
   InquirySubmissionStatus,
 } from '@/types/inquiry';
-import { validateInquiryForm } from '@/lib/inquiry';
-
-function formatServiceType(type?: string): string {
-  switch (type) {
-    case 'domestic':
-      return 'Domestic Express Courier (All India)';
-    case 'international':
-      return 'International Air Cargo (eCS Worldwide Express)';
-    case 'documents':
-      return 'Documents & Confidential Parcels';
-    case 'textiles':
-      return 'Bhilwara Textile / Fabric Swatch Samples';
-    case 'other':
-      return 'B2B Commercial Logistics & Rate Inquiry';
-    default:
-      return type || 'General Inquiry';
-  }
-}
-
-function formatWeightBracket(weight?: string): string {
-  switch (weight) {
-    case 'under-0.5kg':
-      return 'Under 0.5 kg (Letters, Docs & Packets)';
-    case '0.5-2kg':
-      return '0.5–2 kg (Standard Parcel & Swatches)';
-    case '2-5kg':
-      return '2–5 kg (Medium Box / Fabric Bundles)';
-    case '5kg-plus':
-      return '5+ kg (Heavy Parcels)';
-    case 'commercial-freight':
-      return 'Commercial Freight (B2B Cargo & Bulk Textiles)';
-    default:
-      return weight || 'Not specified';
-  }
-}
+import {
+  validateInquiryForm,
+  formatServiceType,
+  formatWeightBracket,
+} from '@/lib/inquiry';
 
 export function ContactView() {
   const [formData, setFormData] = useState<CustomerInquiryFormData>({
@@ -938,8 +908,12 @@ export function ContactView() {
                             : 'bg-white border-slate-200'
                         }`}
                       >
-                        <label className="flex items-start gap-3 cursor-pointer select-none">
+                        <label
+                          htmlFor="contact-inquiry-consentGiven"
+                          className="flex items-start gap-3 cursor-pointer select-none"
+                        >
                           <input
+                            id="contact-inquiry-consentGiven"
                             type="checkbox"
                             checked={formData.consentGiven}
                             onChange={(e) => handleChange('consentGiven', e.target.checked)}

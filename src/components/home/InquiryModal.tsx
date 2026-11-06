@@ -19,46 +19,17 @@ import {
   InquirySubmissionResult,
   InquirySubmissionStatus,
 } from '@/types/inquiry';
-import { validateInquiryForm, submitCustomerInquiry } from '@/lib/inquiry';
+import {
+  validateInquiryForm,
+  submitCustomerInquiry,
+  formatServiceType,
+  formatWeightBracket,
+} from '@/lib/inquiry';
 
 interface InquiryModalProps {
   isOpen: boolean;
   onClose: () => void;
   initialService?: string;
-}
-
-function formatServiceType(type?: string): string {
-  switch (type) {
-    case 'domestic':
-      return 'Domestic Express Courier (All India)';
-    case 'international':
-      return 'International Courier (eCS Express Worldwide)';
-    case 'documents':
-      return 'Documents & Confidential Parcels';
-    case 'textiles':
-      return 'Bhilwara Textile / Fabric Swatch Samples';
-    case 'other':
-      return 'General Logistics & Rate Inquiry';
-    default:
-      return type || 'General Inquiry';
-  }
-}
-
-function formatWeightBracket(weight?: string): string {
-  switch (weight) {
-    case 'under-0.5kg':
-      return 'Under 0.5 kg (Letters, Docs & Packets)';
-    case '0.5-2kg':
-      return '0.5–2 kg (Standard Parcel & Swatches)';
-    case '2-5kg':
-      return '2–5 kg (Medium Box / Fabric Bundles)';
-    case '5kg-plus':
-      return '5+ kg (Heavy Parcels)';
-    case 'commercial-freight':
-      return 'Commercial Freight (B2B Cargo & Bulk Textiles)';
-    default:
-      return weight || 'Not specified';
-  }
 }
 
 export function InquiryModal({ isOpen, onClose, initialService }: InquiryModalProps) {

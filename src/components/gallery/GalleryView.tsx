@@ -212,9 +212,11 @@ function EditorialPhotoCard({
   onSelect,
 }: EditorialPhotoCardProps) {
   return (
-    <div
+    <button
+      type="button"
       onClick={() => onSelect(index)}
-      className={`group relative overflow-hidden bg-slate-100 border border-slate-200/90 hover:border-slate-400/90 shadow-2xs hover:shadow-2xl hover:-translate-y-1 transition-all duration-500 ease-out cursor-pointer select-none w-full min-w-0 ${
+      aria-label={`View photograph: ${photo.title}`}
+      className={`group relative overflow-hidden bg-slate-100 border border-slate-200/90 hover:border-slate-400/90 shadow-2xs hover:shadow-2xl hover:-translate-y-1 transition-all duration-500 ease-out cursor-pointer select-none w-full min-w-0 text-left p-0 focus:outline-hidden focus:ring-2 focus:ring-[#DC2626] ${
         isHero
           ? 'rounded-2xl sm:rounded-3xl'
           : 'rounded-xl sm:rounded-2xl'
@@ -239,7 +241,7 @@ function EditorialPhotoCard({
           <Maximize2 className="w-4 h-4" />
         </span>
       </div>
-    </div>
+    </button>
   );
 }
 

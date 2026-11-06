@@ -285,91 +285,60 @@ function VideoCard({ video, index, activeVideoId, onActivate }: VideoCardProps) 
         className="w-full h-full object-cover"
       />
 
-      {/* Top Floating Badge Bar */}
-      <div className="absolute top-2.5 sm:top-3 inset-x-2.5 sm:inset-x-3 flex items-center justify-between z-10 pointer-events-none">
-        <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-slate-950/85 text-[10px] font-black text-white uppercase tracking-wider border border-white/20 backdrop-blur-md">
-          <span className="w-1.5 h-1.5 rounded-full bg-[#DC2626] animate-pulse" />
-          <span>{video.tag}</span>
-        </span>
-
-        {isActive && !isMuted ? (
-          <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-[#DC2626] text-[9px] font-black text-white tracking-widest uppercase">
-            VOICE ON
-          </span>
-        ) : (
-          <span className="w-6 h-6 rounded-full bg-slate-950/80 text-white/90 flex items-center justify-center text-[10px] font-mono font-bold border border-white/20">
-            0{index + 1}
-          </span>
-        )}
-      </div>
-
       {/* Center Paused Button Indicator */}
       {!isPlaying && (
-        <div className="absolute inset-0 flex items-center justify-center z-10 pointer-events-none bg-slate-950/30 transition-all">
+        <div className="absolute inset-0 flex items-center justify-center z-10 pointer-events-none bg-slate-950/20 transition-all">
           <div className="w-12 h-12 rounded-full bg-white text-slate-950 flex items-center justify-center shadow-2xl group-hover:scale-110 transition-transform">
             <Play className="w-5 h-5 fill-current ml-0.5 text-slate-950" />
           </div>
         </div>
       )}
 
-      {/* Bottom Gradient Overlay & Video Info */}
-      <div className="absolute inset-x-0 bottom-0 pt-16 pb-3 px-3 bg-gradient-to-t from-slate-950 via-slate-950/80 to-transparent flex flex-col justify-end text-white z-10">
-        <div className="flex items-center gap-1 text-[10px] text-red-400 font-bold mb-1">
-          <MapPin className="w-3 h-3 text-red-400 shrink-0" />
-          <span className="truncate">{video.location}</span>
-        </div>
-
-        <h3 className="text-xs sm:text-sm font-black leading-tight line-clamp-1 mb-1">{video.title}</h3>
-        <p className="text-[10px] sm:text-[11px] text-slate-300 font-normal line-clamp-1 leading-snug mb-2 sm:mb-2.5">
-          {video.subtitle}
-        </p>
-
-        {/* Action Controls Bar */}
-        <div className="flex items-center justify-between pt-2 border-t border-white/10 text-xs">
+      {/* Sleek Floating Bottom Controls Pill (Pure Icons, Zero Text Tags) */}
+      <div className="absolute bottom-2.5 sm:bottom-3 inset-x-2.5 sm:inset-x-3 flex items-center justify-between z-10 pointer-events-auto">
+        <div className="inline-flex items-center gap-1 p-1 rounded-full bg-slate-950/80 backdrop-blur-md border border-white/20 shadow-lg">
           <button
             type="button"
             onClick={handleTogglePlay}
-            className="inline-flex items-center gap-1 text-[11px] font-bold text-white hover:text-red-400 transition-colors"
+            aria-label={isPlaying ? 'Pause' : 'Play'}
+            className="w-6 h-6 rounded-full bg-white text-slate-950 flex items-center justify-center cursor-pointer shadow-xs hover:bg-slate-100 transition-colors"
           >
             {isPlaying ? (
-              <>
-                <Pause className="w-3.5 h-3.5 fill-current text-red-400" />
-                <span>Pause</span>
-              </>
+              <Pause className="w-3 h-3 fill-current text-[#DC2626]" />
             ) : (
-              <>
-                <Play className="w-3.5 h-3.5 fill-current text-white" />
-                <span>Play</span>
-              </>
+              <Play className="w-3 h-3 fill-current ml-0.5 text-slate-950" />
             )}
           </button>
 
-          <div className="flex items-center gap-2">
-            <button
-              type="button"
-              onClick={handleToggleVoice}
-              className="p-1 rounded-full bg-white/15 hover:bg-white/25 text-white transition-colors"
-              title={isMuted ? 'Turn Sound On' : 'Mute'}
-            >
-              {isMuted || !isActive ? (
-                <VolumeX className="w-3.5 h-3.5 text-slate-300" />
-              ) : (
-                <Volume2 className="w-3.5 h-3.5 text-emerald-400" />
-              )}
-            </button>
-
-            <a
-              href={BUSINESS_INFO.instagramUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={(e) => e.stopPropagation()}
-              className="p-1 rounded-full bg-white/15 hover:bg-[#DC2626] text-white transition-colors"
-              title="Open on Instagram"
-            >
-              <InstagramIcon size={14} />
-            </a>
-          </div>
+          <button
+            type="button"
+            onClick={handleToggleVoice}
+            aria-label={isMuted || !isActive ? 'Unmute Voice' : 'Mute Voice'}
+            className={`w-6 h-6 rounded-full flex items-center justify-center cursor-pointer transition-colors ${
+              isMuted || !isActive
+                ? 'bg-slate-800 text-slate-300'
+                : 'bg-[#DC2626] text-white'
+            }`}
+          >
+            {isMuted || !isActive ? (
+              <VolumeX className="w-3 h-3" />
+            ) : (
+              <Volume2 className="w-3 h-3" />
+            )}
+          </button>
         </div>
+
+        <a
+          href={BUSINESS_INFO.instagramUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={(e) => e.stopPropagation()}
+          className="w-7 h-7 rounded-full bg-slate-950/80 backdrop-blur-md border border-white/20 flex items-center justify-center text-white hover:bg-[#DC2626] transition-colors shadow-lg"
+          title="Open on Instagram"
+          aria-label="Open on Instagram"
+        >
+          <InstagramIcon size={13} />
+        </a>
       </div>
     </div>
   );

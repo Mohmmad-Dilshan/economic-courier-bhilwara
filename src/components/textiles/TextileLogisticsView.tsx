@@ -32,13 +32,13 @@ export function TextileLogisticsView() {
   const [inquiryModalOpen, setInquiryModalOpen] = useState(false);
   const [inquiryService, setInquiryService] = useState<string>('textiles');
 
-  // Video reel state for packing demo (Voice Auto Enabled)
+  // Video reel state for packing demo
   const videoRef = useRef<HTMLVideoElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const [isPlaying, setIsPlaying] = useState(false);
-  const [isMuted, setIsMuted] = useState(false);
+  const [isMuted, setIsMuted] = useState(true);
 
-  // Viewport-aware autoplay & automatic voice activation
+  // Viewport-aware silent autoplay (Voice plays ONLY when user clicks play/video)
   useEffect(() => {
     const container = containerRef.current;
     const el = videoRef.current;
@@ -50,45 +50,18 @@ export function TextileLogisticsView() {
 
     if (prefersReducedMotion) return;
 
-    // Helper to auto-unmute as soon as the user interacts anywhere with the page
-    const enableAudioOnFirstGesture = () => {
-      if (el) {
-        el.muted = false;
-        setIsMuted(false);
-        if (el.paused) {
-          el.play().then(() => setIsPlaying(true)).catch(() => {});
-        }
-      }
-      window.removeEventListener('click', enableAudioOnFirstGesture);
-      window.removeEventListener('touchstart', enableAudioOnFirstGesture);
-      window.removeEventListener('keydown', enableAudioOnFirstGesture);
-    };
-
-    window.addEventListener('click', enableAudioOnFirstGesture, { passive: true });
-    window.addEventListener('touchstart', enableAudioOnFirstGesture, { passive: true });
-    window.addEventListener('keydown', enableAudioOnFirstGesture, { passive: true });
-
     const observer = new IntersectionObserver(
       (entries) => {
         const entry = entries[0];
         if (!entry) return;
 
         if (entry.isIntersecting && entry.intersectionRatio >= 0.35) {
-          // Attempt 1: Try autoplaying with voice directly
-          el.muted = false;
+          // Always silent autoplay on scroll - never auto-play voice on page load
+          el.muted = true;
+          setIsMuted(true);
           const p = el.play();
           if (p !== undefined) {
-            p.then(() => {
-              setIsPlaying(true);
-              setIsMuted(false);
-            }).catch(() => {
-              // If browser blocks unmuted autoplay, fallback to muted temporarily until user touches
-              el.muted = true;
-              setIsMuted(true);
-              el.play()
-                .then(() => setIsPlaying(true))
-                .catch(() => setIsPlaying(false));
-            });
+            p.then(() => setIsPlaying(true)).catch(() => setIsPlaying(false));
           }
         } else if (!entry.isIntersecting && !el.paused) {
           el.pause();
@@ -99,12 +72,7 @@ export function TextileLogisticsView() {
     );
 
     observer.observe(container);
-    return () => {
-      observer.disconnect();
-      window.removeEventListener('click', enableAudioOnFirstGesture);
-      window.removeEventListener('touchstart', enableAudioOnFirstGesture);
-      window.removeEventListener('keydown', enableAudioOnFirstGesture);
-    };
+    return () => observer.disconnect();
   }, []);
 
   const togglePlay = (e?: React.MouseEvent) => {
@@ -113,7 +81,7 @@ export function TextileLogisticsView() {
     if (!el) return;
 
     if (el.paused) {
-      // Always play unmuted with voice when user taps
+      // User explicitly clicked to play -> unmute and play with voice!
       el.muted = false;
       setIsMuted(false);
       el.play()
@@ -124,8 +92,15 @@ export function TextileLogisticsView() {
           el.play().then(() => setIsPlaying(true)).catch(() => {});
         });
     } else {
-      el.pause();
-      setIsPlaying(false);
+      // If it is currently playing silently (muted) and user clicks video/play -> activate voice!
+      if (el.muted) {
+        el.muted = false;
+        setIsMuted(false);
+      } else {
+        // If already playing with voice -> pause
+        el.pause();
+        setIsPlaying(false);
+      }
     }
   };
 
@@ -135,7 +110,7 @@ export function TextileLogisticsView() {
     if (!el) return;
     el.muted = !el.muted;
     setIsMuted(el.muted);
-    // If unmuting while paused, resume play
+    // If unmuting while paused, resume play with voice
     if (!el.muted && el.paused) {
       el.play().then(() => setIsPlaying(true)).catch(() => {});
     }
@@ -171,66 +146,27 @@ export function TextileLogisticsView() {
             </div>
           </div>
 
-          {/* Visual Hero Banner Card */}
-          <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden bg-slate-950 border border-slate-200 shadow-xl aspect-[16/9] xs:aspect-[16/8] sm:aspect-[21/9]">
+          {/* Full-Width Visual Hero Banner Card (Custom Textile Logistics Artwork) */}
+          <div
+            onClick={() => handleOpenInquiry('textiles')}
+            className="relative w-full rounded-2xl sm:rounded-3xl overflow-hidden border border-slate-200 shadow-md bg-white aspect-[2/1] cursor-pointer group"
+          >
             <Image
-              src="/assets/services/card-textiles.webp"
-              alt="Bhilwara textile fabric sample bundles and swatch mailers ready for priority courier dispatch"
+              src="/assets/services/textile-logistics-hero.webp"
+              alt="Textile Logistics from Bhilwara to Global Markets - Economic Courier & eCS World Wide Express"
               fill
               priority
+              unoptimized
+              quality={100}
               sizes="(max-width: 1240px) 100vw, 1240px"
-              className="object-cover object-center"
+              className="object-cover object-center group-hover:scale-[1.01] transition-transform duration-300"
             />
-            {/* Dark Vignette Overlay */}
-            <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/60 to-slate-950/25" />
-
-            {/* Banner Content */}
-            <div className="absolute inset-0 flex flex-col justify-end p-5 sm:p-8 lg:p-12 text-white">
-              <div className="max-w-3xl space-y-2.5 sm:space-y-3.5">
-                {/* Sector Badge */}
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#DC2626] text-white text-[10px] sm:text-xs font-black tracking-wider uppercase shadow-md">
-                  <span className="w-2 h-2 rounded-full bg-white animate-pulse" />
-                  <span>SPECIALIZED COURIER FOR BHILWARA TEXTILE MILLS</span>
-                </div>
-
-                {/* Hero Title */}
-                <h1 className="text-2xl xs:text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-[1.1] text-white">
-                  Fabric Sample Logistics.{' '}
-                  <span className="bg-gradient-to-r from-red-400 via-rose-300 to-amber-300 bg-clip-text text-transparent">
-                    Fast &amp; Protected.
-                  </span>
-                </h1>
-
-                {/* Subtitle */}
-                <p className="text-xs sm:text-sm lg:text-base text-slate-200 leading-relaxed font-normal max-w-2xl">
-                  Bhilwara weaving mills, garment exporters aur cloth traders ke liye dedicated courier service.
-                  Waterproof packaging, urgent morning delivery to Surat, Mumbai, Delhi, aur instant doorstep pickup.
-                </p>
-
-                {/* Quick Action Buttons */}
-                <div className="pt-2 flex flex-wrap items-center gap-3">
-                  <button
-                    type="button"
-                    onClick={() => handleOpenInquiry('textiles')}
-                    className="inline-flex items-center gap-2 bg-[#DC2626] hover:bg-[#B91C1C] text-white text-xs sm:text-sm font-bold px-6 py-3 rounded-xl shadow-md transition-all active:scale-95 cursor-pointer"
-                  >
-                    <span>Book Textile Sample Pickup</span>
-                    <ArrowRight className="w-4 h-4 text-white" />
-                  </button>
-
-                  <a
-                    href="https://wa.me/918955144444?text=Hello%20Economic%20Courier%20Bhilwara,%20I%20have%20an%20inquiry%20regarding%20Textile%20Sample%20dispatch."
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white text-xs sm:text-sm font-bold px-5 py-3 rounded-xl shadow-md transition-all active:scale-95 cursor-pointer"
-                  >
-                    <MessageCircle className="w-4 h-4 text-white" />
-                    <span>WhatsApp Booking Desk</span>
-                  </a>
-                </div>
-              </div>
-            </div>
           </div>
+
+          {/* Screen Reader & SEO Heading */}
+          <h1 className="sr-only">
+            Textile &amp; Fabric Sample Logistics | Economic Courier &amp; eCS World Wide Express Bhilwara
+          </h1>
         </div>
       </section>
 

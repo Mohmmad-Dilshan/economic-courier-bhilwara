@@ -341,18 +341,36 @@ export default function HomePage() {
             </div>
 
             {/* Right: Courier Delivery Duo (3D eCS Parcel Boxes + Scooter Rider) */}
-            <div className="relative shrink-0 hidden sm:flex items-center justify-center lg:justify-end gap-3 lg:gap-4 z-10 pointer-events-none select-none">
+            <div className="relative shrink-0 flex items-center justify-center lg:justify-end gap-3 lg:gap-4 z-10 pointer-events-none select-none">
               {/* 3D eCS Branded Carton Boxes (Where User Circled) */}
-              <div className="relative w-36 sm:w-44 md:w-48 lg:w-[210px] xl:w-[230px] style={{ aspectRatio: '951/570' }} transition-transform duration-700 ease-out hover:scale-105 filter drop-shadow-[0_12px_24px_rgba(15,23,42,0.10)]">
+              <div
+                className="relative w-32 xs:w-36 sm:w-44 md:w-48 lg:w-[210px] xl:w-[230px] transition-transform duration-700 ease-out hover:scale-105 filter drop-shadow-[0_12px_24px_rgba(15,23,42,0.10)]"
+                style={{ aspectRatio: '951/570' }}
+              >
                 <Image
-                  src="/assets/services/ecs-boxes-3d.webp" alt="eCS World Wide Express 3D Courier Parcel Boxes" fill sizes="(max-width: 1024px) 210px, 230px" style={{ aspectRatio: '951/570' }} className="object-contain"
+                  src="/assets/services/ecs-boxes-3d.webp"
+                  alt="eCS World Wide Express 3D Courier Parcel Boxes"
+                  width={951}
+                  height={570}
+                  sizes="(max-width: 640px) 140px, (max-width: 1024px) 210px, 230px"
+                  style={{ aspectRatio: '951/570' }}
+                  className="w-full h-auto object-contain"
                 />
               </div>
 
               {/* Inward-Facing eCS Scooter Delivery Rider */}
-              <div className="relative w-40 sm:w-48 md:w-52 lg:w-[220px] xl:w-[240px] style={{ aspectRatio: '645/550' }} transition-transform duration-700 ease-out hover:scale-105 filter drop-shadow-[0_12px_24px_rgba(220,38,38,0.12)]">
+              <div
+                className="relative w-36 xs:w-40 sm:w-48 md:w-52 lg:w-[220px] xl:w-[240px] transition-transform duration-700 ease-out hover:scale-105 filter drop-shadow-[0_12px_24px_rgba(220,38,38,0.12)]"
+                style={{ aspectRatio: '645/550' }}
+              >
                 <Image
-                  src="/assets/services/ecs-scooter-rider-facing-inward.webp" alt="eCS World Wide Express Scooter Delivery Rider Object" fill sizes="(max-width: 1024px) 220px, 240px" style={{ aspectRatio: '645/550' }} className="object-contain"
+                  src="/assets/services/ecs-scooter-rider-facing-inward.webp"
+                  alt="eCS World Wide Express Scooter Delivery Rider Object"
+                  width={645}
+                  height={550}
+                  sizes="(max-width: 640px) 150px, (max-width: 1024px) 220px, 240px"
+                  style={{ aspectRatio: '645/550' }}
+                  className="w-full h-auto object-contain"
                 />
               </div>
             </div>

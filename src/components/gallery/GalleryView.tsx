@@ -458,9 +458,8 @@ export function GalleryView() {
             </span>
           </nav>
 
-          {/* Full-Width Panoramic Visual Banner Card */}
-          <div className="relative w-full rounded-2xl sm:rounded-3xl overflow-hidden border border-slate-200 shadow-lg bg-slate-950 aspect-[16/9] xs:aspect-[16/8] sm:aspect-[21/9]">
-            {/* Background High-Res 3D Fleet & Hub Image */}
+          {/* Full-Width Panoramic Visual Banner Card (Pure Image Only) */}
+          <div className="relative w-full rounded-2xl sm:rounded-3xl overflow-hidden border border-slate-200 shadow-md bg-slate-950 aspect-[16/9] sm:aspect-[2/1]">
             <Image
               src="/assets/business-fleet-3d.webp"
               alt="Economic Courier & eCS World Wide Express Bhilwara Operations Hub, Commercial Fleet & Dispatch Facility"
@@ -469,54 +468,12 @@ export function GalleryView() {
               sizes="(max-width: 1240px) 100vw, 1240px"
               className="object-cover object-center"
             />
-
-            {/* Dark Cinematic Vignette Overlay */}
-            <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/60 to-slate-950/20" />
-
-            {/* Content Over Banner */}
-            <div className="absolute inset-0 flex flex-col justify-end p-5 sm:p-8 lg:p-12 text-white">
-              <div className="max-w-3xl space-y-2 sm:space-y-3">
-                {/* Location Badge */}
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#DC2626]/90 backdrop-blur-md text-white text-[10px] sm:text-xs font-extrabold tracking-wider uppercase shadow-md">
-                  <span className="w-2 h-2 rounded-full bg-white animate-pulse" />
-                  <MapPin className="w-3.5 h-3.5 text-white" />
-                  <span>BHILWARA DISPATCH CENTER · OPP. NEW CLOTH MARKET</span>
-                </div>
-
-                {/* Hero Title */}
-                <h1 className="text-2xl xs:text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-[1.1] text-white">
-                  Ground Operations &amp;{' '}
-                  <span className="bg-gradient-to-r from-red-400 via-rose-300 to-amber-300 bg-clip-text text-transparent">
-                    Video Reels
-                  </span>
-                </h1>
-
-                {/* Subtitle */}
-                <p className="text-xs sm:text-sm lg:text-base text-slate-200 leading-relaxed font-normal max-w-2xl drop-shadow-xs">
-                  Authentic ground footage and photography from our central Bhilwara hub. Live parcel intake,
-                  specialized textile sample packaging, and daily multi-city linehaul dispatch.
-                </p>
-
-                {/* Micro Stats Ribbon */}
-                <div className="flex flex-wrap items-center gap-3 pt-1 text-[11px] sm:text-xs font-bold text-slate-300">
-                  <span className="flex items-center gap-1.5">
-                    <Film className="w-3.5 h-3.5 text-red-400" />
-                    <span>4 Real Video Reels</span>
-                  </span>
-                  <span className="text-slate-500">•</span>
-                  <span className="flex items-center gap-1.5">
-                    <Camera className="w-3.5 h-3.5 text-amber-400" />
-                    <span>18 Ground Photos</span>
-                  </span>
-                  <span className="text-slate-500">•</span>
-                  <span className="flex items-center gap-1.5">
-                    <Truck className="w-3.5 h-3.5 text-emerald-400" />
-                    <span>Daily Linehauls</span>
-                  </span>
-                </div>
-              </div>
-            </div>
           </div>
+
+          {/* Screen Reader & SEO Heading */}
+          <h1 className="sr-only">
+            Ground Operations Gallery &amp; Video Reels | Economic Courier Bhilwara
+          </h1>
         </div>
       </section>
 

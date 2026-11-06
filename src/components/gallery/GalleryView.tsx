@@ -18,6 +18,8 @@ import {
   Building2,
   Truck,
   Image as ImageIcon,
+  ChevronLeft,
+  ChevronRight,
 } from 'lucide-react';
 import { InstagramIcon } from '@/components/common/InstagramIcon';
 import { InquiryModal } from '@/components/home/InquiryModal';
@@ -78,8 +80,6 @@ export interface GalleryPhoto {
   id: string;
   title: string;
   category: 'hub' | 'textile' | 'fleet';
-  categoryLabel: string;
-  location: string;
   imageSrc: string;
 }
 
@@ -88,144 +88,108 @@ const GALLERY_PHOTOS: GalleryPhoto[] = [
     id: 'photo-1',
     title: 'Commercial Textile Fabric Swatches & Parcel Packaging',
     category: 'textile',
-    categoryLabel: 'Textiles',
-    location: 'Textile Market Sector, Bhilwara',
     imageSrc: '/assets/services/card-textiles.webp',
   },
   {
     id: 'photo-2',
     title: 'Central Hub Dispatch Counter & Booking Team',
     category: 'hub',
-    categoryLabel: 'Hub Desk',
-    location: 'Opp. New Cloth Market, Bhilwara',
     imageSrc: '/assets/office/about-collage.webp',
   },
   {
     id: 'photo-3',
     title: 'Express Delivery Van Fleet & Staff Parcel Handoff',
     category: 'fleet',
-    categoryLabel: 'Fleet',
-    location: 'Bhilwara Delivery Sector',
     imageSrc: '/assets/hero/hero-courier.webp',
   },
   {
     id: 'photo-4',
     title: 'Worldwide Air Express Cargo & Aircraft Staging',
     category: 'fleet',
-    categoryLabel: 'Air Cargo',
-    location: 'International Air Transit Gateways',
     imageSrc: '/assets/services/card-international.webp',
   },
   {
     id: 'photo-5',
     title: 'Consignment Documentation, Dossiers & Mailers Desk',
     category: 'hub',
-    categoryLabel: 'Documentation',
-    location: 'Walk-In Booking Desk, Bhilwara',
     imageSrc: '/assets/services/card-documents.webp',
   },
   {
     id: 'photo-6',
     title: 'All-India Domestic Surface Express Sorting Terminal',
     category: 'fleet',
-    categoryLabel: 'Domestic Express',
-    location: 'Central Dispatch Hub, Bhilwara',
     imageSrc: '/assets/services/card-domestic.webp',
   },
   {
     id: 'photo-7',
     title: 'Commercial Multi-Axle Linehaul Trucks & Staging Bay',
     category: 'fleet',
-    categoryLabel: 'Linehaul Fleet',
-    location: 'Bhilwara Highway Corridor',
     imageSrc: '/assets/business-fleet-3d.webp',
   },
   {
     id: 'photo-8',
     title: 'Central Logistics Hub Architecture & Multi-Bay Loading',
     category: 'hub',
-    categoryLabel: 'Hub Terminal',
-    location: 'Railway Staff Quarter Sector, Bhilwara',
     imageSrc: '/assets/hub-3d-model.webp',
   },
   {
     id: 'photo-9',
     title: 'West India Air & Road Regional Transit Routing Map',
     category: 'fleet',
-    categoryLabel: 'Regional Network',
-    location: 'Rajasthan & National Corridors',
     imageSrc: '/assets/network/delivery-network-3d.webp',
   },
   {
     id: 'photo-10',
     title: 'Real-Time Consignment Barcode Flow & Docket Tracking',
     category: 'hub',
-    categoryLabel: 'Docket Tracking',
-    location: 'Digital Verification Desk, Bhilwara',
     imageSrc: '/assets/tracking-3d-model.webp',
   },
   {
     id: 'photo-11',
     title: 'Daily Linehaul Highway Corridor & Dedicated Routes',
     category: 'fleet',
-    categoryLabel: 'Highway Dispatch',
-    location: 'Delhi-Mumbai Freight Corridor',
     imageSrc: '/assets/routes/daily-dispatch-banner-hd.webp',
   },
   {
     id: 'photo-12',
     title: 'Railway Station Sector Walk-in Intake Counter',
     category: 'hub',
-    categoryLabel: 'Station Counter',
-    location: 'Pur Road / Railway Station Sector',
     imageSrc: '/assets/social/reel-3-railway-station.jpg',
   },
   {
     id: 'photo-13',
     title: 'Bhilwara Central Facility & Evening Package Sorting',
     category: 'hub',
-    categoryLabel: 'Sorting Floor',
-    location: 'Central Bhilwara Dispatch Facility',
     imageSrc: '/assets/social/reel-4-bhilwara-hub.jpg',
   },
   {
     id: 'photo-14',
     title: 'Main Walk-In Hub Floor & Customer Reception',
     category: 'hub',
-    categoryLabel: 'Hub Reception',
-    location: 'Opp. New Cloth Market, Bhilwara',
     imageSrc: '/assets/social/reel-1-bhilwara-visit.jpg',
   },
   {
     id: 'photo-15',
     title: 'Multi-City Shipping Routing & National Trade Corridors',
     category: 'fleet',
-    categoryLabel: 'Logistics Corridors',
-    location: 'Trade Route Network',
     imageSrc: '/assets/how-it-works/how-shipping-works-desktop.webp',
   },
   {
     id: 'photo-16',
     title: 'eCS International Priority Air Parcel Packaging Desk',
     category: 'fleet',
-    categoryLabel: 'Export Packaging',
-    location: 'eCS International Desk, Bhilwara',
     imageSrc: '/assets/social/reel-2-international.jpg',
   },
   {
     id: 'photo-17',
     title: 'Internal Consignment Dispatch Bay & Sorting Floor',
     category: 'hub',
-    categoryLabel: 'Dispatch Floor',
-    location: 'Operations Floor, Bhilwara Hub',
     imageSrc: '/assets/social/reel-inside-ecs.jpg',
   },
   {
     id: 'photo-18',
     title: 'Counter Booking Intake, Weighing & Docket Generation',
     category: 'hub',
-    categoryLabel: 'Intake Counter',
-    location: 'Front Intake Counter, Bhilwara',
     imageSrc: '/assets/social/reel-1-inside-ecs.jpg',
   },
 ];
@@ -415,19 +379,12 @@ function VideoCard({ video, index, activeVideoId, onActivate }: VideoCardProps) 
 export function GalleryView() {
   const [activeTab, setActiveTab] = useState<'all' | 'reels' | 'photos' | 'hub' | 'fleet'>('all');
   const [activeVideoId, setActiveVideoId] = useState<string | null>(null);
-  const [lightboxPhoto, setLightboxPhoto] = useState<GalleryPhoto | null>(null);
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
   const [inquiryModalOpen, setInquiryModalOpen] = useState(false);
 
-  // Close lightbox on Escape key
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape' && lightboxPhoto) {
-        setLightboxPhoto(null);
-      }
-    };
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [lightboxPhoto]);
+  // Touch Swipe coordinates for phone gallery sliding
+  const touchStartX = useRef<number | null>(null);
+  const touchEndX = useRef<number | null>(null);
 
   // Filter photos
   const filteredPhotos = GALLERY_PHOTOS.filter((photo) => {
@@ -437,13 +394,74 @@ export function GalleryView() {
     return false;
   });
 
+  const handlePrevPhoto = (e?: React.MouseEvent) => {
+    if (e) e.stopPropagation();
+    if (lightboxIndex === null) return;
+    setLightboxIndex((prev) =>
+      prev !== null ? (prev - 1 + filteredPhotos.length) % filteredPhotos.length : 0
+    );
+  };
+
+  const handleNextPhoto = (e?: React.MouseEvent) => {
+    if (e) e.stopPropagation();
+    if (lightboxIndex === null) return;
+    setLightboxIndex((prev) =>
+      prev !== null ? (prev + 1) % filteredPhotos.length : 0
+    );
+  };
+
+  // Keyboard navigation (ArrowLeft, ArrowRight, Escape)
+  useEffect(() => {
+    if (lightboxIndex === null) return;
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setLightboxIndex(null);
+      } else if (e.key === 'ArrowRight') {
+        setLightboxIndex((prev) =>
+          prev !== null ? (prev + 1) % filteredPhotos.length : 0
+        );
+      } else if (e.key === 'ArrowLeft') {
+        setLightboxIndex((prev) =>
+          prev !== null ? (prev - 1 + filteredPhotos.length) % filteredPhotos.length : 0
+        );
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [lightboxIndex, filteredPhotos.length]);
+
+  // Touch Swipe Handlers for mobile phone slide experience
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+    touchEndX.current = null;
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    touchEndX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = () => {
+    if (!touchStartX.current || !touchEndX.current) return;
+    const distance = touchStartX.current - touchEndX.current;
+    const minSwipeDistance = 40;
+    if (distance > minSwipeDistance) {
+      handleNextPhoto();
+    } else if (distance < -minSwipeDistance) {
+      handlePrevPhoto();
+    }
+    touchStartX.current = null;
+    touchEndX.current = null;
+  };
+
   const showReels = activeTab === 'all' || activeTab === 'reels';
   const showPhotos = activeTab === 'all' || activeTab === 'photos' || activeTab === 'hub' || activeTab === 'fleet';
 
   return (
     <div className="min-h-screen bg-[#F8FAFC] text-slate-900 pb-16">
       {/* =========================================================================
-          1. HERO SECTION WITH FULL PANORAMIC VISUAL BANNER
+          1. HERO SECTION WITH PURE PANORAMIC VISUAL BANNER (NO TEXT OVERLAY)
           ========================================================================= */}
       <section className="relative pt-6 sm:pt-8 lg:pt-10 pb-6 sm:pb-10 bg-white border-b border-slate-200">
         <div className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 space-y-4 sm:space-y-6">
@@ -593,7 +611,7 @@ export function GalleryView() {
       )}
 
       {/* =========================================================================
-          4. PHOTO GALLERY SECTION (PURE PHOTOS ONLY - NO TEXT CARDS)
+          4. PHOTO GALLERY SECTION (PURE PHOTOS ONLY - ZERO TEXT CARDS OR TAGS)
           ========================================================================= */}
       {showPhotos && (
         <section className="py-8 sm:py-12">
@@ -609,16 +627,16 @@ export function GalleryView() {
                 </h2>
               </div>
               <p className="text-xs text-slate-500 font-medium">
-                Tap any photo to view in high resolution
+                Tap any photo to view full-screen &bull; Swipe to browse
               </p>
             </div>
 
             {/* Pure Photos Grid: 2 cols on mobile, 3 on tablet, 4 on desktop, 5 on wide screens */}
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2.5 sm:gap-3.5 lg:gap-4">
-              {filteredPhotos.map((photo) => (
+              {filteredPhotos.map((photo, idx) => (
                 <div
                   key={photo.id}
-                  onClick={() => setLightboxPhoto(photo)}
+                  onClick={() => setLightboxIndex(idx)}
                   className="group relative rounded-xl sm:rounded-2xl overflow-hidden bg-slate-950 border border-slate-200/90 shadow-2xs hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-pointer aspect-[4/3] select-none"
                 >
                   {/* Photo Image */}
@@ -630,26 +648,11 @@ export function GalleryView() {
                     className="object-cover group-hover:scale-108 transition-transform duration-500 ease-out"
                   />
 
-                  {/* Sleek Floating Category Tag */}
-                  <div className="absolute top-2 left-2 z-10 pointer-events-none">
-                    <span className="px-2 py-0.5 rounded-md bg-slate-950/75 backdrop-blur-md text-[9px] font-black uppercase text-white tracking-wider border border-white/15 opacity-90 group-hover:opacity-100 transition-opacity">
-                      {photo.categoryLabel}
+                  {/* Pure Hover Zoom Overlay - Zero text tags or buttons */}
+                  <div className="absolute inset-0 bg-slate-950/25 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center pointer-events-none">
+                    <span className="w-9 h-9 rounded-full bg-white/30 backdrop-blur-md flex items-center justify-center text-white shadow-lg transform scale-90 group-hover:scale-100 transition-transform">
+                      <Maximize2 className="w-4 h-4" />
                     </span>
-                  </div>
-
-                  {/* Dark Vignette & Hover Caption Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-between p-2.5 sm:p-3 text-white pointer-events-none z-10">
-                    <div className="flex justify-end">
-                      <span className="w-7 h-7 rounded-full bg-white/25 backdrop-blur-md flex items-center justify-center text-white shadow-md">
-                        <Maximize2 className="w-3.5 h-3.5" />
-                      </span>
-                    </div>
-
-                    <div>
-                      <p className="text-[11px] sm:text-xs font-bold text-white leading-tight line-clamp-1 drop-shadow-sm">
-                        {photo.title}
-                      </p>
-                    </div>
                   </div>
                 </div>
               ))}
@@ -703,68 +706,106 @@ export function GalleryView() {
       </section>
 
       {/* =========================================================================
-          6. LIGHTBOX PREVIEW MODAL
+          6. PHONE-STYLE FULL-SCREEN PHOTO VIEWER (SWIPE / SLIDE • PURE PHOTOS)
           ========================================================================= */}
-      {lightboxPhoto && (
+      {lightboxIndex !== null && filteredPhotos[lightboxIndex] && (
         <div
           role="dialog"
           aria-modal="true"
-          aria-label={lightboxPhoto.title}
-          onClick={() => setLightboxPhoto(null)}
-          className="fixed inset-0 z-50 bg-slate-950/92 backdrop-blur-md flex items-center justify-center p-3 sm:p-6 lg:p-8 animate-in fade-in duration-200"
+          onClick={() => setLightboxIndex(null)}
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
+          className="fixed inset-0 z-50 bg-black/96 backdrop-blur-2xl flex flex-col justify-between p-3 sm:p-6 select-none animate-in fade-in duration-200"
         >
+          {/* Top Bar: Counter & Close Only (No text tags, no buttons) */}
           <div
             onClick={(e) => e.stopPropagation()}
-            className="relative w-full max-w-4xl bg-slate-900 rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl flex flex-col max-h-[92vh] border border-slate-800"
+            className="flex items-center justify-between z-20 w-full max-w-6xl mx-auto px-2"
           >
-            {/* Modal Header */}
-            <div className="flex items-center justify-between p-3.5 sm:p-4 border-b border-white/10 bg-slate-950/80">
-              <div className="flex items-center gap-2 max-w-[80%]">
-                <span className="w-2 h-2 rounded-full bg-[#DC2626] shrink-0" />
-                <h3 className="text-xs sm:text-sm font-bold text-white truncate">
-                  {lightboxPhoto.title}
-                </h3>
-              </div>
-
-              <button
-                type="button"
-                onClick={() => setLightboxPhoto(null)}
-                className="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors cursor-pointer"
-                aria-label="Close modal"
-              >
-                <X className="w-4 h-4" />
-              </button>
+            <div className="px-3 py-1 rounded-full bg-white/10 backdrop-blur-md text-white/90 font-mono text-xs font-bold tracking-widest border border-white/10">
+              {String(lightboxIndex + 1).padStart(2, '0')} / {String(filteredPhotos.length).padStart(2, '0')}
             </div>
 
-            {/* Modal Image View */}
-            <div className="relative w-full aspect-[4/3] sm:aspect-[16/10] bg-slate-950 flex items-center justify-center overflow-hidden">
+            <button
+              type="button"
+              onClick={() => setLightboxIndex(null)}
+              className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 active:scale-95 text-white flex items-center justify-center transition-all cursor-pointer border border-white/15"
+              aria-label="Close photo view"
+            >
+              <X className="w-5 h-5" />
+            </button>
+          </div>
+
+          {/* Center Carousel Area */}
+          <div
+            onClick={(e) => e.stopPropagation()}
+            className="relative flex-1 w-full max-w-6xl mx-auto flex items-center justify-center my-auto px-2 sm:px-14 overflow-hidden"
+          >
+            {/* Desktop Previous Button */}
+            <button
+              type="button"
+              onClick={handlePrevPhoto}
+              className="hidden sm:flex absolute left-2 z-20 w-11 h-11 rounded-full bg-white/10 hover:bg-white/25 active:scale-90 text-white items-center justify-center transition-all cursor-pointer border border-white/15 backdrop-blur-md"
+              aria-label="Previous photo"
+            >
+              <ChevronLeft className="w-6 h-6" />
+            </button>
+
+            {/* Photo Container */}
+            <div className="relative w-full h-[70vh] sm:h-[80vh] flex items-center justify-center">
               <Image
-                src={lightboxPhoto.imageSrc}
-                alt={lightboxPhoto.title}
+                src={filteredPhotos[lightboxIndex].imageSrc}
+                alt={filteredPhotos[lightboxIndex].title}
                 fill
-                sizes="(max-width: 1024px) 100vw, 896px"
+                priority
+                sizes="100vw"
                 className="object-contain"
               />
             </div>
 
-            {/* Modal Footer */}
-            <div className="p-3.5 sm:p-4 bg-slate-950 border-t border-white/10 flex items-center justify-between gap-3 text-xs">
-              <div className="flex items-center gap-1.5 text-slate-400 font-medium truncate">
-                <MapPin className="w-3.5 h-3.5 text-[#DC2626] shrink-0" />
-                <span className="truncate">{lightboxPhoto.location}</span>
-              </div>
+            {/* Desktop Next Button */}
+            <button
+              type="button"
+              onClick={handleNextPhoto}
+              className="hidden sm:flex absolute right-2 z-20 w-11 h-11 rounded-full bg-white/10 hover:bg-white/25 active:scale-90 text-white items-center justify-center transition-all cursor-pointer border border-white/15 backdrop-blur-md"
+              aria-label="Next photo"
+            >
+              <ChevronRight className="w-6 h-6" />
+            </button>
+          </div>
+
+          {/* Bottom Bar: Touch Navigation Indicators */}
+          <div
+            onClick={(e) => e.stopPropagation()}
+            className="flex flex-col items-center gap-2 z-20 w-full max-w-md mx-auto pb-1 text-center"
+          >
+            {/* Mobile Swipe Buttons (For Easy 1-Tap Thumb Navigation) */}
+            <div className="flex sm:hidden items-center justify-center gap-6">
+              <button
+                type="button"
+                onClick={handlePrevPhoto}
+                className="px-4 py-2 rounded-full bg-white/10 active:bg-white/25 text-white text-xs font-bold flex items-center gap-1 border border-white/15"
+              >
+                <ChevronLeft className="w-4 h-4" />
+                <span>Prev</span>
+              </button>
+
+              <span className="text-[11px] text-white/50 font-medium">Swipe to browse</span>
 
               <button
                 type="button"
-                onClick={() => {
-                  setLightboxPhoto(null);
-                  setInquiryModalOpen(true);
-                }}
-                className="shrink-0 bg-[#DC2626] hover:bg-[#B91C1C] text-white font-bold py-2 px-4 rounded-xl shadow-xs transition-colors cursor-pointer text-xs"
+                onClick={handleNextPhoto}
+                className="px-4 py-2 rounded-full bg-white/10 active:bg-white/25 text-white text-xs font-bold flex items-center gap-1 border border-white/15"
               >
-                Inquire for Shipment
+                <span>Next</span>
+                <ChevronRight className="w-4 h-4" />
               </button>
             </div>
+
+            <p className="hidden sm:block text-[11px] text-white/40 font-medium tracking-wide">
+              Use arrow keys or click arrows to slide &bull; Tap outside to close
+            </p>
           </div>
         </div>
       )}

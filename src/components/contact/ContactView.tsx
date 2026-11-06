@@ -28,6 +28,7 @@ import {
   InquiryFieldErrors,
   InquirySubmissionResult,
   InquirySubmissionStatus,
+  ServiceTypeOption,
 } from '@/types/inquiry';
 import {
   validateInquiryForm,
@@ -53,6 +54,22 @@ export function ContactView() {
   const [copyStatus, setCopyStatus] = useState<'idle' | 'copied' | 'error'>('idle');
 
   const nameInputRef = useRef<HTMLInputElement>(null);
+
+  // Sync service category if passed in URL query param (e.g., /contact?service=business#inquiry-form)
+  React.useEffect(() => {
+    const timer = setTimeout(() => {
+      const params = new URLSearchParams(window.location.search);
+      const serviceParam = params.get('service')?.toLowerCase();
+      if (serviceParam) {
+        if (['textiles', 'domestic', 'international', 'documents'].includes(serviceParam)) {
+          setFormData((prev) => ({ ...prev, serviceType: serviceParam as ServiceTypeOption }));
+        } else if (serviceParam === 'business' || serviceParam === 'other') {
+          setFormData((prev) => ({ ...prev, serviceType: 'other' }));
+        }
+      }
+    }, 0);
+    return () => clearTimeout(timer);
+  }, []);
 
   const handleChange = (
     field: keyof CustomerInquiryFormData,

@@ -10,7 +10,6 @@ import {
   X,
   ChevronLeft,
   ChevronRight,
-  Sparkles,
 } from 'lucide-react';
 
 interface ShowcasePhoto {

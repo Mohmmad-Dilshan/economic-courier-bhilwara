@@ -14,13 +14,11 @@ import {
   MapPin,
   ExternalLink,
   Phone,
+  MessageCircle,
 } from 'lucide-react';
-import { Button } from '@/components/ui/Button';
 import { NoticeBanner } from '@/components/ui/NoticeBanner';
-import { InquiryModal } from '@/components/home/InquiryModal';
 import { SERVICES_DATA } from '@/lib/servicesData';
 import { ServiceCategory, ServiceItem } from '@/types/service';
-import { ServiceTypeOption } from '@/types/inquiry';
 import {
   BUSINESS_INFO,
   CARRIER_TRADEMARK_DISCLAIMER,
@@ -44,8 +42,6 @@ function getServiceIcon(iconName: string) {
 
 export function ServicesView() {
   const [activeCategory, setActiveCategory] = useState<ServiceCategory>('all');
-  const [inquiryModalOpen, setInquiryModalOpen] = useState(false);
-  const [selectedService, setSelectedService] = useState<ServiceTypeOption>('domestic');
 
   const filterTabs: { id: ServiceCategory; label: string }[] = [
     { id: 'all', label: 'All Services' },
@@ -59,11 +55,6 @@ export function ServicesView() {
     if (activeCategory === 'all') return true;
     return item.category === activeCategory;
   });
-
-  const handleOpenInquiry = (serviceKey: ServiceTypeOption) => {
-    setSelectedService(serviceKey);
-    setInquiryModalOpen(true);
-  };
 
   return (
     <div className="min-h-screen bg-white text-[#0F172A] overflow-x-hidden antialiased">
@@ -266,23 +257,26 @@ export function ServicesView() {
                     {/* Action Triggers */}
                     <div className="pt-2 flex flex-wrap items-center gap-3">
                       {/* Primary Inquiry Trigger */}
-                      <Button
-                        variant="primary"
-                        size="md"
-                        onClick={() => handleOpenInquiry(service.inquiryServiceKey)}
-                        rightIcon={<ArrowRight className="w-4 h-4" />}
+                      <Link
+                        href={`/contact?service=${service.inquiryServiceKey}#inquiry-form`}
+                        className="inline-flex items-center gap-1.5 bg-[#DC2626] hover:bg-[#B91C1C] text-white text-xs sm:text-sm font-bold px-4 py-2.5 rounded-xl shadow-xs transition-all active:scale-95 cursor-pointer"
                       >
-                        {service.ctaLabel}
-                      </Button>
+                        <span>{service.ctaLabel}</span>
+                        <ArrowRight className="w-4 h-4" />
+                      </Link>
 
-                      {/* Secondary Rate Inquiry Option */}
-                      <Button
-                        variant="outline"
-                        size="md"
-                        onClick={() => handleOpenInquiry(service.inquiryServiceKey)}
+                      {/* WhatsApp Quote Option */}
+                      <a
+                        href={`https://wa.me/918955144444?text=${encodeURIComponent(
+                          `Hello Economic Courier Bhilwara, I would like to request a rate quote for ${service.title}.`
+                        )}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 text-xs sm:text-sm font-semibold px-3.5 py-2.5 rounded-xl transition-all"
                       >
-                        Request Quote
-                      </Button>
+                        <MessageCircle className="w-4 h-4 text-emerald-600" />
+                        <span>Request Quote</span>
+                      </a>
 
                       {/* Demo Tracking Route */}
                       <Link
@@ -425,23 +419,21 @@ export function ServicesView() {
             </p>
 
             <div className="pt-2 flex flex-wrap items-center justify-center gap-3.5">
-              <Button
-                variant="primary"
-                size="lg"
-                onClick={() => handleOpenInquiry('domestic')}
-                rightIcon={<ArrowRight className="w-4 h-4" />}
+              <Link
+                href="/contact#inquiry-form"
+                className="inline-flex items-center gap-2 bg-[#DC2626] hover:bg-[#B91C1C] text-white text-xs sm:text-sm font-bold px-6 py-3.5 rounded-xl shadow-md transition-all active:scale-95 cursor-pointer"
               >
-                Open Rate Inquiry Desk
-              </Button>
+                <span>Open Rate Inquiry Desk</span>
+                <ArrowRight className="w-4 h-4" />
+              </Link>
 
-              <button
-                type="button"
-                onClick={() => handleOpenInquiry('domestic')}
+              <a
+                href="tel:8955144444"
                 className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl border border-white/15 bg-white/10 hover:bg-white/15 text-white text-sm font-semibold transition-all cursor-pointer"
               >
                 <Phone className="w-4 h-4 text-red-400" />
                 <span>Call Bhilwara Desk</span>
-              </button>
+              </a>
             </div>
           </div>
         </div>
@@ -454,22 +446,21 @@ export function ServicesView() {
         <div className="max-w-[1200px] mx-auto px-6 lg:px-8">
           <div className="bg-[#F0F7FD] rounded-2xl border border-[#E0EDF8] flex flex-col md:flex-row items-center justify-between shadow-2xs overflow-hidden reveal-init delay-100">
             {/* Left: Call Us / Inquire Online */}
-            <button
-              type="button"
-              onClick={() => handleOpenInquiry('domestic')}
+            <a
+              href="tel:8955144444"
               className="flex items-center gap-3.5 py-4 pl-8 text-left bg-transparent border-0 cursor-pointer group hover:bg-sky-50/60 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-600 focus-visible:ring-inset"
-              aria-label="Open Customer & Rate Inquiry Desk (+91 89551 44444)"
+              aria-label="Call Bhilwara Hub (+91 89551 44444)"
             >
               <div className="w-9 h-9 rounded-full bg-red-100/70 flex items-center justify-center text-[#DC2626] shrink-0 group-hover:scale-105 transition-transform">
                 <Phone className="w-4 h-4 fill-current" />
               </div>
               <div>
-                <p className="text-[11px] font-semibold text-slate-500">Call Us &bull; Inquire Online</p>
+                <p className="text-[11px] font-semibold text-slate-500">Call Us &bull; Hub Desk</p>
                 <p className="text-base font-bold text-slate-800 tracking-tight group-hover:text-[#DC2626] transition-colors">
                   +91 89551 44444
                 </p>
               </div>
-            </button>
+            </a>
 
             {/* Divider */}
             <div className="hidden md:block h-9 w-px bg-[#D4E4F3]" />
@@ -512,16 +503,6 @@ export function ServicesView() {
           </div>
         </div>
       </section>
-
-      {/* =========================================================================
-          7. REUSED INQUIRY MODAL ISLAND
-          ========================================================================= */}
-      <InquiryModal
-        key={inquiryModalOpen ? (selectedService || 'open') : 'closed'}
-        isOpen={inquiryModalOpen}
-        onClose={() => setInquiryModalOpen(false)}
-        initialService={selectedService}
-      />
     </div>
   );
 }

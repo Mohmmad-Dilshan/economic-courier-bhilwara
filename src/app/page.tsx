@@ -16,15 +16,10 @@ import {
   AlertCircle,
   Loader2,
 } from 'lucide-react';
-import { BUSINESS_INFO } from '@/lib/constants';
 
 // Modals dynamically imported on demand
 const TrackingNoticeModal = dynamic(
   () => import('@/components/home/TrackingNoticeModal').then((mod) => mod.TrackingNoticeModal),
-  { ssr: false }
-);
-const InquiryModal = dynamic(
-  () => import('@/components/home/InquiryModal').then((mod) => mod.InquiryModal),
   { ssr: false }
 );
 
@@ -45,15 +40,6 @@ export default function HomePage() {
   const [searchedId, setSearchedId] = useState('');
   const [isSearching, setIsSearching] = useState(false);
   const [inputError, setInputError] = useState<string | null>(null);
-
-  // Inquiry Desk state
-  const [inquiryModalOpen, setInquiryModalOpen] = useState(false);
-  const [inquiryInitialService, setInquiryInitialService] = useState<string>('');
-
-  const handleOpenInquiry = (service: string = '') => {
-    setInquiryInitialService(service);
-    setInquiryModalOpen(true);
-  };
 
   // Truthful tracking input submission: Validates and opens the transparent notice modal
   const handleTrackSubmit = (e: React.FormEvent) => {
@@ -232,15 +218,14 @@ export default function HomePage() {
 
               {/* Inquiry Action Button */}
               <div className="pt-0.5 ">
-                <button
-                  type="button"
-                  onClick={() => handleOpenInquiry()}
+                <Link
+                  href="/contact#inquiry-form"
                   className="inline-flex items-center gap-2 bg-[#008751] hover:bg-[#007043] text-white text-[13px] font-semibold px-5 py-2.5 rounded-full shadow-xs transition-all active:scale-95 cursor-pointer"
                   title="Submit courier inquiry online"
                 >
                   <MessageCircle className="w-4 h-4 fill-white text-[#008751]" />
                   <span>Talk to our team</span>
-                </button>
+                </Link>
               </div>
             </div>
 
@@ -308,7 +293,7 @@ export default function HomePage() {
       {/* =========================================================================
           4. DAILY REGIONAL ROUTE & SAME-DAY DELIVERY CORRIDOR (Client Dispatch Circuit)
           ========================================================================= */}
-      <DailyRouteSection onOpenInquiry={handleOpenInquiry} />
+      <DailyRouteSection />
 
       {/* =========================================================================
           5. OUR SERVICES SECTION (SwipeTrip-Inspired Floating Polaroid Photo Cards)
@@ -379,22 +364,11 @@ export default function HomePage() {
 
           {/* SwipeTrip-Style Polaroid Cards: 2x2 on Mobile, 4 Across on Desktop with Floating Tilts */}
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-3.5 sm:gap-5 lg:gap-6 pt-2 pb-3">
-            {services.map((service, sIdx) => {
-              const delays = ['delay-75', 'delay-150', 'delay-225', 'delay-300'];
-              const delayClass = delays[sIdx % delays.length];
-
+            {services.map((service) => {
               return (
-                <div
+                <Link
                   key={service.id}
-                  onClick={() => handleOpenInquiry(service.id)}
-                  role="button"
-                  tabIndex={0}
-                  onKeyDown={(e) => {
-                    if (e.key === 'Enter' || e.key === ' ') {
-                      e.preventDefault();
-                      handleOpenInquiry(service.id);
-                    }
-                  }}
+                  href={`/contact?service=${service.id}#inquiry-form`}
                   className={`bg-white rounded-2xl sm:rounded-3xl p-2.5 sm:p-3.5 lg:p-4 pb-3 sm:pb-4.5 lg:pb-5 shadow-[0_10px_30px_rgba(15,23,42,0.06)] hover:shadow-[0_22px_44px_rgba(15,23,42,0.12)] border border-slate-100/90 flex flex-col group cursor-pointer transition-all duration-300 ease-out hover:scale-[1.03] hover:-translate-y-1.5 hover:z-10 ${service.rotation} hover:rotate-0 `}
                 >
                   {/* Photo Frame with Clean Rounded Corners */}
@@ -418,7 +392,7 @@ export default function HomePage() {
                       {service.subtext}
                     </p>
                   </div>
-                </div>
+                </Link>
               );
             })}
           </div>
@@ -433,7 +407,7 @@ export default function HomePage() {
       {/* =========================================================================
           8. HOW SHIPPING WORKS SECTION (4-Step Process Flow)
           ========================================================================= */}
-      <HowItWorksSection onOpenInquiry={handleOpenInquiry} />
+      <HowItWorksSection />
 
       {/* =========================================================================
           8.5. CUSTOMER REVIEWS & GOOGLE RATINGS SECTION (Corridor Businesses)
@@ -475,14 +449,13 @@ export default function HomePage() {
                 Economic Courier is a courier service in Bhilwara, providing domestic and international courier services for trade correspondence, parcels, and document consignments.
               </p>
               <div className="pt-3 w-full flex justify-center lg:justify-start">
-                <button
-                  type="button"
-                  onClick={() => handleOpenInquiry()}
+                <Link
+                  href="/contact#inquiry-form"
                   className="inline-flex items-center gap-2 bg-[#DC2626] hover:bg-[#B91C1C] text-white text-[14px] font-bold px-6 py-3 rounded-full shadow-xs hover:shadow-[0_4px_14px_rgba(220,38,38,0.25)] transition-all active:scale-95 cursor-pointer"
                 >
                   <span>Prepare Consignment Inquiry</span>
                   <ArrowRight className="w-4 h-4" />
-                </button>
+                </Link>
               </div>
             </div>
           </div>
@@ -492,17 +465,17 @@ export default function HomePage() {
       {/* =========================================================================
           10. FREQUENTLY ASKED QUESTIONS (Interactive Accordion & Support Desk)
           ========================================================================= */}
-      <FAQSection onOpenInquiry={handleOpenInquiry} />
+      <FAQSection />
 
       {/* =========================================================================
           11. BHILWARA CENTRAL HUB & INTERACTIVE MAP (Real Verified Data)
           ========================================================================= */}
-      <HubLocationSection onOpenInquiry={handleOpenInquiry} />
+      <HubLocationSection />
 
       {/* =========================================================================
           12. CALL TO ACTION BAND (Shipment Inquiry Preparation - Above Footer)
           ========================================================================= */}
-      <CTABand onOpenInquiry={handleOpenInquiry} />
+      <CTABand />
 
       {/* Verified Courier Partner Tracking Dialog */}
       <TrackingNoticeModal
@@ -510,14 +483,6 @@ export default function HomePage() {
         isOpen={modalOpen}
         onClose={() => setModalOpen(false)}
         searchedQuery={searchedId}
-      />
-
-      {/* Customer & Rate Inquiry Modal */}
-      <InquiryModal
-        key={inquiryModalOpen ? (inquiryInitialService || 'open') : 'closed'}
-        isOpen={inquiryModalOpen}
-        onClose={() => setInquiryModalOpen(false)}
-        initialService={inquiryInitialService}
       />
     </div>
   );

@@ -17,7 +17,7 @@ interface FAQSectionProps {
  * 3. Verified tracking info (AWB receipts + partner network feeds).
  * 4. Full WCAG 2.1 AA accessibility (ARIA states, keyboard focusable).
  */
-export function FAQSection({ onOpenInquiry }: FAQSectionProps) {
+export function FAQSection({}: FAQSectionProps = {}) {
   const [openId, setOpenId] = useState<string | null>(FAQ_ITEMS[0]?.id ?? null);
 
   const toggleItem = (id: string) => {

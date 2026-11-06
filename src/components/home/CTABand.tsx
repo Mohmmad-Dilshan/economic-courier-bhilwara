@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { ArrowRight, Layers } from 'lucide-react';
 
 interface CTABandProps {
-  onOpenInquiry: (service?: string) => void;
+  onOpenInquiry?: (service?: string) => void;
 }
 
 /**
@@ -14,11 +14,11 @@ interface CTABandProps {
  * FACTUAL & FUNCTIONAL SAFEGUARDS:
  * 1. Headline: "Prepare your shipment inquiry"
  * 2. Subtext: "Use our interactive inquiry tool to enter and review your consignment details, parcel weight, and destination requirements."
- * 3. Primary action triggers the interactive inquiry tool (with prototype safeguard).
+ * 3. Primary action links to the dedicated Contact Desk inquiry form.
  * 4. Secondary action links directly to the /services page.
  * 5. Zero false claims of instant bookings, live rates, or dispatch guarantees.
  */
-export function CTABand({ onOpenInquiry }: CTABandProps) {
+export function CTABand({}: CTABandProps = {}) {
   return (
     <section className="py-14 lg:py-20 bg-gradient-to-br from-[#09132B] via-[#0F172A] to-[#1E293B] text-white relative overflow-hidden">
       {/* Ambient background glow */}
@@ -46,14 +46,13 @@ export function CTABand({ onOpenInquiry }: CTABandProps) {
           </p>
 
           <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-3.5">
-            <button
-              type="button"
-              onClick={() => onOpenInquiry('domestic')}
+            <Link
+              href="/contact#inquiry-form"
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#DC2626] hover:bg-[#B91C1C] text-white text-sm font-bold px-7 py-3.5 rounded-full shadow-lg shadow-red-950/40 hover:shadow-red-900/50 transition-all active:scale-95 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0F172A]"
             >
               <span>Prepare Inquiry Details</span>
               <ArrowRight className="w-4 h-4" />
-            </button>
+            </Link>
 
             <Link
               href="/services"

@@ -2,10 +2,11 @@
 
 import React from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { Layers, FileText, Calculator, ArrowRight } from 'lucide-react';
 
 interface TextileLogisticsSectionProps {
-  onOpenInquiry: (service: string) => void;
+  onOpenInquiry?: (service: string) => void;
 }
 
 /**
@@ -17,7 +18,7 @@ interface TextileLogisticsSectionProps {
  * 3. No unverified packaging standards or moisture-resistant guarantees.
  * 4. Grounded strictly in servicesData.ts and project documentation.
  */
-export function TextileLogisticsSection({ onOpenInquiry }: TextileLogisticsSectionProps) {
+export function TextileLogisticsSection({}: TextileLogisticsSectionProps = {}) {
   const features = [
     {
       icon: Layers,
@@ -90,14 +91,13 @@ export function TextileLogisticsSection({ onOpenInquiry }: TextileLogisticsSecti
 
             {/* Action Trigger */}
             <div className="pt-1">
-              <button
-                type="button"
-                onClick={() => onOpenInquiry('textiles')}
+              <Link
+                href="/contact?service=textiles#inquiry-form"
                 className="inline-flex items-center gap-2 bg-[#DC2626] hover:bg-[#B91C1C] text-white text-xs sm:text-sm font-bold px-6 py-3 rounded-full shadow-xs hover:shadow-[0_4px_14px_rgba(220,38,38,0.25)] transition-all active:scale-95 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-600 focus-visible:ring-offset-2"
               >
                 <span>Prepare Textile Inquiry</span>
                 <ArrowRight className="w-4 h-4" />
-              </button>
+              </Link>
             </div>
           </div>
 

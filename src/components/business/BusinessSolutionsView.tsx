@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
 import Link from 'next/link';
 import {
   Building2,
@@ -23,17 +23,8 @@ import {
   Camera,
   Search,
 } from 'lucide-react';
-import { InquiryModal } from '@/components/home/InquiryModal';
 
 export function BusinessSolutionsView() {
-  const [inquiryModalOpen, setInquiryModalOpen] = useState(false);
-  const [inquiryService, setInquiryService] = useState<string>('other');
-
-  const handleOpenInquiry = (serviceKey: string = 'other') => {
-    setInquiryService(serviceKey);
-    setInquiryModalOpen(true);
-  };
-
   return (
     <div className="min-h-screen bg-[#F8FAFC] text-slate-800">
       {/* =========================================================================
@@ -99,14 +90,13 @@ export function BusinessSolutionsView() {
 
             {/* Call to Actions */}
             <div className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
-              <button
-                type="button"
-                onClick={() => handleOpenInquiry('business')}
+              <Link
+                href="/contact?service=business#inquiry-form"
                 className="inline-flex items-center justify-center gap-2 bg-[#DC2626] hover:bg-[#B91C1C] text-white text-xs sm:text-sm font-bold px-6 py-3.5 rounded-xl shadow-md transition-all active:scale-95 cursor-pointer whitespace-nowrap"
               >
                 <span>Open Business Account / Inquire</span>
                 <ArrowRight className="w-4 h-4 text-white" />
-              </button>
+              </Link>
 
               <a
                 href="https://wa.me/918955144444?text=Hello%20Economic%20Courier%20Bhilwara,%20I%20want%20to%20inquire%20about%20a%20Business%20Courier%20Account."
@@ -590,14 +580,13 @@ export function BusinessSolutionsView() {
             </div>
 
             <div className="flex flex-col sm:flex-row gap-3 w-full lg:w-auto shrink-0">
-              <button
-                type="button"
-                onClick={() => handleOpenInquiry('business')}
+              <Link
+                href="/contact?service=business#inquiry-form"
                 className="inline-flex items-center justify-center gap-2 bg-[#DC2626] hover:bg-[#B91C1C] text-white text-xs sm:text-sm font-bold px-6 py-3.5 rounded-xl shadow-md transition-all active:scale-95 cursor-pointer whitespace-nowrap"
               >
                 <span>Prepare Business Inquiry</span>
                 <ArrowRight className="w-4 h-4 text-white" />
-              </button>
+              </Link>
 
               <a
                 href="https://wa.me/918955144444?text=Hello%20Economic%20Courier%20Bhilwara,%20I%20want%20to%20discuss%20a%20commercial%20business%20account."
@@ -724,14 +713,6 @@ export function BusinessSolutionsView() {
           </div>
         </div>
       </section>
-
-      {/* Reusable Inquiry Modal */}
-      <InquiryModal
-        key={inquiryModalOpen ? inquiryService || 'open' : 'closed'}
-        isOpen={inquiryModalOpen}
-        onClose={() => setInquiryModalOpen(false)}
-        initialService={inquiryService}
-      />
     </div>
   );
 }

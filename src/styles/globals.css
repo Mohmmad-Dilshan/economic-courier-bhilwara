@@ -198,3 +198,8 @@ button[class*="text-white"],
     transition: none !important;
   }
 }
+
+/* Prevent CLS on all responsive and lazy-loaded images */
+img {
+  aspect-ratio: attr(width) / attr(height);
+}

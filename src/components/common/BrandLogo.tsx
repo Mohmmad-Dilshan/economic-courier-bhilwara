@@ -32,6 +32,7 @@ export function BrandLogo({
         height={current.height}
         unoptimized
         priority
+        style={{ aspectRatio: `${current.width}/${current.height}` }}
         className={`${current.imgClass} w-auto object-contain transition-transform duration-150 hover:scale-[1.02]`}
       />
     </div>

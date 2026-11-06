@@ -38,15 +38,14 @@ export function HowItWorksSection({ onOpenInquiry }: HowItWorksSectionProps) {
             1. DESKTOP, LARGE SIZE & TABLET VIEW (>= 640px)
             Ultra-High-Resolution (2172x724) Panoramic Infographic — 100% Crisp
             ========================================================================= */}
-        <div className="hidden sm:block relative w-full rounded-2xl sm:rounded-3xl lg:rounded-4xl overflow-hidden border border-slate-200/90 shadow-[0_8px_30px_rgba(15,23,42,0.06)] bg-white transition-all duration-300 hover:shadow-[0_16px_45px_rgba(220,38,38,0.09)] hover:border-red-200/80 reveal-init">
+        <div className="hidden sm:block relative w-full rounded-2xl sm:rounded-3xl lg:rounded-4xl overflow-hidden border border-slate-200/90 shadow-[0_8px_30px_rgba(15,23,42,0.06)] bg-white transition-all duration-300 hover:shadow-[0_16px_45px_rgba(220,38,38,0.09)] hover:border-red-200/80" style={{ aspectRatio: '2172/724' }}>
           <Image
             src="/assets/how-it-works/how-shipping-works-desktop.webp"
             alt="How shipping works - From Bhilwara to doorstep in 4 simple steps: Pickup, Handover, Delivered"
             width={2172}
             height={724}
-            quality={100}
-            unoptimized
-            priority
+            loading="lazy"
+            style={{ aspectRatio: '2172/724' }}
             className="w-full h-auto object-contain block select-none"
             sizes="(max-width: 1240px) 100vw, 1240px"
           />
@@ -56,15 +55,14 @@ export function HowItWorksSection({ onOpenInquiry }: HowItWorksSectionProps) {
             2. MOBILE VIEW (< 640px)
             High-DPI Retina (1364x2048) Portrait Infographic — 100% Crisp
             ========================================================================= */}
-        <div className="block sm:hidden relative w-full rounded-2xl overflow-hidden border border-slate-200/90 shadow-[0_6px_24px_rgba(15,23,42,0.06)] bg-white transition-all duration-300 reveal-init">
+        <div className="block sm:hidden relative w-full rounded-2xl overflow-hidden border border-slate-200/90 shadow-[0_6px_24px_rgba(15,23,42,0.06)] bg-white transition-all duration-300" style={{ aspectRatio: '1364/2048' }}>
           <Image
             src="/assets/how-it-works/how-shipping-works-mobile.webp"
             alt="How shipping works - From Bhilwara to doorstep in 4 simple steps"
             width={1364}
             height={2048}
-            quality={100}
-            unoptimized
-            priority
+            loading="lazy"
+            style={{ aspectRatio: '1364/2048' }}
             className="w-full h-auto object-contain block select-none"
             sizes="(max-width: 640px) 100vw, 640px"
           />
@@ -73,7 +71,7 @@ export function HowItWorksSection({ onOpenInquiry }: HowItWorksSectionProps) {
         {/* =========================================================================
             3. BOTTOM INTERACTIVE CALLOUT BANNER
             ========================================================================= */}
-        <div className="mt-6 sm:mt-8 lg:mt-10 p-4 sm:p-5 rounded-2xl bg-gradient-to-r from-[#0F172A] via-[#1E293B] to-[#0F172A] text-white flex flex-col sm:flex-row items-center justify-between gap-4 shadow-lg border border-slate-800 reveal-init delay-150">
+        <div className="mt-6 sm:mt-8 lg:mt-10 p-4 sm:p-5 rounded-2xl bg-gradient-to-r from-[#0F172A] via-[#1E293B] to-[#0F172A] text-white flex flex-col sm:flex-row items-center justify-between gap-4 shadow-lg border border-slate-800 ">
           <div className="flex items-center gap-3 text-center sm:text-left">
             <div className="w-9 h-9 rounded-xl bg-white/10 flex items-center justify-center text-[#DC2626] shrink-0 hidden sm:flex">
               <Sparkles className="w-4 h-4 text-red-400" />

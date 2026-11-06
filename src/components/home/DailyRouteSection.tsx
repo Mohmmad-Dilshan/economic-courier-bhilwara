@@ -58,12 +58,13 @@ export function DailyRouteSection({ onOpenInquiry }: DailyRouteSectionProps) {
 
           {/* Right: Standalone Floating 3D eCS Linehaul Truck Object (Where User Circled) */}
           <div className="relative shrink-0 hidden sm:flex items-center justify-center lg:justify-end z-10 pointer-events-none select-none">
-            <div className="relative w-64 sm:w-72 lg:w-[320px] xl:w-[360px] aspect-[1024/682] transition-transform duration-700 ease-out hover:scale-105 filter drop-shadow-[0_12px_28px_rgba(220,38,38,0.14)]">
+            <div className="relative w-64 sm:w-72 lg:w-[320px] xl:w-[360px] transition-transform duration-700 ease-out hover:scale-105 filter drop-shadow-[0_12px_28px_rgba(220,38,38,0.14)]" style={{ aspectRatio: '1024/682' }}>
               <Image
                 src="/assets/routes/ecs-truck-3d.webp"
                 alt="eCS World Wide Express 3D Linehaul Cargo Truck Object"
                 fill
                 sizes="(max-width: 1024px) 280px, 360px"
+                style={{ aspectRatio: '1024/682' }}
                 className="object-contain"
               />
             </div>
@@ -102,12 +103,13 @@ export function DailyRouteSection({ onOpenInquiry }: DailyRouteSectionProps) {
             aria-label="Click to book consignment before 10 AM dispatch cutoff"
             className="relative group overflow-hidden rounded-2xl sm:rounded-3xl border border-slate-200/90 shadow-[0_12px_40px_rgba(15,23,42,0.08)] bg-white transition-all duration-300 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-600 focus-visible:ring-offset-2"
           >
-            <div className="relative w-full aspect-[1024/341]">
+            <div className="relative w-full" style={{ aspectRatio: '1024/341' }}>
               <Image
                 src="/assets/routes/daily-dispatch-banner-hd.webp"
                 alt="10:00 AM ECS Office Cutoff — Daily Regional Route & Same-Day Delivery from Bhilwara Hub"
                 fill
                 sizes="(max-width: 768px) 100vw, 1240px"
+                style={{ aspectRatio: '1024/341' }}
                 className="object-cover object-center transition-transform duration-500 group-hover:scale-[1.01]"
               />
             </div>

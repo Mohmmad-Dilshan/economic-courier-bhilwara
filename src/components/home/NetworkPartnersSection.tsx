@@ -150,12 +150,13 @@ export function NetworkPartnersSection() {
 
           {/* Right: Standalone Floating 3D eCS Aircraft Object (Icon Style) */}
           <div className="relative shrink-0 hidden sm:flex items-center justify-center lg:justify-end z-10 pointer-events-none select-none">
-            <div className="relative w-64 sm:w-72 lg:w-[320px] xl:w-[360px] aspect-[1024/682] transition-transform duration-700 ease-out hover:scale-105 filter drop-shadow-[0_12px_28px_rgba(220,38,38,0.14)]">
+            <div className="relative w-64 sm:w-72 lg:w-[320px] xl:w-[360px] transition-transform duration-700 ease-out hover:scale-105 filter drop-shadow-[0_12px_28px_rgba(220,38,38,0.14)]" style={{ aspectRatio: '1024/682' }}>
               <Image
                 src="/assets/network/ecs-airplane-3d.webp"
                 alt="eCS World Wide Express 3D Air Cargo Airplane Object"
                 fill
                 sizes="(max-width: 1024px) 280px, 360px"
+                style={{ aspectRatio: '1024/682' }}
                 className="object-contain"
               />
             </div>
@@ -180,6 +181,7 @@ export function NetworkPartnersSection() {
                     alt={item.name}
                     width={70}
                     height={28}
+                    style={{ aspectRatio: '70/28' }}
                     className="max-h-5 sm:max-h-6 w-auto object-contain"
                   />
                 </div>
@@ -260,6 +262,7 @@ export function NetworkPartnersSection() {
                         alt={`${partner.name} logo`}
                         width={140}
                         height={56}
+                        style={{ aspectRatio: '140/56' }}
                         className="max-h-9 sm:max-h-12 lg:max-h-14 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
                       />
                     </div>
@@ -326,6 +329,7 @@ export function NetworkPartnersSection() {
                       alt={`${partner.name} logo`}
                       width={120}
                       height={48}
+                      style={{ aspectRatio: '120/48' }}
                       className="max-h-7 sm:max-h-11 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
                     />
                   </div>

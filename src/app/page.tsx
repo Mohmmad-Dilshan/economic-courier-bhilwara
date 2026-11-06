@@ -253,6 +253,7 @@ export default function HomePage() {
                   height={390}
                   priority
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 560px"
+                  style={{ aspectRatio: '580/390' }}
                   className="w-full h-auto object-contain rounded-3xl shadow-[0_12px_40px_rgba(15,23,42,0.06)] border border-slate-100/80"
                 />
               </div>
@@ -342,16 +343,16 @@ export default function HomePage() {
             {/* Right: Courier Delivery Duo (3D eCS Parcel Boxes + Scooter Rider) */}
             <div className="relative shrink-0 hidden sm:flex items-center justify-center lg:justify-end gap-3 lg:gap-4 z-10 pointer-events-none select-none">
               {/* 3D eCS Branded Carton Boxes (Where User Circled) */}
-              <div className="relative w-36 sm:w-44 md:w-48 lg:w-[210px] xl:w-[230px] aspect-[951/570] transition-transform duration-700 ease-out hover:scale-105 filter drop-shadow-[0_12px_24px_rgba(15,23,42,0.10)]">
+              <div className="relative w-36 sm:w-44 md:w-48 lg:w-[210px] xl:w-[230px] style={{ aspectRatio: '951/570' }} transition-transform duration-700 ease-out hover:scale-105 filter drop-shadow-[0_12px_24px_rgba(15,23,42,0.10)]">
                 <Image
-                  src="/assets/services/ecs-boxes-3d.webp" alt="eCS World Wide Express 3D Courier Parcel Boxes" fill sizes="(max-width: 1024px) 210px, 230px" className="object-contain"
+                  src="/assets/services/ecs-boxes-3d.webp" alt="eCS World Wide Express 3D Courier Parcel Boxes" fill sizes="(max-width: 1024px) 210px, 230px" style={{ aspectRatio: '951/570' }} className="object-contain"
                 />
               </div>
 
               {/* Inward-Facing eCS Scooter Delivery Rider */}
-              <div className="relative w-40 sm:w-48 md:w-52 lg:w-[220px] xl:w-[240px] aspect-[645/550] transition-transform duration-700 ease-out hover:scale-105 filter drop-shadow-[0_12px_24px_rgba(220,38,38,0.12)]">
+              <div className="relative w-40 sm:w-48 md:w-52 lg:w-[220px] xl:w-[240px] style={{ aspectRatio: '645/550' }} transition-transform duration-700 ease-out hover:scale-105 filter drop-shadow-[0_12px_24px_rgba(220,38,38,0.12)]">
                 <Image
-                  src="/assets/services/ecs-scooter-rider-facing-inward.webp" alt="eCS World Wide Express Scooter Delivery Rider Object" fill sizes="(max-width: 1024px) 220px, 240px" className="object-contain"
+                  src="/assets/services/ecs-scooter-rider-facing-inward.webp" alt="eCS World Wide Express Scooter Delivery Rider Object" fill sizes="(max-width: 1024px) 220px, 240px" style={{ aspectRatio: '645/550' }} className="object-contain"
                 />
               </div>
             </div>
@@ -378,12 +379,13 @@ export default function HomePage() {
                   className={`bg-white rounded-2xl sm:rounded-3xl p-2.5 sm:p-3.5 lg:p-4 pb-3 sm:pb-4.5 lg:pb-5 shadow-[0_10px_30px_rgba(15,23,42,0.06)] hover:shadow-[0_22px_44px_rgba(15,23,42,0.12)] border border-slate-100/90 flex flex-col group cursor-pointer transition-all duration-300 ease-out hover:scale-[1.03] hover:-translate-y-1.5 hover:z-10 ${service.rotation} hover:rotate-0 `}
                 >
                   {/* Photo Frame with Clean Rounded Corners */}
-                  <div className="relative w-full aspect-[4/3] rounded-xl sm:rounded-2xl overflow-hidden bg-slate-100">
+                  <div className="relative w-full rounded-xl sm:rounded-2xl overflow-hidden bg-slate-100" style={{ aspectRatio: '4/3' }}>
                     <Image
                       src={service.image}
                       alt={service.title}
                       fill
                       sizes="(max-width: 640px) 50vw, (max-width: 1024px) 50vw, 280px"
+                      style={{ aspectRatio: '4/3' }}
                       className="object-cover transition-transform duration-500 group-hover:scale-105"
                     />
                   </div>
@@ -429,7 +431,7 @@ export default function HomePage() {
             <div className="lg:col-span-6 relative flex justify-center lg:justify-start ">
               <div className="relative w-full max-w-[540px]">
                 <Image
-                  src="/assets/office/about-collage.jpg" alt="Economic Courier Bhilwara office team, eCS wall logo, and logistics dispatch" width={580} height={350}
+                  src="/assets/office/about-collage.webp" alt="Economic Courier Bhilwara office team, eCS wall logo, and logistics dispatch" width={580} height={350}
                   className="w-full h-auto object-contain block mx-auto rounded-2xl"
                 />
               </div>

@@ -103,12 +103,13 @@ export function TextileLogisticsSection({ onOpenInquiry }: TextileLogisticsSecti
 
           {/* Right Column: Authentic Image Asset */}
           <div className="lg:col-span-5 relative flex justify-center">
-            <div className="relative w-full max-w-[480px] aspect-[4/3] rounded-3xl overflow-hidden border border-slate-200/80 shadow-[0_12px_40px_rgba(15,23,42,0.06)] bg-slate-100">
+            <div className="relative w-full max-w-[480px] rounded-3xl overflow-hidden border border-slate-200/80 shadow-[0_12px_40px_rgba(15,23,42,0.06)] bg-slate-100" style={{ aspectRatio: '4/3' }}>
               <Image
                 src="/assets/services/card-textiles.webp"
                 alt="Textile fabric rolls and sample swatches prepared for courier dispatch"
                 fill
                 sizes="(max-width: 1024px) 100vw, 480px"
+                style={{ aspectRatio: '4/3' }}
                 className="object-cover"
               />
             </div>

@@ -187,6 +187,7 @@ export function AnimatedRouteMap({ onOpenInquiry }: AnimatedRouteMapProps) {
   const [activeStopIndex, setActiveStopIndex] = useState(0);
   const [selectedStop, setSelectedStop] = useState<RouteStopData>(ROUTE_STOPS[0]);
   const [hasCompleted, setHasCompleted] = useState(false);
+  const [isNearViewport, setIsNearViewport] = useState(false);
 
   // Desktop lengths
   const [totalLength, setTotalLength] = useState(0);
@@ -210,15 +211,37 @@ export function AnimatedRouteMap({ onOpenInquiry }: AnimatedRouteMapProps) {
   const stopDistancesRef = useRef<number[]>([]);
   const mobStopDistancesRef = useRef<number[]>([]);
 
+  // Viewport-aware initialization: Defer SVG path math until section approaches viewport
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+    if (typeof IntersectionObserver === 'undefined') {
+      setIsNearViewport(true);
+      return;
+    }
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0]?.isIntersecting) {
+          setIsNearViewport(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: '400px' }
+    );
+    observer.observe(container);
+    return () => observer.disconnect();
+  }, []);
+
   // Initialize Desktop path geometry
   useEffect(() => {
+    if (!isNearViewport) return;
     const dPath = desktopPathRef.current;
     if (dPath) {
       try {
         const len = dPath.getTotalLength();
         setTotalLength(len);
 
-        const step = 4;
+        const step = 16;
         const distances: number[] = [];
 
         ROUTE_STOPS.forEach((stop) => {
@@ -266,7 +289,7 @@ export function AnimatedRouteMap({ onOpenInquiry }: AnimatedRouteMapProps) {
         const mLen = mPath.getTotalLength();
         setMobTotalLength(mLen);
 
-        const step = 4;
+        const step = 16;
         const mDistances: number[] = [];
 
         ROUTE_STOPS.forEach((stop) => {
@@ -306,7 +329,7 @@ export function AnimatedRouteMap({ onOpenInquiry }: AnimatedRouteMapProps) {
         // Fallback
       }
     }
-  }, []);
+  }, [isNearViewport]);
 
   // Smooth scroll listener
   useEffect(() => {

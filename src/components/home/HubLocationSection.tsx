@@ -87,6 +87,7 @@ export function HubLocationSection({ onOpenInquiry }: HubLocationSectionProps) {
                 alt="eCS World Wide Express Bhilwara Central Dispatch Hub 3D Model"
                 width={480}
                 height={320}
+                style={{ aspectRatio: '480/320' }}
                 className="w-full h-auto object-contain drop-shadow-[0_12px_28px_rgba(15,23,42,0.12)] hover:scale-[1.03] transition-transform duration-300 pointer-events-auto"
               />
             </div>

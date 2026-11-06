@@ -244,7 +244,7 @@ function VideoReelCard({
       tabIndex={0}
       role="region"
       aria-label={`${moment.title} video reel`}
-      className={`relative w-full h-[320px] xs:h-[350px] sm:h-[410px] lg:h-[440px] rounded-[24px] sm:rounded-[32px] lg:rounded-[36px] overflow-hidden bg-slate-950 border-[3px] sm:border-[3.5px] transition-all duration-300 ease-out group cursor-pointer select-none focus:outline-none focus-visible:ring-4 focus-visible:ring-red-500 ${mobileVisibilityClass} ${staggerClass} ${activeStyles} reveal-init reveal-scale ${delayClass}`}
+      className={`relative w-full h-[320px] xs:h-[350px] sm:h-[410px] lg:h-[440px] rounded-[24px] sm:rounded-[32px] lg:rounded-[36px] overflow-hidden bg-slate-950 border-[3px] sm:border-[3.5px] transition-all duration-300 ease-out group cursor-pointer select-none focus:outline-none focus-visible:ring-4 focus-visible:ring-red-500 ${mobileVisibilityClass} ${staggerClass} ${activeStyles} `}
     >
       {/* Phone Top Speaker Bezel */}
       <div className="absolute top-2 inset-x-0 z-20 pointer-events-none flex justify-center">

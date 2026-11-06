@@ -83,6 +83,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={cn(plusJakarta.variable, jetbrainsMono.variable)}>
+      <head>
+        <link
+          rel="preload"
+          as="image"
+          href="/assets/hero/hero-courier.webp"
+          fetchPriority="high"
+        />
+      </head>
       <body className="font-sans min-h-screen flex flex-col bg-[var(--color-bg-primary)] text-[var(--color-text-primary)] antialiased">
         <ScrollObserver />
         <Header />

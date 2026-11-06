@@ -32,6 +32,7 @@ const InquiryModal = dynamic(
 import { NetworkPartnersSection } from '@/components/home/NetworkPartnersSection';
 import { DailyRouteSection } from '@/components/home/DailyRouteSection';
 import { RealMomentsSection } from '@/components/home/RealMomentsSection';
+import { OperationsShowcaseSection } from '@/components/home/OperationsShowcaseSection';
 import { HowItWorksSection } from '@/components/home/HowItWorksSection';
 import { ReviewsSection } from '@/components/home/ReviewsSection';
 import { FAQSection } from '@/components/home/FAQSection';
@@ -438,6 +439,11 @@ export default function HomePage() {
           8.5. CUSTOMER REVIEWS & GOOGLE RATINGS SECTION (Corridor Businesses)
           ========================================================================= */}
       <ReviewsSection />
+
+      {/* =========================================================================
+          8.8. GROUND OPERATIONS SHOWCASE (Dual-Track Infinite Flow in Auto Mode)
+          ========================================================================= */}
+      <OperationsShowcaseSection />
 
       {/* =========================================================================
           9. ABOUT US SECTION (Clean Reference UI: eCS Collage + Clean Copy)

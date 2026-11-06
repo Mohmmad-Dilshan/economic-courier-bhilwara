@@ -62,10 +62,15 @@ export function validateInquiryForm(data: CustomerInquiryFormData): InquiryField
   const message = data.message.trim();
   if (!message) {
     errors.message = 'Please describe your inquiry or shipment requirement.';
-  } else if (message.length < 10) {
-    errors.message = 'Please provide at least 10 characters describing your inquiry.';
+  } else if (message.length < 5) {
+    errors.message = 'Please provide at least 5 characters describing your inquiry.';
   } else if (message.length > 600) {
     errors.message = 'Inquiry details cannot exceed 600 characters.';
+  }
+
+  // 6. User Consent validation (when consentGiven is tracked)
+  if (data.consentGiven !== undefined && !data.consentGiven) {
+    errors.consentGiven = 'Kripya WhatsApp/Phone updates ke liye consent checkbox tick kijiye.';
   }
 
   return errors;

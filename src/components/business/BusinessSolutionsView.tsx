@@ -2,7 +2,6 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 import {
   Building2,
   Briefcase,
@@ -12,10 +11,17 @@ import {
   Globe,
   ArrowRight,
   MapPin,
-  AlertCircle,
   Package,
   Scissors,
+  CheckCircle2,
+  Clock,
+  ShieldCheck,
+  Phone,
+  MessageCircle,
+  Receipt,
+  Headphones,
   Camera,
+  Search,
 } from 'lucide-react';
 import { InquiryModal } from '@/components/home/InquiryModal';
 
@@ -31,109 +37,208 @@ export function BusinessSolutionsView() {
   return (
     <div className="min-h-screen bg-[#F8FAFC] text-slate-800">
       {/* =========================================================================
-          1. HERO SECTION (Business & Enterprise Logistics Focus)
+          1. HERO SECTION (Clear, High-Impact & Direct for Bhilwara Businesses)
           ========================================================================= */}
-      <section className="relative pt-8 sm:pt-12 lg:pt-16 pb-12 sm:pb-16 bg-gradient-to-b from-white via-slate-50 to-[#F0F5FA] border-b border-slate-200/80">
-        <div className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Breadcrumbs & Location Tag */}
-          <div className="flex flex-wrap items-center justify-between gap-3 mb-6 sm:mb-8 text-xs font-medium text-slate-500">
+      <section className="relative pt-6 sm:pt-8 lg:pt-12 pb-10 sm:pb-16 bg-white border-b border-slate-200">
+        <div className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 space-y-6 sm:space-y-8">
+          {/* Breadcrumbs & Hub Location Tag */}
+          <div className="flex flex-wrap items-center justify-between gap-3 text-xs font-semibold text-slate-500">
             <nav aria-label="Breadcrumb" className="flex items-center gap-2">
-              <Link href="/" className="hover:text-red-600 transition-colors">
+              <Link href="/" className="hover:text-[#DC2626] transition-colors">
                 Home
               </Link>
-              <span>/</span>
-              <span className="text-slate-900 font-semibold" aria-current="page">
+              <span className="text-slate-300">/</span>
+              <span className="text-slate-900 font-bold" aria-current="page">
                 Business Solutions
               </span>
             </nav>
 
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-slate-200 shadow-2xs text-[11px] font-semibold text-slate-700">
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-100 border border-slate-200 text-[11px] font-bold text-slate-700">
               <MapPin className="w-3.5 h-3.5 text-[#DC2626]" />
-              <span>BHILWARA · COMMERCIAL TRADE HUB</span>
+              <span>BHILWARA · OPP. NEW CLOTH MARKET</span>
             </div>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-            {/* Left Column: Copy */}
-            <div className="lg:col-span-7 space-y-5">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-red-50 border border-red-200 text-red-700 text-xs font-extrabold tracking-wider uppercase shadow-2xs">
-                <span className="w-2 h-2 rounded-full bg-red-700 animate-pulse" />
-                <span>COMMERCIAL &amp; B2B COURIER</span>
+          {/* Hero Content (Clean, Luminous, Pure Text & Action • Zero Dark Cards) */}
+          <div className="max-w-4xl space-y-5 sm:space-y-6">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-red-50 border border-red-200 text-[#DC2626] text-xs font-black tracking-wider uppercase">
+              <Briefcase className="w-3.5 h-3.5 text-[#DC2626]" />
+              <span>B2B &amp; CORPORATE COURIER ACCOUNTS</span>
+            </div>
+
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-slate-900 leading-[1.15]">
+              Bhilwara Ke Businesses &amp; Factories Ke Liye{' '}
+              <span className="text-[#DC2626]">Dedicated Courier Solutions.</span>
+            </h1>
+
+            <p className="text-sm sm:text-base lg:text-lg text-slate-600 leading-relaxed font-normal max-w-3xl">
+              Rozana counter aane aur cash payment ki jhanjhat khatam. Textile weaving mills,
+              garment units, machinery traders, aur corporate offices ke liye daily scheduled
+              doorstep pickup, priority commercial trade corridors, aur monthly consolidated GST billing.
+            </p>
+
+            {/* Quick Feature Badges (Balanced 4 Columns) */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 pt-1 text-xs font-bold text-slate-700">
+              <div className="flex items-center gap-2.5 p-3 rounded-xl bg-slate-50 border border-slate-200/90 shadow-2xs">
+                <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                <span>Daily Factory/Office Pickup</span>
               </div>
-
-              <h1 className="text-3xl sm:text-5xl lg:text-[54px] font-black tracking-[-0.035em] text-[#0F172A] leading-[1.1]">
-                Structured logistics for{' '}
-                <span className="bg-gradient-to-r from-[#DC2626] via-[#E11D48] to-[#EF4444] bg-clip-text text-transparent">
-                  Bhilwara commerce.
-                </span>
-              </h1>
-
-              <p className="text-sm sm:text-base lg:text-lg text-slate-600 leading-relaxed font-normal pt-1 max-w-2xl">
-                From textile weaving mills and garment manufacturers to wholesale distributors and
-                professional offices, businesses in Bhilwara depend on dependable, repeatable parcel
-                dispatch. Our business shipping services provide dedicated counter intake, commercial
-                document security, and coordinated transit connections across India and worldwide.
-              </p>
-
-              {/* Capability Badges */}
-              <div className="pt-2 flex flex-wrap gap-2 text-xs font-semibold text-slate-700">
-                <span className="px-3 py-1.5 rounded-full bg-white border border-slate-200 shadow-2xs inline-flex items-center gap-1.5">
-                  <Briefcase className="w-3.5 h-3.5 text-red-700" />
-                  <span>Business Shipment Inquiries</span>
-                </span>
-                <span className="px-3 py-1.5 rounded-full bg-white border border-slate-200 shadow-2xs inline-flex items-center gap-1.5">
-                  <Truck className="w-3.5 h-3.5 text-red-700" />
-                  <span>Domestic &amp; International Shipping</span>
-                </span>
-                <span className="px-3 py-1.5 rounded-full bg-white border border-slate-200 shadow-2xs inline-flex items-center gap-1.5">
-                  <Package className="w-3.5 h-3.5 text-red-700" />
-                  <span>Textile &amp; Commercial Parcels</span>
-                </span>
+              <div className="flex items-center gap-2.5 p-3 rounded-xl bg-slate-50 border border-slate-200/90 shadow-2xs">
+                <Receipt className="w-4 h-4 text-emerald-600 shrink-0" />
+                <span>Monthly Consolidated GST Bill</span>
               </div>
-
-              {/* Action Trigger & Honest Note */}
-              <div className="pt-3 flex flex-col sm:flex-row items-start sm:items-center gap-4">
-                <button
-                  type="button"
-                  onClick={() => handleOpenInquiry('other')}
-                  className="inline-flex items-center gap-2 bg-[#DC2626] hover:bg-[#B91C1C] text-white text-xs sm:text-sm font-bold px-6 py-3.5 rounded-full shadow-md transition-all active:scale-95 cursor-pointer"
-                >
-                  <span>Inquire for Business Shipping</span>
-                  <ArrowRight className="w-4 h-4 text-white" />
-                </button>
-
-                <p className="text-[11px] text-slate-500 italic max-w-xs">
-                  * Commercial shipping terms and recurring consignment arrangements are coordinated
-                  directly upon parcel and requirement review.
-                </p>
+              <div className="flex items-center gap-2.5 p-3 rounded-xl bg-slate-50 border border-slate-200/90 shadow-2xs">
+                <Truck className="w-4 h-4 text-[#DC2626] shrink-0" />
+                <span>Priority Linehauls (Surat/Delhi)</span>
+              </div>
+              <div className="flex items-center gap-2.5 p-3 rounded-xl bg-slate-50 border border-slate-200/90 shadow-2xs">
+                <Globe className="w-4 h-4 text-[#DC2626] shrink-0" />
+                <span>Worldwide Air Express Cargo</span>
               </div>
             </div>
 
-            {/* Right Column: 3D Commercial Logistics Fleet & Terminal Model */}
-            <div className="lg:col-span-5 flex flex-col items-center justify-center">
-              <div className="relative w-full max-w-[420px] xs:max-w-[480px] sm:max-w-[540px] lg:max-w-[580px] group">
-                {/* Soft ambient glow */}
-                <div className="absolute -inset-4 bg-gradient-to-tr from-red-500/10 via-rose-500/5 to-amber-500/10 rounded-3xl blur-2xl -z-10 opacity-70 group-hover:opacity-100 transition-opacity" />
+            {/* Call to Actions */}
+            <div className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+              <button
+                type="button"
+                onClick={() => handleOpenInquiry('business')}
+                className="inline-flex items-center justify-center gap-2 bg-[#DC2626] hover:bg-[#B91C1C] text-white text-xs sm:text-sm font-bold px-6 py-3.5 rounded-xl shadow-md transition-all active:scale-95 cursor-pointer whitespace-nowrap"
+              >
+                <span>Open Business Account / Inquire</span>
+                <ArrowRight className="w-4 h-4 text-white" />
+              </button>
 
-                <Image
-                  src="/assets/business-fleet-3d.webp"
-                  alt="eCS World Wide Express Commercial Fleet, Multi-Axle Linehaul Truck, Express Delivery Van and Logistics Warehouse Terminal in Bhilwara"
-                  width={1024}
-                  height={512}
-                  priority
-                  className="w-full h-auto object-contain drop-shadow-[0_16px_36px_rgba(15,23,42,0.12)] hover:scale-[1.02] transition-transform duration-300 pointer-events-auto"
-                />
+              <a
+                href="https://wa.me/918955144444?text=Hello%20Economic%20Courier%20Bhilwara,%20I%20want%20to%20inquire%20about%20a%20Business%20Courier%20Account."
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white text-xs sm:text-sm font-bold px-5 py-3.5 rounded-xl shadow-md transition-all active:scale-95 cursor-pointer whitespace-nowrap"
+              >
+                <MessageCircle className="w-4 h-4 text-white" />
+                <span>WhatsApp Commercial Desk</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
 
-                {/* Micro Live Fleet Status Ribbon */}
-                <div className="mt-2.5 flex items-center justify-between gap-2 px-4 py-2.5 rounded-2xl bg-white/95 backdrop-blur-md border border-slate-200/90 shadow-2xs text-xs">
-                  <div className="flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse shrink-0" />
-                    <span className="font-bold text-slate-900">Commercial Fleet Staging</span>
-                  </div>
-                  <span className="text-[11px] text-slate-600 font-semibold truncate">
-                    Textile Freight &amp; Daily Linehauls
-                  </span>
-                </div>
+      {/* =========================================================================
+          2. CORE BUSINESS ADVANTAGES (Aapke Business Ko Kya Suvidha Milegi?)
+          ========================================================================= */}
+      <section className="py-10 sm:py-16 bg-[#F8FAFC] border-b border-slate-200">
+        <div className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 space-y-8 sm:space-y-10">
+          <div className="max-w-2xl space-y-1.5">
+            <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-[#DC2626] block">
+              BUSINESS ADVANTAGES
+            </span>
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-900 tracking-tight">
+              Aapke Business Ko Kya-Kya Suvidha Milegi?
+            </h2>
+            <p className="text-xs sm:text-sm text-slate-600 font-normal">
+              Bhilwara ke regular vyapar aur factory owners ke liye structured services:
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            {/* Feature 1 */}
+            <div className="p-6 rounded-2xl bg-white border border-slate-200 hover:border-red-300 hover:shadow-lg transition-all duration-300 space-y-3.5 group">
+              <div className="w-12 h-12 rounded-xl bg-red-50 text-[#DC2626] flex items-center justify-center border border-red-100 group-hover:scale-105 transition-transform">
+                <Clock className="w-6 h-6 text-[#DC2626]" />
+              </div>
+              <h3 className="text-lg font-bold text-slate-900 group-hover:text-[#DC2626] transition-colors">
+                Daily Scheduled Doorstep Pickup
+              </h3>
+              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
+                Aapko roz-roz courier office aane ki zaroorat nahi. Subah ya evening mein hamara
+                delivery rider direct aapki factory, shop ya office se parcels collect karega.
+              </p>
+              <div className="pt-2 border-t border-slate-100 text-[11px] font-bold text-slate-500">
+                Pur Road, RIICO, Cloth Market Coverage
+              </div>
+            </div>
+
+            {/* Feature 2 */}
+            <div className="p-6 rounded-2xl bg-white border border-slate-200 hover:border-red-300 hover:shadow-lg transition-all duration-300 space-y-3.5 group">
+              <div className="w-12 h-12 rounded-xl bg-red-50 text-[#DC2626] flex items-center justify-center border border-red-100 group-hover:scale-105 transition-transform">
+                <Receipt className="w-6 h-6 text-[#DC2626]" />
+              </div>
+              <h3 className="text-lg font-bold text-slate-900 group-hover:text-[#DC2626] transition-colors">
+                Monthly Billing &amp; GST Invoicing
+              </h3>
+              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
+                Roz ke chhote cash transactions band. Mahine ke aakhir mein ek single consolidated
+                statement aur proper GST input tax credit invoice aapke accounting team ko milta hai.
+              </p>
+              <div className="pt-2 border-t border-slate-100 text-[11px] font-bold text-slate-500">
+                100% Tax Compliant B2B Billing
+              </div>
+            </div>
+
+            {/* Feature 3 */}
+            <div className="p-6 rounded-2xl bg-white border border-slate-200 hover:border-red-300 hover:shadow-lg transition-all duration-300 space-y-3.5 group">
+              <div className="w-12 h-12 rounded-xl bg-red-50 text-[#DC2626] flex items-center justify-center border border-red-100 group-hover:scale-105 transition-transform">
+                <Truck className="w-6 h-6 text-[#DC2626]" />
+              </div>
+              <h3 className="text-lg font-bold text-slate-900 group-hover:text-[#DC2626] transition-colors">
+                Priority Commercial Trade Corridors
+              </h3>
+              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
+                Surat, Mumbai, Delhi NCR, Ahmedabad, Bangalore jaise mukhya industrial aur textile
+                hubs ke liye dedicated direct linehauls aur fast-track delivery slots.
+              </p>
+              <div className="pt-2 border-t border-slate-100 text-[11px] font-bold text-slate-500">
+                Next-Day Morning Connectivity
+              </div>
+            </div>
+
+            {/* Feature 4 */}
+            <div className="p-6 rounded-2xl bg-white border border-slate-200 hover:border-red-300 hover:shadow-lg transition-all duration-300 space-y-3.5 group">
+              <div className="w-12 h-12 rounded-xl bg-red-50 text-[#DC2626] flex items-center justify-center border border-red-100 group-hover:scale-105 transition-transform">
+                <ShieldCheck className="w-6 h-6 text-[#DC2626]" />
+              </div>
+              <h3 className="text-lg font-bold text-slate-900 group-hover:text-[#DC2626] transition-colors">
+                Tamper-Evident &amp; Swatch Safety
+              </h3>
+              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
+                Kapde ke swatches, sample books aur confidential documents ke liye high-grade
+                waterproof poly-wrap, security seal, aur reinforced strapping packaging support.
+              </p>
+              <div className="pt-2 border-t border-slate-100 text-[11px] font-bold text-slate-500">
+                Weather &amp; Transit Protected
+              </div>
+            </div>
+
+            {/* Feature 5 */}
+            <div className="p-6 rounded-2xl bg-white border border-slate-200 hover:border-red-300 hover:shadow-lg transition-all duration-300 space-y-3.5 group">
+              <div className="w-12 h-12 rounded-xl bg-red-50 text-[#DC2626] flex items-center justify-center border border-red-100 group-hover:scale-105 transition-transform">
+                <Headphones className="w-6 h-6 text-[#DC2626]" />
+              </div>
+              <h3 className="text-lg font-bold text-slate-900 group-hover:text-[#DC2626] transition-colors">
+                Dedicated Account Desk (No Bots)
+              </h3>
+              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
+                Kisi call-center robot ke chakkaron mein nahi padna. Bhilwara Hub ka direct dedicated
+                account manager, instant WhatsApp docket status, aur fast problem resolution.
+              </p>
+              <div className="pt-2 border-t border-slate-100 text-[11px] font-bold text-slate-500">
+                Direct Local Support Contact
+              </div>
+            </div>
+
+            {/* Feature 6 */}
+            <div className="p-6 rounded-2xl bg-white border border-slate-200 hover:border-red-300 hover:shadow-lg transition-all duration-300 space-y-3.5 group">
+              <div className="w-12 h-12 rounded-xl bg-red-50 text-[#DC2626] flex items-center justify-center border border-red-100 group-hover:scale-105 transition-transform">
+                <FileText className="w-6 h-6 text-[#DC2626]" />
+              </div>
+              <h3 className="text-lg font-bold text-slate-900 group-hover:text-[#DC2626] transition-colors">
+                Proof of Delivery (POD) Receipts
+              </h3>
+              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
+                Important consignments aur buyer samples ka signed proof of delivery (POD) receipt
+                aapke audit aur commercial verification ke liye record mein maintain kiya jata hai.
+              </p>
+              <div className="pt-2 border-t border-slate-100 text-[11px] font-bold text-slate-500">
+                Verifiable Commercial Dispatch
               </div>
             </div>
           </div>
@@ -141,274 +246,124 @@ export function BusinessSolutionsView() {
       </section>
 
       {/* =========================================================================
-          2. WHO WE SERVE (Grounded in Verified Trade Material)
+          3. WHO WE SUPPORT ACROSS BHILWARA (Industry-Specific Solutions)
           ========================================================================= */}
-      <section className="py-12 sm:py-16 bg-white border-b border-slate-200">
-        <div className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-2xl mb-10 space-y-2">
+      <section className="py-10 sm:py-16 bg-white border-b border-slate-200">
+        <div className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 space-y-8 sm:space-y-10">
+          <div className="max-w-2xl space-y-1.5">
             <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-[#DC2626] block">
-              Commercial Client Profile
+              TARGET COMMERCIAL SECTORS
             </span>
-            <h2 className="text-2xl sm:text-4xl font-black tracking-tight text-[#0F172A]">
-              Who we support across Bhilwara.
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-900 tracking-tight">
+              Aapka Business Kis Category Mein Aata Hai?
             </h2>
             <p className="text-xs sm:text-sm text-slate-600 font-normal">
-              Based on the verified commercial services of Economic Courier, our operations are
-              tailored to the needs of Bhilwara’s industrial and retail enterprises.
+              Bhilwara ke industrial aur commercial trade ke liye tailor-made logistics handling:
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
-            {/* Audience 1: Textile Mills & Weavers */}
-            <div className="p-6 rounded-2xl bg-[#F8FAFC] border border-slate-200 flex flex-col justify-between space-y-4 hover:border-red-300 transition-colors shadow-2xs group">
+            {/* Sector 1: Textile Mills */}
+            <div className="p-6 rounded-2xl bg-[#F8FAFC] border border-slate-200 hover:border-red-300 hover:shadow-md transition-all flex flex-col justify-between space-y-4 group">
               <div className="space-y-3">
-                <div className="w-10 h-10 rounded-xl bg-red-50 text-red-700 flex items-center justify-center border border-red-100">
-                  <Layers className="w-5 h-5 text-red-700" />
+                <div className="w-11 h-11 rounded-xl bg-red-50 text-[#DC2626] flex items-center justify-center border border-red-100 group-hover:scale-105 transition-transform">
+                  <Layers className="w-5 h-5 text-[#DC2626]" />
                 </div>
-                <h3 className="text-base font-extrabold text-[#0F172A] group-hover:text-[#DC2626] transition-colors">
-                  Textile Manufacturers &amp; Weaving Mills
-                </h3>
+                <div>
+                  <span className="text-[10px] font-mono font-bold uppercase text-[#DC2626] tracking-wider block mb-0.5">
+                    WEAVING &amp; SYNTHETICS
+                  </span>
+                  <h3 className="text-base font-extrabold text-slate-900 group-hover:text-[#DC2626] transition-colors">
+                    Textile &amp; Weaving Mills
+                  </h3>
+                </div>
                 <p className="text-xs text-slate-600 leading-relaxed font-normal">
-                  Producers of synthetic fabrics, suiting, and shirting requiring urgent courier dispatch
-                  for seasonal swatch books, proof swatches, and fabric cut-lengths to metropolitan buyers.
+                  Suiting, shirting, aur synthetic fabric producers jo outstation buyers ko naye
+                  shade cards, swatch books, aur fabric trial cuts urgent approval ke liye bhejte hain.
                 </p>
               </div>
 
-              <div className="pt-3 border-t border-slate-200/80 text-[11px] font-medium text-slate-600">
-                <span>Sample swatches &amp; proof yardage</span>
+              <div className="pt-3 border-t border-slate-200 text-[11px] font-bold text-slate-500 flex items-center justify-between">
+                <span>Shade Cards &amp; Swatches</span>
+                <span className="text-[#DC2626]">Priority Air/Road</span>
               </div>
             </div>
 
-            {/* Audience 2: Garment & Apparel Units */}
-            <div className="p-6 rounded-2xl bg-[#F8FAFC] border border-slate-200 flex flex-col justify-between space-y-4 hover:border-red-300 transition-colors shadow-2xs group">
+            {/* Sector 2: Garment Units */}
+            <div className="p-6 rounded-2xl bg-[#F8FAFC] border border-slate-200 hover:border-red-300 hover:shadow-md transition-all flex flex-col justify-between space-y-4 group">
               <div className="space-y-3">
-                <div className="w-10 h-10 rounded-xl bg-red-50 text-red-700 flex items-center justify-center border border-red-100">
-                  <Scissors className="w-5 h-5 text-red-700" />
+                <div className="w-11 h-11 rounded-xl bg-red-50 text-[#DC2626] flex items-center justify-center border border-red-100 group-hover:scale-105 transition-transform">
+                  <Scissors className="w-5 h-5 text-[#DC2626]" />
                 </div>
-                <h3 className="text-base font-extrabold text-[#0F172A] group-hover:text-[#DC2626] transition-colors">
-                  Garment &amp; Apparel Businesses
-                </h3>
+                <div>
+                  <span className="text-[10px] font-mono font-bold uppercase text-[#DC2626] tracking-wider block mb-0.5">
+                    APPAREL EXPORT
+                  </span>
+                  <h3 className="text-base font-extrabold text-slate-900 group-hover:text-[#DC2626] transition-colors">
+                    Garment &amp; Apparel Exporters
+                  </h3>
+                </div>
                 <p className="text-xs text-slate-600 leading-relaxed font-normal">
-                  Garment manufacturing units and apparel merchandisers shipping trial garments,
-                  embroidery samples, and prototype collections for buyer approval before production runs.
+                  Garment manufacturing units aur merchandisers jinhe prototype samples, trial
+                  garments, embroidery patterns aur buyer catalog books time-bound delivery karni hoti hai.
                 </p>
               </div>
 
-              <div className="pt-3 border-t border-slate-200/80 text-[11px] font-medium text-slate-600">
-                <span>Garment prototypes &amp; catalogs</span>
+              <div className="pt-3 border-t border-slate-200 text-[11px] font-bold text-slate-500 flex items-center justify-between">
+                <span>Buyer Prototypes</span>
+                <span className="text-[#DC2626]">Fast-Track Express</span>
               </div>
             </div>
 
-            {/* Audience 3: Retail & Commercial Senders */}
-            <div className="p-6 rounded-2xl bg-[#F8FAFC] border border-slate-200 flex flex-col justify-between space-y-4 hover:border-red-300 transition-colors shadow-2xs group">
+            {/* Sector 3: Wholesale & Machinery Spares */}
+            <div className="p-6 rounded-2xl bg-[#F8FAFC] border border-slate-200 hover:border-red-300 hover:shadow-md transition-all flex flex-col justify-between space-y-4 group">
               <div className="space-y-3">
-                <div className="w-10 h-10 rounded-xl bg-red-50 text-red-700 flex items-center justify-center border border-red-100">
-                  <Package className="w-5 h-5 text-red-700" />
+                <div className="w-11 h-11 rounded-xl bg-red-50 text-[#DC2626] flex items-center justify-center border border-red-100 group-hover:scale-105 transition-transform">
+                  <Package className="w-5 h-5 text-[#DC2626]" />
                 </div>
-                <h3 className="text-base font-extrabold text-[#0F172A] group-hover:text-[#DC2626] transition-colors">
-                  Retail Merchants &amp; Distributors
-                </h3>
+                <div>
+                  <span className="text-[10px] font-mono font-bold uppercase text-[#DC2626] tracking-wider block mb-0.5">
+                    COMMERCIAL TRADE
+                  </span>
+                  <h3 className="text-base font-extrabold text-slate-900 group-hover:text-[#DC2626] transition-colors">
+                    Wholesalers &amp; Machinery Spares
+                  </h3>
+                </div>
                 <p className="text-xs text-slate-600 leading-relaxed font-normal">
-                  Local trade businesses, machinery suppliers, and commercial distributors sending
-                  spare parts, inventory samples, and B2B parcels across Rajasthan and national corridors.
+                  Industrial spare parts, loom machinery accessories, chemical samples, aur B2B
+                  cartons jo interstate factories aur distributors tak dispatch hote hain.
                 </p>
               </div>
 
-              <div className="pt-3 border-t border-slate-200/80 text-[11px] font-medium text-slate-600">
-                <span>Spare parts &amp; commercial parcels</span>
+              <div className="pt-3 border-t border-slate-200 text-[11px] font-bold text-slate-500 flex items-center justify-between">
+                <span>Heavy Boxes &amp; Spares</span>
+                <span className="text-[#DC2626]">Surface Linehaul</span>
               </div>
             </div>
 
-            {/* Audience 4: Corporate & Professional Offices */}
-            <div className="p-6 rounded-2xl bg-[#F8FAFC] border border-slate-200 flex flex-col justify-between space-y-4 hover:border-red-300 transition-colors shadow-2xs group">
+            {/* Sector 4: Corporate & Professional Offices */}
+            <div className="p-6 rounded-2xl bg-[#F8FAFC] border border-slate-200 hover:border-red-300 hover:shadow-md transition-all flex flex-col justify-between space-y-4 group">
               <div className="space-y-3">
-                <div className="w-10 h-10 rounded-xl bg-red-50 text-red-700 flex items-center justify-center border border-red-100">
-                  <Building2 className="w-5 h-5 text-red-700" />
+                <div className="w-11 h-11 rounded-xl bg-red-50 text-[#DC2626] flex items-center justify-center border border-red-100 group-hover:scale-105 transition-transform">
+                  <Building2 className="w-5 h-5 text-[#DC2626]" />
                 </div>
-                <h3 className="text-base font-extrabold text-[#0F172A] group-hover:text-[#DC2626] transition-colors">
-                  Corporate &amp; Professional Offices
-                </h3>
+                <div>
+                  <span className="text-[10px] font-mono font-bold uppercase text-[#DC2626] tracking-wider block mb-0.5">
+                    LEGAL &amp; CORPORATE
+                  </span>
+                  <h3 className="text-base font-extrabold text-slate-900 group-hover:text-[#DC2626] transition-colors">
+                    CA, Legal &amp; Corporate Offices
+                  </h3>
+                </div>
                 <p className="text-xs text-slate-600 leading-relaxed font-normal">
-                  Auditors, legal firms, industrial agencies, and corporate offices requiring secure,
-                  tamper-evident handling for contracts, tender files, GST documents, and banking papers.
+                  Auditors, advocates, aur industrial offices jinhe sensitive tender papers,
+                  audit files, legal agreements, bank documents, aur GST files confidential deliver karni hoti hain.
                 </p>
               </div>
 
-              <div className="pt-3 border-t border-slate-200/80 text-[11px] font-medium text-slate-500">
-                <span>Confidential business dossiers</span>
-              </div>
-            </div>
-          </div>
-
-          {/* Truthfulness Notice */}
-          <div className="mt-8 p-4 rounded-xl bg-slate-50 border border-slate-200 text-xs text-slate-600 flex items-start gap-2.5">
-            <AlertCircle className="w-4 h-4 text-slate-500 shrink-0 mt-0.5" />
-            <p>
-              <span className="font-semibold text-slate-800">Transparency Note:</span> We do not publish
-              unverified corporate partner lists or fabricated customer counts. All commercial terms,
-              credit billing, and scheduled dispatch pickups are structured following direct operational
-              review at our Bhilwara desk.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* =========================================================================
-          3. BUSINESS SHIPPING NEEDS (Key Supported Categories)
-          ========================================================================= */}
-      <section className="py-12 sm:py-16 lg:py-20 bg-[#F0F5FA] border-b border-[#E0EDF8]">
-        <div className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-2xl mb-10 space-y-2">
-            <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-red-700 block">
-              Shipment Categories
-            </span>
-            <h2 className="text-2xl sm:text-4xl font-black tracking-tight text-[#0F172A]">
-              Handling your core trade requirements.
-            </h2>
-            <p className="text-xs sm:text-sm text-slate-600 font-normal">
-              A comprehensive breakdown of commercial courier categories supported by Economic Courier
-              and eCS World Wide Express.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {/* Category 1 */}
-            <div className="p-6 rounded-2xl bg-white border border-slate-200/80 shadow-2xs space-y-4">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-red-50 text-red-700 flex items-center justify-center border border-red-100">
-                  <FileText className="w-5 h-5 text-red-700" />
-                </div>
-                <div>
-                  <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-slate-600 block">
-                    Category 01
-                  </span>
-                  <h3 className="text-lg font-bold text-[#0F172A]">
-                    Samples &amp; Critical Business Documents
-                  </h3>
-                </div>
-              </div>
-
-              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
-                Time-sensitive commercial letters, fabric swatch folders, tenders, and trade agreements.
-                Protected in reinforced envelopes or tear-resistant poly sleeves for verifiable handoff.
-              </p>
-
-              <div className="pt-2 border-t border-slate-100 flex items-center justify-between text-xs">
-                <span className="text-slate-600 font-medium">Service: Documents &amp; Important Parcels</span>
-                <Link
-                  href="/services#documents"
-                  className="font-bold text-red-700 hover:text-red-800 inline-flex items-center gap-1"
-                >
-                  <span>
-                    Learn more<span className="sr-only"> about commercial document services</span>
-                  </span>
-                  <ArrowRight className="w-3.5 h-3.5" />
-                </Link>
-              </div>
-            </div>
-
-            {/* Category 2 */}
-            <div className="p-6 rounded-2xl bg-white border border-slate-200/80 shadow-2xs space-y-4">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-red-50 text-red-700 flex items-center justify-center border border-red-100">
-                  <Truck className="w-5 h-5 text-red-700" />
-                </div>
-                <div>
-                  <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-slate-600 block">
-                    Category 02
-                  </span>
-                  <h3 className="text-lg font-bold text-[#0F172A]">
-                    Priority Domestic Commercial Consignments
-                  </h3>
-                </div>
-              </div>
-
-              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
-                Connecting Bhilwara to major commercial production centers and regional distribution
-                hubs across India, including Jaipur, Delhi NCR, Mumbai, Surat, and Ahmedabad.
-              </p>
-
-              <div className="pt-2 border-t border-slate-100 flex items-center justify-between text-xs">
-                <span className="text-slate-600 font-medium">Service: Domestic Express Courier</span>
-                <Link
-                  href="/services#domestic"
-                  className="font-bold text-red-700 hover:text-red-800 inline-flex items-center gap-1"
-                >
-                  <span>
-                    Learn more<span className="sr-only"> about domestic express shipping</span>
-                  </span>
-                  <ArrowRight className="w-3.5 h-3.5" />
-                </Link>
-              </div>
-            </div>
-
-            {/* Category 3 */}
-            <div className="p-6 rounded-2xl bg-white border border-slate-200/80 shadow-2xs space-y-4">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-red-50 text-red-700 flex items-center justify-center border border-red-100">
-                  <Globe className="w-5 h-5 text-red-700" />
-                </div>
-                <div>
-                  <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-slate-600 block">
-                    Category 03
-                  </span>
-                  <h3 className="text-lg font-bold text-[#0F172A]">
-                    International Air Forwarding Inquiries
-                  </h3>
-                </div>
-              </div>
-
-              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
-                Worldwide air express under the eCS World Wide Express identity. Designed for overseas
-                buyers receiving export swatches, trial yardage, and commercial documentation.
-              </p>
-
-              <div className="pt-2 border-t border-slate-100 flex items-center justify-between text-xs">
-                <span className="text-slate-600 font-medium">Service: International Courier &amp; Cargo</span>
-                <Link
-                  href="/services#international"
-                  className="font-bold text-red-700 hover:text-red-800 inline-flex items-center gap-1"
-                >
-                  <span>
-                    Learn more<span className="sr-only"> about international air cargo</span>
-                  </span>
-                  <ArrowRight className="w-3.5 h-3.5" />
-                </Link>
-              </div>
-            </div>
-
-            {/* Category 4 */}
-            <div className="p-6 rounded-2xl bg-white border border-slate-200/80 shadow-2xs space-y-4">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-red-50 text-red-700 flex items-center justify-center border border-red-100">
-                  <Scissors className="w-5 h-5 text-red-700" />
-                </div>
-                <div>
-                  <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-slate-600 block">
-                    Category 04
-                  </span>
-                  <h3 className="text-lg font-bold text-[#0F172A]">
-                    Textile &amp; Garment Trade Logistics
-                  </h3>
-                </div>
-              </div>
-
-              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
-                Engineered specifically for Bhilwara’s fabric mills: poly-wrapped swatch packs, sample
-                rolls, and garment samples prepared for interstate highway linehauls.
-              </p>
-
-              <div className="pt-2 border-t border-slate-100 flex items-center justify-between text-xs">
-                <span className="text-slate-600 font-medium">Service: Textile Logistics</span>
-                <Link
-                  href="/textile-logistics"
-                  className="font-bold text-red-700 hover:text-red-800 inline-flex items-center gap-1"
-                >
-                  <span>
-                    Learn more<span className="sr-only"> about textile swatch logistics</span>
-                  </span>
-                  <ArrowRight className="w-3.5 h-3.5" />
-                </Link>
+              <div className="pt-3 border-t border-slate-200 text-[11px] font-bold text-slate-500 flex items-center justify-between">
+                <span>Confidential Dossiers</span>
+                <span className="text-[#DC2626]">Tamper-Proof Seal</span>
               </div>
             </div>
           </div>
@@ -416,227 +371,353 @@ export function BusinessSolutionsView() {
       </section>
 
       {/* =========================================================================
-          4. HOW BUSINESS INQUIRIES WORK (Suggested Inquiry Process)
+          4. MAJOR TRADE CORRIDORS (Kahan-Kahan Daily Jaata Hai?)
           ========================================================================= */}
-      <section className="py-12 sm:py-16 bg-white border-b border-slate-200">
-        <div className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-2xl mx-auto text-center mb-12 space-y-2">
-            <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-red-700 block">
-              Suggested Onboarding Process
+      <section className="py-10 sm:py-16 bg-[#F0F5FA] border-b border-[#E2E8F0]">
+        <div className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 space-y-8 sm:space-y-10">
+          <div className="max-w-2xl space-y-1.5">
+            <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-[#DC2626] block">
+              DAILY TRADE CORRIDORS
             </span>
-            <h2 className="text-2xl sm:text-4xl font-black tracking-tight text-[#0F172A]">
-              How business inquiries work.
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-900 tracking-tight">
+              Bhilwara Se Sabse Zyaada Dispatch Hone Wale Routes
             </h2>
             <p className="text-xs sm:text-sm text-slate-600 font-normal">
-              A clear general walkthrough of how commercial senders coordinate consignments with our
-              Bhilwara desk.
+              In trade corridors par hamara daily consignment movement hota hai:
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-            {/* Step 1 */}
-            <div className="p-5 rounded-2xl bg-[#F8FAFC] border border-slate-200 space-y-3 relative">
-              <div className="w-10 h-10 rounded-xl bg-red-50 text-red-700 font-extrabold flex items-center justify-center text-sm border border-red-100">
-                01
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
+            {/* Route 1 */}
+            <div className="p-5 rounded-2xl bg-white border border-slate-200/90 shadow-2xs space-y-3">
+              <div className="flex items-center justify-between">
+                <span className="px-2.5 py-1 rounded-full bg-red-50 text-[#DC2626] text-[10px] font-mono font-bold uppercase">
+                  GUJARAT TEXTILE CORRIDOR
+                </span>
+                <span className="text-xs font-bold text-emerald-600">Next-Day Delivery</span>
               </div>
-              <h3 className="text-sm font-extrabold text-[#0F172A]">
-                Share Requirements
+              <h3 className="text-lg font-black text-slate-900">
+                Surat &amp; Ahmedabad
               </h3>
               <p className="text-xs text-slate-600 leading-relaxed font-normal">
-                Provide details on your business consignment needs: package types (swatches, documents,
-                cartons) and estimated shipping frequency.
+                Bhilwara ke fabric sample cards aur yarn-related consignments ke liye daily
+                overnight road linehauls aur express delivery.
+              </p>
+            </div>
+
+            {/* Route 2 */}
+            <div className="p-5 rounded-2xl bg-white border border-slate-200/90 shadow-2xs space-y-3">
+              <div className="flex items-center justify-between">
+                <span className="px-2.5 py-1 rounded-full bg-red-50 text-[#DC2626] text-[10px] font-mono font-bold uppercase">
+                  CAPITAL COMMERCE
+                </span>
+                <span className="text-xs font-bold text-emerald-600">Priority Linehaul</span>
+              </div>
+              <h3 className="text-lg font-black text-slate-900">
+                Delhi NCR, Gurgaon &amp; Noida
+              </h3>
+              <p className="text-xs text-slate-600 leading-relaxed font-normal">
+                Garment export buyer houses, head offices, aur corporate commercial offices tak
+                urgent morning delivery connections.
+              </p>
+            </div>
+
+            {/* Route 3 */}
+            <div className="p-5 rounded-2xl bg-white border border-slate-200/90 shadow-2xs space-y-3">
+              <div className="flex items-center justify-between">
+                <span className="px-2.5 py-1 rounded-full bg-red-50 text-[#DC2626] text-[10px] font-mono font-bold uppercase">
+                  FINANCIAL &amp; PORT HUB
+                </span>
+                <span className="text-xs font-bold text-emerald-600">Express Air / Surface</span>
+              </div>
+              <h3 className="text-lg font-black text-slate-900">
+                Mumbai, Pune &amp; Maharashtra
+              </h3>
+              <p className="text-xs text-slate-600 leading-relaxed font-normal">
+                Textile market, export documentation desks, aur international port forwarding
+                centers ke saath daily reliable transit.
+              </p>
+            </div>
+
+            {/* Route 4 */}
+            <div className="p-5 rounded-2xl bg-white border border-slate-200/90 shadow-2xs space-y-3">
+              <div className="flex items-center justify-between">
+                <span className="px-2.5 py-1 rounded-full bg-red-50 text-[#DC2626] text-[10px] font-mono font-bold uppercase">
+                  INTRA-STATE RAJASTHAN
+                </span>
+                <span className="text-xs font-bold text-emerald-600">Same-Day / Next-Day</span>
+              </div>
+              <h3 className="text-lg font-black text-slate-900">
+                Jaipur, Jodhpur, Kota &amp; Udaipur
+              </h3>
+              <p className="text-xs text-slate-600 leading-relaxed font-normal">
+                State tenders, government documents, spare parts, aur regional retail sample
+                distribution ke liye fast intra-state linehaul network.
+              </p>
+            </div>
+
+            {/* Route 5 */}
+            <div className="p-5 rounded-2xl bg-white border border-slate-200/90 shadow-2xs space-y-3">
+              <div className="flex items-center justify-between">
+                <span className="px-2.5 py-1 rounded-full bg-red-50 text-[#DC2626] text-[10px] font-mono font-bold uppercase">
+                  SOUTH INDIA TRADE
+                </span>
+                <span className="text-xs font-bold text-emerald-600">Pan-India Express</span>
+              </div>
+              <h3 className="text-lg font-black text-slate-900">
+                Bangalore, Chennai &amp; Hyderabad
+              </h3>
+              <p className="text-xs text-slate-600 leading-relaxed font-normal">
+                Apparel manufacturing brands, retail showroom samples, aur bulk commercial carton
+                dispatch to southern markets.
+              </p>
+            </div>
+
+            {/* Route 6 */}
+            <div className="p-5 rounded-2xl bg-white border border-slate-200/90 shadow-2xs space-y-3">
+              <div className="flex items-center justify-between">
+                <span className="px-2.5 py-1 rounded-full bg-red-50 text-[#DC2626] text-[10px] font-mono font-bold uppercase">
+                  WORLDWIDE EXPORT
+                </span>
+                <span className="text-xs font-bold text-emerald-600">Air Cargo Express</span>
+              </div>
+              <h3 className="text-lg font-black text-slate-900">
+                UAE, USA, Europe &amp; Global Hubs
+              </h3>
+              <p className="text-xs text-slate-600 leading-relaxed font-normal">
+                eCS World Wide Express network ke zariye overseas buyers ko sample fabrics,
+                export documentation, aur priority commercial air parcels.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* =========================================================================
+          5. EASY 3-STEP ONBOARDING (Aapka Business Account Kaise Start Hoga?)
+          ========================================================================= */}
+      <section className="py-10 sm:py-16 bg-white border-b border-slate-200">
+        <div className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 space-y-8 sm:space-y-10">
+          <div className="max-w-2xl space-y-1.5">
+            <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-[#DC2626] block">
+              SIMPLE ONBOARDING
+            </span>
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-900 tracking-tight">
+              Aapka Business Account Kaise Start Hoga?
+            </h2>
+            <p className="text-xs sm:text-sm text-slate-600 font-normal">
+              Bina kisi lambe paperwork ke sirf 3 aasan steps mein commercial pickup shuru:
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {/* Step 1 */}
+            <div className="p-6 rounded-2xl bg-[#F8FAFC] border border-slate-200 space-y-3 relative group hover:border-red-300 transition-colors">
+              <div className="w-10 h-10 rounded-xl bg-red-50 text-[#DC2626] font-extrabold flex items-center justify-center text-sm border border-red-100">
+                01
+              </div>
+              <h3 className="text-base font-extrabold text-slate-900">
+                Requirement Share Kijiye
+              </h3>
+              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
+                WhatsApp par ya hamare form ke through batayein ki aapke kis tarah ke parcels hain
+                (swatches, documents, cartons) aur lagbhag monthly kitna volume rehta hai.
               </p>
             </div>
 
             {/* Step 2 */}
-            <div className="p-5 rounded-2xl bg-[#F8FAFC] border border-slate-200 space-y-3 relative">
-              <div className="w-10 h-10 rounded-xl bg-red-50 text-red-700 font-extrabold flex items-center justify-center text-sm border border-red-100">
+            <div className="p-6 rounded-2xl bg-[#F8FAFC] border border-slate-200 space-y-3 relative group hover:border-red-300 transition-colors">
+              <div className="w-10 h-10 rounded-xl bg-red-50 text-[#DC2626] font-extrabold flex items-center justify-center text-sm border border-red-100">
                 02
               </div>
-              <h3 className="text-sm font-extrabold text-[#0F172A]">
-                Specify Destination
+              <h3 className="text-base font-extrabold text-slate-900">
+                Custom Rates &amp; Pickup Time Fix
               </h3>
-              <p className="text-xs text-slate-600 leading-relaxed font-normal">
-                Indicate target cities (domestic trade corridors or overseas destinations), package
-                weights, and any special packing preferences.
+              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
+                Bhilwara Hub se aapke routes aur volume ke hisab se discounted commercial rates tay
+                honge aur factory doorstep pickup ka rozana time schedule lock ho jayega.
               </p>
             </div>
 
             {/* Step 3 */}
-            <div className="p-5 rounded-2xl bg-[#F8FAFC] border border-slate-200 space-y-3 relative">
-              <div className="w-10 h-10 rounded-xl bg-red-50 text-red-700 font-extrabold flex items-center justify-center text-sm border border-red-100">
+            <div className="p-6 rounded-2xl bg-[#F8FAFC] border border-slate-200 space-y-3 relative group hover:border-red-300 transition-colors">
+              <div className="w-10 h-10 rounded-xl bg-red-50 text-[#DC2626] font-extrabold flex items-center justify-center text-sm border border-red-100">
                 03
               </div>
-              <h3 className="text-sm font-extrabold text-[#0F172A]">
-                Confirm Availability &amp; Rate
+              <h3 className="text-base font-extrabold text-slate-900">
+                Daily Dispatch &amp; Month-End Bill
               </h3>
-              <p className="text-xs text-slate-600 leading-relaxed font-normal">
-                Our Bhilwara operations desk evaluates the consignment against current forwarding
-                channels and confirms rate quotations.
+              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
+                Pehle din se docket generation aur pickup shuru. Daily tracking receipt milte rahenge,
+                aur month-end par single consolidated GST invoice aayega.
               </p>
             </div>
-
-            {/* Step 4 */}
-            <div className="p-5 rounded-2xl bg-[#F8FAFC] border border-slate-200 space-y-3 relative">
-              <div className="w-10 h-10 rounded-xl bg-red-50 text-red-700 font-extrabold flex items-center justify-center text-sm border border-red-100">
-                04
-              </div>
-              <h3 className="text-sm font-extrabold text-[#0F172A]">
-                Arrange Booking
-              </h3>
-              <p className="text-xs text-slate-600 leading-relaxed font-normal">
-                Upon agreement, consignments are dropped off at our Bhilwara counter or scheduled for
-                collection where operational coverage is confirmed.
-              </p>
-            </div>
-          </div>
-
-          {/* Workflow Guardrail Notice */}
-          <div className="mt-8 text-center">
-            <p className="text-xs text-slate-500 max-w-xl mx-auto italic">
-              Note: This is a suggested inquiry process for client review. It does not constitute a
-              guaranteed operating service level agreement (SLA) or automated online booking system.
-            </p>
           </div>
         </div>
       </section>
 
       {/* =========================================================================
-          5. BUSINESS INQUIRY CTA BAND
+          6. DIRECT ACTION BENTO CARD (Contact / Call / WhatsApp)
           ========================================================================= */}
-      <section className="py-12 sm:py-16 bg-gradient-to-br from-[#09132B] via-[#0F1E3D] to-[#070E20] text-white">
+      <section className="py-10 sm:py-16 bg-[#F8FAFC]">
         <div className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-2xl mx-auto text-center space-y-5">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 border border-white/20 text-white text-xs font-bold tracking-wider uppercase">
-              <Briefcase className="w-3.5 h-3.5 text-red-400" />
-              <span>COMMERCIAL INQUIRY DESK</span>
+          <div className="rounded-2xl sm:rounded-3xl bg-gradient-to-br from-slate-900 via-slate-900 to-slate-950 text-white p-6 sm:p-10 lg:p-12 shadow-xl border border-slate-800 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8">
+            <div className="space-y-3 max-w-2xl">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#DC2626]/30 border border-red-500/40 text-red-400 text-[11px] font-bold uppercase tracking-wider">
+                <Briefcase className="w-3.5 h-3.5 text-red-400" />
+                <span>COMMERCIAL TIE-UP DESK</span>
+              </div>
+
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-white tracking-tight leading-tight">
+                Bhilwara Me Apne Business Ke Liye Regular Courier Tie-up Karein
+              </h2>
+
+              <p className="text-xs sm:text-sm text-slate-300 font-normal leading-relaxed">
+                Opposite New Cloth Market, Pur Road. Hamare desk par aaiye ya direct call/WhatsApp
+                karke apna daily pickup schedule karein aur monthly account rates confirm karein.
+              </p>
+
+              <div className="pt-2 flex flex-wrap items-center gap-4 text-xs text-slate-300 font-semibold">
+                <div className="flex items-center gap-1.5">
+                  <MapPin className="w-4 h-4 text-[#DC2626]" />
+                  <span>Opp. New Cloth Market, Bhilwara</span>
+                </div>
+                <div className="flex items-center gap-1.5">
+                  <Clock className="w-4 h-4 text-emerald-400" />
+                  <span>Mon–Sat: 9:30 AM – 8:30 PM</span>
+                </div>
+              </div>
             </div>
 
-            <h2 className="text-2xl sm:text-4xl font-black tracking-tight text-white leading-tight">
-              Ready to explore business shipping options?
-            </h2>
-
-            <p className="text-xs sm:text-sm text-slate-300 leading-relaxed max-w-xl mx-auto">
-              Submit your business logistics requirement below. Our team reviews parcel details,
-              destination corridors, and volume schedules to provide custom guidance.
-            </p>
-
-            <div className="pt-3 flex flex-wrap items-center justify-center gap-3">
+            <div className="flex flex-col sm:flex-row gap-3 w-full lg:w-auto shrink-0">
               <button
                 type="button"
-                onClick={() => handleOpenInquiry('other')}
-                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-[#DC2626] hover:bg-[#B91C1C] text-white text-xs sm:text-sm font-bold shadow-xl transition-all active:scale-95 cursor-pointer"
+                onClick={() => handleOpenInquiry('business')}
+                className="inline-flex items-center justify-center gap-2 bg-[#DC2626] hover:bg-[#B91C1C] text-white text-xs sm:text-sm font-bold px-6 py-3.5 rounded-xl shadow-md transition-all active:scale-95 cursor-pointer whitespace-nowrap"
               >
                 <span>Prepare Business Inquiry</span>
                 <ArrowRight className="w-4 h-4 text-white" />
               </button>
 
-              <Link
-                href="/contact"
-                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-white/10 hover:bg-white/20 text-white text-xs sm:text-sm font-semibold border border-white/20 transition-all active:scale-95"
+              <a
+                href="https://wa.me/918955144444?text=Hello%20Economic%20Courier%20Bhilwara,%20I%20want%20to%20discuss%20a%20commercial%20business%20account."
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white text-xs sm:text-sm font-bold px-5 py-3.5 rounded-xl shadow-md transition-all active:scale-95 cursor-pointer whitespace-nowrap"
               >
-                <span>Visit Bhilwara Desk</span>
-              </Link>
+                <MessageCircle className="w-4 h-4 text-white" />
+                <span>WhatsApp Desk</span>
+              </a>
+
+              <a
+                href="tel:8955144444"
+                className="inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 text-white text-xs sm:text-sm font-bold px-5 py-3.5 rounded-xl border border-white/20 transition-all active:scale-95 cursor-pointer whitespace-nowrap"
+              >
+                <Phone className="w-4 h-4 text-white" />
+                <span>Call Desk</span>
+              </a>
             </div>
           </div>
         </div>
       </section>
 
       {/* =========================================================================
-          6. RELATED PAGES (Only Real Existing Routes)
+          7. RELATED HELPFUL PAGES
           ========================================================================= */}
-      <section className="py-12 sm:py-16 bg-[#F8FAFC]">
-        <div className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="mb-8 max-w-xl">
-            <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-red-700 block mb-1">
-              Explore Our Logistics Capabilities
-            </span>
-            <h2 className="text-xl sm:text-2xl font-black tracking-tight text-[#0F172A]">
-              Related Service &amp; Information Pages
-            </h2>
+      <section className="py-8 sm:py-12 bg-white border-t border-slate-200">
+        <div className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
+          <div className="flex items-center justify-between">
+            <div>
+              <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-[#DC2626] block">
+                EXPLORE MORE
+              </span>
+              <h3 className="text-lg sm:text-xl font-bold text-slate-900">
+                Related Logistics &amp; Operations Services
+              </h3>
+            </div>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             <Link
-              href="/services"
-              className="p-5 rounded-2xl bg-white border border-slate-200 hover:border-red-300 hover:shadow-md transition-all group flex flex-col justify-between space-y-3"
-            >
-              <div className="space-y-2">
-                <div className="w-9 h-9 rounded-xl bg-red-50 text-red-700 flex items-center justify-center">
-                  <Truck className="w-4 h-4 text-red-700" />
-                </div>
-                <h3 className="text-sm font-bold text-slate-900 group-hover:text-[#DC2626] transition-colors">
-                  All Courier Services
-                </h3>
-                <p className="text-xs text-slate-600 leading-relaxed font-normal">
-                  Domestic express, international cargo, and document forwarding.
-                </p>
-              </div>
-              <span className="inline-flex items-center gap-1 text-xs font-bold text-red-700 pt-1">
-                <span>View Services</span>
-                <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
-              </span>
-            </Link>
-
-            <Link
               href="/textile-logistics"
-              className="p-5 rounded-2xl bg-white border border-slate-200 hover:border-red-300 hover:shadow-md transition-all group flex flex-col justify-between space-y-3"
+              className="p-5 rounded-2xl bg-[#F8FAFC] border border-slate-200 hover:border-red-300 hover:shadow-md transition-all group flex flex-col justify-between space-y-3"
             >
               <div className="space-y-2">
-                <div className="w-9 h-9 rounded-xl bg-red-50 text-red-700 flex items-center justify-center">
-                  <Scissors className="w-4 h-4 text-red-700" />
+                <div className="w-9 h-9 rounded-xl bg-red-50 text-[#DC2626] flex items-center justify-center">
+                  <Scissors className="w-4 h-4 text-[#DC2626]" />
                 </div>
-                <h3 className="text-sm font-bold text-slate-900 group-hover:text-[#DC2626] transition-colors">
+                <h4 className="text-sm font-bold text-slate-900 group-hover:text-[#DC2626] transition-colors">
                   Textile Swatch Logistics
-                </h3>
+                </h4>
                 <p className="text-xs text-slate-600 leading-relaxed font-normal">
-                  Dedicated fabric sample packaging and dispatch for Bhilwara mills.
+                  Kapde ke sample cuts, shade cards, aur catalog books packing &amp; express dispatch.
                 </p>
               </div>
-              <span className="inline-flex items-center gap-1 text-xs font-bold text-red-700 pt-1">
-                <span>Textile Details</span>
+              <span className="inline-flex items-center gap-1 text-xs font-bold text-[#DC2626]">
+                <span>View Textile Service</span>
                 <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
               </span>
             </Link>
 
             <Link
               href="/gallery"
-              className="p-5 rounded-2xl bg-white border border-slate-200 hover:border-red-300 hover:shadow-md transition-all group flex flex-col justify-between space-y-3"
+              className="p-5 rounded-2xl bg-[#F8FAFC] border border-slate-200 hover:border-red-300 hover:shadow-md transition-all group flex flex-col justify-between space-y-3"
             >
               <div className="space-y-2">
-                <div className="w-9 h-9 rounded-xl bg-red-50 text-red-700 flex items-center justify-center">
-                  <Camera className="w-4 h-4 text-red-700" />
+                <div className="w-9 h-9 rounded-xl bg-red-50 text-[#DC2626] flex items-center justify-center">
+                  <Camera className="w-4 h-4 text-[#DC2626]" />
                 </div>
-                <h3 className="text-sm font-bold text-slate-900 group-hover:text-[#DC2626] transition-colors">
-                  Operations Archive
-                </h3>
+                <h4 className="text-sm font-bold text-slate-900 group-hover:text-[#DC2626] transition-colors">
+                  Operations Video Reels &amp; Photos
+                </h4>
                 <p className="text-xs text-slate-600 leading-relaxed font-normal">
-                  Watch authentic packaging, sorting, and dispatch reels filmed in Bhilwara.
+                  Bhilwara hub ke real video reels aur ground photos ka complete archive dekhein.
                 </p>
               </div>
-              <span className="inline-flex items-center gap-1 text-xs font-bold text-red-700 pt-1">
-                <span>Watch Reels</span>
+              <span className="inline-flex items-center gap-1 text-xs font-bold text-[#DC2626]">
+                <span>Watch Gallery</span>
+                <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+              </span>
+            </Link>
+
+            <Link
+              href="/track-shipment"
+              className="p-5 rounded-2xl bg-[#F8FAFC] border border-slate-200 hover:border-red-300 hover:shadow-md transition-all group flex flex-col justify-between space-y-3"
+            >
+              <div className="space-y-2">
+                <div className="w-9 h-9 rounded-xl bg-red-50 text-[#DC2626] flex items-center justify-center">
+                  <Search className="w-4 h-4 text-[#DC2626]" />
+                </div>
+                <h4 className="text-sm font-bold text-slate-900 group-hover:text-[#DC2626] transition-colors">
+                  Live Tracking Portal
+                </h4>
+                <p className="text-xs text-slate-600 leading-relaxed font-normal">
+                  Air waybill docket number enter karke parcel ka status check kijiye.
+                </p>
+              </div>
+              <span className="inline-flex items-center gap-1 text-xs font-bold text-[#DC2626]">
+                <span>Track Parcel</span>
                 <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
               </span>
             </Link>
 
             <Link
               href="/contact"
-              className="p-5 rounded-2xl bg-white border border-slate-200 hover:border-red-300 hover:shadow-md transition-all group flex flex-col justify-between space-y-3"
+              className="p-5 rounded-2xl bg-[#F8FAFC] border border-slate-200 hover:border-red-300 hover:shadow-md transition-all group flex flex-col justify-between space-y-3"
             >
               <div className="space-y-2">
-                <div className="w-9 h-9 rounded-xl bg-red-50 text-red-700 flex items-center justify-center">
-                  <MapPin className="w-4 h-4 text-red-700" />
+                <div className="w-9 h-9 rounded-xl bg-red-50 text-[#DC2626] flex items-center justify-center">
+                  <MapPin className="w-4 h-4 text-[#DC2626]" />
                 </div>
-                <h3 className="text-sm font-bold text-slate-900 group-hover:text-[#DC2626] transition-colors">
-                  Contact Bhilwara Desk
-                </h3>
+                <h4 className="text-sm font-bold text-slate-900 group-hover:text-[#DC2626] transition-colors">
+                  Contact &amp; Hub Location
+                </h4>
                 <p className="text-xs text-slate-600 leading-relaxed font-normal">
-                  Facility location context, online inquiry desk, and channel verification.
+                  Opposite New Cloth Market, Pur Road. Google Maps directions aur phone details.
                 </p>
               </div>
-              <span className="inline-flex items-center gap-1 text-xs font-bold text-red-700 pt-1">
-                <span>Contact Us</span>
+              <span className="inline-flex items-center gap-1 text-xs font-bold text-[#DC2626]">
+                <span>Get Directions</span>
                 <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
               </span>
             </Link>
@@ -644,9 +725,7 @@ export function BusinessSolutionsView() {
         </div>
       </section>
 
-      {/* =========================================================================
-          REUSABLE INQUIRY MODAL (Preselected for General / Business Inquiry)
-          ========================================================================= */}
+      {/* Reusable Inquiry Modal */}
       <InquiryModal
         key={inquiryModalOpen ? inquiryService || 'open' : 'closed'}
         isOpen={inquiryModalOpen}

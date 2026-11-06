@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import {
   Truck,
   ArrowRight,
@@ -9,11 +10,7 @@ import {
 } from 'lucide-react';
 import { AnimatedRouteMap } from './AnimatedRouteMap';
 
-interface DailyRouteSectionProps {
-  onOpenInquiry?: (service?: string) => void;
-}
-
-export function DailyRouteSection({ onOpenInquiry }: DailyRouteSectionProps) {
+export function DailyRouteSection() {
   return (
     <section
       id="daily-route"
@@ -78,34 +75,10 @@ export function DailyRouteSection({ onOpenInquiry }: DailyRouteSectionProps) {
         {/* ── 2. HERO OPERATIONAL CIRCUIT BANNER (Visual Graphic Banner & Mobile Responsive Strip) ── */}
         <div className="space-y-4">
           {/* Main Visual Graphic Banner — Clickable to Book/Inquire */}
-          <div
-            onClick={() => {
-              if (onOpenInquiry) {
-                onOpenInquiry('Daily Route Delivery');
-              } else if (typeof window !== 'undefined') {
-                window.open(
-                  'https://wa.me/918955144444?text=Hello%20Economic%20Courier,%20I%20want%20to%20book%20on%20today%27s%2010%20AM%20daily%20route.',
-                  '_blank'
-                );
-              }
-            }}
-            role="button"
-            tabIndex={0}
-            onKeyDown={(e) => {
-              if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                if (onOpenInquiry) {
-                  onOpenInquiry('Daily Route Delivery');
-                } else if (typeof window !== 'undefined') {
-                  window.open(
-                    'https://wa.me/918955144444?text=Hello%20Economic%20Courier,%20I%20want%20to%20book%20on%20today%27s%2010%20AM%20daily%20route.',
-                    '_blank'
-                  );
-                }
-              }
-            }}
+          <Link
+            href="/contact#inquiry-form"
             aria-label="Click to book consignment before 10 AM dispatch cutoff"
-            className="relative group overflow-hidden rounded-2xl sm:rounded-3xl border border-slate-200/90 shadow-[0_12px_40px_rgba(15,23,42,0.08)] bg-white transition-all duration-300 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-600 focus-visible:ring-offset-2"
+            className="block relative group overflow-hidden rounded-2xl sm:rounded-3xl border border-slate-200/90 shadow-[0_12px_40px_rgba(15,23,42,0.08)] bg-white transition-all duration-300 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-600 focus-visible:ring-offset-2"
           >
             <div className="relative w-full" style={{ aspectRatio: '1024/341' }}>
               <Image
@@ -117,7 +90,7 @@ export function DailyRouteSection({ onOpenInquiry }: DailyRouteSectionProps) {
                 className="object-cover object-center transition-transform duration-500 group-hover:scale-[1.01]"
               />
             </div>
-          </div>
+          </Link>
 
           {/* High-Contrast Operational Action Bar (Desktop + Mobile Friendly) */}
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3.5 p-3.5 sm:p-4 rounded-xl sm:rounded-2xl bg-white border border-slate-200/90 shadow-2xs">
@@ -139,28 +112,14 @@ export function DailyRouteSection({ onOpenInquiry }: DailyRouteSectionProps) {
             </div>
 
             <div className="flex items-center gap-2 shrink-0 pt-1 sm:pt-0">
-              {onOpenInquiry ? (
-                <button
-                  type="button"
-                  onClick={() => onOpenInquiry('Daily Route Delivery')}
-                  className="flex-1 sm:flex-none inline-flex items-center justify-center gap-1.5 py-2.5 px-3.5 sm:px-4 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-[#DC2626] to-[#B91C1C] hover:from-[#EF4444] hover:to-[#DC2626] shadow-xs hover:shadow-md transition-all cursor-pointer active:scale-95 whitespace-nowrap"
-                >
-                  <span className="hidden xs:inline">Book Before 10 AM</span>
-                  <span className="xs:hidden">Book 10 AM</span>
-                  <ArrowRight className="w-3.5 h-3.5" />
-                </button>
-              ) : (
-                <a
-                  href="https://wa.me/918955144444?text=Hello%20Economic%20Courier,%20I%20want%20to%20book%20on%20today%27s%2010%20AM%20daily%20route."
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex-1 sm:flex-none inline-flex items-center justify-center gap-1.5 py-2.5 px-3.5 sm:px-4 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-[#DC2626] to-[#B91C1C] hover:from-[#EF4444] hover:to-[#DC2626] shadow-xs hover:shadow-md transition-all active:scale-95 whitespace-nowrap"
-                >
-                  <span className="hidden xs:inline">Book Before 10 AM</span>
-                  <span className="xs:hidden">Book 10 AM</span>
-                  <ArrowRight className="w-3.5 h-3.5" />
-                </a>
-              )}
+              <Link
+                href="/contact#inquiry-form"
+                className="flex-1 sm:flex-none inline-flex items-center justify-center gap-1.5 py-2.5 px-3.5 sm:px-4 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-[#DC2626] to-[#B91C1C] hover:from-[#EF4444] hover:to-[#DC2626] shadow-xs hover:shadow-md transition-all cursor-pointer active:scale-95 whitespace-nowrap"
+              >
+                <span className="hidden xs:inline">Book Before 10 AM</span>
+                <span className="xs:hidden">Book 10 AM</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </Link>
               <a
                 href="https://share.google/XGfOCGnHDKHlCOUaw"
                 target="_blank"
@@ -193,7 +152,7 @@ export function DailyRouteSection({ onOpenInquiry }: DailyRouteSectionProps) {
           </div>
 
           {/* Animated Route Network Experience (Continuous Winding SVG Road & Scooter Delivery Rider) */}
-          <AnimatedRouteMap onOpenInquiry={onOpenInquiry} />
+          <AnimatedRouteMap />
         </div>
       </div>
     </section>

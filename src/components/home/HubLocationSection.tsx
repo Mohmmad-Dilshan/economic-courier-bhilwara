@@ -2,6 +2,7 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import {
   MapPin,
   Clock,
@@ -15,11 +16,7 @@ import {
 } from 'lucide-react';
 import { BUSINESS_INFO } from '@/lib/constants';
 
-interface HubLocationSectionProps {
-  onOpenInquiry: (service?: string) => void;
-}
-
-export function HubLocationSection({ onOpenInquiry }: HubLocationSectionProps) {
+export function HubLocationSection() {
   const verifiedAddress =
     'Opposite New Cloth Market, Railway Staff Quarter Area, Bhilwara, Rajasthan 311001';
   const verifiedLandmark =
@@ -38,8 +35,8 @@ export function HubLocationSection({ onOpenInquiry }: HubLocationSectionProps) {
     if (!el) return;
 
     if (typeof IntersectionObserver === 'undefined') {
-      setIsMapVisible(true);
-      return;
+      const timer = setTimeout(() => setIsMapVisible(true), 0);
+      return () => clearTimeout(timer);
     }
 
     const observer = new IntersectionObserver(
@@ -207,14 +204,13 @@ export function HubLocationSection({ onOpenInquiry }: HubLocationSectionProps) {
                 <ExternalLink className="w-3.5 h-3.5 opacity-80" />
               </a>
 
-              <button
-                type="button"
-                onClick={() => onOpenInquiry()}
+              <Link
+                href="/contact#inquiry-form"
                 className="inline-flex items-center justify-center gap-1.5 bg-slate-100 hover:bg-slate-200 text-slate-800 text-sm font-bold px-4 py-3 rounded-xl transition-all active:scale-95 cursor-pointer text-center"
               >
                 <span>Prepare Inquiry</span>
                 <ArrowRight className="w-4 h-4 text-slate-600" />
-              </button>
+              </Link>
             </div>
           </div>
 

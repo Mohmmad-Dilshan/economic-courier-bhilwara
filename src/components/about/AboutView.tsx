@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import {
@@ -21,17 +21,8 @@ import {
 } from 'lucide-react';
 import { InstagramIcon } from '@/components/common/InstagramIcon';
 import { YouTubeIcon } from '@/components/common/YouTubeIcon';
-import { InquiryModal } from '@/components/home/InquiryModal';
 
 export function AboutView() {
-  const [inquiryModalOpen, setInquiryModalOpen] = useState(false);
-  const [inquiryService, setInquiryService] = useState<string>('');
-
-  const handleOpenInquiry = (service: string = '') => {
-    setInquiryService(service);
-    setInquiryModalOpen(true);
-  };
-
   return (
     <div className="min-h-screen bg-[#F8FAFC] text-[#0F172A] overflow-x-hidden antialiased">
       {/* =========================================================================
@@ -89,14 +80,13 @@ export function AboutView() {
 
               {/* Action Buttons */}
               <div className="pt-2 flex flex-wrap items-center gap-3">
-                <button
-                  type="button"
-                  onClick={() => handleOpenInquiry()}
+                <Link
+                  href="/contact#inquiry-form"
                   className="inline-flex items-center gap-2 bg-[#DC2626] hover:bg-[#B91C1C] text-white text-xs sm:text-sm font-bold px-6 py-3 rounded-full shadow-xs hover:shadow-md transition-all active:scale-95 cursor-pointer"
                 >
                   <span>Connect with Bhilwara Team</span>
                   <ArrowRight className="w-4 h-4" />
-                </button>
+                </Link>
 
                 <a
                   href="#leadership"
@@ -736,14 +726,13 @@ export function AboutView() {
           </p>
 
           <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-3.5">
-            <button
-              type="button"
-              onClick={() => handleOpenInquiry()}
+            <Link
+              href="/contact#inquiry-form"
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#DC2626] hover:bg-[#B91C1C] text-white text-xs sm:text-sm font-bold px-7 py-3.5 rounded-full shadow-lg hover:shadow-xl transition-all active:scale-95 cursor-pointer"
             >
               <span>Prepare Consignment Inquiry</span>
               <ArrowRight className="w-4 h-4" />
-            </button>
+            </Link>
 
             <a
               href="https://wa.me/918955144444"
@@ -765,14 +754,6 @@ export function AboutView() {
           </div>
         </div>
       </section>
-
-      {/* Inquiry Modal Integration */}
-      <InquiryModal
-        key={inquiryModalOpen ? (inquiryService || 'open') : 'closed'}
-        isOpen={inquiryModalOpen}
-        onClose={() => setInquiryModalOpen(false)}
-        initialService={inquiryService}
-      />
     </div>
   );
 }

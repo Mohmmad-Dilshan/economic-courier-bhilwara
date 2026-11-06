@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Menu, X, ChevronDown, Truck, Briefcase, ArrowRight } from 'lucide-react';
+import { Menu, X, ChevronDown, Truck, Briefcase, ArrowRight, Phone, MessageCircle, MapPin } from 'lucide-react';
 import { BrandLogo } from '@/components/common/BrandLogo';
 import { InstagramIcon } from '@/components/common/InstagramIcon';
 import { BUSINESS_INFO } from '@/lib/constants';
@@ -412,99 +412,153 @@ export function Header() {
       </header>
 
       {/* Mobile & Tablet Drawer Overlay / Backdrop & Container (< 1024px) */}
+      {/* Mobile & Tablet Fullscreen Immersive Navigation Menu (< 1024px) */}
       {mobileMenuOpen && (
-        <>
-          {/* Semi-transparent Backdrop Overlay */}
-          <div
-            onClick={() => setMobileMenuOpen(false)}
-            aria-hidden="true"
-            className="fixed inset-0 top-[67px] sm:top-[71px] z-40 bg-slate-950/45 backdrop-blur-xs lg:hidden animate-in fade-in duration-200"
-          />
-
-          {/* Slide-down Drawer Container */}
-          <div
-            ref={drawerRef}
-            id="mobile-navigation-drawer"
-            role="dialog"
-            aria-modal="true"
-            aria-label="Navigation Menu"
-            className="fixed top-[67px] sm:top-[71px] left-0 right-0 z-50 lg:hidden bg-white border-b-2 border-b-[#DC2626] shadow-2xl rounded-b-3xl px-5 pt-3 pb-6 space-y-4 max-h-[calc(100dvh-5rem)] overflow-y-auto animate-in slide-in-from-top-2 duration-200"
-          >
-            <nav className="flex flex-col space-y-1" aria-label="Mobile and tablet menu links">
-              {mobileNavLinks.map((link) => {
-                const isActive = isServicesPage
-                  ? link.label === 'All Services'
-                  : isAboutPage
-                  ? link.label === 'About Economic Courier'
-                  : isGalleryPage
-                  ? link.label === 'Operations Gallery'
-                  : isContactPage
-                  ? link.label === 'Contact Bhilwara Desk'
-                  : isTextilePage
-                  ? link.label === 'Textile Logistics'
-                  : isBusinessSolutionsPage
-                  ? link.label === 'Business Solutions'
-                  : isTrackShipmentPage
-                  ? link.label === 'Track Shipment'
-                  : activeNav === link.label;
-                return (
-                  <Link
-                    key={link.label}
-                    href={link.href}
-                    prefetch={false}
-                    onClick={() => {
-                      setActiveNav(link.label);
-                      setMobileMenuOpen(false);
-                    }}
-                    className={`px-3.5 py-2.5 text-sm font-semibold rounded-xl transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-600 ${
-                      isActive
-                        ? 'text-[#DC2626] bg-red-50/80 font-bold border-l-4 border-[#DC2626] pl-3'
-                        : 'text-slate-600 hover:bg-slate-50 hover:text-[#DC2626]'
-                    }`}
-                  >
-                    {link.label}
-                  </Link>
-                );
-              })}
-            </nav>
-
-            {/* Mobile/Tablet Contact & Verified Channel Action Bar */}
-            <div className="pt-3 border-t border-slate-100 space-y-2">
-              <div className="flex items-center justify-between text-[11px] text-slate-500 font-medium px-1">
-                <span>Customer Inquiry Desk</span>
-                <span className="text-[9px] font-mono font-medium px-1.5 py-0.5 rounded bg-slate-100 text-slate-600 border border-slate-200">
-                  Bhilwara Hub
+        <div
+          ref={drawerRef}
+          id="mobile-navigation-drawer"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Navigation Menu"
+          className="fixed inset-0 z-50 lg:hidden bg-white/98 backdrop-blur-2xl flex flex-col justify-between p-5 sm:p-7 overflow-y-auto animate-in fade-in duration-200"
+        >
+          {/* Top Bar: Brand Lockup + Circular Close Button */}
+          <div className="flex items-center justify-between pb-3.5 border-b border-slate-100">
+            <Link
+              href="/"
+              onClick={() => setMobileMenuOpen(false)}
+              className="flex items-center gap-2.5"
+            >
+              <BrandLogo size="sm" />
+              <div className="flex flex-col border-l border-slate-200 pl-2.5 text-left">
+                <span className="text-[11px] font-black text-slate-900 tracking-tight leading-none">
+                  Economic Courier
+                </span>
+                <span className="text-[8.5px] font-bold text-[#DC2626] tracking-wider uppercase mt-0.5">
+                  Bhilwara Central Hub
                 </span>
               </div>
+            </Link>
 
-              <div className="flex items-center gap-2.5">
+            <button
+              type="button"
+              onClick={() => setMobileMenuOpen(false)}
+              className="w-10 h-10 rounded-full bg-slate-100 hover:bg-red-50 text-slate-700 hover:text-[#DC2626] flex items-center justify-center transition-colors cursor-pointer border border-slate-200/80 active:scale-95"
+              aria-label="Close navigation menu"
+            >
+              <X className="w-5 h-5" />
+            </button>
+          </div>
+
+          {/* Middle Section: Centered, Bold, High-Energy Modern Typography */}
+          <nav
+            className="flex flex-col items-center justify-center text-center my-auto py-5 sm:py-7 space-y-2.5 sm:space-y-3.5"
+            aria-label="Mobile Navigation Links"
+          >
+            {mobileNavLinks.map((link, idx) => {
+              const isActive =
+                (link.href === '/' && isHomePage) ||
+                (link.href === '/services' && isServicesPage) ||
+                (link.href === '/textile-logistics' && isTextilePage) ||
+                (link.href === '/business-solutions' && isBusinessSolutionsPage) ||
+                (link.href === '/track-shipment' && isTrackShipmentPage) ||
+                (link.href === '/gallery' && isGalleryPage) ||
+                (link.href === '/about' && isAboutPage) ||
+                (link.href === '/contact' && isContactPage);
+
+              const isTracking = link.href === '/track-shipment';
+
+              return (
                 <Link
-                  href={contactHref}
+                  key={link.label}
+                  href={link.href}
                   prefetch={false}
-                  onClick={() => setMobileMenuOpen(false)}
-                  style={{ color: '#FFFFFF' }}
-                  className="flex-1 inline-flex items-center justify-center gap-2 bg-[#DC2626] hover:bg-[#B91C1C] text-white text-xs font-bold py-2.5 rounded-full shadow-xs transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-600"
+                  onClick={() => {
+                    setActiveNav(link.label);
+                    setMobileMenuOpen(false);
+                  }}
+                  className="group relative inline-flex flex-col items-center justify-center py-1 transition-transform duration-150 active:scale-95"
                 >
-                  <span className="text-white font-bold" style={{ color: '#FFFFFF' }}>Contact Hub</span>
-                </Link>
+                  <div className="inline-flex items-center gap-2">
+                    <span className="text-[10px] font-mono font-bold text-slate-400 group-hover:text-[#DC2626] transition-colors">
+                      0{idx + 1}
+                    </span>
+                    <span
+                      className={`text-[20px] xs:text-[23px] sm:text-[26px] font-black tracking-tight leading-tight transition-all duration-150 ${
+                        isActive
+                          ? 'text-[#DC2626] scale-105'
+                          : 'text-slate-900 group-hover:text-[#DC2626]'
+                      }`}
+                    >
+                      {link.label}
+                    </span>
+                    {isTracking && (
+                      <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-red-100 text-[#DC2626] text-[9px] font-mono font-black border border-red-200">
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#DC2626] animate-pulse" />
+                        <span>TRACK</span>
+                      </span>
+                    )}
+                  </div>
 
-                <a
-                  href={BUSINESS_INFO.instagramUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Visit Economic Courier on Instagram"
-                  className="p-2.5 rounded-full border border-slate-200 text-slate-500 hover:text-[#DC2626] hover:border-red-200 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-600"
-                >
-                  <InstagramIcon size={16} />
-                </a>
+                  {/* Active Accent Bar */}
+                  {isActive && (
+                    <span
+                      className="w-7 h-1 rounded-full bg-[#DC2626] mt-1 animate-in zoom-in duration-150"
+                      aria-hidden="true"
+                    />
+                  )}
+                </Link>
+              );
+            })}
+          </nav>
+
+          {/* Bottom Section: Quick Action Cards (WhatsApp + Phone + Location) */}
+          <div className="pt-3.5 border-t border-slate-100 space-y-2.5 shrink-0">
+            {/* Dual Action Buttons */}
+            <div className="grid grid-cols-2 gap-2.5">
+              <a
+                href="https://wa.me/918955144444?text=Hello%20Economic%20Courier%20Bhilwara,%20I%20have%20an%20inquiry."
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setMobileMenuOpen(false)}
+                className="inline-flex items-center justify-center gap-1.5 py-3 px-3 rounded-2xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs shadow-xs active:scale-95 transition-all text-center"
+              >
+                <MessageCircle className="w-4 h-4 shrink-0" />
+                <span>WhatsApp Hub</span>
+              </a>
+
+              <a
+                href="tel:+918955144444"
+                onClick={() => setMobileMenuOpen(false)}
+                className="inline-flex items-center justify-center gap-1.5 py-3 px-3 rounded-2xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs shadow-xs active:scale-95 transition-all text-center"
+              >
+                <Phone className="w-4 h-4 shrink-0 text-[#DC2626]" />
+                <span>Call Counter</span>
+              </a>
+            </div>
+
+            {/* Location & Instagram Strip */}
+            <div className="flex items-center justify-between pt-1 px-1 text-[11px] text-slate-500 font-medium">
+              <div className="flex items-center gap-1.5 truncate max-w-[240px]">
+                <MapPin className="w-3.5 h-3.5 text-[#DC2626] shrink-0" />
+                <span className="truncate">Opp. New Cloth Market, Bhilwara</span>
               </div>
+
+              <a
+                href={BUSINESS_INFO.instagramUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Visit Economic Courier on Instagram"
+                className="p-1.5 rounded-full hover:bg-red-50 text-slate-500 hover:text-[#DC2626] transition-colors"
+              >
+                <InstagramIcon size={18} />
+              </a>
             </div>
           </div>
-        </>
+        </div>
       )}
     </>
   );
 }
 
 export default Header;
-

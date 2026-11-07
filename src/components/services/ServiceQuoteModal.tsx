@@ -12,7 +12,7 @@ import {
   Scale,
   AlertCircle,
 } from 'lucide-react';
-import { CATALOGUE_SERVICES, CATALOGUE_CATEGORIES } from '@/lib/servicesCatalogueData';
+import { BROCHURE_SERVICES, BrochureServiceCard } from '@/lib/servicesCatalogueData';
 
 interface ServiceQuoteModalProps {
   isOpen: boolean;
@@ -30,7 +30,7 @@ export function ServiceQuoteModal({
   const [approxWeight, setApproxWeight] = useState('');
   const [notes, setNotes] = useState('');
 
-  const currentServiceId = userSelectedId || selectedServiceId || 'domestic-air-courier';
+  const currentServiceId = userSelectedId || selectedServiceId || 'air-courier';
 
   // Handle ESC key to close modal
   useEffect(() => {
@@ -46,16 +46,16 @@ export function ServiceQuoteModal({
 
   if (!isOpen) return null;
 
-  const currentService =
-    CATALOGUE_SERVICES.find((s) => s.id === currentServiceId) || CATALOGUE_SERVICES[0];
+  const currentService: BrochureServiceCard =
+    BROCHURE_SERVICES.find((s) => s.id === currentServiceId) || BROCHURE_SERVICES[0];
 
   // Construct structured pre-filled WhatsApp message
   const buildWhatsAppMessage = () => {
     const lines = [
       `Hello Economic Courier & eCS World Wide Express Bhilwara,`,
       ``,
-      `I would like to inquire about a shipment:`,
-      `• Service: ${currentService.name} (${currentService.categoryLabel})`,
+      `I would like to inquire about:`,
+      `• Service: ${currentService.title} (${currentService.categoryTag})`,
       `• Origin: Bhilwara, Rajasthan Hub`,
       destination ? `• Destination: ${destination.trim()}` : `• Destination: [Please specify city/country]`,
       approxWeight ? `• Approx Weight/Size: ${approxWeight.trim()}` : `• Approx Weight: [Please advise rate slabs]`,
@@ -86,7 +86,7 @@ export function ServiceQuoteModal({
       {/* Modal Dialog Card */}
       <div className="relative w-full max-w-xl bg-white rounded-3xl shadow-2xl border border-slate-200 overflow-hidden z-10 transition-all duration-300">
         {/* Modal Header */}
-        <div className="bg-gradient-to-r from-[#0F172A] via-[#1E293B] to-[#0F172A] p-5 sm:p-6 text-white relative">
+        <div className="bg-gradient-to-r from-[#1E3A8A] via-[#1E40AF] to-[#1E3A8A] p-5 sm:p-6 text-white relative">
           <button
             type="button"
             onClick={onClose}
@@ -96,7 +96,7 @@ export function ServiceQuoteModal({
             <X className="w-4 h-4" />
           </button>
 
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-red-600/30 border border-red-500/40 text-red-200 text-[11px] font-black uppercase tracking-wider mb-2">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-red-600/30 border border-red-400/40 text-red-200 text-[11px] font-black uppercase tracking-wider mb-2">
             <span className="w-1.5 h-1.5 rounded-full bg-red-400 animate-pulse" />
             <span>DIRECT BHILWARA DESK INQUIRY</span>
           </div>
@@ -107,55 +107,51 @@ export function ServiceQuoteModal({
           >
             Request Rate &amp; Dispatch Guidance
           </h2>
-          <p className="text-xs sm:text-sm text-slate-300 mt-1">
-            Select any of our 22 confirmed catalogue services for direct Bhilwara hub assistance.
+          <p className="text-xs sm:text-sm text-blue-100 mt-1">
+            Official Bhilwara Hub desk assistance for all 8 catalogue services.
           </p>
         </div>
 
         {/* Modal Form Body */}
         <div className="p-5 sm:p-6 space-y-4 max-h-[70vh] overflow-y-auto">
-          {/* Service Selector (All 22 Services Grouped) */}
+          {/* Service Selector (All 8 Brochure Services) */}
           <div className="space-y-1.5">
             <label
               htmlFor="modal-service-select"
               className="block text-xs font-bold text-slate-700 uppercase tracking-wider"
             >
-              Selected Service (22 Catalogue Options)
+              Select Service
             </label>
             <select
               id="modal-service-select"
               value={currentServiceId}
               onChange={(e) => setUserSelectedId(e.target.value)}
-              className="w-full text-xs sm:text-sm font-semibold text-slate-900 bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-2.5 focus:outline-hidden focus:ring-2 focus:ring-[#DC2626] focus:border-transparent cursor-pointer"
+              className="w-full text-xs sm:text-sm font-semibold text-[#1E3A8A] bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-2.5 focus:outline-hidden focus:ring-2 focus:ring-[#DC2626] focus:border-transparent cursor-pointer"
             >
-              {CATALOGUE_CATEGORIES.map((cat) => (
-                <optgroup key={cat.key} label={`── ${cat.number}. ${cat.title} ──`}>
-                  {CATALOGUE_SERVICES.filter((s) => s.categoryKey === cat.key).map((svc) => (
-                    <option key={svc.id} value={svc.id}>
-                      {svc.name}
-                    </option>
-                  ))}
-                </optgroup>
+              {BROCHURE_SERVICES.map((svc) => (
+                <option key={svc.id} value={svc.id}>
+                  {svc.number}. {svc.title} — {svc.categoryTag}
+                </option>
               ))}
             </select>
           </div>
 
           {/* Service Snapshot Card */}
-          <div className="p-3.5 rounded-2xl bg-red-50/60 border border-red-100 flex items-start gap-3">
-            <div className="w-8 h-8 rounded-xl bg-[#DC2626] text-white flex items-center justify-center shrink-0 shadow-xs">
+          <div className="p-3.5 rounded-2xl bg-blue-50/70 border border-blue-200/80 flex items-start gap-3">
+            <div className="w-8 h-8 rounded-xl bg-[#1E3A8A] text-white flex items-center justify-center shrink-0 shadow-xs">
               <Package className="w-4 h-4" />
             </div>
             <div className="min-w-0 flex-1">
               <h4 className="text-xs sm:text-sm font-black text-[#1E3A8A] leading-snug">
-                {currentService.name}
+                {currentService.title}
               </h4>
               <p className="text-[11px] sm:text-xs text-slate-600 line-clamp-2 mt-0.5 font-normal">
                 {currentService.tagline}
               </p>
-              {currentService.regulatoryNotice && (
-                <div className="mt-1.5 flex items-start gap-1 text-[10px] text-amber-800 font-medium bg-amber-50 p-1.5 rounded-lg border border-amber-200">
+              {currentService.advisoryNotice && (
+                <div className="mt-1.5 flex items-start gap-1 text-[10px] text-amber-900 font-medium bg-amber-50 p-1.5 rounded-lg border border-amber-200">
                   <AlertCircle className="w-3 h-3 text-amber-600 shrink-0 mt-0.5" />
-                  <span>{currentService.regulatoryNotice}</span>
+                  <span>{currentService.advisoryNotice}</span>
                 </div>
               )}
             </div>
@@ -197,13 +193,13 @@ export function ServiceQuoteModal({
               htmlFor="modal-weight"
               className="block text-[11px] font-bold text-slate-600 uppercase tracking-wider"
             >
-              Approx. Weight or Consignment Size
+              Approx. Weight or Parcel Type
             </label>
             <div className="relative">
               <input
                 id="modal-weight"
                 type="text"
-                placeholder="e.g. Document envelope, 5 kg sample box, 50 kg machinery spare..."
+                placeholder="e.g. Document envelope, 2 kg medicine box, 30 kg excess baggage..."
                 value={approxWeight}
                 onChange={(e) => setApproxWeight(e.target.value)}
                 className="w-full text-xs sm:text-sm text-slate-900 bg-white border border-slate-300 rounded-xl pl-9 pr-3 py-2 focus:outline-hidden focus:ring-2 focus:ring-[#DC2626] focus:border-transparent"
@@ -218,12 +214,12 @@ export function ServiceQuoteModal({
               htmlFor="modal-notes"
               className="block text-[11px] font-bold text-slate-600 uppercase tracking-wider"
             >
-              Special Instructions / Questions (Optional)
+              Special Instructions (Optional)
             </label>
             <textarea
               id="modal-notes"
               rows={2}
-              placeholder="e.g. Need urgent morning delivery, requires wooden packing, fragile item..."
+              placeholder="e.g. Fragile item, need packaging assistance at counter, urgent delivery..."
               value={notes}
               onChange={(e) => setNotes(e.target.value)}
               className="w-full text-xs sm:text-sm text-slate-900 bg-white border border-slate-300 rounded-xl px-3 py-2 focus:outline-hidden focus:ring-2 focus:ring-[#DC2626] focus:border-transparent resize-none"
@@ -235,7 +231,7 @@ export function ServiceQuoteModal({
             <p className="flex items-start gap-1.5">
               <ShieldCheck className="w-3.5 h-3.5 text-emerald-600 shrink-0 mt-0.5" />
               <span>
-                <strong>Direct Dispatch Desk Connection:</strong> Clicking the WhatsApp button below opens WhatsApp with your pre-filled inquiry. <strong>Please remember to press Send</strong> to deliver it to our Bhilwara operations team.
+                <strong>Direct WhatsApp Channel:</strong> Clicking below opens WhatsApp with this pre-filled inquiry. <strong>Please press Send</strong> to deliver it to our Bhilwara hub team.
               </span>
             </p>
           </div>
@@ -253,9 +249,9 @@ export function ServiceQuoteModal({
             </a>
 
             <Link
-              href={`/contact?service=${currentService.inquiryKey}#inquiry-form`}
+              href={`/contact?service=${currentService.id}#inquiry-form`}
               onClick={onClose}
-              className="inline-flex items-center justify-center gap-2 bg-[#0F172A] hover:bg-slate-800 text-white text-xs sm:text-sm font-bold px-5 py-3 rounded-xl transition-all cursor-pointer whitespace-nowrap"
+              className="inline-flex items-center justify-center gap-2 bg-[#1E3A8A] hover:bg-[#1E40AF] text-white text-xs sm:text-sm font-bold px-5 py-3 rounded-xl transition-all cursor-pointer whitespace-nowrap"
             >
               <span>Full Web Form</span>
               <ArrowRight className="w-4 h-4" />

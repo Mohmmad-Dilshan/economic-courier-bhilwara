@@ -9,6 +9,7 @@ export function VideoIntroOverlay() {
   const [isVisible, setIsVisible] = useState(false);
   const [isFading, setIsFading] = useState(false);
   const [progress, setProgress] = useState(0);
+  const [canDismissByBackdrop, setCanDismissByBackdrop] = useState(false);
   const videoRef = useRef<HTMLVideoElement | null>(null);
 
   // Restore scroll locks completely
@@ -87,69 +88,66 @@ export function VideoIntroOverlay() {
     window.addEventListener('wheel', preventScroll, { passive: false });
     window.addEventListener('touchmove', preventScroll, { passive: false });
 
+    // Enable backdrop dismissal only after 600ms grace period to avoid instant accidental dismissal
+    const graceTimer = setTimeout(() => {
+      setCanDismissByBackdrop(true);
+    }, 600);
+
     return () => {
+      clearTimeout(graceTimer);
       unlockScroll();
       window.removeEventListener('wheel', preventScroll);
       window.removeEventListener('touchmove', preventScroll);
     };
   }, [isVisible, unlockScroll]);
 
-  // Autoplay with Voice permanently ON
+  // Video playback & Voice management
   useEffect(() => {
     if (!isVisible) return;
 
     const video = videoRef.current;
     if (!video) return;
 
-    // Voice permanently ON by default
-    video.muted = false;
-    video.volume = 1.0;
-
+    // 1. Start playback reliably (browsers always permit muted autoplay)
+    video.muted = true;
     const playPromise = video.play();
+
     if (playPromise !== undefined) {
       playPromise
         .then(() => {
-          // Playing with sound ON
+          // Video is rolling. Now attempt to unmute sound immediately.
+          try {
+            video.muted = false;
+            video.volume = 1.0;
+          } catch {
+            // Ignore if browser restricts initial unmuting
+          }
         })
         .catch((err) => {
-          console.info('Browser policy required user gesture for initial audio, starting playback:', err?.message || err);
-          // If browser restricted initial unmuted play, start video and auto-unmute on first gesture
-          video.muted = true;
-          video.play()
-            .catch(() => {
-              handleClose(true);
-            });
+          console.info('Autoplay notice:', err?.message || err);
+          // Crucial: DO NOT call handleClose! Keep the video modal open!
         });
     }
 
-    // Auto-unmute voice on any first gesture without showing any button or banner
-    const enableVoiceOnGesture = () => {
+    // 2. Unmute voice instantly on the very first gesture anywhere
+    const unmuteVoice = () => {
       if (videoRef.current) {
         videoRef.current.muted = false;
         videoRef.current.volume = 1.0;
       }
     };
 
-    window.addEventListener('pointerdown', enableVoiceOnGesture, { once: true });
-    window.addEventListener('pointermove', enableVoiceOnGesture, { once: true });
-    window.addEventListener('touchstart', enableVoiceOnGesture, { once: true });
-    window.addEventListener('keydown', enableVoiceOnGesture, { once: true });
-
-    // Watchdog timer: fail open if video stalls
-    const watchdog = setTimeout(() => {
-      if (videoRef.current && videoRef.current.currentTime === 0) {
-        handleClose(true);
-      }
-    }, 7000);
+    const gestureEvents = ['pointerdown', 'pointermove', 'touchstart', 'keydown', 'click'];
+    gestureEvents.forEach((evt) => {
+      window.addEventListener(evt, unmuteVoice, { once: true });
+    });
 
     return () => {
-      clearTimeout(watchdog);
-      window.removeEventListener('pointerdown', enableVoiceOnGesture);
-      window.removeEventListener('pointermove', enableVoiceOnGesture);
-      window.removeEventListener('touchstart', enableVoiceOnGesture);
-      window.removeEventListener('keydown', enableVoiceOnGesture);
+      gestureEvents.forEach((evt) => {
+        window.removeEventListener(evt, unmuteVoice);
+      });
     };
-  }, [isVisible, handleClose]);
+  }, [isVisible]);
 
   // Keyboard escape to close
   useEffect(() => {
@@ -173,9 +171,17 @@ export function VideoIntroOverlay() {
     }
   };
 
-  const handleError = () => {
-    console.warn('Video intro encountered error, revealing homepage.');
-    handleClose(true);
+  // Only close on ended if video genuinely reached the completion mark
+  const handleEnded = () => {
+    if (videoRef.current && videoRef.current.currentTime > 25) {
+      handleClose(false);
+    }
+  };
+
+  const handleBackdropClick = () => {
+    if (canDismissByBackdrop) {
+      handleClose(false);
+    }
   };
 
   if (!isVisible) {
@@ -187,19 +193,26 @@ export function VideoIntroOverlay() {
       role="dialog"
       aria-modal="true"
       aria-label="Economic Courier Brand Video Introduction"
-      onClick={() => handleClose(false)} // Click outside backdrop to close
+      onClick={handleBackdropClick}
       className={`fixed inset-0 z-[99999] p-3 sm:p-5 md:p-8 flex items-center justify-center bg-slate-900/40 backdrop-blur-[2px] transition-opacity duration-300 ease-out select-none overscroll-none touch-none ${
         isFading ? 'opacity-0 pointer-events-none' : 'opacity-100'
       }`}
     >
       {/* Light Premium Modal Card (Clean corporate white card matching website) */}
       <div
-        onClick={(e) => e.stopPropagation()} // Stop click inside card from closing
+        onClick={(e) => {
+          e.stopPropagation();
+          // Unmute on clicking inside card as well
+          if (videoRef.current) {
+            videoRef.current.muted = false;
+            videoRef.current.volume = 1.0;
+          }
+        }}
         className={`relative w-full max-w-[860px] bg-white rounded-2xl sm:rounded-3xl overflow-hidden shadow-[0_25px_60px_-15px_rgba(15,23,42,0.35),0_0_0_1px_rgba(15,23,42,0.08)] flex flex-col transition-all duration-300 ease-out ${
           isFading ? 'scale-95 translate-y-2' : 'scale-100 translate-y-0'
         }`}
       >
-        {/* Clean Header Bar — Only brand badge and Skip button (No voice on/off toggle) */}
+        {/* Clean Header Bar */}
         <div className="px-4 py-3 sm:px-6 sm:py-3.5 bg-white border-b border-slate-100 flex items-center justify-between z-10 shrink-0">
           {/* Brand Badge */}
           <div className="flex items-center gap-2 sm:gap-2.5">
@@ -237,10 +250,10 @@ export function VideoIntroOverlay() {
             src="/assets/intro/economic-courier-intro.mp4"
             poster="/assets/intro/intro-poster.webp"
             autoPlay
+            muted
             playsInline
             preload="auto"
-            onEnded={() => handleClose(false)}
-            onError={handleError}
+            onEnded={handleEnded}
             onTimeUpdate={handleTimeUpdate}
             className="w-full h-full object-contain sm:object-cover"
           />

@@ -104,14 +104,14 @@ export function VideoIntroOverlay() {
     };
   }, [isVisible, unlockScroll]);
 
-  // Video playback & Voice permanently ON (No voice button required)
+  // Video playback & Voice initialization
   useEffect(() => {
     if (!isVisible) return;
 
     const video = videoRef.current;
     if (!video) return;
 
-    // Permanent full volume
+    // Direct unmuted playback attempt
     video.volume = 1.0;
     video.muted = false;
 
@@ -121,9 +121,8 @@ export function VideoIntroOverlay() {
         .then(() => {
           setIsPlaying(true);
         })
-        .catch((err) => {
-          console.info('Initial unmuted autoplay held by browser policy, starting playback:', err?.message || err);
-          // If browser restricts unmuted autoplay on initial zero-interaction tick, start video and auto-unmute on first gesture
+        .catch(() => {
+          // If browser policy holds back unmuted autoplay on cold reload, start video smoothly
           video.muted = true;
           video.play()
             .then(() => {
@@ -135,34 +134,35 @@ export function VideoIntroOverlay() {
         });
     }
 
-    // Unmute voice automatically on ANY first gesture across the window
-    const enableVoiceOnGesture = () => {
+    // Unmute voice immediately on ANY real user activation (click, touch, key)
+    const unmuteOnUserAction = () => {
       if (videoRef.current) {
         videoRef.current.muted = false;
         videoRef.current.volume = 1.0;
       }
     };
 
-    const gestureEvents = ['pointerdown', 'touchstart', 'click', 'keydown', 'pointermove'];
-    gestureEvents.forEach((evt) => {
-      window.addEventListener(evt, enableVoiceOnGesture, { once: true });
-    });
+    window.addEventListener('click', unmuteOnUserAction);
+    window.addEventListener('pointerdown', unmuteOnUserAction);
+    window.addEventListener('touchstart', unmuteOnUserAction);
+    window.addEventListener('keydown', unmuteOnUserAction);
 
     return () => {
-      gestureEvents.forEach((evt) => {
-        window.removeEventListener(evt, enableVoiceOnGesture);
-      });
+      window.removeEventListener('click', unmuteOnUserAction);
+      window.removeEventListener('pointerdown', unmuteOnUserAction);
+      window.removeEventListener('touchstart', unmuteOnUserAction);
+      window.removeEventListener('keydown', unmuteOnUserAction);
     };
   }, [isVisible]);
 
-  // Play / Pause toggle handler (Click on video or button)
+  // Play / Pause toggle handler (Click on video or play/pause button)
   const togglePlayPause = (e?: React.MouseEvent) => {
     if (e) e.stopPropagation();
     const video = videoRef.current;
     if (!video) return;
 
     if (video.paused) {
-      // Resume and guarantee voice is ON
+      // Resume and explicitly guarantee voice is playing
       video.muted = false;
       video.volume = 1.0;
       video.play().then(() => {
@@ -295,7 +295,7 @@ export function VideoIntroOverlay() {
           </button>
         </div>
 
-        {/* Video Player Frame — 100% Clean, click on video toggles Play/Pause */}
+        {/* Video Player Frame — Click on video toggles Play/Pause */}
         <div
           onClick={togglePlayPause}
           className="relative w-full aspect-video bg-black overflow-hidden flex items-center justify-center cursor-pointer group"
@@ -343,7 +343,7 @@ export function VideoIntroOverlay() {
           </div>
         </div>
 
-        {/* Player Controls Bar — Play/Pause & Elapsed Time (NO voice buttons) */}
+        {/* Player Controls Bar — Play/Pause & Elapsed Time */}
         <div className="px-4 py-2.5 sm:px-6 sm:py-3 bg-slate-50 border-t border-slate-100 flex items-center justify-between text-xs text-slate-600">
           {/* Left: Play/Pause Button & Time Display */}
           <div className="flex items-center gap-3">

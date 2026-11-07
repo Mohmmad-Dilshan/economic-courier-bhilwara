@@ -381,89 +381,62 @@ export function ServicesView() {
       </section>
 
       {/* =========================================================================
-          4. WHY CHOOSE ECONOMIC COURIER? — REDESIGNED ELEGANT LIGHT SECTION
+          4. WHY CHOOSE ECONOMIC COURIER? — CLEAN LIGHT CAPABILITIES SECTION
           ========================================================================= */}
-      <section className="py-14 sm:py-18 lg:py-24 bg-gradient-to-b from-[#F8FAFC] via-[#F1F5F9]/30 to-white border-y border-slate-200/80 overflow-hidden relative">
+      <section className="py-14 sm:py-20 lg:py-24 bg-gradient-to-b from-[#F8FAFC] via-[#F1F5F9]/30 to-white border-y border-slate-200/80 overflow-hidden relative">
         <div className="max-w-[1240px] xl:max-w-[1360px] 2xl:max-w-[1480px] min-[1800px]:max-w-[1560px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-10">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 xl:gap-12 items-center">
-            {/* Left Column (6 cols on Desktop) */}
-            <div className="lg:col-span-6 flex flex-col space-y-6">
-              {/* Heading & Intro */}
-              <div>
-                <div className="flex items-center gap-1.5 mb-3">
-                  <span className="w-7 h-1 rounded-full bg-[#DC2626]" />
-                  <span className="w-2.5 h-1 rounded-full bg-[#DC2626]" />
-                </div>
+          {/* Centered Section Header */}
+          <div className="text-center max-w-2xl mx-auto mb-10 sm:mb-14">
+            <div className="inline-flex items-center justify-center gap-1.5 mb-3">
+              <span className="w-8 h-1 rounded-full bg-[#DC2626]" />
+              <span className="w-2.5 h-1 rounded-full bg-[#DC2626]" />
+            </div>
 
-                <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-[42px] font-black text-[#0F172A] tracking-[-0.03em] leading-[1.12]">
-                  Why Choose<br />
-                  <span className="text-[#DC2626]">Economic Courier?</span>
-                </h2>
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-[42px] font-black text-[#1E3A8A] tracking-[-0.03em] leading-tight">
+              Why Choose{' '}
+              <span className="text-[#DC2626]">Economic Courier?</span>
+            </h2>
 
-                <p className="mt-3 text-sm sm:text-base text-slate-600 leading-relaxed font-normal max-w-xl">
-                  Comprehensive courier and logistics solutions under one trusted name.
-                </p>
-              </div>
+            <p className="mt-3 text-sm sm:text-base text-slate-600 leading-relaxed font-normal">
+              Comprehensive courier and logistics solutions under one trusted name.
+            </p>
+          </div>
 
-              {/* Mobile / Tablet ONLY Illustration (Directly below heading on small screens) */}
-              <div className="block lg:hidden my-1">
-                <div className="relative w-full aspect-[16/9.5] rounded-2xl sm:rounded-3xl overflow-hidden border border-slate-200/80 shadow-[0_8px_30px_rgba(15,23,42,0.06)] bg-white">
-                  <Image
-                    src="/assets/services/why-choose-3d.webp"
-                    alt="3D logistics illustration with global airplane, world globe, delivery truck and parcel cartons"
-                    fill
-                    sizes="(max-width: 1024px) 100vw, 650px"
-                    className="object-cover object-center select-none"
-                  />
-                </div>
-              </div>
-
-              {/* 4 Capability Cards (2x2 grid on sm and desktop, 1-col on mobile) */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 sm:gap-4 pt-1">
-                {WHY_CHOOSE_CAPABILITIES.map((cap) => {
-                  const Icon = cap.icon;
-                  return (
-                    <a
-                      key={cap.id}
-                      href={cap.href}
-                      className="group flex items-center gap-3.5 p-4 sm:p-5 rounded-2xl bg-white border border-slate-200/90 shadow-[0_4px_16px_rgba(15,23,42,0.04)] hover:shadow-[0_10px_25px_rgba(15,23,42,0.08)] hover:border-slate-300 transition-all duration-200 hover:-translate-y-0.5 cursor-pointer"
+          {/* 4 Strategic Capability Cards across full width */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6">
+            {WHY_CHOOSE_CAPABILITIES.map((cap) => {
+              const Icon = cap.icon;
+              return (
+                <a
+                  key={cap.id}
+                  href={cap.href}
+                  className="group flex flex-col justify-between p-6 rounded-2xl bg-white border border-slate-200/90 shadow-[0_4px_16px_rgba(15,23,42,0.04)] hover:shadow-[0_12px_30px_rgba(15,23,42,0.08)] hover:border-slate-300 transition-all duration-300 hover:-translate-y-1 cursor-pointer"
+                >
+                  <div>
+                    <div
+                      className={`w-14 h-14 rounded-2xl flex items-center justify-center shrink-0 mb-5 transition-transform group-hover:scale-105 ${cap.badgeBg}`}
                     >
-                      <div
-                        className={`w-13 h-13 sm:w-14 sm:h-14 rounded-full flex items-center justify-center shrink-0 transition-transform group-hover:scale-105 ${cap.badgeBg}`}
-                      >
-                        <Icon className="w-6 h-6" />
-                      </div>
+                      <Icon className="w-7 h-7" />
+                    </div>
 
-                      <div className="flex-1 min-w-0 pr-1">
-                        <h3 className="text-xs sm:text-sm font-bold text-[#0F172A] group-hover:text-[#1E3A8A] leading-snug transition-colors">
-                          {cap.title}
-                        </h3>
-                        <p className="text-[11px] sm:text-xs text-slate-500 leading-relaxed mt-1">
-                          {cap.description}
-                        </p>
-                      </div>
+                    <h3 className="text-base font-bold text-[#1E3A8A] group-hover:text-[#DC2626] leading-snug transition-colors">
+                      {cap.title}
+                    </h3>
 
-                      <span className="w-7 h-7 rounded-full bg-slate-100 group-hover:bg-[#DC2626] group-hover:text-white text-slate-400 flex items-center justify-center shrink-0 transition-all ml-auto">
-                        <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
-                      </span>
-                    </a>
-                  );
-                })}
-              </div>
-            </div>
+                    <p className="text-xs sm:text-sm text-slate-500 leading-relaxed mt-2 font-normal">
+                      {cap.description}
+                    </p>
+                  </div>
 
-            {/* Right Column (Desktop ONLY: 6 cols) */}
-            <div className="hidden lg:block lg:col-span-6 relative">
-              <div className="relative w-full aspect-[16/9.5] rounded-3xl overflow-hidden border border-slate-200/80 shadow-[0_12px_40px_rgba(15,23,42,0.06)] bg-white">
-                <Image
-                  src="/assets/services/why-choose-3d.webp"
-                  alt="3D logistics illustration with global airplane, world globe, delivery truck and parcel cartons"
-                  fill
-                  sizes="(max-width: 1024px) 100vw, 650px"
-                  className="object-cover object-center select-none"
-                />
-              </div>
-            </div>
+                  <div className="pt-5 mt-5 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-[#1E3A8A] group-hover:text-[#DC2626] transition-colors">
+                    <span>Explore Service</span>
+                    <span className="w-7 h-7 rounded-full bg-slate-100 group-hover:bg-[#DC2626] group-hover:text-white text-slate-400 flex items-center justify-center transition-all">
+                      <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+                    </span>
+                  </div>
+                </a>
+              );
+            })}
           </div>
         </div>
       </section>

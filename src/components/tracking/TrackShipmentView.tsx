@@ -573,8 +573,8 @@ export function TrackShipmentView() {
                   }`}
                 >
                   <div className="space-y-3">
-                    <div className="flex items-center justify-between gap-2">
-                      <span className="text-[10px] font-mono font-semibold uppercase text-slate-500 bg-slate-50 border border-slate-200 px-2 py-0.5 rounded-md truncate max-w-[170px]">
+                    <div className="flex flex-wrap items-center justify-between gap-1.5 min-h-[26px]">
+                      <span className="text-[10px] font-mono font-semibold uppercase text-slate-600 bg-slate-50 border border-slate-200 px-2 py-0.5 rounded-md leading-normal">
                         {carrier.categoryLabel}
                       </span>
                       <span className={`text-[10px] font-mono font-bold px-1.5 py-0.5 rounded border ${carrier.badgeColor} shrink-0`}>
@@ -593,10 +593,10 @@ export function TrackShipmentView() {
                     </div>
 
                     <div>
-                      <h3 className="text-sm sm:text-base font-bold text-[#0F172A] group-hover:text-[#DC2626] transition-colors line-clamp-1">
+                      <h3 className="text-sm sm:text-base font-bold text-[#0F172A] group-hover:text-[#DC2626] transition-colors leading-snug">
                         {carrier.name}
                       </h3>
-                      <p className="text-xs text-slate-500 leading-relaxed font-normal line-clamp-2 mt-1">
+                      <p className="text-xs text-slate-600 leading-relaxed font-normal mt-1.5">
                         {carrier.description}
                       </p>
                     </div>
@@ -701,7 +701,7 @@ export function TrackShipmentView() {
                   <div>
                     <span className="text-[10px] text-slate-600 block font-semibold">② ORIGIN</span>
                     <span className="font-bold text-slate-900">Bhilwara Hub</span>
-                    <span className="text-[10px] text-slate-600 block truncate font-medium">
+                    <span className="text-[10px] text-slate-600 block font-medium">
                       Opp. New Cloth Market
                     </span>
                   </div>

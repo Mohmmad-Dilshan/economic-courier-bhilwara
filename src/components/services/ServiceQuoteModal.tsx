@@ -10,27 +10,42 @@ import {
   Package,
   MapPin,
   Scale,
-  AlertCircle,
 } from 'lucide-react';
-import { BROCHURE_SERVICES, BrochureServiceCard } from '@/lib/servicesCatalogueData';
+import { ALL_CONFIRMED_SERVICES, EDITORIAL_CATEGORIES } from '@/lib/servicesCatalogueData';
 
 interface ServiceQuoteModalProps {
   isOpen: boolean;
   onClose: () => void;
-  selectedServiceId?: string;
+  selectedCategoryOrService?: string;
 }
 
 export function ServiceQuoteModal({
   isOpen,
   onClose,
-  selectedServiceId,
+  selectedCategoryOrService,
 }: ServiceQuoteModalProps) {
-  const [userSelectedId, setUserSelectedId] = useState<string | null>(null);
+  const [overrideServiceId, setOverrideServiceId] = useState<string | null>(null);
+  const [prevProp, setPrevProp] = useState(selectedCategoryOrService);
   const [destination, setDestination] = useState('');
   const [approxWeight, setApproxWeight] = useState('');
   const [notes, setNotes] = useState('');
 
-  const currentServiceId = userSelectedId || selectedServiceId || 'air-courier';
+  // Reset override if selectedCategoryOrService prop changes
+  if (prevProp !== selectedCategoryOrService) {
+    setPrevProp(selectedCategoryOrService);
+    setOverrideServiceId(null);
+  }
+
+  const defaultMatchedId = selectedCategoryOrService
+    ? ALL_CONFIRMED_SERVICES.find(
+        (s) =>
+          s.id === selectedCategoryOrService ||
+          s.categoryName.toLowerCase().includes(selectedCategoryOrService.toLowerCase())
+      )?.id
+    : undefined;
+
+  const selectedServiceId = overrideServiceId || defaultMatchedId || 'domestic-air-courier';
+  const setSelectedServiceId = (id: string) => setOverrideServiceId(id);
 
   // Handle ESC key to close modal
   useEffect(() => {
@@ -46,16 +61,16 @@ export function ServiceQuoteModal({
 
   if (!isOpen) return null;
 
-  const currentService: BrochureServiceCard =
-    BROCHURE_SERVICES.find((s) => s.id === currentServiceId) || BROCHURE_SERVICES[0];
+  const currentService =
+    ALL_CONFIRMED_SERVICES.find((s) => s.id === selectedServiceId) || ALL_CONFIRMED_SERVICES[0];
 
   // Construct structured pre-filled WhatsApp message
   const buildWhatsAppMessage = () => {
     const lines = [
       `Hello Economic Courier & eCS World Wide Express Bhilwara,`,
       ``,
-      `I would like to inquire about:`,
-      `• Service: ${currentService.title} (${currentService.categoryTag})`,
+      `I would like to inquire about a shipment:`,
+      `• Service: ${currentService.serviceName} (${currentService.categoryName})`,
       `• Origin: Bhilwara, Rajasthan Hub`,
       destination ? `• Destination: ${destination.trim()}` : `• Destination: [Please specify city/country]`,
       approxWeight ? `• Approx Weight/Size: ${approxWeight.trim()}` : `• Approx Weight: [Please advise rate slabs]`,
@@ -86,7 +101,7 @@ export function ServiceQuoteModal({
       {/* Modal Dialog Card */}
       <div className="relative w-full max-w-xl bg-white rounded-3xl shadow-2xl border border-slate-200 overflow-hidden z-10 transition-all duration-300">
         {/* Modal Header */}
-        <div className="bg-gradient-to-r from-[#1E3A8A] via-[#1E40AF] to-[#1E3A8A] p-5 sm:p-6 text-white relative">
+        <div className="bg-gradient-to-r from-[#0F172A] via-[#1E3A8A] to-[#0F172A] p-5 sm:p-6 text-white relative">
           <button
             type="button"
             onClick={onClose}
@@ -108,30 +123,34 @@ export function ServiceQuoteModal({
             Request Rate &amp; Dispatch Guidance
           </h2>
           <p className="text-xs sm:text-sm text-blue-100 mt-1">
-            Official Bhilwara Hub desk assistance for all 8 catalogue services.
+            Official Bhilwara Hub desk assistance for all 22 confirmed catalogue services.
           </p>
         </div>
 
         {/* Modal Form Body */}
         <div className="p-5 sm:p-6 space-y-4 max-h-[70vh] overflow-y-auto">
-          {/* Service Selector (All 8 Brochure Services) */}
+          {/* Service Selector (All 22 Services Grouped by Category) */}
           <div className="space-y-1.5">
             <label
               htmlFor="modal-service-select"
               className="block text-xs font-bold text-slate-700 uppercase tracking-wider"
             >
-              Select Service
+              Select Service (22 Confirmed Options)
             </label>
             <select
               id="modal-service-select"
-              value={currentServiceId}
-              onChange={(e) => setUserSelectedId(e.target.value)}
+              value={selectedServiceId}
+              onChange={(e) => setSelectedServiceId(e.target.value)}
               className="w-full text-xs sm:text-sm font-semibold text-[#1E3A8A] bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-2.5 focus:outline-hidden focus:ring-2 focus:ring-[#DC2626] focus:border-transparent cursor-pointer"
             >
-              {BROCHURE_SERVICES.map((svc) => (
-                <option key={svc.id} value={svc.id}>
-                  {svc.number}. {svc.title} — {svc.categoryTag}
-                </option>
+              {EDITORIAL_CATEGORIES.map((cat) => (
+                <optgroup key={cat.id} label={`── ${cat.number}. ${cat.titlePrimary} ${cat.titleHighlight} ──`}>
+                  {ALL_CONFIRMED_SERVICES.filter((s) => s.categoryName.startsWith(cat.number)).map((svc) => (
+                    <option key={svc.id} value={svc.id}>
+                      {svc.serviceName}
+                    </option>
+                  ))}
+                </optgroup>
               ))}
             </select>
           </div>
@@ -142,18 +161,12 @@ export function ServiceQuoteModal({
               <Package className="w-4 h-4" />
             </div>
             <div className="min-w-0 flex-1">
+              <span className="text-[10px] font-mono font-bold text-red-600 uppercase">
+                {currentService.categoryName}
+              </span>
               <h4 className="text-xs sm:text-sm font-black text-[#1E3A8A] leading-snug">
-                {currentService.title}
+                {currentService.serviceName}
               </h4>
-              <p className="text-[11px] sm:text-xs text-slate-600 line-clamp-2 mt-0.5 font-normal">
-                {currentService.tagline}
-              </p>
-              {currentService.advisoryNotice && (
-                <div className="mt-1.5 flex items-start gap-1 text-[10px] text-amber-900 font-medium bg-amber-50 p-1.5 rounded-lg border border-amber-200">
-                  <AlertCircle className="w-3 h-3 text-amber-600 shrink-0 mt-0.5" />
-                  <span>{currentService.advisoryNotice}</span>
-                </div>
-              )}
             </div>
           </div>
 
@@ -199,7 +212,7 @@ export function ServiceQuoteModal({
               <input
                 id="modal-weight"
                 type="text"
-                placeholder="e.g. Document envelope, 2 kg medicine box, 30 kg excess baggage..."
+                placeholder="e.g. Document envelope, 2 kg sample, 30 kg luggage..."
                 value={approxWeight}
                 onChange={(e) => setApproxWeight(e.target.value)}
                 className="w-full text-xs sm:text-sm text-slate-900 bg-white border border-slate-300 rounded-xl pl-9 pr-3 py-2 focus:outline-hidden focus:ring-2 focus:ring-[#DC2626] focus:border-transparent"
@@ -219,7 +232,7 @@ export function ServiceQuoteModal({
             <textarea
               id="modal-notes"
               rows={2}
-              placeholder="e.g. Fragile item, need packaging assistance at counter, urgent delivery..."
+              placeholder="e.g. Fragile item, need packaging assistance, urgent flight delivery..."
               value={notes}
               onChange={(e) => setNotes(e.target.value)}
               className="w-full text-xs sm:text-sm text-slate-900 bg-white border border-slate-300 rounded-xl px-3 py-2 focus:outline-hidden focus:ring-2 focus:ring-[#DC2626] focus:border-transparent resize-none"

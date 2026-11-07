@@ -85,7 +85,7 @@ export function RelatedServicesGrid({
             <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-[#DC2626] block">
               {tagline}
             </span>
-            <h3 className="text-lg sm:text-xl font-bold text-slate-900">
+            <h3 className="text-lg sm:text-xl font-bold text-[#1E3A8A]">
               {title}
             </h3>
           </div>
@@ -104,7 +104,7 @@ export function RelatedServicesGrid({
                   <div className="w-9 h-9 rounded-xl bg-red-50 text-[#DC2626] flex items-center justify-center">
                     <Icon className="w-4 h-4 text-[#DC2626]" />
                   </div>
-                  <h4 className="text-sm font-bold text-slate-900 group-hover:text-[#DC2626] transition-colors">
+                  <h4 className="text-sm font-bold text-[#1E3A8A] group-hover:text-[#DC2626] transition-colors">
                     {card.title}
                   </h4>
                   <p className="text-xs text-slate-600 leading-relaxed font-normal">

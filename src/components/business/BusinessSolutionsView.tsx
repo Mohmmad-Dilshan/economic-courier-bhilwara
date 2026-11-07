@@ -59,7 +59,7 @@ export function BusinessSolutionsView() {
                 <span>B2B &amp; CORPORATE COURIER ACCOUNTS</span>
               </div>
 
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-[#0F172A] leading-[1.15]">
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-[#1E3A8A] leading-[1.15]">
                 Bhilwara Ke Businesses &amp; Factories Ke Liye{' '}
                 <span className="text-[#DC2626]">Dedicated Courier Solutions.</span>
               </h1>
@@ -138,7 +138,7 @@ export function BusinessSolutionsView() {
             <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-[#DC2626] block">
               BUSINESS ADVANTAGES
             </span>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-[#0F172A] tracking-tight">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-[#1E3A8A] tracking-tight">
               Aapke Business Ko <span className="text-[#DC2626]">Kya-Kya Suvidha Milegi?</span>
             </h2>
             <p className="text-xs sm:text-sm text-slate-600 font-normal">
@@ -152,7 +152,7 @@ export function BusinessSolutionsView() {
               <div className="w-12 h-12 rounded-xl bg-red-50 text-[#DC2626] flex items-center justify-center border border-red-100 group-hover:scale-105 transition-transform">
                 <Clock className="w-6 h-6 text-[#DC2626]" />
               </div>
-              <h3 className="text-lg font-bold text-[#0F172A] group-hover:text-[#DC2626] transition-colors">
+              <h3 className="text-lg font-bold text-[#1E3A8A] group-hover:text-[#DC2626] transition-colors">
                 Daily Scheduled Doorstep Pickup
               </h3>
               <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
@@ -169,7 +169,7 @@ export function BusinessSolutionsView() {
               <div className="w-12 h-12 rounded-xl bg-red-50 text-[#DC2626] flex items-center justify-center border border-red-100 group-hover:scale-105 transition-transform">
                 <Receipt className="w-6 h-6 text-[#DC2626]" />
               </div>
-              <h3 className="text-lg font-bold text-[#0F172A] group-hover:text-[#DC2626] transition-colors">
+              <h3 className="text-lg font-bold text-[#1E3A8A] group-hover:text-[#DC2626] transition-colors">
                 Monthly Billing &amp; GST Invoicing
               </h3>
               <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
@@ -186,7 +186,7 @@ export function BusinessSolutionsView() {
               <div className="w-12 h-12 rounded-xl bg-red-50 text-[#DC2626] flex items-center justify-center border border-red-100 group-hover:scale-105 transition-transform">
                 <Truck className="w-6 h-6 text-[#DC2626]" />
               </div>
-              <h3 className="text-lg font-bold text-[#0F172A] group-hover:text-[#DC2626] transition-colors">
+              <h3 className="text-lg font-bold text-[#1E3A8A] group-hover:text-[#DC2626] transition-colors">
                 Priority Commercial Trade Corridors
               </h3>
               <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
@@ -203,7 +203,7 @@ export function BusinessSolutionsView() {
               <div className="w-12 h-12 rounded-xl bg-red-50 text-[#DC2626] flex items-center justify-center border border-red-100 group-hover:scale-105 transition-transform">
                 <ShieldCheck className="w-6 h-6 text-[#DC2626]" />
               </div>
-              <h3 className="text-lg font-bold text-[#0F172A] group-hover:text-[#DC2626] transition-colors">
+              <h3 className="text-lg font-bold text-[#1E3A8A] group-hover:text-[#DC2626] transition-colors">
                 Tamper-Evident &amp; Swatch Safety
               </h3>
               <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
@@ -220,7 +220,7 @@ export function BusinessSolutionsView() {
               <div className="w-12 h-12 rounded-xl bg-red-50 text-[#DC2626] flex items-center justify-center border border-red-100 group-hover:scale-105 transition-transform">
                 <Headphones className="w-6 h-6 text-[#DC2626]" />
               </div>
-              <h3 className="text-lg font-bold text-[#0F172A] group-hover:text-[#DC2626] transition-colors">
+              <h3 className="text-lg font-bold text-[#1E3A8A] group-hover:text-[#DC2626] transition-colors">
                 Dedicated Account Desk (No Bots)
               </h3>
               <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
@@ -237,7 +237,7 @@ export function BusinessSolutionsView() {
               <div className="w-12 h-12 rounded-xl bg-red-50 text-[#DC2626] flex items-center justify-center border border-red-100 group-hover:scale-105 transition-transform">
                 <FileText className="w-6 h-6 text-[#DC2626]" />
               </div>
-              <h3 className="text-lg font-bold text-[#0F172A] group-hover:text-[#DC2626] transition-colors">
+              <h3 className="text-lg font-bold text-[#1E3A8A] group-hover:text-[#DC2626] transition-colors">
                 Proof of Delivery (POD) Receipts
               </h3>
               <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
@@ -261,7 +261,7 @@ export function BusinessSolutionsView() {
             <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-[#DC2626] block">
               TARGET COMMERCIAL SECTORS
             </span>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-[#0F172A] tracking-tight">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-[#1E3A8A] tracking-tight">
               Aapka Business <span className="text-[#DC2626]">Kis Category Mein Aata Hai?</span>
             </h2>
             <p className="text-xs sm:text-sm text-slate-600 font-normal">
@@ -280,7 +280,7 @@ export function BusinessSolutionsView() {
                   <span className="text-[10px] font-mono font-bold uppercase text-[#DC2626] tracking-wider block mb-0.5">
                     WEAVING &amp; SYNTHETICS
                   </span>
-                  <h3 className="text-base font-extrabold text-[#0F172A] group-hover:text-[#DC2626] transition-colors">
+                  <h3 className="text-base font-extrabold text-[#1E3A8A] group-hover:text-[#DC2626] transition-colors">
                     Textile &amp; Weaving Mills
                   </h3>
                 </div>
@@ -306,7 +306,7 @@ export function BusinessSolutionsView() {
                   <span className="text-[10px] font-mono font-bold uppercase text-[#DC2626] tracking-wider block mb-0.5">
                     APPAREL EXPORT
                   </span>
-                  <h3 className="text-base font-extrabold text-[#0F172A] group-hover:text-[#DC2626] transition-colors">
+                  <h3 className="text-base font-extrabold text-[#1E3A8A] group-hover:text-[#DC2626] transition-colors">
                     Garment &amp; Apparel Exporters
                   </h3>
                 </div>
@@ -332,7 +332,7 @@ export function BusinessSolutionsView() {
                   <span className="text-[10px] font-mono font-bold uppercase text-[#DC2626] tracking-wider block mb-0.5">
                     COMMERCIAL TRADE
                   </span>
-                  <h3 className="text-base font-extrabold text-[#0F172A] group-hover:text-[#DC2626] transition-colors">
+                  <h3 className="text-base font-extrabold text-[#1E3A8A] group-hover:text-[#DC2626] transition-colors">
                     Wholesalers &amp; Machinery Spares
                   </h3>
                 </div>
@@ -358,7 +358,7 @@ export function BusinessSolutionsView() {
                   <span className="text-[10px] font-mono font-bold uppercase text-[#DC2626] tracking-wider block mb-0.5">
                     LEGAL &amp; CORPORATE
                   </span>
-                  <h3 className="text-base font-extrabold text-[#0F172A] group-hover:text-[#DC2626] transition-colors">
+                  <h3 className="text-base font-extrabold text-[#1E3A8A] group-hover:text-[#DC2626] transition-colors">
                     CA, Legal &amp; Corporate Offices
                   </h3>
                 </div>
@@ -386,7 +386,7 @@ export function BusinessSolutionsView() {
             <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-[#DC2626] block">
               DAILY TRADE CORRIDORS
             </span>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-[#0F172A] tracking-tight">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-[#1E3A8A] tracking-tight">
               Bhilwara Se Sabse Zyaada <span className="text-[#DC2626]">Dispatch Hone Wale Routes.</span>
             </h2>
             <p className="text-xs sm:text-sm text-slate-600 font-normal">
@@ -403,7 +403,7 @@ export function BusinessSolutionsView() {
                 </span>
                 <span className="text-xs font-bold text-emerald-600">Next-Day Delivery</span>
               </div>
-              <h3 className="text-lg font-black text-[#0F172A]">
+              <h3 className="text-lg font-black text-[#1E3A8A]">
                 Surat &amp; Ahmedabad
               </h3>
               <p className="text-xs text-slate-600 leading-relaxed font-normal">
@@ -420,7 +420,7 @@ export function BusinessSolutionsView() {
                 </span>
                 <span className="text-xs font-bold text-emerald-600">Priority Linehaul</span>
               </div>
-              <h3 className="text-lg font-black text-[#0F172A]">
+              <h3 className="text-lg font-black text-[#1E3A8A]">
                 Delhi NCR, Gurgaon &amp; Noida
               </h3>
               <p className="text-xs text-slate-600 leading-relaxed font-normal">
@@ -437,7 +437,7 @@ export function BusinessSolutionsView() {
                 </span>
                 <span className="text-xs font-bold text-emerald-600">Express Air / Surface</span>
               </div>
-              <h3 className="text-lg font-black text-[#0F172A]">
+              <h3 className="text-lg font-black text-[#1E3A8A]">
                 Mumbai, Pune &amp; Maharashtra
               </h3>
               <p className="text-xs text-slate-600 leading-relaxed font-normal">
@@ -454,7 +454,7 @@ export function BusinessSolutionsView() {
                 </span>
                 <span className="text-xs font-bold text-emerald-600">Same-Day / Next-Day</span>
               </div>
-              <h3 className="text-lg font-black text-[#0F172A]">
+              <h3 className="text-lg font-black text-[#1E3A8A]">
                 Jaipur, Jodhpur, Kota &amp; Udaipur
               </h3>
               <p className="text-xs text-slate-600 leading-relaxed font-normal">
@@ -471,7 +471,7 @@ export function BusinessSolutionsView() {
                 </span>
                 <span className="text-xs font-bold text-emerald-600">Pan-India Express</span>
               </div>
-              <h3 className="text-lg font-black text-[#0F172A]">
+              <h3 className="text-lg font-black text-[#1E3A8A]">
                 Bangalore, Chennai &amp; Hyderabad
               </h3>
               <p className="text-xs text-slate-600 leading-relaxed font-normal">
@@ -488,7 +488,7 @@ export function BusinessSolutionsView() {
                 </span>
                 <span className="text-xs font-bold text-emerald-600">Air Cargo Express</span>
               </div>
-              <h3 className="text-lg font-black text-[#0F172A]">
+              <h3 className="text-lg font-black text-[#1E3A8A]">
                 UAE, USA, Europe &amp; Global Hubs
               </h3>
               <p className="text-xs text-slate-600 leading-relaxed font-normal">
@@ -509,7 +509,7 @@ export function BusinessSolutionsView() {
             <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-[#DC2626] block">
               SIMPLE ONBOARDING
             </span>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-[#0F172A] tracking-tight">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-[#1E3A8A] tracking-tight">
               Aapka Business Account <span className="text-[#DC2626]">Kaise Start Hoga?</span>
             </h2>
             <p className="text-xs sm:text-sm text-slate-600 font-normal">
@@ -523,7 +523,7 @@ export function BusinessSolutionsView() {
               <div className="w-10 h-10 rounded-xl bg-red-50 text-[#DC2626] font-extrabold flex items-center justify-center text-sm border border-red-100">
                 01
               </div>
-              <h3 className="text-base font-extrabold text-[#0F172A]">
+              <h3 className="text-base font-extrabold text-[#1E3A8A]">
                 Requirement Share Kijiye
               </h3>
               <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
@@ -537,7 +537,7 @@ export function BusinessSolutionsView() {
               <div className="w-10 h-10 rounded-xl bg-red-50 text-[#DC2626] font-extrabold flex items-center justify-center text-sm border border-red-100">
                 02
               </div>
-              <h3 className="text-base font-extrabold text-[#0F172A]">
+              <h3 className="text-base font-extrabold text-[#1E3A8A]">
                 Custom Rates &amp; Pickup Time Fix
               </h3>
               <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
@@ -551,7 +551,7 @@ export function BusinessSolutionsView() {
               <div className="w-10 h-10 rounded-xl bg-red-50 text-[#DC2626] font-extrabold flex items-center justify-center text-sm border border-red-100">
                 03
               </div>
-              <h3 className="text-base font-extrabold text-[#0F172A]">
+              <h3 className="text-base font-extrabold text-[#1E3A8A]">
                 Daily Dispatch &amp; Month-End Bill
               </h3>
               <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">

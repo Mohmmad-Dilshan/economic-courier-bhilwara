@@ -150,7 +150,7 @@ export function ReviewsSection() {
 
               {/* Headline: Clean, well-proportioned 2-line title */}
               <div className="relative">
-                <h2 className="text-2xl sm:text-3xl lg:text-[30px] font-black text-[#0F172A] tracking-[-0.03em] leading-[1.18]">
+                <h2 className="text-2xl sm:text-3xl lg:text-[30px] font-black text-[#1E3A8A] tracking-[-0.03em] leading-[1.18]">
                   Trusted by Businesses <br className="hidden sm:inline" />
                   <span className="text-[#DC2626]">Across the Corridor</span>
                 </h2>
@@ -280,7 +280,7 @@ export function ReviewsSection() {
                                 {/* Author Meta (Full text, no truncation!) */}
                                 <div className="min-w-0 flex-1">
                                   <div className="flex items-center gap-1.5 flex-wrap">
-                                    <h3 className="text-[14.5px] font-bold text-slate-900 tracking-tight leading-snug">
+                                    <h3 className="text-[14.5px] font-bold text-[#1E3A8A] tracking-tight leading-snug">
                                       {review.name}
                                     </h3>
                                     <CheckCircle2 className="w-3.5 h-3.5 text-blue-500 shrink-0" />

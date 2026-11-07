@@ -206,7 +206,7 @@ export function ContactView() {
                 <span>DIRECT INQUIRY &amp; HUB BOOKING DESK</span>
               </div>
 
-              <h1 className="text-3xl sm:text-4xl lg:text-[44px] xl:text-[48px] font-black tracking-[-0.03em] text-[#0F172A] leading-[1.12]">
+              <h1 className="text-3xl sm:text-4xl lg:text-[44px] xl:text-[48px] font-black tracking-[-0.03em] text-[#1E3A8A] leading-[1.12]">
                 Humse <span className="text-[#DC2626]">Sampark Karein.</span>{' '}
                 <span className="text-[#DC2626] block sm:inline mt-1 sm:mt-0">
                   Direct Bhilwara Hub Coordination.
@@ -350,7 +350,7 @@ export function ContactView() {
                   <span className="text-[10px] font-mono font-bold uppercase text-[#DC2626] tracking-wider block mb-0.5">
                     DIRECT CALLING LINE
                   </span>
-                  <h2 className="text-base font-extrabold text-slate-900">
+                  <h2 className="text-base font-extrabold text-[#1E3A8A]">
                     +91 89551 44444
                   </h2>
                 </div>
@@ -380,7 +380,7 @@ export function ContactView() {
                   <span className="text-[10px] font-mono font-bold uppercase text-emerald-600 tracking-wider block mb-0.5">
                     WHATSAPP BOOKING DESK
                   </span>
-                  <h2 className="text-base font-extrabold text-slate-900">
+                  <h2 className="text-base font-extrabold text-[#1E3A8A]">
                     +91 89551 44444
                   </h2>
                 </div>
@@ -412,7 +412,7 @@ export function ContactView() {
                   <span className="text-[10px] font-mono font-bold uppercase text-blue-600 tracking-wider block mb-0.5">
                     BHILWARA HUB LOCATION
                   </span>
-                  <h2 className="text-base font-extrabold text-slate-900">
+                  <h2 className="text-base font-extrabold text-[#1E3A8A]">
                     Opp. New Cloth Market
                   </h2>
                 </div>
@@ -444,7 +444,7 @@ export function ContactView() {
                   <span className="text-[10px] font-mono font-bold uppercase text-slate-500 tracking-wider block mb-0.5">
                     OPERATIONAL TIMINGS
                   </span>
-                  <h2 className="text-base font-extrabold text-slate-900">
+                  <h2 className="text-base font-extrabold text-[#1E3A8A]">
                     9:30 AM – 8:30 PM
                   </h2>
                 </div>
@@ -501,7 +501,7 @@ export function ContactView() {
                       OFFICIAL PHYSICAL HUB
                     </span>
                   </div>
-                  <h3 className="text-lg font-black text-[#0F172A]">
+                  <h3 className="text-lg font-black text-[#1E3A8A]">
                     Economic Courier &amp; eCS World Wide Express
                   </h3>
                   <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
@@ -533,7 +533,7 @@ export function ContactView() {
                     <Scissors className="w-5 h-5 text-[#DC2626]" />
                   </div>
                   <div className="space-y-1">
-                    <h4 className="text-sm font-bold text-[#0F172A]">
+                    <h4 className="text-sm font-bold text-[#1E3A8A]">
                       Textile Swatch &amp; Sample Desk
                     </h4>
                     <p className="text-xs text-slate-600 leading-relaxed font-normal">
@@ -547,7 +547,7 @@ export function ContactView() {
                     <Package className="w-5 h-5 text-[#DC2626]" />
                   </div>
                   <div className="space-y-1">
-                    <h4 className="text-sm font-bold text-[#0F172A]">
+                    <h4 className="text-sm font-bold text-[#1E3A8A]">
                       Commercial Heavy Cartons &amp; Freight Desk
                     </h4>
                     <p className="text-xs text-slate-600 leading-relaxed font-normal">
@@ -561,7 +561,7 @@ export function ContactView() {
                     <FileText className="w-5 h-5 text-[#DC2626]" />
                   </div>
                   <div className="space-y-1">
-                    <h4 className="text-sm font-bold text-[#0F172A]">
+                    <h4 className="text-sm font-bold text-[#1E3A8A]">
                       Legal, CA &amp; Confidential Document Desk
                     </h4>
                     <p className="text-xs text-slate-600 leading-relaxed font-normal">
@@ -578,7 +578,7 @@ export function ContactView() {
                     <InstagramIcon size={20} />
                   </div>
                   <div>
-                    <h4 className="text-xs sm:text-sm font-extrabold text-[#0F172A]">
+                    <h4 className="text-xs sm:text-sm font-extrabold text-[#1E3A8A]">
                       Follow On Instagram
                     </h4>
                     <p className="text-[11px] text-slate-600 font-normal">
@@ -608,7 +608,7 @@ export function ContactView() {
                     <FileText className="w-3.5 h-3.5 text-[#DC2626]" />
                     <span>ONLINE INQUIRY &amp; RATE DESK</span>
                   </div>
-                  <h3 className="text-2xl sm:text-3xl font-black text-[#0F172A] tracking-tight">
+                  <h3 className="text-2xl sm:text-3xl font-black text-[#1E3A8A] tracking-tight">
                     Rate &amp; Consignment <span className="text-[#DC2626]">Inquiry</span>
                   </h3>
                   <p className="text-xs sm:text-sm text-slate-600 font-normal mt-1">
@@ -981,7 +981,7 @@ export function ContactView() {
             <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-[#DC2626] block">
               WALK-IN &amp; BOOKING GUIDELINES
             </span>
-            <h3 className="text-2xl sm:text-3xl font-black text-[#0F172A] tracking-tight">
+            <h3 className="text-2xl sm:text-3xl font-black text-[#1E3A8A] tracking-tight">
               Aksar Pooche Jane Wale <span className="text-[#DC2626]">Sawal (FAQ)</span>
             </h3>
             <p className="text-xs sm:text-sm text-slate-600 font-normal">
@@ -996,7 +996,7 @@ export function ContactView() {
                 <CheckCircle2 className="w-4 h-4 text-[#DC2626]" />
                 <span>PACKAGING MATERIALS ON COUNTER</span>
               </div>
-              <h4 className="text-base font-extrabold text-[#0F172A]">
+              <h4 className="text-base font-extrabold text-[#1E3A8A]">
                 Counter par aane par kya packing material wahi mil jayega?
               </h4>
               <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
@@ -1011,7 +1011,7 @@ export function ContactView() {
                 <CheckCircle2 className="w-4 h-4 text-[#DC2626]" />
                 <span>DOORSTEP PICKUP COVERAGE</span>
               </div>
-              <h4 className="text-base font-extrabold text-[#0F172A]">
+              <h4 className="text-base font-extrabold text-[#1E3A8A]">
                 Doorstep pickup Bhilwara me kahan-kahan available hai?
               </h4>
               <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
@@ -1026,7 +1026,7 @@ export function ContactView() {
                 <CheckCircle2 className="w-4 h-4 text-[#DC2626]" />
                 <span>RATE CALCULATION METHOD</span>
               </div>
-              <h4 className="text-base font-extrabold text-[#0F172A]">
+              <h4 className="text-base font-extrabold text-[#1E3A8A]">
                 Rate calculation kaise hoti hai?
               </h4>
               <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
@@ -1041,7 +1041,7 @@ export function ContactView() {
                 <CheckCircle2 className="w-4 h-4 text-[#DC2626]" />
                 <span>DELIVERY TIMELINES</span>
               </div>
-              <h4 className="text-base font-extrabold text-[#0F172A]">
+              <h4 className="text-base font-extrabold text-[#1E3A8A]">
                 Textile sample packets kitne time me outstation buyer tak pahunchte hain?
               </h4>
               <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">

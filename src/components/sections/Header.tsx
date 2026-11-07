@@ -140,7 +140,7 @@ export function Header() {
             >
               <BrandLogo size="md" />
               <div className="flex flex-col border-l border-slate-200/90 pl-2 sm:pl-3">
-                <span className="text-[10.5px] xs:text-[11.5px] sm:text-[12px] font-black text-[#0F172A] tracking-tight leading-none group-hover:text-[#DC2626] transition-colors">
+                <span className="text-[10.5px] xs:text-[11.5px] sm:text-[12px] font-black text-[#1E3A8A] tracking-tight leading-none group-hover:text-[#DC2626] transition-colors">
                   Economic Courier
                 </span>
                 <span className="text-[8px] xs:text-[9px] sm:text-[10px] font-extrabold text-[#1E3A8A] tracking-wider uppercase mt-0.5">
@@ -431,7 +431,7 @@ export function Header() {
             >
               <BrandLogo size="sm" />
               <div className="flex flex-col border-l border-slate-200 pl-2.5 text-left">
-                <span className="text-[11px] font-black text-[#0F172A] tracking-tight leading-none">
+                <span className="text-[11px] font-black text-[#1E3A8A] tracking-tight leading-none">
                   Economic Courier
                 </span>
                 <span className="text-[8.5px] font-extrabold text-[#1E3A8A] tracking-wider uppercase mt-0.5">

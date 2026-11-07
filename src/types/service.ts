@@ -2,6 +2,28 @@ import { ServiceTypeOption } from './inquiry';
 
 export type ServiceCategory = 'all' | 'domestic' | 'international' | 'textile' | 'documents';
 
+export type CatalogueCategoryKey =
+  | 'air-express'
+  | 'commercial-business'
+  | 'cargo-special'
+  | 'personal-household';
+
+export interface CatalogueServiceItem {
+  id: string;
+  name: string;
+  categoryKey: CatalogueCategoryKey;
+  categoryLabel: string;
+  tagline: string;
+  description: string;
+  features: string[];
+  suitableFor: string[];
+  handlingNotes?: string;
+  regulatoryNotice?: string;
+  iconName: string;
+  inquiryKey: string;
+  brochureBadges?: string[];
+}
+
 export interface ServiceItem {
   id: string;
   title: string;
@@ -19,3 +41,4 @@ export interface ServiceItem {
   ctaLabel: string;
   complianceNote?: string;
 }
+

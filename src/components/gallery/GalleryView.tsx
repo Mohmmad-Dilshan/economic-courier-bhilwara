@@ -634,7 +634,7 @@ export function GalleryView() {
                   <Film className="w-3.5 h-3.5 text-[#DC2626]" />
                   <span>AUTHENTIC VIDEO FOOTAGE</span>
                 </div>
-                <h2 className="text-xl sm:text-2xl lg:text-3xl font-black text-[#0F172A] tracking-tight">
+                <h2 className="text-xl sm:text-2xl lg:text-3xl font-black text-[#1E3A8A] tracking-tight">
                   Featured <span className="text-[#DC2626]">Operations Reels</span>
                 </h2>
               </div>
@@ -670,7 +670,7 @@ export function GalleryView() {
                   <Camera className="w-3.5 h-3.5 text-[#DC2626]" />
                   <span>OPERATIONS PHOTOGRAPHY ARCHIVE</span>
                 </div>
-                <h2 className="text-xl sm:text-2xl lg:text-3xl font-black text-[#0F172A] tracking-tight">
+                <h2 className="text-xl sm:text-2xl lg:text-3xl font-black text-[#1E3A8A] tracking-tight">
                   Ground Operations <span className="text-[#DC2626]">Photos</span> ({filteredPhotos.length})
                 </h2>
               </div>

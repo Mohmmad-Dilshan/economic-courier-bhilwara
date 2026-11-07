@@ -40,7 +40,7 @@ export function DailyRouteSection() {
               <span>DAILY REGIONAL ROUTE &amp; SAME-DAY DISPATCH</span>
             </div>
 
-            <h2 className="text-2xl sm:text-4xl lg:text-[42px] font-black tracking-tight text-[#0F172A] leading-[1.14]">
+            <h2 className="text-2xl sm:text-4xl lg:text-[42px] font-black tracking-tight text-[#1E3A8A] leading-[1.14]">
               Our Daily Regional Route &amp;{' '}
               <span className="bg-gradient-to-r from-[#DC2626] via-[#E11D48] to-[#B91C1C] bg-clip-text text-transparent">
                 Same-Day Delivery
@@ -141,7 +141,7 @@ export function DailyRouteSection() {
               <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-red-600 block">
                 CORRIDOR DESTINATIONS
               </span>
-              <h3 className="text-lg sm:text-2xl font-black text-[#0F172A] tracking-tight">
+              <h3 className="text-lg sm:text-2xl font-black text-[#1E3A8A] tracking-tight">
                 Daily Linehaul Stops From Bhilwara Hub
               </h3>
             </div>

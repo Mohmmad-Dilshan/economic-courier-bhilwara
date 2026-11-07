@@ -50,7 +50,7 @@ export function Footer() {
               <Truck className="w-5 h-5" />
             </div>
             <div>
-              <h3 className="text-xs font-extrabold text-[#0F172A] uppercase tracking-wider">
+              <h3 className="text-xs font-extrabold text-[#1E3A8A] uppercase tracking-wider">
                 Rajasthan Linehaul
               </h3>
               <p className="text-[12px] text-slate-600 leading-snug mt-0.5 font-normal">
@@ -64,7 +64,7 @@ export function Footer() {
               <Globe2 className="w-5 h-5" />
             </div>
             <div>
-              <h3 className="text-xs font-extrabold text-[#0F172A] uppercase tracking-wider">
+              <h3 className="text-xs font-extrabold text-[#1E3A8A] uppercase tracking-wider">
                 Worldwide Air Express
               </h3>
               <p className="text-[12px] text-slate-600 leading-snug mt-0.5 font-normal">
@@ -78,7 +78,7 @@ export function Footer() {
               <Package className="w-5 h-5" />
             </div>
             <div>
-              <h3 className="text-xs font-extrabold text-[#0F172A] uppercase tracking-wider">
+              <h3 className="text-xs font-extrabold text-[#1E3A8A] uppercase tracking-wider">
                 Textile Hub Specialists
               </h3>
               <p className="text-[12px] text-slate-600 leading-snug mt-0.5 font-normal">
@@ -92,7 +92,7 @@ export function Footer() {
               <ShieldCheck className="w-5 h-5" />
             </div>
             <div>
-              <h3 className="text-xs font-extrabold text-[#0F172A] uppercase tracking-wider">
+              <h3 className="text-xs font-extrabold text-[#1E3A8A] uppercase tracking-wider">
                 Central Bhilwara Hub
               </h3>
               <p className="text-[12px] text-slate-600 leading-snug mt-0.5 font-normal">
@@ -168,7 +168,7 @@ export function Footer() {
           {/* COLUMN 2: Logistics Services (lg:col-span-3) */}
           <div className="lg:col-span-3 space-y-4">
             <div>
-              <h3 className="text-xs font-black text-[#0F172A] uppercase tracking-wider">
+              <h3 className="text-xs font-black text-[#1E3A8A] uppercase tracking-wider">
                 Logistics Services
               </h3>
               <div className="w-6 h-0.5 bg-[#DC2626] rounded-full mt-2" />
@@ -193,7 +193,7 @@ export function Footer() {
           {/* COLUMN 3: Quick Navigation (lg:col-span-2) */}
           <div className="lg:col-span-2 space-y-4">
             <div>
-              <h3 className="text-xs font-black text-[#0F172A] uppercase tracking-wider">
+              <h3 className="text-xs font-black text-[#1E3A8A] uppercase tracking-wider">
                 Quick Links
               </h3>
               <div className="w-6 h-0.5 bg-[#DC2626] rounded-full mt-2" />
@@ -218,7 +218,7 @@ export function Footer() {
           {/* COLUMN 4: Verified Reputation & Social Connect (lg:col-span-3) */}
           <div className="lg:col-span-3 space-y-4">
             <div>
-              <h3 className="text-xs font-black text-[#0F172A] uppercase tracking-wider">
+              <h3 className="text-xs font-black text-[#1E3A8A] uppercase tracking-wider">
                 Verified Reputation
               </h3>
               <div className="w-6 h-0.5 bg-[#DC2626] rounded-full mt-2" />

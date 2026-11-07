@@ -815,7 +815,7 @@ export function AnimatedRouteMap() {
 
               <div className="space-y-0.5">
                 <div className="flex items-center gap-2 flex-wrap">
-                  <h4 className="text-sm sm:text-base font-black text-slate-900 tracking-tight">
+                  <h4 className="text-sm sm:text-base font-black text-[#1E3A8A] tracking-tight">
                     {selectedStop.name}
                   </h4>
                   {selectedStop.hindiName && (
@@ -1108,7 +1108,7 @@ export function AnimatedRouteMap() {
         <div className="mt-3 p-3 rounded-xl bg-white border border-slate-200 shadow-2xs space-y-2 text-left">
           <div className="flex items-center justify-between gap-2">
             <div>
-              <h4 className="font-black text-xs text-slate-900 tracking-tight">
+              <h4 className="font-black text-xs text-[#1E3A8A] tracking-tight">
                 {selectedStop.name}
               </h4>
               {selectedStop.hindiName && (

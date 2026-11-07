@@ -165,8 +165,8 @@ export function TextileLogisticsView() {
             <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-[#DC2626] block">
               SUPPORTED TEXTILE SHIPMENTS
             </span>
-            <h2 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
-              Aap Kya-Kya Bhej Sakte Hain?
+            <h2 className="text-2xl sm:text-3xl font-black text-[#0F172A] tracking-tight">
+              Aap <span className="text-[#DC2626]">Kya-Kya Bhej Sakte Hain?</span>
             </h2>
             <p className="text-xs sm:text-sm text-slate-600 font-normal">
               Bhilwara textile cluster ke vyapariyon ke liye yeh 4 mukhya categories daily accept hoti hain:
@@ -184,7 +184,7 @@ export function TextileLogisticsView() {
                   <span className="text-[10px] font-mono font-bold uppercase text-[#DC2626] tracking-wider block mb-0.5">
                     SAMPLE BOOK
                   </span>
-                  <h3 className="text-base font-extrabold text-slate-900 group-hover:text-[#DC2626] transition-colors leading-snug">
+                  <h3 className="text-base font-extrabold text-[#0F172A] group-hover:text-[#DC2626] transition-colors leading-snug">
                     Fabric Swatches &amp; Shade Cards
                   </h3>
                 </div>
@@ -209,7 +209,7 @@ export function TextileLogisticsView() {
                   <span className="text-[10px] font-mono font-bold uppercase text-[#DC2626] tracking-wider block mb-0.5">
                     CUT-LENGTH
                   </span>
-                  <h3 className="text-base font-extrabold text-slate-900 group-hover:text-[#DC2626] transition-colors leading-snug">
+                  <h3 className="text-base font-extrabold text-[#0F172A] group-hover:text-[#DC2626] transition-colors leading-snug">
                     Suiting &amp; Shirting Trial Cuts
                   </h3>
                 </div>
@@ -234,7 +234,7 @@ export function TextileLogisticsView() {
                   <span className="text-[10px] font-mono font-bold uppercase text-[#DC2626] tracking-wider block mb-0.5">
                     APPAREL EXPORT
                   </span>
-                  <h3 className="text-base font-extrabold text-slate-900 group-hover:text-[#DC2626] transition-colors leading-snug">
+                  <h3 className="text-base font-extrabold text-[#0F172A] group-hover:text-[#DC2626] transition-colors leading-snug">
                     Garment &amp; Retail Fashion Parcels
                   </h3>
                 </div>
@@ -259,7 +259,7 @@ export function TextileLogisticsView() {
                   <span className="text-[10px] font-mono font-bold uppercase text-[#DC2626] tracking-wider block mb-0.5">
                     TRADE PAPERWORK
                   </span>
-                  <h3 className="text-base font-extrabold text-slate-900 group-hover:text-[#DC2626] transition-colors leading-snug">
+                  <h3 className="text-base font-extrabold text-[#0F172A] group-hover:text-[#DC2626] transition-colors leading-snug">
                     Commercial Invoices &amp; Bilti
                   </h3>
                 </div>
@@ -286,8 +286,8 @@ export function TextileLogisticsView() {
             <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-[#DC2626] block">
               TRADE CONNECTIVITY
             </span>
-            <h2 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
-              Bhilwara Se Sabse Tez Delivery Corridors
+            <h2 className="text-2xl sm:text-3xl font-black text-[#0F172A] tracking-tight">
+              Bhilwara Se Sabse Tez <span className="text-[#DC2626]">Delivery Corridors</span>
             </h2>
             <p className="text-xs sm:text-sm text-slate-600 font-normal">
               Bhilwara mills aur traders ke parcel in mukhya textile markets tak regular linehaul corridors se pahuchte hain:
@@ -303,7 +303,7 @@ export function TextileLogisticsView() {
                 </span>
                 <Clock className="w-4 h-4 text-slate-400" />
               </div>
-              <h3 className="text-base font-extrabold text-slate-900 mb-1">
+              <h3 className="text-base font-extrabold text-[#0F172A] mb-1">
                 Surat &amp; Ahmedabad
               </h3>
               <p className="text-xs text-slate-600 leading-relaxed font-normal mb-3">
@@ -323,7 +323,7 @@ export function TextileLogisticsView() {
                 </span>
                 <Clock className="w-4 h-4 text-slate-400" />
               </div>
-              <h3 className="text-base font-extrabold text-slate-900 mb-1">
+              <h3 className="text-base font-extrabold text-[#0F172A] mb-1">
                 Mumbai &amp; Bhiwandi
               </h3>
               <p className="text-xs text-slate-600 leading-relaxed font-normal mb-3">
@@ -343,7 +343,7 @@ export function TextileLogisticsView() {
                 </span>
                 <Clock className="w-4 h-4 text-slate-400" />
               </div>
-              <h3 className="text-base font-extrabold text-slate-900 mb-1">
+              <h3 className="text-base font-extrabold text-[#0F172A] mb-1">
                 Delhi NCR &amp; Ludhiana
               </h3>
               <p className="text-xs text-slate-600 leading-relaxed font-normal mb-3">
@@ -363,7 +363,7 @@ export function TextileLogisticsView() {
                 </span>
                 <Clock className="w-4 h-4 text-slate-400" />
               </div>
-              <h3 className="text-base font-extrabold text-slate-900 mb-1">
+              <h3 className="text-base font-extrabold text-[#0F172A] mb-1">
                 Dubai, US &amp; Global Hubs
               </h3>
               <p className="text-xs text-slate-600 leading-relaxed font-normal mb-3">
@@ -465,8 +465,8 @@ export function TextileLogisticsView() {
                 <span>TEXTILE PROTECTION PROMISE</span>
               </div>
 
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-900 tracking-tight leading-tight">
-                Kapda Kharaab Nahi Hoga — 3-Layer Safe Packaging
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-[#0F172A] tracking-tight leading-tight">
+                Kapda Kharaab Nahi Hoga — <span className="text-[#DC2626]">3-Layer Safe Packaging</span>
               </h2>
 
               <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
@@ -477,7 +477,7 @@ export function TextileLogisticsView() {
                 <div className="p-3.5 sm:p-4 rounded-xl bg-[#F8FAFC] border border-slate-200 flex items-start gap-3 hover:border-slate-300 transition-colors">
                   <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0 mt-0.5" />
                   <div>
-                    <h3 className="text-sm font-bold text-slate-900 mb-0.5">
+                    <h3 className="text-sm font-bold text-[#0F172A] mb-0.5">
                       1. Waterproof Heavy-Duty Poly Shield
                     </h3>
                     <p className="text-xs text-slate-600 leading-relaxed font-normal">
@@ -489,7 +489,7 @@ export function TextileLogisticsView() {
                 <div className="p-3.5 sm:p-4 rounded-xl bg-[#F8FAFC] border border-slate-200 flex items-start gap-3 hover:border-slate-300 transition-colors">
                   <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0 mt-0.5" />
                   <div>
-                    <h3 className="text-sm font-bold text-slate-900 mb-0.5">
+                    <h3 className="text-sm font-bold text-[#0F172A] mb-0.5">
                       2. Reinforced Cross-Strapping
                     </h3>
                     <p className="text-xs text-slate-600 leading-relaxed font-normal">
@@ -501,7 +501,7 @@ export function TextileLogisticsView() {
                 <div className="p-3.5 sm:p-4 rounded-xl bg-[#F8FAFC] border border-slate-200 flex items-start gap-3 hover:border-slate-300 transition-colors">
                   <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0 mt-0.5" />
                   <div>
-                    <h3 className="text-sm font-bold text-slate-900 mb-0.5">
+                    <h3 className="text-sm font-bold text-[#0F172A] mb-0.5">
                       3. Tamper-Evident Adhesive Sealing
                     </h3>
                     <p className="text-xs text-slate-600 leading-relaxed font-normal">
@@ -542,8 +542,8 @@ export function TextileLogisticsView() {
             <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-[#DC2626] block">
               SIMPLE 3-STEP PROCESS
             </span>
-            <h2 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
-              Booking Karna Kitna Aasan Hai?
+            <h2 className="text-2xl sm:text-3xl font-black text-[#0F172A] tracking-tight">
+              Booking Karna <span className="text-[#DC2626]">Kitna Aasan Hai?</span>
             </h2>
             <p className="text-xs sm:text-sm text-slate-600 font-normal">
               Bhilwara New Cloth Market vyapariyon ke liye hassle-free courier booking:
@@ -556,7 +556,7 @@ export function TextileLogisticsView() {
               <div className="w-10 h-10 rounded-xl bg-red-50 text-[#DC2626] font-black flex items-center justify-center text-sm border border-red-100">
                 01
               </div>
-              <h3 className="text-base font-extrabold text-slate-900">
+              <h3 className="text-base font-extrabold text-[#0F172A]">
                 WhatsApp ya Counter Drop
               </h3>
               <p className="text-xs text-slate-600 leading-relaxed font-normal">
@@ -569,7 +569,7 @@ export function TextileLogisticsView() {
               <div className="w-10 h-10 rounded-xl bg-red-50 text-[#DC2626] font-black flex items-center justify-center text-sm border border-red-100">
                 02
               </div>
-              <h3 className="text-base font-extrabold text-slate-900">
+              <h3 className="text-base font-extrabold text-[#0F172A]">
                 Digital Weighing &amp; Docket
               </h3>
               <p className="text-xs text-slate-600 leading-relaxed font-normal">
@@ -582,7 +582,7 @@ export function TextileLogisticsView() {
               <div className="w-10 h-10 rounded-xl bg-red-50 text-[#DC2626] font-black flex items-center justify-center text-sm border border-red-100">
                 03
               </div>
-              <h3 className="text-base font-extrabold text-slate-900">
+              <h3 className="text-base font-extrabold text-[#0F172A]">
                 Same-Day Evening Linehaul
               </h3>
               <p className="text-xs text-slate-600 leading-relaxed font-normal">

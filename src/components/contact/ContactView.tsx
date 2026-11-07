@@ -206,8 +206,8 @@ export function ContactView() {
                 <span>DIRECT INQUIRY &amp; HUB BOOKING DESK</span>
               </div>
 
-              <h1 className="text-3xl sm:text-4xl lg:text-[44px] xl:text-[48px] font-black tracking-[-0.03em] text-slate-900 leading-[1.12]">
-                Humse Sampark Karein.{' '}
+              <h1 className="text-3xl sm:text-4xl lg:text-[44px] xl:text-[48px] font-black tracking-[-0.03em] text-[#0F172A] leading-[1.12]">
+                Humse <span className="text-[#DC2626]">Sampark Karein.</span>{' '}
                 <span className="text-[#DC2626] block sm:inline mt-1 sm:mt-0">
                   Direct Bhilwara Hub Coordination.
                 </span>
@@ -501,7 +501,7 @@ export function ContactView() {
                       OFFICIAL PHYSICAL HUB
                     </span>
                   </div>
-                  <h3 className="text-lg font-black text-slate-900">
+                  <h3 className="text-lg font-black text-[#0F172A]">
                     Economic Courier &amp; eCS World Wide Express
                   </h3>
                   <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
@@ -514,7 +514,7 @@ export function ContactView() {
                     href={BUSINESS_INFO.googleMapsUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-full inline-flex items-center justify-center gap-2 bg-slate-900 hover:bg-slate-800 text-white text-xs sm:text-sm font-bold py-3 px-4 rounded-xl transition-all shadow-xs"
+                    className="w-full inline-flex items-center justify-center gap-2 bg-[#0F172A] hover:bg-[#1E293B] text-white text-xs sm:text-sm font-bold py-3 px-4 rounded-xl transition-all shadow-xs"
                   >
                     <span>Get Driving Directions on Google Maps</span>
                     <ExternalLink className="w-4 h-4 text-slate-300" />
@@ -524,7 +524,7 @@ export function ContactView() {
 
               {/* 3 Dedicated Ground Support Counters */}
               <div className="space-y-3">
-                <h4 className="text-xs font-mono font-bold uppercase tracking-wider text-slate-400 px-1">
+                <h4 className="text-xs font-mono font-bold uppercase tracking-wider text-[#1E3A8A] px-1">
                   GROUND LOGISTICS FACILITIES
                 </h4>
 
@@ -533,7 +533,7 @@ export function ContactView() {
                     <Scissors className="w-5 h-5 text-[#DC2626]" />
                   </div>
                   <div className="space-y-1">
-                    <h4 className="text-sm font-bold text-slate-900">
+                    <h4 className="text-sm font-bold text-[#0F172A]">
                       Textile Swatch &amp; Sample Desk
                     </h4>
                     <p className="text-xs text-slate-600 leading-relaxed font-normal">
@@ -547,7 +547,7 @@ export function ContactView() {
                     <Package className="w-5 h-5 text-[#DC2626]" />
                   </div>
                   <div className="space-y-1">
-                    <h4 className="text-sm font-bold text-slate-900">
+                    <h4 className="text-sm font-bold text-[#0F172A]">
                       Commercial Heavy Cartons &amp; Freight Desk
                     </h4>
                     <p className="text-xs text-slate-600 leading-relaxed font-normal">
@@ -561,7 +561,7 @@ export function ContactView() {
                     <FileText className="w-5 h-5 text-[#DC2626]" />
                   </div>
                   <div className="space-y-1">
-                    <h4 className="text-sm font-bold text-slate-900">
+                    <h4 className="text-sm font-bold text-[#0F172A]">
                       Legal, CA &amp; Confidential Document Desk
                     </h4>
                     <p className="text-xs text-slate-600 leading-relaxed font-normal">
@@ -578,7 +578,7 @@ export function ContactView() {
                     <InstagramIcon size={20} />
                   </div>
                   <div>
-                    <h4 className="text-xs sm:text-sm font-extrabold text-slate-900">
+                    <h4 className="text-xs sm:text-sm font-extrabold text-[#0F172A]">
                       Follow On Instagram
                     </h4>
                     <p className="text-[11px] text-slate-600 font-normal">
@@ -608,8 +608,8 @@ export function ContactView() {
                     <FileText className="w-3.5 h-3.5 text-[#DC2626]" />
                     <span>ONLINE INQUIRY &amp; RATE DESK</span>
                   </div>
-                  <h3 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
-                    Rate &amp; Consignment Inquiry
+                  <h3 className="text-2xl sm:text-3xl font-black text-[#0F172A] tracking-tight">
+                    Rate &amp; Consignment <span className="text-[#DC2626]">Inquiry</span>
                   </h3>
                   <p className="text-xs sm:text-sm text-slate-600 font-normal mt-1">
                     Apne parcel ki jankari share karein. Hamara Bhilwara desk transparent rates aur scheduled pickup timing confirm karega.
@@ -981,8 +981,8 @@ export function ContactView() {
             <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-[#DC2626] block">
               WALK-IN &amp; BOOKING GUIDELINES
             </span>
-            <h3 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
-              Aksar Pooche Jane Wale Sawal (FAQ)
+            <h3 className="text-2xl sm:text-3xl font-black text-[#0F172A] tracking-tight">
+              Aksar Pooche Jane Wale <span className="text-[#DC2626]">Sawal (FAQ)</span>
             </h3>
             <p className="text-xs sm:text-sm text-slate-600 font-normal">
               Bhilwara counter par parcel lane ya doorstep pickup se pehle zaroori baatein:
@@ -996,7 +996,7 @@ export function ContactView() {
                 <CheckCircle2 className="w-4 h-4 text-[#DC2626]" />
                 <span>PACKAGING MATERIALS ON COUNTER</span>
               </div>
-              <h4 className="text-base font-extrabold text-slate-900">
+              <h4 className="text-base font-extrabold text-[#0F172A]">
                 Counter par aane par kya packing material wahi mil jayega?
               </h4>
               <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
@@ -1011,7 +1011,7 @@ export function ContactView() {
                 <CheckCircle2 className="w-4 h-4 text-[#DC2626]" />
                 <span>DOORSTEP PICKUP COVERAGE</span>
               </div>
-              <h4 className="text-base font-extrabold text-slate-900">
+              <h4 className="text-base font-extrabold text-[#0F172A]">
                 Doorstep pickup Bhilwara me kahan-kahan available hai?
               </h4>
               <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
@@ -1026,7 +1026,7 @@ export function ContactView() {
                 <CheckCircle2 className="w-4 h-4 text-[#DC2626]" />
                 <span>RATE CALCULATION METHOD</span>
               </div>
-              <h4 className="text-base font-extrabold text-slate-900">
+              <h4 className="text-base font-extrabold text-[#0F172A]">
                 Rate calculation kaise hoti hai?
               </h4>
               <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
@@ -1041,7 +1041,7 @@ export function ContactView() {
                 <CheckCircle2 className="w-4 h-4 text-[#DC2626]" />
                 <span>DELIVERY TIMELINES</span>
               </div>
-              <h4 className="text-base font-extrabold text-slate-900">
+              <h4 className="text-base font-extrabold text-[#0F172A]">
                 Textile sample packets kitne time me outstation buyer tak pahunchte hain?
               </h4>
               <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">

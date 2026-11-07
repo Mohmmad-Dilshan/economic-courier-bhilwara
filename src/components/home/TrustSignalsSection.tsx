@@ -45,8 +45,8 @@ export function TrustSignalsSection() {
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-100 border border-slate-200 text-slate-700 text-[11px] font-bold tracking-widest uppercase shadow-2xs">
             <span>OPERATIONAL FOUNDATION</span>
           </div>
-          <h2 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-[-0.03em] leading-tight">
-            Reliable courier services grounded in clear standards.
+          <h2 className="text-2xl sm:text-3xl font-black text-[#0F172A] tracking-[-0.03em] leading-tight">
+            Reliable Courier Services <span className="text-[#DC2626]">Grounded in Clear Standards.</span>
           </h2>
           <p className="text-sm text-slate-600 leading-relaxed">
             Our operations are structured around transparent service categories, verified local presence, and specification-based consignment handling.
@@ -64,7 +64,7 @@ export function TrustSignalsSection() {
                 <div className="w-10 h-10 rounded-xl bg-white border border-slate-200/80 shadow-2xs text-[#DC2626] flex items-center justify-center shrink-0">
                   <Icon className="w-5 h-5" />
                 </div>
-                <h3 className="text-base font-bold text-slate-900 tracking-tight">
+                <h3 className="text-base font-bold text-[#0F172A] tracking-tight">
                   {pillar.title}
                 </h3>
                 <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">

@@ -392,7 +392,7 @@ export function RealMomentsSection() {
                 <span>LIVE FROM BHILWARA HUB</span>
               </div>
               <h2 className="text-2xl sm:text-4xl lg:text-[42px] font-black tracking-[-0.035em] leading-[1.08]">
-                <span className="bg-gradient-to-b from-slate-900 to-slate-800 bg-clip-text text-transparent">
+                <span className="text-[#0F172A]">
                   Real people.
                 </span>{' '}
                 <span className="bg-gradient-to-r from-[#DC2626] via-[#E11D48] to-[#EF4444] bg-clip-text text-transparent">

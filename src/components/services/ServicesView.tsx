@@ -84,7 +84,7 @@ export function ServicesView() {
 
             {/* Main Modern Headline */}
             <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-[54px] font-black tracking-[-0.035em] leading-[1.08] reveal-init delay-150">
-              <span className="bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900 bg-clip-text text-transparent">
+              <span className="text-[#0F172A]">
                 Courier &amp; Cargo Services{' '}
               </span>
               <br className="hidden sm:inline" />
@@ -197,7 +197,7 @@ export function ServicesView() {
                         </span>
                       </div>
 
-                      <h2 className="hidden lg:block text-2xl sm:text-3xl font-extrabold text-slate-900 group-hover:text-[#DC2626] transition-colors tracking-tight">
+                      <h2 className="hidden lg:block text-2xl sm:text-3xl font-extrabold text-[#0F172A] group-hover:text-[#DC2626] transition-colors tracking-tight">
                         {service.title}
                       </h2>
                       <p className="text-xs sm:text-sm font-semibold text-slate-500">
@@ -212,7 +212,7 @@ export function ServicesView() {
 
                     {/* Key Verified Features */}
                     <div className="space-y-2.5">
-                      <h4 className="text-xs font-extrabold text-slate-800 uppercase tracking-wider">
+                      <h4 className="text-xs font-extrabold text-[#0F172A] uppercase tracking-wider">
                         Key Service Capabilities
                       </h4>
                       <ul className="grid grid-cols-1 gap-2 text-xs text-slate-700">
@@ -227,7 +227,7 @@ export function ServicesView() {
 
                     {/* Ideal For Pill Tags */}
                     <div className="space-y-2">
-                      <h4 className="text-xs font-extrabold text-slate-800 uppercase tracking-wider">
+                      <h4 className="text-xs font-extrabold text-[#0F172A] uppercase tracking-wider">
                         Recommended For
                       </h4>
                       <div className="flex flex-wrap gap-1.5">
@@ -306,7 +306,7 @@ export function ServicesView() {
               Operational Workflow
             </span>
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight">
-              <span className="bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 bg-clip-text text-transparent">How Your Consignments</span>{' '}
+              <span className="text-[#0F172A]">How Your Consignments</span>{' '}
               <span className="bg-gradient-to-r from-[#DC2626] via-[#E11D48] to-[#EF4444] bg-clip-text text-transparent">Move</span>
             </h2>
             <p className="text-xs sm:text-sm text-slate-500 leading-relaxed max-w-xl mx-auto">

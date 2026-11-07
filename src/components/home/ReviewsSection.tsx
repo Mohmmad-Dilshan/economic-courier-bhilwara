@@ -150,9 +150,9 @@ export function ReviewsSection() {
 
               {/* Headline: Clean, well-proportioned 2-line title */}
               <div className="relative">
-                <h2 className="text-2xl sm:text-3xl lg:text-[30px] font-black text-slate-900 tracking-[-0.03em] leading-[1.18]">
+                <h2 className="text-2xl sm:text-3xl lg:text-[30px] font-black text-[#0F172A] tracking-[-0.03em] leading-[1.18]">
                   Trusted by Businesses <br className="hidden sm:inline" />
-                  Across the Corridor
+                  <span className="text-[#DC2626]">Across the Corridor</span>
                 </h2>
                 {/* Red decorative accent line */}
                 <div className="w-12 h-1 bg-[#DC2626] rounded-full mt-2.5" />

@@ -128,7 +128,7 @@ export function ServicesView() {
               Home
             </Link>
             <span className="text-slate-300">/</span>
-            <span className="text-[#0F172A] font-bold" aria-current="page">
+            <span className="text-[#1E3A8A] font-bold" aria-current="page">
               Services Portfolio
             </span>
           </nav>
@@ -143,7 +143,7 @@ export function ServicesView() {
               </div>
 
               {/* Main Heading in Bold Deep Navy with Red Accent */}
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-[54px] font-black tracking-[-0.035em] text-[#0F172A] leading-[1.1]">
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-[54px] font-black tracking-[-0.035em] text-[#1E3A8A] leading-[1.1]">
                 Every Shipment.{' '}
                 <span className="text-[#DC2626] block sm:inline mt-1 sm:mt-0">
                   A Service Designed Around Its Journey.
@@ -311,7 +311,7 @@ export function ServicesView() {
                 <span>AIR &amp; EXPRESS COURIER</span>
               </div>
 
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-[#0F172A] tracking-[-0.03em] leading-tight">
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-[#1E3A8A] tracking-[-0.03em] leading-tight">
                 Swift Flight Connections.{' '}
                 <span className="text-[#DC2626] block sm:inline mt-1 sm:mt-0">
                   Document &amp; Express Handling.
@@ -382,7 +382,7 @@ export function ServicesView() {
                             <span className="text-[10px] font-mono font-bold text-slate-400">
                               0{idx + 1}
                             </span>
-                            <h3 className="text-base sm:text-lg font-black text-[#0F172A] group-hover:text-[#DC2626] transition-colors">
+                            <h3 className="text-base sm:text-lg font-black text-[#1E3A8A] group-hover:text-[#DC2626] transition-colors">
                               {svc.name}
                             </h3>
                           </div>
@@ -475,7 +475,7 @@ export function ServicesView() {
                             <span className="text-[10px] font-mono font-bold text-slate-400">
                               0{idx + 1}
                             </span>
-                            <h3 className="text-base sm:text-lg font-black text-[#0F172A] group-hover:text-[#DC2626] transition-colors">
+                            <h3 className="text-base sm:text-lg font-black text-[#1E3A8A] group-hover:text-[#DC2626] transition-colors">
                               {svc.name}
                             </h3>
                           </div>
@@ -541,7 +541,7 @@ export function ServicesView() {
                 <span>COMMERCIAL &amp; BUSINESS</span>
               </div>
 
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-[#0F172A] tracking-[-0.03em] leading-tight">
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-[#1E3A8A] tracking-[-0.03em] leading-tight">
                 Built for Bhilwara’s Mills.{' '}
                 <span className="text-[#DC2626] block sm:inline mt-1 sm:mt-0">
                   Textile Swatches &amp; B2B Freight.
@@ -612,7 +612,7 @@ export function ServicesView() {
               <span>CARGO &amp; SPECIAL SHIPMENTS</span>
             </div>
 
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-[#0F172A] tracking-[-0.03em] leading-tight">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-[#1E3A8A] tracking-[-0.03em] leading-tight">
               Heavy Air &amp; Sea Cargo.{' '}
               <span className="text-[#DC2626]">
                 Compliant Food &amp; Medicine Transport.
@@ -733,7 +733,7 @@ export function ServicesView() {
                     <Utensils className="w-5 h-5" />
                   </div>
                   <div>
-                    <h3 className="text-lg font-black text-[#0F172A]">
+                    <h3 className="text-lg font-black text-[#1E3A8A]">
                       Food Item Delivery
                     </h3>
                     <p className="text-xs text-slate-500 font-medium">
@@ -787,7 +787,7 @@ export function ServicesView() {
                     <Stethoscope className="w-5 h-5" />
                   </div>
                   <div>
-                    <h3 className="text-lg font-black text-[#0F172A]">
+                    <h3 className="text-lg font-black text-[#1E3A8A]">
                       Medicine Delivery
                     </h3>
                     <p className="text-xs text-slate-500 font-medium">
@@ -853,7 +853,7 @@ export function ServicesView() {
                 <span>PERSONAL &amp; HOUSEHOLD</span>
               </div>
 
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-[#0F172A] tracking-[-0.03em] leading-tight">
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-[#1E3A8A] tracking-[-0.03em] leading-tight">
                 Move Luggage, Furniture &amp; Belongings.{' '}
                 <span className="text-[#DC2626]">With Utmost Care.</span>
               </h2>
@@ -924,7 +924,7 @@ export function ServicesView() {
                         </div>
 
                         <div>
-                          <h3 className="text-sm sm:text-base font-black text-[#0F172A] group-hover:text-[#DC2626] transition-colors leading-snug">
+                          <h3 className="text-sm sm:text-base font-black text-[#1E3A8A] group-hover:text-[#DC2626] transition-colors leading-snug">
                             {svc.name}
                           </h3>
                           <p className="text-[11px] text-slate-500 font-medium mt-0.5 line-clamp-1">
@@ -975,7 +975,7 @@ export function ServicesView() {
               <span>HOW OUR SERVICE WORKS</span>
             </div>
 
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-[#0F172A] tracking-[-0.03em] leading-tight">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-[#1E3A8A] tracking-[-0.03em] leading-tight">
               Straightforward Booking.{' '}
               <span className="text-[#DC2626]">Transparent Dispatch.</span>
             </h2>
@@ -997,7 +997,7 @@ export function ServicesView() {
                   STEP ONE
                 </span>
               </div>
-              <h3 className="text-base font-black text-[#0F172A]">
+              <h3 className="text-base font-black text-[#1E3A8A]">
                 Share Your Shipment Details
               </h3>
               <p className="text-xs text-slate-600 leading-relaxed font-normal">
@@ -1015,7 +1015,7 @@ export function ServicesView() {
                   STEP TWO
                 </span>
               </div>
-              <h3 className="text-base font-black text-[#0F172A]">
+              <h3 className="text-base font-black text-[#1E3A8A]">
                 Discuss Service &amp; Destination
               </h3>
               <p className="text-xs text-slate-600 leading-relaxed font-normal">
@@ -1033,7 +1033,7 @@ export function ServicesView() {
                   STEP THREE
                 </span>
               </div>
-              <h3 className="text-base font-black text-[#0F172A]">
+              <h3 className="text-base font-black text-[#1E3A8A]">
                 Confirm Packing &amp; Booking
               </h3>
               <p className="text-xs text-slate-600 leading-relaxed font-normal">
@@ -1051,7 +1051,7 @@ export function ServicesView() {
                   FINAL STEP
                 </span>
               </div>
-              <h3 className="text-base font-black text-[#0F172A]">
+              <h3 className="text-base font-black text-[#1E3A8A]">
                 Dispatch via Applicable Network
               </h3>
               <p className="text-xs text-slate-600 leading-relaxed font-normal">
@@ -1074,7 +1074,7 @@ export function ServicesView() {
                 <span>OUR SERVICE PROMISE</span>
               </div>
 
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-[#0F172A] tracking-[-0.03em] leading-tight">
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-[#1E3A8A] tracking-[-0.03em] leading-tight">
                 Why Bhilwara Relies on{' '}
                 <span className="text-[#DC2626]">Economic Courier.</span>
               </h2>
@@ -1100,7 +1100,7 @@ export function ServicesView() {
                 <div className="w-8 h-8 rounded-lg bg-red-50 text-[#DC2626] flex items-center justify-center">
                   <Plane className="w-4 h-4" />
                 </div>
-                <h4 className="text-sm font-black text-[#0F172A]">
+                <h4 className="text-sm font-black text-[#1E3A8A]">
                   Domestic &amp; Global Breadth
                 </h4>
                 <p className="text-xs text-slate-600 leading-relaxed font-normal">
@@ -1112,7 +1112,7 @@ export function ServicesView() {
                 <div className="w-8 h-8 rounded-lg bg-red-50 text-[#DC2626] flex items-center justify-center">
                   <Layers className="w-4 h-4" />
                 </div>
-                <h4 className="text-sm font-black text-[#0F172A]">
+                <h4 className="text-sm font-black text-[#1E3A8A]">
                   Textile &amp; Trade Priority
                 </h4>
                 <p className="text-xs text-slate-600 leading-relaxed font-normal">
@@ -1124,7 +1124,7 @@ export function ServicesView() {
                 <div className="w-8 h-8 rounded-lg bg-red-50 text-[#DC2626] flex items-center justify-center">
                   <Ship className="w-4 h-4" />
                 </div>
-                <h4 className="text-sm font-black text-[#0F172A]">
+                <h4 className="text-sm font-black text-[#1E3A8A]">
                   Air &amp; Ocean Cargo Options
                 </h4>
                 <p className="text-xs text-slate-600 leading-relaxed font-normal">
@@ -1136,7 +1136,7 @@ export function ServicesView() {
                 <div className="w-8 h-8 rounded-lg bg-red-50 text-[#DC2626] flex items-center justify-center">
                   <ShieldCheck className="w-4 h-4" />
                 </div>
-                <h4 className="text-sm font-black text-[#0F172A]">
+                <h4 className="text-sm font-black text-[#1E3A8A]">
                   Physical Booking Floor
                 </h4>
                 <p className="text-xs text-slate-600 leading-relaxed font-normal">

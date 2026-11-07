@@ -146,7 +146,7 @@ export function ServiceQuoteModal({
               <Package className="w-4 h-4" />
             </div>
             <div className="min-w-0 flex-1">
-              <h4 className="text-xs sm:text-sm font-black text-slate-900 leading-snug">
+              <h4 className="text-xs sm:text-sm font-black text-[#1E3A8A] leading-snug">
                 {currentService.name}
               </h4>
               <p className="text-[11px] sm:text-xs text-slate-600 line-clamp-2 mt-0.5 font-normal">

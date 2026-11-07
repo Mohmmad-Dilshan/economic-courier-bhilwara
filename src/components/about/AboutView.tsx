@@ -66,7 +66,7 @@ export function AboutView() {
                 <span>35+ YEARS LOGISTICS EXPERTISE · BHILWARA</span>
               </div>
 
-              <h1 className="text-3xl sm:text-4xl lg:text-[46px] xl:text-[50px] font-black tracking-[-0.035em] text-[#0F172A] leading-[1.1]">
+              <h1 className="text-3xl sm:text-4xl lg:text-[46px] xl:text-[50px] font-black tracking-[-0.035em] text-[#1E3A8A] leading-[1.1]">
                 Local Roots.{' '}
                 <span className="text-[#DC2626] block sm:inline mt-1 sm:mt-0">
                   Nationwide &amp; Worldwide Reach.
@@ -155,7 +155,7 @@ export function AboutView() {
               <Award className="w-3.5 h-3.5 text-[#DC2626]" />
               <span>LEADERSHIP &amp; STRATEGIC GOVERNANCE</span>
             </div>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-[#0F172A] tracking-[-0.03em] leading-tight">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-[#1E3A8A] tracking-[-0.03em] leading-tight">
               Architect of Bhilwara’s <span className="text-[#DC2626]">Dependable Logistics Network.</span>
             </h2>
             <p className="text-sm sm:text-base text-slate-600 leading-relaxed font-normal">
@@ -196,7 +196,7 @@ export function AboutView() {
 
                   {/* Name & Official Titles */}
                   <div className="space-y-1.5">
-                    <h3 className="text-2xl sm:text-3xl lg:text-4xl font-black text-[#0F172A] tracking-tight">
+                    <h3 className="text-2xl sm:text-3xl lg:text-4xl font-black text-[#1E3A8A] tracking-tight">
                       Mr. Chandra Shekhar Panecha
                     </h3>
                     <p className="text-xs sm:text-sm font-bold text-slate-700 leading-snug">
@@ -309,7 +309,7 @@ export function AboutView() {
               <Building2 className="w-3.5 h-3.5 text-[#DC2626]" />
               <span>BRAND &amp; OPERATIONAL IDENTITY</span>
             </div>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-[#0F172A] tracking-[-0.03em] leading-tight">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-[#1E3A8A] tracking-[-0.03em] leading-tight">
               One Trusted Hub. <span className="text-[#DC2626]">Two Complementary Networks.</span>
             </h2>
             <p className="text-sm sm:text-base text-slate-600 leading-relaxed font-normal">
@@ -329,7 +329,7 @@ export function AboutView() {
                   <span className="text-xs font-mono font-bold text-slate-400">BHILWARA BASE</span>
                 </div>
 
-                <h3 className="text-2xl sm:text-3xl font-black text-[#0F172A] tracking-tight">
+                <h3 className="text-2xl sm:text-3xl font-black text-[#1E3A8A] tracking-tight">
                   Economic Courier
                 </h3>
 
@@ -377,7 +377,7 @@ export function AboutView() {
                   <span className="text-xs font-mono font-bold text-slate-400">WORLDWIDE EXPRESS</span>
                 </div>
 
-                <h3 className="text-2xl sm:text-3xl font-black text-[#0F172A] tracking-tight">
+                <h3 className="text-2xl sm:text-3xl font-black text-[#1E3A8A] tracking-tight">
                   eCS World Wide Express
                 </h3>
 
@@ -428,7 +428,7 @@ export function AboutView() {
               <span className="w-2 h-2 rounded-full bg-[#DC2626] animate-pulse" />
               <span>HAMARI COMPANY &amp; SEWAYEIN · WHO WE ARE</span>
             </div>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-[#0F172A] tracking-[-0.03em] leading-tight">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-[#1E3A8A] tracking-[-0.03em] leading-tight">
               Bhilwara Ka Dependable <span className="text-[#DC2626]">Courier &amp; Logistics Hub.</span>
             </h2>
             <p className="text-sm sm:text-base text-slate-600 leading-relaxed font-normal">
@@ -448,7 +448,7 @@ export function AboutView() {
                   <span className="text-[10px] font-mono font-bold text-[#DC2626] uppercase tracking-wider block">
                     ALL-INDIA EXPRESS
                   </span>
-                  <h3 className="text-lg font-black text-[#0F172A] mt-1">
+                  <h3 className="text-lg font-black text-[#1E3A8A] mt-1">
                     Domestic Surface &amp; Air Courier
                   </h3>
                 </div>
@@ -471,7 +471,7 @@ export function AboutView() {
                   <span className="text-[10px] font-mono font-bold text-blue-700 uppercase tracking-wider block">
                     INTERNATIONAL CARGO
                   </span>
-                  <h3 className="text-lg font-black text-[#0F172A] mt-1">
+                  <h3 className="text-lg font-black text-[#1E3A8A] mt-1">
                     Worldwide Express (220+ Countries)
                   </h3>
                 </div>
@@ -494,7 +494,7 @@ export function AboutView() {
                   <span className="text-[10px] font-mono font-bold text-emerald-700 uppercase tracking-wider block">
                     DOORSTEP COLLECTION
                   </span>
-                  <h3 className="text-lg font-black text-[#0F172A] mt-1">
+                  <h3 className="text-lg font-black text-[#1E3A8A] mt-1">
                     Daily Factory &amp; Office Pickup
                   </h3>
                 </div>
@@ -517,7 +517,7 @@ export function AboutView() {
                   <span className="text-[10px] font-mono font-bold text-slate-700 uppercase tracking-wider block">
                     PHYSICAL WALK-IN HUB
                   </span>
-                  <h3 className="text-lg font-black text-[#0F172A] mt-1">
+                  <h3 className="text-lg font-black text-[#1E3A8A] mt-1">
                     Certified Digital Intake Desk
                   </h3>
                 </div>
@@ -538,7 +538,7 @@ export function AboutView() {
                 <span className="text-[11px] font-mono font-bold text-[#DC2626] uppercase tracking-wider block">
                   TRANSPARENT PROCESS FLOW
                 </span>
-                <h3 className="text-xl sm:text-2xl font-black text-[#0F172A] mt-0.5">
+                <h3 className="text-xl sm:text-2xl font-black text-[#1E3A8A] mt-0.5">
                   Humare Yahan Parcel Kaise Book &amp; Dispatch Hota Hai?
                 </h3>
               </div>
@@ -553,7 +553,7 @@ export function AboutView() {
                 <div className="w-8 h-8 rounded-lg bg-red-50 text-[#DC2626] font-black text-xs flex items-center justify-center border border-red-200">
                   01
                 </div>
-                <h4 className="text-sm font-extrabold text-[#0F172A]">Book / Schedule</h4>
+                <h4 className="text-sm font-extrabold text-[#1E3A8A]">Book / Schedule</h4>
                 <p className="text-xs text-slate-600 leading-relaxed">
                   Pur Road counter par walk-in drop karein ya WhatsApp (+91 89551 44444) se factory pickup book karein.
                 </p>
@@ -563,7 +563,7 @@ export function AboutView() {
                 <div className="w-8 h-8 rounded-lg bg-red-50 text-[#DC2626] font-black text-xs flex items-center justify-center border border-red-200">
                   02
                 </div>
-                <h4 className="text-sm font-extrabold text-[#0F172A]">Weigh &amp; Seal</h4>
+                <h4 className="text-sm font-extrabold text-[#1E3A8A]">Weigh &amp; Seal</h4>
                 <p className="text-xs text-slate-600 leading-relaxed">
                   Certified digital scale par accurate weight check, printed docket generation, aur tamper-evident pack.
                 </p>
@@ -573,7 +573,7 @@ export function AboutView() {
                 <div className="w-8 h-8 rounded-lg bg-red-50 text-[#DC2626] font-black text-xs flex items-center justify-center border border-red-200">
                   03
                 </div>
-                <h4 className="text-sm font-extrabold text-[#0F172A]">Same-Day Dispatch</h4>
+                <h4 className="text-sm font-extrabold text-[#1E3A8A]">Same-Day Dispatch</h4>
                 <p className="text-xs text-slate-600 leading-relaxed">
                   Shaam ko scheduled delivery vehicles me load hokar express highway linehauls aur airport cargo departure.
                 </p>
@@ -583,7 +583,7 @@ export function AboutView() {
                 <div className="w-8 h-8 rounded-lg bg-red-50 text-[#DC2626] font-black text-xs flex items-center justify-center border border-red-200">
                   04
                 </div>
-                <h4 className="text-sm font-extrabold text-[#0F172A]">Dedicated Support</h4>
+                <h4 className="text-sm font-extrabold text-[#1E3A8A]">Dedicated Support</h4>
                 <p className="text-xs text-slate-600 leading-relaxed">
                   Delivery tak full assistance. Directly Bhilwara counter desk se phone/WhatsApp par real-time updates.
                 </p>
@@ -618,7 +618,7 @@ export function AboutView() {
               <ShieldCheck className="w-3.5 h-3.5 text-[#DC2626]" />
               <span>QUALITY COMMITMENTS</span>
             </div>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-[#0F172A] tracking-[-0.03em] leading-tight">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-[#1E3A8A] tracking-[-0.03em] leading-tight">
               Our Operational <span className="text-[#DC2626]">Standards of Service.</span>
             </h2>
             <p className="text-sm sm:text-base text-slate-600 leading-relaxed font-normal">
@@ -631,7 +631,7 @@ export function AboutView() {
               <div className="w-10 h-10 rounded-xl bg-white border border-slate-200 text-[#DC2626] flex items-center justify-center font-black shadow-2xs">
                 01
               </div>
-              <h3 className="text-base font-bold text-[#0F172A]">Digital Weighing</h3>
+              <h3 className="text-base font-bold text-[#1E3A8A]">Digital Weighing</h3>
               <p className="text-xs text-slate-600 leading-relaxed">
                 Consignments weighed on certified digital scales with dead weight and volumetric measurement shown openly.
               </p>
@@ -641,7 +641,7 @@ export function AboutView() {
               <div className="w-10 h-10 rounded-xl bg-white border border-slate-200 text-[#DC2626] flex items-center justify-center font-black shadow-2xs">
                 02
               </div>
-              <h3 className="text-base font-bold text-[#0F172A]">Protective Sealing</h3>
+              <h3 className="text-base font-bold text-[#1E3A8A]">Protective Sealing</h3>
               <p className="text-xs text-slate-600 leading-relaxed">
                 Tamper-evident poly flyers, corrugated boxes, and strapping tape protect your contents against dust and transit wear.
               </p>
@@ -651,7 +651,7 @@ export function AboutView() {
               <div className="w-10 h-10 rounded-xl bg-white border border-slate-200 text-[#DC2626] flex items-center justify-center font-black shadow-2xs">
                 03
               </div>
-              <h3 className="text-base font-bold text-[#0F172A]">Coordinated Transit</h3>
+              <h3 className="text-base font-bold text-[#1E3A8A]">Coordinated Transit</h3>
               <p className="text-xs text-slate-600 leading-relaxed">
                 Scheduled dispatches to domestic highway corridors and priority international air cargo connections.
               </p>
@@ -661,7 +661,7 @@ export function AboutView() {
               <div className="w-10 h-10 rounded-xl bg-white border border-slate-200 text-[#DC2626] flex items-center justify-center font-black shadow-2xs">
                 04
               </div>
-              <h3 className="text-base font-bold text-[#0F172A]">Direct Communication</h3>
+              <h3 className="text-base font-bold text-[#1E3A8A]">Direct Communication</h3>
               <p className="text-xs text-slate-600 leading-relaxed">
                 Direct phone and counter access to our local Bhilwara staff for rate quotations, booking queries, and tracking updates.
               </p>

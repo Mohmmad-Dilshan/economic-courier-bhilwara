@@ -134,7 +134,7 @@ export function NetworkPartnersSection() {
               <span>DISPATCH &amp; LINEHAUL CONNECTIONS</span>
             </div>
 
-            <h2 className="text-2xl sm:text-4xl lg:text-[42px] font-black tracking-tight text-[#0F172A] leading-[1.14]">
+            <h2 className="text-2xl sm:text-4xl lg:text-[42px] font-black tracking-tight text-[#1E3A8A] leading-[1.14]">
               Our Courier Partner &amp;{' '}
               <span className="bg-gradient-to-r from-[#DC2626] via-[#E11D48] to-[#B91C1C] bg-clip-text text-transparent">
                 Delivery Network
@@ -287,7 +287,7 @@ export function NetworkPartnersSection() {
                       </div>
 
                       <div className="space-y-1">
-                        <h3 className="text-base sm:text-xl font-black tracking-tight text-[#0F172A] group-hover:text-[#DC2626] transition-colors duration-200">
+                        <h3 className="text-base sm:text-xl font-black tracking-tight text-[#1E3A8A] group-hover:text-[#DC2626] transition-colors duration-200">
                           {partner.name}
                         </h3>
                         <p className="text-[11px] sm:text-xs lg:text-[13px] text-slate-600 leading-relaxed font-normal max-w-2xl">
@@ -363,7 +363,7 @@ export function NetworkPartnersSection() {
 
                   {/* Partner Name & Role */}
                   <div className="space-y-1 pt-0.5">
-                    <h3 className="text-xs sm:text-base lg:text-lg font-black tracking-tight text-[#0F172A] group-hover:text-[#DC2626] transition-colors duration-200 leading-snug">
+                    <h3 className="text-xs sm:text-base lg:text-lg font-black tracking-tight text-[#1E3A8A] group-hover:text-[#DC2626] transition-colors duration-200 leading-snug">
                       {partner.name}
                     </h3>
                     <p className="text-[10px] sm:text-xs text-slate-600 leading-snug sm:leading-relaxed font-normal">

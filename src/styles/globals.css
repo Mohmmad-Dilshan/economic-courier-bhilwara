@@ -83,10 +83,10 @@
     outline-offset: 2px;
   }
 
-  /* Headings base */
+  /* Headings base — Official Brand Deep Royal Navy Blue (Logo 2nd Color) */
   h1, h2, h3, h4, h5, h6 {
     margin: 0;
-    color: var(--color-primary-800);
+    color: #1E3A8A;
     font-family: var(--font-family-sans);
     font-weight: var(--font-weight-bold);
     line-height: var(--line-height-tight);

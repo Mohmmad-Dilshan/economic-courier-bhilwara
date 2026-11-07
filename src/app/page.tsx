@@ -124,7 +124,7 @@ export default function HomePage() {
 
               {/* Large Modern Gradient Headline with Flight Trail and Airplane */}
               <h1 className="text-3xl xs:text-4xl sm:text-5xl lg:text-[54px] xl:text-[58px] font-black tracking-[-0.035em] leading-[1.08] sm:leading-[1.06] ">
-                <span className="text-[#0F172A]">
+                <span className="text-[#1E3A8A]">
                   From Bhilwara to
                 </span>{' '}
                 <br />
@@ -308,7 +308,7 @@ export default function HomePage() {
                 <span>OUR SERVICES</span>
               </div>
               <h2 className="text-3xl sm:text-4xl lg:text-[40px] font-black tracking-[-0.035em] leading-[1.12]">
-                <span className="text-[#0F172A]">Courier,</span>{' '}
+                <span className="text-[#1E3A8A]">Courier,</span>{' '}
                 <span className="bg-gradient-to-r from-[#DC2626] via-[#E11D48] to-[#EF4444] bg-clip-text text-transparent">made simpler.</span>
               </h2>
               <p className="text-sm sm:text-base text-slate-500 font-normal leading-relaxed">
@@ -442,7 +442,7 @@ export default function HomePage() {
                 <span>ABOUT US</span>
               </div>
               <h2 className="text-3xl sm:text-4xl lg:text-[42px] font-black tracking-[-0.035em] leading-[1.08]">
-                <span className="text-[#0F172A]">A local team,</span> <br />
+                <span className="text-[#1E3A8A]">A local team,</span> <br />
                 <span className="bg-gradient-to-r from-[#DC2626] via-[#E11D48] to-[#EF4444] bg-clip-text text-transparent">ready to help.</span>
               </h2>
               <p className="text-sm sm:text-base text-slate-600 leading-relaxed max-w-lg pt-1 font-normal mx-auto lg:mx-0">

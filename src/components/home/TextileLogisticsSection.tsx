@@ -45,7 +45,7 @@ export function TextileLogisticsSection() {
             </div>
 
             <h2 className="text-3xl sm:text-4xl lg:text-[40px] font-black tracking-[-0.035em] leading-[1.12]">
-              <span className="text-[#0F172A]">
+              <span className="text-[#1E3A8A]">
                 Textile sample shipping
               </span>{' '}
               <br className="hidden sm:inline" />
@@ -70,7 +70,7 @@ export function TextileLogisticsSection() {
                     <div className="w-8 h-8 rounded-xl bg-red-50 text-[#DC2626] flex items-center justify-center">
                       <Icon className="w-4 h-4" />
                     </div>
-                    <h3 className="text-xs sm:text-sm font-bold text-[#0F172A]">
+                    <h3 className="text-xs sm:text-sm font-bold text-[#1E3A8A]">
                       {item.title}
                     </h3>
                     <p className="text-xs text-slate-500 leading-relaxed">

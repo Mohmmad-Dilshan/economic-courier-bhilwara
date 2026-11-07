@@ -53,7 +53,7 @@ export function FAQSection() {
             <span>HELP &amp; KNOWLEDGE BASE</span>
           </div>
 
-          <h2 className="text-2xl sm:text-3xl lg:text-[38px] font-black tracking-[-0.03em] text-[#0F172A] leading-[1.18]">
+          <h2 className="text-2xl sm:text-3xl lg:text-[38px] font-black tracking-[-0.03em] text-[#1E3A8A] leading-[1.18]">
             Frequently Asked <br className="hidden sm:inline" />
             <span className="text-[#DC2626]">Questions &amp; Answers</span>
           </h2>

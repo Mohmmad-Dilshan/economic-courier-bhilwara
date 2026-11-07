@@ -111,7 +111,7 @@ export function TrackingNoticeModal({
               <Package className="w-5 h-5" />
             </div>
             <div>
-              <h3 id="tracking-dialog-title" className="text-base font-bold text-slate-900">
+              <h3 id="tracking-dialog-title" className="text-base font-bold text-[#1E3A8A]">
                 Track with Courier Partner
               </h3>
               <p className="text-xs text-slate-500">

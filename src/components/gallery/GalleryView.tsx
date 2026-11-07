@@ -494,19 +494,8 @@ export function GalleryView() {
       {/* =========================================================================
           1. HERO SECTION WITH PURE PANORAMIC VISUAL BANNER (NO TEXT OVERLAY)
           ========================================================================= */}
-      <section className="relative pt-6 sm:pt-8 lg:pt-10 pb-6 sm:pb-10 bg-white border-b border-slate-200">
-        <div className="max-w-[1240px] xl:max-w-[1360px] 2xl:max-w-[1480px] min-[1800px]:max-w-[1560px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 space-y-4 sm:space-y-6">
-          {/* Breadcrumb Navigation */}
-          <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-xs font-semibold text-slate-500">
-            <Link href="/" className="hover:text-[#DC2626] transition-colors">
-              Home
-            </Link>
-            <span className="text-slate-300">/</span>
-            <span className="text-slate-900 font-bold" aria-current="page">
-              Operations Gallery
-            </span>
-          </nav>
-
+      <section className="relative pt-4 sm:pt-6 lg:pt-8 pb-6 sm:pb-10 bg-white border-b border-slate-200">
+        <div className="max-w-[1240px] xl:max-w-[1360px] 2xl:max-w-[1480px] min-[1800px]:max-w-[1560px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-10">
           {/* Full-Width Panoramic Visual Banner Card (Pure Image Only) */}
           <div className="relative w-full rounded-2xl sm:rounded-3xl overflow-hidden border border-slate-200 shadow-md bg-slate-950 aspect-[16/9] sm:aspect-[2/1]">
             <Image

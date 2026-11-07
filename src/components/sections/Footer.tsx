@@ -1,5 +1,8 @@
+'use client';
+
 import React from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import {
   MapPin,
   Phone,
@@ -18,6 +21,27 @@ import { BUSINESS_INFO } from '@/lib/constants';
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
+  const pathname = usePathname();
+
+  const handleLogoClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (pathname === '/') {
+      e.preventDefault();
+      if (window.location.hash) {
+        window.history.replaceState(null, '', '/');
+      }
+      window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: 'smooth',
+      });
+    } else {
+      window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: 'instant' as ScrollBehavior,
+      });
+    }
+  };
 
   const serviceLinks = [
     { label: 'Domestic Express Linehaul', href: '/services#domestic' },
@@ -111,7 +135,10 @@ export function Footer() {
             {/* Logo Lockup using BrandLogo (No cutting!) */}
             <Link
               href="/"
-              className="inline-flex items-center gap-2.5 sm:gap-3 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-600 rounded-lg"
+              scroll={true}
+              onClick={handleLogoClick}
+              aria-label="Economic Courier Bhilwara - Return to homepage top"
+              className="inline-flex items-center gap-2.5 sm:gap-3 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-600 rounded-lg cursor-pointer"
             >
               <BrandLogo size="md" variant="light" />
               <div className="flex flex-col border-l border-slate-200/90 pl-2.5 sm:pl-3">

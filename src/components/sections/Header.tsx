@@ -116,6 +116,34 @@ export function Header() {
   const contactHref = isContactPage ? '#inquiry-form' : '/contact';
   const isServicesDropdownActive = isServicesPage || isBusinessSolutionsPage;
 
+  // Reliable Top-Of-Page & Homepage Navigation Handler
+  const handleHomeClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    // 1. Immediately dismiss any open drawers or dropdowns
+    setMobileMenuOpen(false);
+    setServicesDropdownOpen(false);
+    setActiveNav('Home');
+
+    if (pathname === '/') {
+      // Already on home page: smooth scroll directly to top & clear hash
+      e.preventDefault();
+      if (window.location.hash) {
+        window.history.replaceState(null, '', '/');
+      }
+      window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: 'smooth',
+      });
+    } else {
+      // Navigating from another page: ensure target lands at top of viewport
+      window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: 'instant' as ScrollBehavior,
+      });
+    }
+  };
+
   return (
     <>
       <header
@@ -136,6 +164,9 @@ export function Header() {
             {/* Left: Official eCS Logo + Economic Courier Bhilwara Hub Lockup */}
             <Link
               href="/"
+              scroll={true}
+              onClick={handleHomeClick}
+              aria-label="Economic Courier Bhilwara - Return to homepage top"
               className="flex items-center gap-2 sm:gap-3 shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-600 focus-visible:ring-offset-2 rounded-lg group"
             >
               <BrandLogo size="md" />
@@ -158,7 +189,8 @@ export function Header() {
               <Link
                 href="/"
                 prefetch={false}
-                onClick={() => setActiveNav('Home')}
+                scroll={true}
+                onClick={handleHomeClick}
                 className={`relative py-1.5 px-2.5 xl:px-3 text-[13px] xl:text-[14px] font-bold rounded-lg whitespace-nowrap transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-600 ${
                   isHomePage && activeNav === 'Home'
                     ? 'text-[#DC2626] font-black bg-red-50/80'
@@ -426,7 +458,9 @@ export function Header() {
           <div className="flex items-center justify-between pb-3.5 border-b border-slate-100">
             <Link
               href="/"
-              onClick={() => setMobileMenuOpen(false)}
+              scroll={true}
+              onClick={handleHomeClick}
+              aria-label="Economic Courier Bhilwara - Return to homepage top"
               className="flex items-center gap-2.5"
             >
               <BrandLogo size="sm" />
@@ -473,9 +507,14 @@ export function Header() {
                   key={link.label}
                   href={link.href}
                   prefetch={false}
-                  onClick={() => {
-                    setActiveNav(link.label);
-                    setMobileMenuOpen(false);
+                  scroll={true}
+                  onClick={(e) => {
+                    if (link.href === '/') {
+                      handleHomeClick(e);
+                    } else {
+                      setActiveNav(link.label);
+                      setMobileMenuOpen(false);
+                    }
                   }}
                   className="group relative inline-flex flex-col items-center justify-center py-1 transition-transform duration-150 active:scale-95"
                 >

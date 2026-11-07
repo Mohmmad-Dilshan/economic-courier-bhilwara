@@ -1,15 +1,13 @@
 'use client';
 
 import React, { useState, useEffect, useRef, useCallback } from 'react';
-import { Volume2, VolumeX, X, ArrowRight } from 'lucide-react';
+import { X, ArrowRight } from 'lucide-react';
 
 const STORAGE_KEY = 'ecs_intro_played_v1';
 
 export function VideoIntroOverlay() {
   const [isVisible, setIsVisible] = useState(false);
   const [isFading, setIsFading] = useState(false);
-  const [isMuted, setIsMuted] = useState(false);
-  const [needsUserGesture, setNeedsUserGesture] = useState(false);
   const [progress, setProgress] = useState(0);
   const videoRef = useRef<HTMLVideoElement | null>(null);
 
@@ -96,14 +94,14 @@ export function VideoIntroOverlay() {
     };
   }, [isVisible, unlockScroll]);
 
-  // Video autoplay attempt with Voice ON
+  // Autoplay with Voice permanently ON
   useEffect(() => {
     if (!isVisible) return;
 
     const video = videoRef.current;
     if (!video) return;
 
-    // 1. Try unmuted autoplay with sound ON
+    // Voice permanently ON by default
     video.muted = false;
     video.volume = 1.0;
 
@@ -111,32 +109,24 @@ export function VideoIntroOverlay() {
     if (playPromise !== undefined) {
       playPromise
         .then(() => {
-          // Unmuted autoplay succeeded
-          setIsMuted(false);
-          setNeedsUserGesture(false);
+          // Playing with sound ON
         })
         .catch((err) => {
-          console.info('Browser policy required user gesture for audio:', err?.message || err);
-          // 2. Fallback: play muted immediately so video isn't stuck, but wait for first gesture to unmute
+          console.info('Browser policy required user gesture for initial audio, starting playback:', err?.message || err);
+          // If browser restricted initial unmuted play, start video and auto-unmute on first gesture
           video.muted = true;
           video.play()
-            .then(() => {
-              setIsMuted(true);
-              setNeedsUserGesture(true);
-            })
             .catch(() => {
               handleClose(true);
             });
         });
     }
 
-    // 3. Instant auto-unmute on first user gesture anywhere
+    // Auto-unmute voice on any first gesture without showing any button or banner
     const enableVoiceOnGesture = () => {
       if (videoRef.current) {
         videoRef.current.muted = false;
         videoRef.current.volume = 1.0;
-        setIsMuted(false);
-        setNeedsUserGesture(false);
       }
     };
 
@@ -145,7 +135,7 @@ export function VideoIntroOverlay() {
     window.addEventListener('touchstart', enableVoiceOnGesture, { once: true });
     window.addEventListener('keydown', enableVoiceOnGesture, { once: true });
 
-    // Watchdog: fail open if video stalls
+    // Watchdog timer: fail open if video stalls
     const watchdog = setTimeout(() => {
       if (videoRef.current && videoRef.current.currentTime === 0) {
         handleClose(true);
@@ -161,7 +151,7 @@ export function VideoIntroOverlay() {
     };
   }, [isVisible, handleClose]);
 
-  // Keyboard escape
+  // Keyboard escape to close
   useEffect(() => {
     if (!isVisible) return;
 
@@ -169,27 +159,12 @@ export function VideoIntroOverlay() {
       if (e.key === 'Escape') {
         e.preventDefault();
         handleClose(false);
-      } else if (e.key === 'm' || e.key === 'M') {
-        e.preventDefault();
-        toggleSound();
       }
     };
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [isVisible, handleClose]);
-
-  const toggleSound = (e?: React.MouseEvent) => {
-    if (e) e.stopPropagation();
-    if (!videoRef.current) return;
-    const nextMuted = !videoRef.current.muted;
-    videoRef.current.muted = nextMuted;
-    videoRef.current.volume = 1.0;
-    setIsMuted(nextMuted);
-    if (!nextMuted) {
-      setNeedsUserGesture(false);
-    }
-  };
 
   const handleTimeUpdate = () => {
     if (videoRef.current && videoRef.current.duration) {
@@ -217,14 +192,14 @@ export function VideoIntroOverlay() {
         isFading ? 'opacity-0 pointer-events-none' : 'opacity-100'
       }`}
     >
-      {/* Light Premium Modal Card (No dark gloomy vibe, sharp white card matching website) */}
+      {/* Light Premium Modal Card (Clean corporate white card matching website) */}
       <div
         onClick={(e) => e.stopPropagation()} // Stop click inside card from closing
         className={`relative w-full max-w-[860px] bg-white rounded-2xl sm:rounded-3xl overflow-hidden shadow-[0_25px_60px_-15px_rgba(15,23,42,0.35),0_0_0_1px_rgba(15,23,42,0.08)] flex flex-col transition-all duration-300 ease-out ${
           isFading ? 'scale-95 translate-y-2' : 'scale-100 translate-y-0'
         }`}
       >
-        {/* Light Header Bar */}
+        {/* Clean Header Bar — Only brand badge and Skip button (No voice on/off toggle) */}
         <div className="px-4 py-3 sm:px-6 sm:py-3.5 bg-white border-b border-slate-100 flex items-center justify-between z-10 shrink-0">
           {/* Brand Badge */}
           <div className="flex items-center gap-2 sm:gap-2.5">
@@ -243,46 +218,19 @@ export function VideoIntroOverlay() {
             </div>
           </div>
 
-          {/* Controls: Voice Indicator/Button + Skip Button */}
-          <div className="flex items-center gap-2 sm:gap-2.5">
-            {/* Voice Control Button */}
-            <button
-              type="button"
-              onClick={toggleSound}
-              aria-label={isMuted ? 'Turn voice on' : 'Mute voice'}
-              className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold transition-all border cursor-pointer focus:outline-none focus:ring-2 ${
-                isMuted
-                  ? 'bg-amber-50 text-amber-800 border-amber-300/80 hover:bg-amber-100 animate-pulse'
-                  : 'bg-emerald-50 text-emerald-700 border-emerald-200 hover:bg-emerald-100'
-              }`}
-            >
-              {isMuted ? (
-                <>
-                  <VolumeX className="w-3.5 h-3.5 text-amber-600" />
-                  <span>Voice: OFF</span>
-                </>
-              ) : (
-                <>
-                  <Volume2 className="w-3.5 h-3.5 text-emerald-600" />
-                  <span>Voice: ON</span>
-                </>
-              )}
-            </button>
-
-            {/* Skip Button */}
-            <button
-              type="button"
-              onClick={() => handleClose(false)}
-              aria-label="Skip video and view website"
-              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#DC2626] hover:bg-[#B91C1C] active:bg-[#991B1B] text-white text-xs font-bold transition-all shadow-xs hover:shadow-sm cursor-pointer focus:outline-none focus:ring-2 focus:ring-red-400"
-            >
-              <span>Skip</span>
-              <X className="w-3.5 h-3.5" />
-            </button>
-          </div>
+          {/* Clean Skip Button */}
+          <button
+            type="button"
+            onClick={() => handleClose(false)}
+            aria-label="Skip video and view website"
+            className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#DC2626] hover:bg-[#B91C1C] active:bg-[#991B1B] text-white text-xs font-bold transition-all shadow-xs hover:shadow-sm cursor-pointer focus:outline-none focus:ring-2 focus:ring-red-400"
+          >
+            <span>Skip</span>
+            <X className="w-3.5 h-3.5" />
+          </button>
         </div>
 
-        {/* Video Player Frame (16:9 Aspect Ratio) */}
+        {/* Video Player Frame — 100% Clean (No buttons or text banners over video) */}
         <div className="relative w-full aspect-video bg-black overflow-hidden flex items-center justify-center">
           <video
             ref={videoRef}
@@ -294,21 +242,8 @@ export function VideoIntroOverlay() {
             onEnded={() => handleClose(false)}
             onError={handleError}
             onTimeUpdate={handleTimeUpdate}
-            onClick={toggleSound}
-            className="w-full h-full object-contain sm:object-cover cursor-pointer"
+            className="w-full h-full object-contain sm:object-cover"
           />
-
-          {/* Subtle tap-for-sound overlay banner if browser held back audio */}
-          {needsUserGesture && isMuted && (
-            <button
-              type="button"
-              onClick={toggleSound}
-              className="absolute bottom-5 left-1/2 -translate-x-1/2 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white text-slate-900 text-xs sm:text-sm font-bold shadow-2xl border border-slate-200 transition-all hover:scale-105 active:scale-95 animate-bounce cursor-pointer z-20"
-            >
-              <Volume2 className="w-4 h-4 text-[#DC2626]" />
-              <span>Tap anywhere to hear voice</span>
-            </button>
-          )}
 
           {/* Bottom Progress Bar inside Video Player */}
           <div

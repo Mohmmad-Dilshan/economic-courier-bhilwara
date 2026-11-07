@@ -112,61 +112,17 @@ export function BusinessSolutionsView() {
               </div>
             </div>
 
-            {/* Right Column (5 cols): 3D Delivery Boy Scooter Rider & eCS Parcel Boxes */}
-            <div className="lg:col-span-5 xl:col-span-5 relative flex justify-center lg:justify-end w-full">
-              <div className="relative w-full max-w-[460px] lg:max-w-none rounded-3xl bg-gradient-to-br from-slate-50 via-white to-red-50/30 border border-slate-200/90 shadow-[0_16px_40px_rgba(15,23,42,0.06)] p-5 sm:p-6 lg:p-7 overflow-hidden">
-                {/* Subtle Ambient Radial Glow */}
-                <div className="absolute top-0 right-0 w-64 h-64 bg-red-100/40 rounded-full blur-3xl pointer-events-none -mr-20 -mt-20" />
-                <div className="absolute bottom-0 left-0 w-48 h-48 bg-blue-100/30 rounded-full blur-2xl pointer-events-none -ml-16 -mb-16" />
-
-                {/* Top Status Badge */}
-                <div className="relative z-10 flex items-center justify-between gap-2 mb-4">
-                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/95 backdrop-blur-sm border border-slate-200 shadow-2xs text-[11px] font-bold text-slate-800">
-                    <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                    <span>Daily Pickup Active</span>
-                  </div>
-                  <span className="text-[10px] font-mono font-bold text-slate-500 uppercase tracking-wider">
-                    Pur Road · RIICO
-                  </span>
-                </div>
-
-                {/* Central Delivery Duo Objects (3D Boxes + Scooter Delivery Boy) */}
-                <div className="relative z-10 flex items-end justify-center gap-2 sm:gap-4 py-4 sm:py-6 select-none">
-                  {/* 3D Branded Boxes */}
-                  <div className="relative w-32 xs:w-36 sm:w-44 lg:w-40 xl:w-48 transition-transform duration-500 hover:scale-105 filter drop-shadow-[0_12px_24px_rgba(15,23,42,0.12)]">
-                    <Image
-                      src="/assets/services/ecs-boxes-3d.webp"
-                      alt="eCS World Wide Express 3D Commercial Courier Boxes"
-                      width={951}
-                      height={570}
-                      priority
-                      className="w-full h-auto object-contain"
-                    />
-                  </div>
-
-                  {/* 3D Scooter Delivery Boy (Facing Inward toward boxes) */}
-                  <div className="relative w-36 xs:w-40 sm:w-48 lg:w-44 xl:w-52 transition-transform duration-500 hover:scale-105 filter drop-shadow-[0_12px_24px_rgba(220,38,38,0.15)]">
-                    <Image
-                      src="/assets/services/ecs-scooter-rider-facing-inward.webp"
-                      alt="eCS World Wide Express Courier Delivery Boy Rider Object"
-                      width={645}
-                      height={550}
-                      priority
-                      className="w-full h-auto object-contain"
-                    />
-                  </div>
-                </div>
-
-                {/* Bottom Informational Bar */}
-                <div className="relative z-10 pt-3.5 mt-2 border-t border-slate-200/80 flex items-center justify-between gap-2 text-xs font-semibold text-slate-700">
-                  <div className="flex items-center gap-1.5">
-                    <Building2 className="w-3.5 h-3.5 text-[#DC2626]" />
-                    <span>Commercial Doorstep Service</span>
-                  </div>
-                  <span className="text-[11px] font-mono text-[#DC2626] font-bold">
-                    Zero Daily Counter Trips
-                  </span>
-                </div>
+            {/* Right Column (5 cols): Pure Floating 3D Delivery Boy Rider (Zero Card Box • Balanced Header) */}
+            <div className="lg:col-span-5 xl:col-span-5 relative flex items-center justify-center lg:justify-end select-none pointer-events-none py-2 lg:py-0">
+              <div className="relative w-full max-w-[280px] xs:max-w-[320px] sm:max-w-[360px] lg:max-w-[420px] xl:max-w-[460px] transition-transform duration-500 hover:scale-[1.03] filter drop-shadow-[0_20px_35px_rgba(15,23,42,0.14)]">
+                <Image
+                  src="/assets/services/ecs-scooter-rider-facing-inward.webp"
+                  alt="eCS World Wide Express Scooter Delivery Rider Object"
+                  width={645}
+                  height={550}
+                  priority
+                  className="w-full h-auto object-contain"
+                />
               </div>
             </div>
           </div>

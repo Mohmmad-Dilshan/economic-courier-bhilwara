@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect, useRef, useCallback } from 'react';
-import { X, Play, Pause, Volume2, VolumeX, ArrowRight } from 'lucide-react';
+import { X, Play, Pause, ArrowRight } from 'lucide-react';
 
 const STORAGE_KEY = 'ecs_intro_played_v1';
 
@@ -9,7 +9,6 @@ export function VideoIntroOverlay() {
   const [isVisible, setIsVisible] = useState(false);
   const [isFading, setIsFading] = useState(false);
   const [isPlaying, setIsPlaying] = useState(true);
-  const [isMuted, setIsMuted] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(30);
   const [progress, setProgress] = useState(0);
@@ -105,32 +104,30 @@ export function VideoIntroOverlay() {
     };
   }, [isVisible, unlockScroll]);
 
-  // Video playback & Voice management
+  // Video playback & Voice permanently ON (No voice button required)
   useEffect(() => {
     if (!isVisible) return;
 
     const video = videoRef.current;
     if (!video) return;
 
-    // Start with sound attempt
-    video.muted = false;
+    // Permanent full volume
     video.volume = 1.0;
+    video.muted = false;
 
     const playPromise = video.play();
     if (playPromise !== undefined) {
       playPromise
         .then(() => {
           setIsPlaying(true);
-          setIsMuted(false);
         })
         .catch((err) => {
-          console.info('Initial unmuted play held by browser policy, falling back to muted autoplay:', err?.message || err);
-          // Fallback to muted playback so video plays immediately
+          console.info('Initial unmuted autoplay held by browser policy, starting playback:', err?.message || err);
+          // If browser restricts unmuted autoplay on initial zero-interaction tick, start video and auto-unmute on first gesture
           video.muted = true;
           video.play()
             .then(() => {
               setIsPlaying(true);
-              setIsMuted(true);
             })
             .catch(() => {
               setIsPlaying(false);
@@ -138,38 +135,36 @@ export function VideoIntroOverlay() {
         });
     }
 
-    // Auto-unmute voice on any first user gesture on the window
-    const unmuteVoice = () => {
+    // Unmute voice automatically on ANY first gesture across the window
+    const enableVoiceOnGesture = () => {
       if (videoRef.current) {
         videoRef.current.muted = false;
         videoRef.current.volume = 1.0;
-        setIsMuted(false);
       }
     };
 
-    const gestureEvents = ['pointerdown', 'touchstart', 'click', 'keydown'];
+    const gestureEvents = ['pointerdown', 'touchstart', 'click', 'keydown', 'pointermove'];
     gestureEvents.forEach((evt) => {
-      window.addEventListener(evt, unmuteVoice, { once: true });
+      window.addEventListener(evt, enableVoiceOnGesture, { once: true });
     });
 
     return () => {
       gestureEvents.forEach((evt) => {
-        window.removeEventListener(evt, unmuteVoice);
+        window.removeEventListener(evt, enableVoiceOnGesture);
       });
     };
   }, [isVisible]);
 
-  // Play / Pause toggle handler
+  // Play / Pause toggle handler (Click on video or button)
   const togglePlayPause = (e?: React.MouseEvent) => {
     if (e) e.stopPropagation();
     const video = videoRef.current;
     if (!video) return;
 
     if (video.paused) {
-      // Whenever user clicks Play/Resume, ensure sound is enabled
+      // Resume and guarantee voice is ON
       video.muted = false;
       video.volume = 1.0;
-      setIsMuted(false);
       video.play().then(() => {
         setIsPlaying(true);
       }).catch((err) => {
@@ -181,18 +176,7 @@ export function VideoIntroOverlay() {
     }
   };
 
-  // Sound toggle handler
-  const toggleSound = (e?: React.MouseEvent) => {
-    if (e) e.stopPropagation();
-    const video = videoRef.current;
-    if (!video) return;
-    const nextMuted = !video.muted;
-    video.muted = nextMuted;
-    video.volume = 1.0;
-    setIsMuted(nextMuted);
-  };
-
-  // Keyboard controls: Space to play/pause, M to mute, Escape to close
+  // Keyboard controls: Space to play/pause, Escape to close
   useEffect(() => {
     if (!isVisible) return;
 
@@ -203,9 +187,6 @@ export function VideoIntroOverlay() {
       } else if (e.key === ' ' || e.code === 'Space') {
         e.preventDefault();
         togglePlayPause();
-      } else if (e.key === 'm' || e.key === 'M') {
-        e.preventDefault();
-        toggleSound();
       }
     };
 
@@ -223,7 +204,6 @@ export function VideoIntroOverlay() {
         setProgress((cur / dur) * 100);
       }
       setIsPlaying(!videoRef.current.paused);
-      setIsMuted(videoRef.current.muted);
     }
   };
 
@@ -272,12 +252,19 @@ export function VideoIntroOverlay() {
     >
       {/* Light Premium Modal Card */}
       <div
-        onClick={(e) => e.stopPropagation()} // Stop click inside card from closing backdrop
+        onClick={(e) => {
+          e.stopPropagation(); // Stop click inside card from closing backdrop
+          // Ensure voice is unmuted on click anywhere in card
+          if (videoRef.current) {
+            videoRef.current.muted = false;
+            videoRef.current.volume = 1.0;
+          }
+        }}
         className={`relative w-full max-w-[880px] bg-white rounded-2xl sm:rounded-3xl overflow-hidden shadow-[0_25px_60px_-15px_rgba(15,23,42,0.35),0_0_0_1px_rgba(15,23,42,0.08)] flex flex-col transition-all duration-300 ease-out ${
           isFading ? 'scale-95 translate-y-2' : 'scale-100 translate-y-0'
         }`}
       >
-        {/* Header Bar */}
+        {/* Header Bar — Brand Badge & Skip Button only */}
         <div className="px-4 py-3 sm:px-6 sm:py-3.5 bg-white border-b border-slate-100 flex items-center justify-between z-10 shrink-0">
           {/* Brand Badge */}
           <div className="flex items-center gap-2 sm:gap-2.5">
@@ -308,7 +295,7 @@ export function VideoIntroOverlay() {
           </button>
         </div>
 
-        {/* Video Player Frame — Click on video toggles Play/Pause */}
+        {/* Video Player Frame — 100% Clean, click on video toggles Play/Pause */}
         <div
           onClick={togglePlayPause}
           className="relative w-full aspect-video bg-black overflow-hidden flex items-center justify-center cursor-pointer group"
@@ -318,7 +305,6 @@ export function VideoIntroOverlay() {
             src="/assets/intro/economic-courier-intro.mp4"
             poster="/assets/intro/intro-poster.webp"
             autoPlay
-            muted={isMuted}
             playsInline
             preload="auto"
             onEnded={handleEnded}
@@ -357,11 +343,10 @@ export function VideoIntroOverlay() {
           </div>
         </div>
 
-        {/* Complete Player Control Bar */}
+        {/* Player Controls Bar — Play/Pause & Elapsed Time (NO voice buttons) */}
         <div className="px-4 py-2.5 sm:px-6 sm:py-3 bg-slate-50 border-t border-slate-100 flex items-center justify-between text-xs text-slate-600">
-          {/* Left Controls: Play/Pause, Sound Toggle, Current Time */}
+          {/* Left: Play/Pause Button & Time Display */}
           <div className="flex items-center gap-3">
-            {/* Play/Pause Button */}
             <button
               type="button"
               onClick={togglePlayPause}
@@ -375,31 +360,7 @@ export function VideoIntroOverlay() {
               )}
             </button>
 
-            {/* Sound Toggle Button */}
-            <button
-              type="button"
-              onClick={toggleSound}
-              aria-label={isMuted ? 'Turn voice on' : 'Mute voice'}
-              className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold transition-all border cursor-pointer focus:outline-none focus:ring-2 ${
-                isMuted
-                  ? 'bg-amber-50 text-amber-900 border-amber-300 hover:bg-amber-100'
-                  : 'bg-emerald-50 text-emerald-800 border-emerald-200 hover:bg-emerald-100'
-              }`}
-            >
-              {isMuted ? (
-                <>
-                  <VolumeX className="w-3.5 h-3.5 text-amber-700" />
-                  <span>Unmute Voice</span>
-                </>
-              ) : (
-                <>
-                  <Volume2 className="w-3.5 h-3.5 text-emerald-700" />
-                  <span>Voice ON</span>
-                </>
-              )}
-            </button>
-
-            {/* Elapsed Time Display */}
+            {/* Elapsed Time */}
             <span className="font-mono text-[11px] sm:text-xs text-slate-500 font-medium">
               {formatTime(currentTime)} / {formatTime(duration)}
             </span>

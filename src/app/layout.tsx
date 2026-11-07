@@ -40,14 +40,20 @@ export const metadata: Metadata = {
     'ecs world wide express bhilwara',
     'courier service in bhilwara',
     'best courier service bhilwara',
+    'courier near me bhilwara',
     'textile sample courier bhilwara',
     'fabric sample delivery bhilwara',
     'international courier service bhilwara',
     'domestic parcel delivery bhilwara',
     'air cargo service bhilwara',
-    'economic courier pur road bhilwara',
+    'courier office pur road bhilwara',
+    'courier opposite new cloth market bhilwara',
     'parcel pickup service bhilwara',
+    'overnight courier bhilwara to mumbai',
+    'courier bhilwara to surat',
+    'courier bhilwara to delhi ncr',
     'ecs courier bhilwara rajasthan',
+    'commercial freight forwarding bhilwara',
   ],
   authors: [{ name: 'Economic Courier Bhilwara' }],
   creator: 'eCS World Wide Express',
@@ -92,6 +98,14 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
+  other: {
+    'geo.region': 'IN-RJ',
+    'geo.placename': 'Bhilwara, Rajasthan, India',
+    'geo.position': '25.3444;74.6366',
+    ICBM: '25.3444, 74.6366',
+    'geo.country': 'IN',
+    'DC.title': 'Economic Courier Bhilwara | Domestic, International & Textile Sample Courier',
+  },
   icons: {
     icon: [
       { url: '/assets/logo/ecs-logo.png', sizes: '150x150', type: 'image/png' },
@@ -103,43 +117,93 @@ export const metadata: Metadata = {
   },
 };
 
-const localBusinessSchema = {
+const schemaGraph = {
   '@context': 'https://schema.org',
-  '@type': 'DeliveryService',
-  name: 'Economic Courier / eCS World Wide Express',
-  alternateName: 'Economic Courier Bhilwara',
-  description:
-    'Dedicated domestic express courier, worldwide air cargo, and specialized textile fabric sample logistics hub based in Bhilwara, Rajasthan.',
-  url: 'https://economic-courier-bhilwara.vercel.app',
-  logo: 'https://economic-courier-bhilwara.vercel.app/assets/logo/ecs-logo.png',
-  image: 'https://economic-courier-bhilwara.vercel.app/assets/og/economic-courier-social.jpg',
-  address: {
-    '@type': 'PostalAddress',
-    streetAddress: 'Near Textile Market / Pur Road Corridor',
-    addressLocality: 'Bhilwara',
-    addressRegion: 'Rajasthan',
-    postalCode: '311001',
-    addressCountry: 'IN',
-  },
-  geo: {
-    '@type': 'GeoCoordinates',
-    latitude: 25.3475,
-    longitude: 74.6366,
-  },
-  areaServed: [
-    { '@type': 'City', name: 'Bhilwara' },
-    { '@type': 'State', name: 'Rajasthan' },
-    { '@type': 'Country', name: 'India' },
-    { '@type': 'Place', name: 'Worldwide (220+ Countries)' },
+  '@graph': [
+    {
+      '@type': 'DeliveryService',
+      '@id': 'https://economic-courier-bhilwara.vercel.app/#business',
+      name: 'Economic Courier / eCS World Wide Express',
+      alternateName: [
+        'Economic Courier Bhilwara',
+        'eCS World Wide Express Bhilwara',
+        'Economic Courier',
+        'eCS Express',
+      ],
+      description:
+        'Leading domestic courier, international air cargo, and specialized textile fabric sample logistics service hub in Bhilwara, Rajasthan. Daily linehauls across 19,000+ Indian pin codes and worldwide shipping across 220+ countries.',
+      url: 'https://economic-courier-bhilwara.vercel.app',
+      logo: 'https://economic-courier-bhilwara.vercel.app/assets/logo/ecs-logo.png',
+      image: 'https://economic-courier-bhilwara.vercel.app/assets/og/economic-courier-social.jpg',
+      telephone: '+91 89551 44444',
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: 'Opposite New Cloth Market, Railway Staff Quarter Area, Pur Road / Station Sector',
+        addressLocality: 'Bhilwara',
+        addressRegion: 'Rajasthan',
+        postalCode: '311001',
+        addressCountry: 'IN',
+      },
+      geo: {
+        '@type': 'GeoCoordinates',
+        latitude: 25.3444,
+        longitude: 74.6366,
+      },
+      openingHoursSpecification: [
+        {
+          '@type': 'OpeningHoursSpecification',
+          dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+          opens: '09:30',
+          closes: '20:30',
+        },
+        {
+          '@type': 'OpeningHoursSpecification',
+          dayOfWeek: ['Sunday'],
+          opens: '10:00',
+          closes: '16:00',
+        },
+      ],
+      hasMap: 'https://maps.google.com/?q=25.3444,74.6366',
+      priceRange: '₹₹',
+      paymentAccepted: ['Cash', 'UPI', 'Bank Transfer', 'Credit Card', 'Debit Card'],
+      currenciesAccepted: 'INR',
+      areaServed: [
+        { '@type': 'City', name: 'Bhilwara' },
+        { '@type': 'AdministrativeArea', name: 'Pur Road Textile Corridor' },
+        { '@type': 'AdministrativeArea', name: 'RIICO Industrial Area' },
+        { '@type': 'AdministrativeArea', name: 'Hamirgarh Industrial Area' },
+        { '@type': 'AdministrativeArea', name: 'Mandpam' },
+        { '@type': 'State', name: 'Rajasthan' },
+        { '@type': 'Country', name: 'India' },
+        { '@type': 'Place', name: 'Worldwide (220+ Countries)' },
+      ],
+      serviceType: [
+        'Textile Fabric Sample & Swatch Courier',
+        'Domestic Priority Air Parcel Express',
+        'Worldwide Air Cargo (220+ Countries)',
+        'Commercial B2B Freight Logistics',
+        'Doorstep Parcel & Sample Pickup',
+        'Express Document & Trade Correspondence Courier',
+        'Excess Baggage & Heavy Surface Cargo',
+      ],
+      sameAs: ['https://www.instagram.com/economiccourierbhilwara/'],
+    },
+    {
+      '@type': 'WebSite',
+      '@id': 'https://economic-courier-bhilwara.vercel.app/#website',
+      url: 'https://economic-courier-bhilwara.vercel.app',
+      name: 'Economic Courier Bhilwara',
+      publisher: {
+        '@id': 'https://economic-courier-bhilwara.vercel.app/#business',
+      },
+      inLanguage: 'en-IN',
+      potentialAction: {
+        '@type': 'SearchAction',
+        target: 'https://economic-courier-bhilwara.vercel.app/track-shipment?awb={search_term_string}',
+        'query-input': 'required name=search_term_string',
+      },
+    },
   ],
-  serviceType: [
-    'Textile Sample Courier',
-    'Domestic Express Parcel Delivery',
-    'International Air Cargo',
-    'Commercial Freight Forwarding',
-    'Doorstep Parcel Pickup',
-  ],
-  priceRange: '₹₹',
 };
 
 export default function RootLayout({
@@ -158,7 +222,7 @@ export default function RootLayout({
         />
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaGraph) }}
         />
       </head>
       <body className="font-sans min-h-screen flex flex-col bg-[var(--color-bg-primary)] text-[var(--color-text-primary)] antialiased">

@@ -152,6 +152,7 @@ export default function HomePage() {
                     />
                   </svg>
                 </span>
+                <span className="sr-only"> — Economic Courier &amp; eCS World Wide Express, Bhilwara</span>
               </h1>
 
               {/* Subtitle */}

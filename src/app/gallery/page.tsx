@@ -55,6 +55,23 @@ const jsonLd = {
   '@context': 'https://schema.org',
   '@graph': [
     {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: 'Home',
+          item: 'https://economic-courier-bhilwara.vercel.app',
+        },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: 'Operations Gallery',
+          item: 'https://economic-courier-bhilwara.vercel.app/gallery',
+        },
+      ],
+    },
+    {
       '@type': 'LocalBusiness',
       '@id': 'https://economic-courier-bhilwara.vercel.app/#business',
       name: 'Economic Courier / eCS World Wide Express',

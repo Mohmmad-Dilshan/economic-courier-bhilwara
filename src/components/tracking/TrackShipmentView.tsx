@@ -502,7 +502,7 @@ export function TrackShipmentView() {
                 <span>OFFICIAL CARRIER NETWORK</span>
               </div>
               <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight text-[#0F172A]">
-                Select Your Booking Carrier to Track Directly
+                Select Your Booking Carrier to <span className="text-[#DC2626]">Track Directly</span>
               </h2>
               <p className="text-xs sm:text-sm text-slate-600 font-normal leading-relaxed">
                 Every carrier below is an authenticated logistics linehaul or channel operator connected
@@ -573,8 +573,8 @@ export function TrackShipmentView() {
                   }`}
                 >
                   <div className="space-y-3">
-                    <div className="flex items-center justify-between gap-2">
-                      <span className="text-[10px] font-mono font-semibold uppercase text-slate-500 bg-slate-50 border border-slate-200 px-2 py-0.5 rounded-md truncate max-w-[170px]">
+                    <div className="flex flex-wrap items-center justify-between gap-1.5 min-h-[26px]">
+                      <span className="text-[10px] font-mono font-semibold uppercase text-slate-600 bg-slate-50 border border-slate-200 px-2 py-0.5 rounded-md leading-normal">
                         {carrier.categoryLabel}
                       </span>
                       <span className={`text-[10px] font-mono font-bold px-1.5 py-0.5 rounded border ${carrier.badgeColor} shrink-0`}>
@@ -593,10 +593,10 @@ export function TrackShipmentView() {
                     </div>
 
                     <div>
-                      <h3 className="text-sm sm:text-base font-bold text-[#0F172A] group-hover:text-[#DC2626] transition-colors line-clamp-1">
+                      <h3 className="text-sm sm:text-base font-bold text-[#0F172A] group-hover:text-[#DC2626] transition-colors leading-snug">
                         {carrier.name}
                       </h3>
-                      <p className="text-xs text-slate-500 leading-relaxed font-normal line-clamp-2 mt-1">
+                      <p className="text-xs text-slate-600 leading-relaxed font-normal mt-1.5">
                         {carrier.description}
                       </p>
                     </div>
@@ -653,7 +653,7 @@ export function TrackShipmentView() {
               <span>BOOKING RECEIPT ANATOMY</span>
             </div>
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight text-[#0F172A]">
-              How to Read Your Physical Counter Docket
+              How to Read Your <span className="text-[#DC2626]">Physical Counter Docket</span>
             </h2>
             <p className="text-xs sm:text-sm text-slate-600 font-normal leading-relaxed">
               When booking at our Bhilwara dispatch counter, your printed pink/white slip contains all
@@ -701,7 +701,7 @@ export function TrackShipmentView() {
                   <div>
                     <span className="text-[10px] text-slate-600 block font-semibold">② ORIGIN</span>
                     <span className="font-bold text-slate-900">Bhilwara Hub</span>
-                    <span className="text-[10px] text-slate-600 block truncate font-medium">
+                    <span className="text-[10px] text-slate-600 block font-medium">
                       Opp. New Cloth Market
                     </span>
                   </div>
@@ -737,7 +737,7 @@ export function TrackShipmentView() {
                   <span className="w-6 h-6 rounded-full bg-red-100 text-red-700 text-xs font-bold flex items-center justify-center shrink-0">
                     1
                   </span>
-                  <h3 className="text-sm font-bold text-slate-900">
+                  <h3 className="text-sm font-bold text-[#0F172A]">
                     Locate Your Docket Reference
                   </h3>
                 </div>
@@ -752,7 +752,7 @@ export function TrackShipmentView() {
                   <span className="w-6 h-6 rounded-full bg-red-100 text-red-700 text-xs font-bold flex items-center justify-center shrink-0">
                     2
                   </span>
-                  <h3 className="text-sm font-bold text-slate-900">
+                  <h3 className="text-sm font-bold text-[#0F172A]">
                     Identify the Assigned Carrier Linehaul
                   </h3>
                 </div>
@@ -767,7 +767,7 @@ export function TrackShipmentView() {
                   <span className="w-6 h-6 rounded-full bg-red-100 text-red-700 text-xs font-bold flex items-center justify-center shrink-0">
                     3
                   </span>
-                  <h3 className="text-sm font-bold text-slate-900">
+                  <h3 className="text-sm font-bold text-[#0F172A]">
                     Direct Deep Link or WhatsApp Status
                   </h3>
                 </div>
@@ -896,43 +896,71 @@ export function TrackShipmentView() {
       {/* =========================================================================
           6. TRACKING FAQ ACCORDION
           ========================================================================= */}
-      <section className="py-12 sm:py-16 bg-white border-b border-slate-200">
+      <section className="py-12 sm:py-16 lg:py-20 bg-white border-b border-slate-200">
         <div className="max-w-[1240px] xl:max-w-[1360px] 2xl:max-w-[1480px] min-[1800px]:max-w-[1560px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-10">
-          <div className="max-w-2xl mb-8 space-y-2">
-            <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-red-700 block">
-              FREQUENTLY ASKED TRACKING QUESTIONS
-            </span>
-            <h2 className="text-2xl sm:text-3xl font-black tracking-tight text-[#0F172A]">
-              Frequently Asked Tracking Questions
+          {/* Centered Section Header */}
+          <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-12 space-y-3">
+            <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-red-50 border border-red-200/90 text-red-700 text-[11px] font-extrabold tracking-widest uppercase shadow-2xs">
+              <HelpCircle className="w-3.5 h-3.5 text-red-700" />
+              <span>HELP &amp; KNOWLEDGE BASE</span>
+            </div>
+
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight text-[#0F172A] leading-tight">
+              Frequently Asked <span className="text-[#DC2626]">Tracking Questions</span>
             </h2>
-            <p className="text-xs sm:text-sm text-slate-600 font-normal">
+
+            <div className="w-12 h-1 bg-[#DC2626] rounded-full mx-auto mt-2 mb-2" />
+
+            <p className="text-xs sm:text-sm lg:text-base text-slate-600 font-normal leading-relaxed">
               Common questions answered for commercial consignments, textile swatches, and retail documents.
             </p>
           </div>
 
-          <div className="max-w-3xl space-y-3">
+          {/* Centered Bold Accordion List */}
+          <div className="max-w-3xl lg:max-w-4xl mx-auto space-y-3 sm:space-y-3.5">
             {TRACKING_FAQS.map((faq, idx) => {
               const isOpen = openFaqIndex === idx;
               return (
                 <div
                   key={faq.q}
-                  className="rounded-2xl border border-slate-200 overflow-hidden bg-white transition-all shadow-2xs"
+                  className={`rounded-2xl transition-all duration-200 overflow-hidden ${
+                    isOpen
+                      ? 'bg-white border border-red-200/90 shadow-sm ring-1 ring-red-100'
+                      : 'bg-white border border-slate-200/90 shadow-2xs hover:border-slate-300'
+                  }`}
                 >
                   <button
                     type="button"
                     onClick={() => setOpenFaqIndex(isOpen ? null : idx)}
-                    className="w-full text-left p-4 sm:p-5 flex items-center justify-between gap-4 font-bold text-xs sm:text-sm text-slate-900 hover:text-[#DC2626] transition-colors cursor-pointer"
+                    className="w-full text-left p-4 sm:p-5 flex items-center justify-between gap-3 sm:gap-4 font-extrabold text-xs sm:text-sm lg:text-base text-slate-900 hover:text-[#DC2626] transition-colors cursor-pointer group"
                     aria-expanded={isOpen}
                   >
-                    <span>{faq.q}</span>
-                    <ChevronDown
-                      className={`w-4 h-4 text-slate-400 shrink-0 transition-transform duration-200 ${
-                        isOpen ? 'rotate-180 text-[#DC2626]' : ''
+                    <div className="flex items-center gap-2.5 sm:gap-3.5 min-w-0 pr-2">
+                      <span className="w-7 h-7 rounded-xl bg-red-50 text-[#DC2626] text-[11px] font-black flex items-center justify-center shrink-0 border border-red-100 group-hover:scale-105 transition-transform">
+                        0{idx + 1}
+                      </span>
+                      <span className={`font-extrabold leading-snug ${isOpen ? 'text-[#DC2626]' : 'text-slate-900'}`}>
+                        {faq.q}
+                      </span>
+                    </div>
+
+                    <div
+                      className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center shrink-0 transition-colors ${
+                        isOpen
+                          ? 'bg-red-50 text-[#DC2626]'
+                          : 'bg-slate-100 text-slate-500 group-hover:bg-red-50 group-hover:text-[#DC2626]'
                       }`}
-                    />
+                    >
+                      <ChevronDown
+                        className={`w-4 h-4 transition-transform duration-200 ${
+                          isOpen ? 'rotate-180' : ''
+                        }`}
+                      />
+                    </div>
                   </button>
+
                   {isOpen && (
-                    <div className="px-4 pb-4 sm:px-5 sm:pb-5 pt-0 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-slate-100 font-normal">
+                    <div className="px-5 pb-5 pt-1 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-slate-100 font-normal pl-5 sm:pl-14">
                       {faq.a}
                     </div>
                   )}
@@ -953,7 +981,7 @@ export function TrackShipmentView() {
               EXPLORE LOGISTICS SERVICES
             </span>
             <h2 className="text-xl sm:text-2xl font-black tracking-tight text-[#0F172A]">
-              Explore Our Logistics Solutions
+              Explore Our <span className="text-[#DC2626]">Logistics Solutions</span>
             </h2>
           </div>
 
@@ -966,7 +994,7 @@ export function TrackShipmentView() {
                 <div className="w-9 h-9 rounded-xl bg-red-50 text-[#DC2626] flex items-center justify-center">
                   <Truck className="w-4 h-4 text-[#DC2626]" />
                 </div>
-                <h3 className="text-sm font-bold text-slate-900 group-hover:text-[#DC2626] transition-colors">
+                <h3 className="text-sm font-bold text-[#0F172A] group-hover:text-[#DC2626] transition-colors">
                   All Courier Services
                 </h3>
                 <p className="text-xs text-slate-500 leading-relaxed font-normal">
@@ -987,7 +1015,7 @@ export function TrackShipmentView() {
                 <div className="w-9 h-9 rounded-xl bg-red-50 text-[#DC2626] flex items-center justify-center">
                   <Package className="w-4 h-4 text-[#DC2626]" />
                 </div>
-                <h3 className="text-sm font-bold text-slate-900 group-hover:text-[#DC2626] transition-colors">
+                <h3 className="text-sm font-bold text-[#0F172A] group-hover:text-[#DC2626] transition-colors">
                   Textile Logistics
                 </h3>
                 <p className="text-xs text-slate-500 leading-relaxed font-normal">
@@ -1008,7 +1036,7 @@ export function TrackShipmentView() {
                 <div className="w-9 h-9 rounded-xl bg-red-50 text-[#DC2626] flex items-center justify-center">
                   <Building2 className="w-4 h-4 text-[#DC2626]" />
                 </div>
-                <h3 className="text-sm font-bold text-slate-900 group-hover:text-[#DC2626] transition-colors">
+                <h3 className="text-sm font-bold text-[#0F172A] group-hover:text-[#DC2626] transition-colors">
                   Business Solutions
                 </h3>
                 <p className="text-xs text-slate-500 leading-relaxed font-normal">
@@ -1029,7 +1057,7 @@ export function TrackShipmentView() {
                 <div className="w-9 h-9 rounded-xl bg-red-50 text-[#DC2626] flex items-center justify-center">
                   <HelpCircle className="w-4 h-4 text-[#DC2626]" />
                 </div>
-                <h3 className="text-sm font-bold text-slate-900 group-hover:text-[#DC2626] transition-colors">
+                <h3 className="text-sm font-bold text-[#0F172A] group-hover:text-[#DC2626] transition-colors">
                   Dispatch Desk
                 </h3>
                 <p className="text-xs text-slate-500 leading-relaxed font-normal">

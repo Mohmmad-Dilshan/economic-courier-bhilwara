@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
 import {
   Building2,
@@ -49,63 +50,80 @@ export function BusinessSolutionsView() {
             </div>
           </div>
 
-          {/* Hero Content (Clean, Luminous, Pure Text & Action • Zero Dark Cards) */}
-          <div className="max-w-4xl space-y-5 sm:space-y-6">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-red-50 border border-red-200 text-[#DC2626] text-xs font-black tracking-wider uppercase">
-              <Briefcase className="w-3.5 h-3.5 text-[#DC2626]" />
-              <span>B2B &amp; CORPORATE COURIER ACCOUNTS</span>
+          {/* Hero Content: 2-Column Split (Left: Authentic Text & Actions • Right: 3D Delivery Duo Objects) */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 xl:gap-12 items-center">
+            {/* Left Column (7 cols): Copy, Feature Badges & CTAs */}
+            <div className="lg:col-span-7 xl:col-span-7 space-y-5 sm:space-y-6">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-red-50 border border-red-200 text-[#DC2626] text-xs font-black tracking-wider uppercase">
+                <Briefcase className="w-3.5 h-3.5 text-[#DC2626]" />
+                <span>B2B &amp; CORPORATE COURIER ACCOUNTS</span>
+              </div>
+
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-[#0F172A] leading-[1.15]">
+                Bhilwara Ke Businesses &amp; Factories Ke Liye{' '}
+                <span className="text-[#DC2626]">Dedicated Courier Solutions.</span>
+              </h1>
+
+              <p className="text-sm sm:text-base lg:text-lg text-slate-600 leading-relaxed font-normal">
+                Rozana counter aane aur cash payment ki jhanjhat khatam. Textile weaving mills,
+                garment units, machinery traders, aur corporate offices ke liye daily scheduled
+                doorstep pickup, priority commercial trade corridors, aur monthly consolidated GST billing.
+              </p>
+
+              {/* Quick Feature Badges (Balanced 2x2 Grid) */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1 text-xs font-bold text-slate-700">
+                <div className="flex items-center gap-2.5 p-3 rounded-xl bg-slate-50 border border-slate-200/90 shadow-2xs">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                  <span>Daily Factory/Office Pickup</span>
+                </div>
+                <div className="flex items-center gap-2.5 p-3 rounded-xl bg-slate-50 border border-slate-200/90 shadow-2xs">
+                  <Receipt className="w-4 h-4 text-emerald-600 shrink-0" />
+                  <span>Monthly Consolidated GST Bill</span>
+                </div>
+                <div className="flex items-center gap-2.5 p-3 rounded-xl bg-slate-50 border border-slate-200/90 shadow-2xs">
+                  <Truck className="w-4 h-4 text-[#DC2626] shrink-0" />
+                  <span>Priority Linehauls (Surat/Delhi)</span>
+                </div>
+                <div className="flex items-center gap-2.5 p-3 rounded-xl bg-slate-50 border border-slate-200/90 shadow-2xs">
+                  <Globe className="w-4 h-4 text-[#DC2626] shrink-0" />
+                  <span>Worldwide Air Express Cargo</span>
+                </div>
+              </div>
+
+              {/* Call to Actions */}
+              <div className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+                <Link
+                  href="/contact?service=business#inquiry-form"
+                  className="inline-flex items-center justify-center gap-2 bg-[#DC2626] hover:bg-[#B91C1C] text-white text-xs sm:text-sm font-bold px-6 py-3.5 rounded-xl shadow-md transition-all active:scale-95 cursor-pointer whitespace-nowrap"
+                >
+                  <span>Open Business Account / Inquire</span>
+                  <ArrowRight className="w-4 h-4 text-white" />
+                </Link>
+
+                <a
+                  href="https://wa.me/918955144444?text=Hello%20Economic%20Courier%20Bhilwara,%20I%20want%20to%20inquire%20about%20a%20Business%20Courier%20Account."
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white text-xs sm:text-sm font-bold px-5 py-3.5 rounded-xl shadow-md transition-all active:scale-95 cursor-pointer whitespace-nowrap"
+                >
+                  <MessageCircle className="w-4 h-4 text-white" />
+                  <span>WhatsApp Commercial Desk</span>
+                </a>
+              </div>
             </div>
 
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-slate-900 leading-[1.15]">
-              Bhilwara Ke Businesses &amp; Factories Ke Liye{' '}
-              <span className="text-[#DC2626]">Dedicated Courier Solutions.</span>
-            </h1>
-
-            <p className="text-sm sm:text-base lg:text-lg text-slate-600 leading-relaxed font-normal max-w-3xl">
-              Rozana counter aane aur cash payment ki jhanjhat khatam. Textile weaving mills,
-              garment units, machinery traders, aur corporate offices ke liye daily scheduled
-              doorstep pickup, priority commercial trade corridors, aur monthly consolidated GST billing.
-            </p>
-
-            {/* Quick Feature Badges (Balanced 4 Columns) */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 pt-1 text-xs font-bold text-slate-700">
-              <div className="flex items-center gap-2.5 p-3 rounded-xl bg-slate-50 border border-slate-200/90 shadow-2xs">
-                <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
-                <span>Daily Factory/Office Pickup</span>
+            {/* Right Column (5 cols): Pure Floating 3D Delivery Boy Rider (Zero Card Box • Balanced Header) */}
+            <div className="lg:col-span-5 xl:col-span-5 relative flex items-center justify-center lg:justify-end select-none pointer-events-none py-2 lg:py-0">
+              <div className="relative w-full max-w-[280px] xs:max-w-[320px] sm:max-w-[360px] lg:max-w-[420px] xl:max-w-[460px] transition-transform duration-500 hover:scale-[1.03] filter drop-shadow-[0_20px_35px_rgba(15,23,42,0.14)]">
+                <Image
+                  src="/assets/services/ecs-scooter-rider-facing-inward.webp"
+                  alt="eCS World Wide Express Scooter Delivery Rider Object"
+                  width={645}
+                  height={550}
+                  priority
+                  className="w-full h-auto object-contain"
+                />
               </div>
-              <div className="flex items-center gap-2.5 p-3 rounded-xl bg-slate-50 border border-slate-200/90 shadow-2xs">
-                <Receipt className="w-4 h-4 text-emerald-600 shrink-0" />
-                <span>Monthly Consolidated GST Bill</span>
-              </div>
-              <div className="flex items-center gap-2.5 p-3 rounded-xl bg-slate-50 border border-slate-200/90 shadow-2xs">
-                <Truck className="w-4 h-4 text-[#DC2626] shrink-0" />
-                <span>Priority Linehauls (Surat/Delhi)</span>
-              </div>
-              <div className="flex items-center gap-2.5 p-3 rounded-xl bg-slate-50 border border-slate-200/90 shadow-2xs">
-                <Globe className="w-4 h-4 text-[#DC2626] shrink-0" />
-                <span>Worldwide Air Express Cargo</span>
-              </div>
-            </div>
-
-            {/* Call to Actions */}
-            <div className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
-              <Link
-                href="/contact?service=business#inquiry-form"
-                className="inline-flex items-center justify-center gap-2 bg-[#DC2626] hover:bg-[#B91C1C] text-white text-xs sm:text-sm font-bold px-6 py-3.5 rounded-xl shadow-md transition-all active:scale-95 cursor-pointer whitespace-nowrap"
-              >
-                <span>Open Business Account / Inquire</span>
-                <ArrowRight className="w-4 h-4 text-white" />
-              </Link>
-
-              <a
-                href="https://wa.me/918955144444?text=Hello%20Economic%20Courier%20Bhilwara,%20I%20want%20to%20inquire%20about%20a%20Business%20Courier%20Account."
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white text-xs sm:text-sm font-bold px-5 py-3.5 rounded-xl shadow-md transition-all active:scale-95 cursor-pointer whitespace-nowrap"
-              >
-                <MessageCircle className="w-4 h-4 text-white" />
-                <span>WhatsApp Commercial Desk</span>
-              </a>
             </div>
           </div>
         </div>
@@ -120,8 +138,8 @@ export function BusinessSolutionsView() {
             <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-[#DC2626] block">
               BUSINESS ADVANTAGES
             </span>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-900 tracking-tight">
-              Aapke Business Ko Kya-Kya Suvidha Milegi?
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-[#0F172A] tracking-tight">
+              Aapke Business Ko <span className="text-[#DC2626]">Kya-Kya Suvidha Milegi?</span>
             </h2>
             <p className="text-xs sm:text-sm text-slate-600 font-normal">
               Bhilwara ke regular vyapar aur factory owners ke liye structured services:
@@ -134,7 +152,7 @@ export function BusinessSolutionsView() {
               <div className="w-12 h-12 rounded-xl bg-red-50 text-[#DC2626] flex items-center justify-center border border-red-100 group-hover:scale-105 transition-transform">
                 <Clock className="w-6 h-6 text-[#DC2626]" />
               </div>
-              <h3 className="text-lg font-bold text-slate-900 group-hover:text-[#DC2626] transition-colors">
+              <h3 className="text-lg font-bold text-[#0F172A] group-hover:text-[#DC2626] transition-colors">
                 Daily Scheduled Doorstep Pickup
               </h3>
               <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
@@ -151,7 +169,7 @@ export function BusinessSolutionsView() {
               <div className="w-12 h-12 rounded-xl bg-red-50 text-[#DC2626] flex items-center justify-center border border-red-100 group-hover:scale-105 transition-transform">
                 <Receipt className="w-6 h-6 text-[#DC2626]" />
               </div>
-              <h3 className="text-lg font-bold text-slate-900 group-hover:text-[#DC2626] transition-colors">
+              <h3 className="text-lg font-bold text-[#0F172A] group-hover:text-[#DC2626] transition-colors">
                 Monthly Billing &amp; GST Invoicing
               </h3>
               <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
@@ -168,7 +186,7 @@ export function BusinessSolutionsView() {
               <div className="w-12 h-12 rounded-xl bg-red-50 text-[#DC2626] flex items-center justify-center border border-red-100 group-hover:scale-105 transition-transform">
                 <Truck className="w-6 h-6 text-[#DC2626]" />
               </div>
-              <h3 className="text-lg font-bold text-slate-900 group-hover:text-[#DC2626] transition-colors">
+              <h3 className="text-lg font-bold text-[#0F172A] group-hover:text-[#DC2626] transition-colors">
                 Priority Commercial Trade Corridors
               </h3>
               <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
@@ -185,7 +203,7 @@ export function BusinessSolutionsView() {
               <div className="w-12 h-12 rounded-xl bg-red-50 text-[#DC2626] flex items-center justify-center border border-red-100 group-hover:scale-105 transition-transform">
                 <ShieldCheck className="w-6 h-6 text-[#DC2626]" />
               </div>
-              <h3 className="text-lg font-bold text-slate-900 group-hover:text-[#DC2626] transition-colors">
+              <h3 className="text-lg font-bold text-[#0F172A] group-hover:text-[#DC2626] transition-colors">
                 Tamper-Evident &amp; Swatch Safety
               </h3>
               <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
@@ -202,7 +220,7 @@ export function BusinessSolutionsView() {
               <div className="w-12 h-12 rounded-xl bg-red-50 text-[#DC2626] flex items-center justify-center border border-red-100 group-hover:scale-105 transition-transform">
                 <Headphones className="w-6 h-6 text-[#DC2626]" />
               </div>
-              <h3 className="text-lg font-bold text-slate-900 group-hover:text-[#DC2626] transition-colors">
+              <h3 className="text-lg font-bold text-[#0F172A] group-hover:text-[#DC2626] transition-colors">
                 Dedicated Account Desk (No Bots)
               </h3>
               <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
@@ -219,7 +237,7 @@ export function BusinessSolutionsView() {
               <div className="w-12 h-12 rounded-xl bg-red-50 text-[#DC2626] flex items-center justify-center border border-red-100 group-hover:scale-105 transition-transform">
                 <FileText className="w-6 h-6 text-[#DC2626]" />
               </div>
-              <h3 className="text-lg font-bold text-slate-900 group-hover:text-[#DC2626] transition-colors">
+              <h3 className="text-lg font-bold text-[#0F172A] group-hover:text-[#DC2626] transition-colors">
                 Proof of Delivery (POD) Receipts
               </h3>
               <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
@@ -243,8 +261,8 @@ export function BusinessSolutionsView() {
             <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-[#DC2626] block">
               TARGET COMMERCIAL SECTORS
             </span>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-900 tracking-tight">
-              Aapka Business Kis Category Mein Aata Hai?
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-[#0F172A] tracking-tight">
+              Aapka Business <span className="text-[#DC2626]">Kis Category Mein Aata Hai?</span>
             </h2>
             <p className="text-xs sm:text-sm text-slate-600 font-normal">
               Bhilwara ke industrial aur commercial trade ke liye tailor-made logistics handling:
@@ -262,7 +280,7 @@ export function BusinessSolutionsView() {
                   <span className="text-[10px] font-mono font-bold uppercase text-[#DC2626] tracking-wider block mb-0.5">
                     WEAVING &amp; SYNTHETICS
                   </span>
-                  <h3 className="text-base font-extrabold text-slate-900 group-hover:text-[#DC2626] transition-colors">
+                  <h3 className="text-base font-extrabold text-[#0F172A] group-hover:text-[#DC2626] transition-colors">
                     Textile &amp; Weaving Mills
                   </h3>
                 </div>
@@ -288,7 +306,7 @@ export function BusinessSolutionsView() {
                   <span className="text-[10px] font-mono font-bold uppercase text-[#DC2626] tracking-wider block mb-0.5">
                     APPAREL EXPORT
                   </span>
-                  <h3 className="text-base font-extrabold text-slate-900 group-hover:text-[#DC2626] transition-colors">
+                  <h3 className="text-base font-extrabold text-[#0F172A] group-hover:text-[#DC2626] transition-colors">
                     Garment &amp; Apparel Exporters
                   </h3>
                 </div>
@@ -314,7 +332,7 @@ export function BusinessSolutionsView() {
                   <span className="text-[10px] font-mono font-bold uppercase text-[#DC2626] tracking-wider block mb-0.5">
                     COMMERCIAL TRADE
                   </span>
-                  <h3 className="text-base font-extrabold text-slate-900 group-hover:text-[#DC2626] transition-colors">
+                  <h3 className="text-base font-extrabold text-[#0F172A] group-hover:text-[#DC2626] transition-colors">
                     Wholesalers &amp; Machinery Spares
                   </h3>
                 </div>
@@ -340,7 +358,7 @@ export function BusinessSolutionsView() {
                   <span className="text-[10px] font-mono font-bold uppercase text-[#DC2626] tracking-wider block mb-0.5">
                     LEGAL &amp; CORPORATE
                   </span>
-                  <h3 className="text-base font-extrabold text-slate-900 group-hover:text-[#DC2626] transition-colors">
+                  <h3 className="text-base font-extrabold text-[#0F172A] group-hover:text-[#DC2626] transition-colors">
                     CA, Legal &amp; Corporate Offices
                   </h3>
                 </div>
@@ -368,8 +386,8 @@ export function BusinessSolutionsView() {
             <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-[#DC2626] block">
               DAILY TRADE CORRIDORS
             </span>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-900 tracking-tight">
-              Bhilwara Se Sabse Zyaada Dispatch Hone Wale Routes
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-[#0F172A] tracking-tight">
+              Bhilwara Se Sabse Zyaada <span className="text-[#DC2626]">Dispatch Hone Wale Routes.</span>
             </h2>
             <p className="text-xs sm:text-sm text-slate-600 font-normal">
               In trade corridors par hamara daily consignment movement hota hai:
@@ -385,7 +403,7 @@ export function BusinessSolutionsView() {
                 </span>
                 <span className="text-xs font-bold text-emerald-600">Next-Day Delivery</span>
               </div>
-              <h3 className="text-lg font-black text-slate-900">
+              <h3 className="text-lg font-black text-[#0F172A]">
                 Surat &amp; Ahmedabad
               </h3>
               <p className="text-xs text-slate-600 leading-relaxed font-normal">
@@ -402,7 +420,7 @@ export function BusinessSolutionsView() {
                 </span>
                 <span className="text-xs font-bold text-emerald-600">Priority Linehaul</span>
               </div>
-              <h3 className="text-lg font-black text-slate-900">
+              <h3 className="text-lg font-black text-[#0F172A]">
                 Delhi NCR, Gurgaon &amp; Noida
               </h3>
               <p className="text-xs text-slate-600 leading-relaxed font-normal">
@@ -419,7 +437,7 @@ export function BusinessSolutionsView() {
                 </span>
                 <span className="text-xs font-bold text-emerald-600">Express Air / Surface</span>
               </div>
-              <h3 className="text-lg font-black text-slate-900">
+              <h3 className="text-lg font-black text-[#0F172A]">
                 Mumbai, Pune &amp; Maharashtra
               </h3>
               <p className="text-xs text-slate-600 leading-relaxed font-normal">
@@ -436,7 +454,7 @@ export function BusinessSolutionsView() {
                 </span>
                 <span className="text-xs font-bold text-emerald-600">Same-Day / Next-Day</span>
               </div>
-              <h3 className="text-lg font-black text-slate-900">
+              <h3 className="text-lg font-black text-[#0F172A]">
                 Jaipur, Jodhpur, Kota &amp; Udaipur
               </h3>
               <p className="text-xs text-slate-600 leading-relaxed font-normal">
@@ -453,7 +471,7 @@ export function BusinessSolutionsView() {
                 </span>
                 <span className="text-xs font-bold text-emerald-600">Pan-India Express</span>
               </div>
-              <h3 className="text-lg font-black text-slate-900">
+              <h3 className="text-lg font-black text-[#0F172A]">
                 Bangalore, Chennai &amp; Hyderabad
               </h3>
               <p className="text-xs text-slate-600 leading-relaxed font-normal">
@@ -470,7 +488,7 @@ export function BusinessSolutionsView() {
                 </span>
                 <span className="text-xs font-bold text-emerald-600">Air Cargo Express</span>
               </div>
-              <h3 className="text-lg font-black text-slate-900">
+              <h3 className="text-lg font-black text-[#0F172A]">
                 UAE, USA, Europe &amp; Global Hubs
               </h3>
               <p className="text-xs text-slate-600 leading-relaxed font-normal">
@@ -491,8 +509,8 @@ export function BusinessSolutionsView() {
             <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-[#DC2626] block">
               SIMPLE ONBOARDING
             </span>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-900 tracking-tight">
-              Aapka Business Account Kaise Start Hoga?
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-[#0F172A] tracking-tight">
+              Aapka Business Account <span className="text-[#DC2626]">Kaise Start Hoga?</span>
             </h2>
             <p className="text-xs sm:text-sm text-slate-600 font-normal">
               Bina kisi lambe paperwork ke sirf 3 aasan steps mein commercial pickup shuru:
@@ -505,7 +523,7 @@ export function BusinessSolutionsView() {
               <div className="w-10 h-10 rounded-xl bg-red-50 text-[#DC2626] font-extrabold flex items-center justify-center text-sm border border-red-100">
                 01
               </div>
-              <h3 className="text-base font-extrabold text-slate-900">
+              <h3 className="text-base font-extrabold text-[#0F172A]">
                 Requirement Share Kijiye
               </h3>
               <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
@@ -519,7 +537,7 @@ export function BusinessSolutionsView() {
               <div className="w-10 h-10 rounded-xl bg-red-50 text-[#DC2626] font-extrabold flex items-center justify-center text-sm border border-red-100">
                 02
               </div>
-              <h3 className="text-base font-extrabold text-slate-900">
+              <h3 className="text-base font-extrabold text-[#0F172A]">
                 Custom Rates &amp; Pickup Time Fix
               </h3>
               <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
@@ -533,7 +551,7 @@ export function BusinessSolutionsView() {
               <div className="w-10 h-10 rounded-xl bg-red-50 text-[#DC2626] font-extrabold flex items-center justify-center text-sm border border-red-100">
                 03
               </div>
-              <h3 className="text-base font-extrabold text-slate-900">
+              <h3 className="text-base font-extrabold text-[#0F172A]">
                 Daily Dispatch &amp; Month-End Bill
               </h3>
               <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">

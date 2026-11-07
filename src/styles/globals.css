@@ -60,7 +60,7 @@
     background-color: #FFFFFF;
     min-height: 100%;
     width: 100%;
-    overflow-x: hidden;
+    overflow-x: clip;
   }
 
   body {
@@ -75,7 +75,6 @@
     -moz-osx-font-smoothing: grayscale;
     min-height: 100%;
     width: 100%;
-    overflow-x: hidden;
   }
 
   /* Accessible focus ring */

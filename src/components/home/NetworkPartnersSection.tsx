@@ -341,10 +341,10 @@ export function NetworkPartnersSection() {
                   {/* Category Badge & Status */}
                   <div className="flex items-center justify-between gap-1 flex-wrap">
                     <span
-                      className={`inline-flex items-center gap-1 text-[8.5px] sm:text-[10px] font-mono font-bold tracking-tight uppercase px-1.5 sm:px-2 py-0.5 rounded-md border ${meta.pill} truncate max-w-full`}
+                      className={`inline-flex items-center gap-1 text-[8.5px] sm:text-[10px] font-mono font-bold tracking-tight uppercase px-1.5 sm:px-2 py-0.5 rounded-md border ${meta.pill} max-w-full`}
                     >
                       <span className={`w-1 h-1 sm:w-1.5 sm:h-1.5 rounded-full ${meta.dot} shrink-0`} />
-                      <span className="truncate">{partner.categoryLabel}</span>
+                      <span>{partner.categoryLabel}</span>
                     </span>
 
                     {isDirect ? (
@@ -363,10 +363,10 @@ export function NetworkPartnersSection() {
 
                   {/* Partner Name & Role */}
                   <div className="space-y-1 pt-0.5">
-                    <h3 className="text-xs sm:text-base lg:text-lg font-black tracking-tight text-[#0F172A] group-hover:text-[#DC2626] transition-colors duration-200 leading-snug line-clamp-1 sm:line-clamp-none">
+                    <h3 className="text-xs sm:text-base lg:text-lg font-black tracking-tight text-[#0F172A] group-hover:text-[#DC2626] transition-colors duration-200 leading-snug">
                       {partner.name}
                     </h3>
-                    <p className="text-[10px] sm:text-xs text-slate-600 leading-snug sm:leading-relaxed font-normal line-clamp-2 sm:line-clamp-none">
+                    <p className="text-[10px] sm:text-xs text-slate-600 leading-snug sm:leading-relaxed font-normal">
                       {partner.roleDescription}
                     </p>
                   </div>

@@ -19,6 +19,8 @@ import {
   Image as ImageIcon,
   ChevronLeft,
   ChevronRight,
+  ChevronDown,
+  Filter,
   LayoutGrid,
   Rows,
 } from 'lucide-react';
@@ -194,12 +196,6 @@ const GALLERY_PHOTOS: GalleryPhoto[] = [
   },
 ];
 
-const PHOTO_CATEGORY_BADGES: Record<GalleryPhoto['category'], string> = {
-  hub: 'HUB & COUNTER',
-  textile: 'TEXTILE LOGISTICS',
-  fleet: 'EXPRESS FLEET',
-};
-
 // ─── Reusable Editorial Photo Card Component ──────────────────────────────────
 interface EditorialPhotoCardProps {
   photo: GalleryPhoto;
@@ -242,23 +238,8 @@ function EditorialPhotoCard({
         className="object-cover group-hover:scale-[1.04] transition-transform duration-700 ease-out"
       />
 
-      {/* Mobile App Bottom Info Card (App Feed Look) */}
-      <div className="absolute inset-x-0 bottom-0 p-2 sm:p-2.5 bg-gradient-to-t from-slate-950/85 via-slate-950/40 to-transparent pointer-events-none">
-        <div className="flex items-center justify-between gap-1">
-          <span className="px-1.5 py-0.5 rounded-md bg-white/20 backdrop-blur-md text-[9px] sm:text-[10px] font-extrabold uppercase tracking-wider text-white border border-white/20">
-            {PHOTO_CATEGORY_BADGES[photo.category]}
-          </span>
-          <span className="text-[10px] text-white/80 font-mono font-bold">
-            #{index + 1}
-          </span>
-        </div>
-        <p className="text-[11px] sm:text-xs font-semibold text-white truncate mt-0.5 sm:mt-1 drop-shadow-xs">
-          {photo.title}
-        </p>
-      </div>
-
-      {/* Desktop Hover Veil & Maximize Icon */}
-      <div className="hidden sm:flex absolute inset-0 bg-slate-950/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 items-center justify-center pointer-events-none">
+      {/* Pure Editorial Hover Veil & Maximize Icon */}
+      <div className="absolute inset-0 bg-slate-950/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center pointer-events-none">
         <span className="w-10 h-10 rounded-full bg-white/35 backdrop-blur-md flex items-center justify-center text-white shadow-xl transform scale-90 group-hover:scale-100 transition-transform duration-300">
           <Maximize2 className="w-4 h-4" />
         </span>
@@ -513,19 +494,8 @@ export function GalleryView() {
       {/* =========================================================================
           1. HERO SECTION WITH PURE PANORAMIC VISUAL BANNER (NO TEXT OVERLAY)
           ========================================================================= */}
-      <section className="relative pt-6 sm:pt-8 lg:pt-10 pb-6 sm:pb-10 bg-white border-b border-slate-200">
-        <div className="max-w-[1240px] xl:max-w-[1360px] 2xl:max-w-[1480px] min-[1800px]:max-w-[1560px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 space-y-4 sm:space-y-6">
-          {/* Breadcrumb Navigation */}
-          <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-xs font-semibold text-slate-500">
-            <Link href="/" className="hover:text-[#DC2626] transition-colors">
-              Home
-            </Link>
-            <span className="text-slate-300">/</span>
-            <span className="text-slate-900 font-bold" aria-current="page">
-              Operations Gallery
-            </span>
-          </nav>
-
+      <section className="relative pt-4 sm:pt-6 lg:pt-8 pb-6 sm:pb-10 bg-white border-b border-slate-200">
+        <div className="max-w-[1240px] xl:max-w-[1360px] 2xl:max-w-[1480px] min-[1800px]:max-w-[1560px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-10">
           {/* Full-Width Panoramic Visual Banner Card (Pure Image Only) */}
           <div className="relative w-full rounded-2xl sm:rounded-3xl overflow-hidden border border-slate-200 shadow-md bg-slate-950 aspect-[16/9] sm:aspect-[2/1]">
             <Image
@@ -550,7 +520,36 @@ export function GalleryView() {
           ========================================================================= */}
       <section className="sticky top-[67px] sm:top-[71px] lg:top-[75px] z-30 py-2.5 sm:py-3 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-2xs">
         <div className="max-w-[1240px] xl:max-w-[1360px] 2xl:max-w-[1480px] min-[1800px]:max-w-[1560px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 flex items-center justify-between gap-3">
-          <div className="flex items-center gap-1.5 sm:gap-2 overflow-x-auto no-scrollbar py-0.5 w-full sm:w-auto scroll-smooth">
+          {/* 1. Mobile App Native Dropdown Picker (Single Sleek Row • No Stacking) */}
+          <div className="block sm:hidden w-full">
+            <div className="relative flex items-center">
+              <div className="absolute left-3.5 flex items-center gap-1.5 pointer-events-none text-[#DC2626]">
+                <Filter className="w-4 h-4 text-[#DC2626]" />
+                <span className="text-[11px] font-extrabold uppercase tracking-wider text-slate-500">
+                  Filter:
+                </span>
+              </div>
+              <select
+                id="gallery-category-select"
+                aria-label="Filter gallery media category"
+                value={activeTab}
+                onChange={(e) => setActiveTab(e.target.value as 'all' | 'reels' | 'photos' | 'hub' | 'fleet')}
+                className="w-full pl-[78px] pr-10 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200/70 border border-slate-200 text-xs font-bold text-slate-900 shadow-2xs appearance-none focus:outline-hidden focus:ring-2 focus:ring-[#DC2626] transition-all cursor-pointer font-sans"
+              >
+                <option value="all">All Media ({GALLERY_VIDEOS.length + GALLERY_PHOTOS.length})</option>
+                <option value="reels">Video Reels ({GALLERY_VIDEOS.length})</option>
+                <option value="photos">Photos ({GALLERY_PHOTOS.length})</option>
+                <option value="hub">Hub &amp; Office Counter</option>
+                <option value="fleet">Fleet &amp; Textiles</option>
+              </select>
+              <div className="absolute right-3.5 flex items-center pointer-events-none text-slate-500">
+                <ChevronDown className="w-4 h-4" />
+              </div>
+            </div>
+          </div>
+
+          {/* 2. Desktop / Tablet Horizontal Category Filter Pills */}
+          <div className="hidden sm:flex items-center gap-1.5 sm:gap-2">
             <button
               type="button"
               onClick={() => setActiveTab('all')}
@@ -635,8 +634,8 @@ export function GalleryView() {
                   <Film className="w-3.5 h-3.5 text-[#DC2626]" />
                   <span>AUTHENTIC VIDEO FOOTAGE</span>
                 </div>
-                <h2 className="text-xl sm:text-2xl lg:text-3xl font-black text-slate-900 tracking-tight">
-                  Featured Operations Reels
+                <h2 className="text-xl sm:text-2xl lg:text-3xl font-black text-[#0F172A] tracking-tight">
+                  Featured <span className="text-[#DC2626]">Operations Reels</span>
                 </h2>
               </div>
               <p className="text-xs text-slate-500 font-medium">
@@ -671,8 +670,8 @@ export function GalleryView() {
                   <Camera className="w-3.5 h-3.5 text-[#DC2626]" />
                   <span>OPERATIONS PHOTOGRAPHY ARCHIVE</span>
                 </div>
-                <h2 className="text-xl sm:text-2xl lg:text-3xl font-black text-slate-900 tracking-tight">
-                  Ground Photos ({filteredPhotos.length})
+                <h2 className="text-xl sm:text-2xl lg:text-3xl font-black text-[#0F172A] tracking-tight">
+                  Ground Operations <span className="text-[#DC2626]">Photos</span> ({filteredPhotos.length})
                 </h2>
               </div>
 

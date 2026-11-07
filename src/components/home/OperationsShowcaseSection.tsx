@@ -104,20 +104,20 @@ export function OperationsShowcaseSection() {
     <section className="relative py-12 sm:py-16 lg:py-20 bg-[#F8FAFC] border-y border-slate-200/80 overflow-hidden select-none">
       <div className="max-w-[1240px] xl:max-w-[1360px] 2xl:max-w-[1480px] min-[1800px]:max-w-[1560px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 mb-8 sm:mb-10 text-center">
         {/* Top Badge */}
-        <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-red-50 border border-red-200 text-[#DC2626] text-[11px] font-extrabold tracking-wider uppercase shadow-2xs mb-3">
+        <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-red-50 border border-red-200/90 text-[#DC2626] text-[11px] font-extrabold tracking-wider uppercase shadow-2xs mb-3">
           <span className="w-2 h-2 rounded-full bg-[#DC2626] animate-pulse" />
           <Camera className="w-3.5 h-3.5 text-[#DC2626]" />
-          <span>GROUND OPERATIONS SHOWCASE · BHILWARA IN ACTION</span>
+          <span>BHILWARA HUB LIVE SHOWCASE · GROUND OPERATIONS</span>
         </div>
 
-        {/* Section Heading */}
-        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-900 tracking-tight">
-          Real Operations. In Continuous Motion.
+        {/* Section Heading in Bold Dark Blue with Brand Red Highlight */}
+        <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-[40px] font-black tracking-tight text-[#1E3A8A] leading-tight">
+          Ground Operations &amp; <span className="text-[#DC2626]">Daily Courier Dispatches.</span>
         </h2>
 
-        {/* Subtitle */}
-        <p className="text-xs sm:text-sm lg:text-base text-slate-600 max-w-2xl mx-auto mt-2 leading-relaxed">
-          Daily parcel intake, specialized textile strapping, express van handoffs, and daily interstate linehaul dispatches opposite New Cloth Market.
+        {/* Subtitle with Clear, Natural Meaning */}
+        <p className="text-xs sm:text-sm lg:text-base text-slate-600 max-w-2xl mx-auto mt-2.5 leading-relaxed font-normal">
+          Bhilwara Central Hub (Opp. New Cloth Market) se parcel intake, textile sample packaging, express delivery vans, aur daily highway linehauls in action.
         </p>
       </div>
 

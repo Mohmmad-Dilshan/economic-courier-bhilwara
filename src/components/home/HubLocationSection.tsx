@@ -64,7 +64,7 @@ export function HubLocationSection() {
               <MapPin className="w-3.5 h-3.5 text-red-700" />
               <span>CENTRAL BHILWARA HUB &amp; COUNTER</span>
             </div>
-            <h2 className="text-2xl sm:text-3xl lg:text-[36px] xl:text-[38px] font-black tracking-[-0.03em] text-slate-900 leading-[1.18]">
+            <h2 className="text-2xl sm:text-3xl lg:text-[36px] xl:text-[38px] font-black tracking-[-0.03em] text-[#0F172A] leading-[1.18]">
               Visit Our Central Dispatch Hub <br className="hidden sm:inline" />
               <span className="text-[#DC2626]">
                 Opposite New Cloth Market, Bhilwara
@@ -101,7 +101,7 @@ export function HubLocationSection() {
               {/* Hub Title & Status */}
               <div className="flex items-center justify-between gap-3 pb-5 border-b border-slate-100">
                 <div>
-                  <h3 className="text-lg sm:text-xl font-black text-slate-900 tracking-tight">
+                  <h3 className="text-lg sm:text-xl font-black text-[#0F172A] tracking-tight">
                     Economic Courier · Central Hub
                   </h3>
                   <p className="text-xs text-slate-500 font-medium mt-0.5">

@@ -140,10 +140,10 @@ export function Header() {
             >
               <BrandLogo size="md" />
               <div className="flex flex-col border-l border-slate-200/90 pl-2 sm:pl-3">
-                <span className="text-[10.5px] xs:text-[11.5px] sm:text-[12px] font-bold text-slate-800 tracking-tight leading-none group-hover:text-[#DC2626] transition-colors">
+                <span className="text-[10.5px] xs:text-[11.5px] sm:text-[12px] font-black text-[#0F172A] tracking-tight leading-none group-hover:text-[#DC2626] transition-colors">
                   Economic Courier
                 </span>
-                <span className="text-[8px] xs:text-[9px] sm:text-[10px] font-semibold text-slate-500 tracking-wider uppercase mt-0.5">
+                <span className="text-[8px] xs:text-[9px] sm:text-[10px] font-extrabold text-[#1E3A8A] tracking-wider uppercase mt-0.5">
                   Bhilwara Hub
                 </span>
               </div>
@@ -159,10 +159,10 @@ export function Header() {
                 href="/"
                 prefetch={false}
                 onClick={() => setActiveNav('Home')}
-                className={`relative py-1.5 px-2.5 xl:px-3 text-[13px] xl:text-[14px] font-semibold rounded-lg whitespace-nowrap transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-600 ${
+                className={`relative py-1.5 px-2.5 xl:px-3 text-[13px] xl:text-[14px] font-bold rounded-lg whitespace-nowrap transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-600 ${
                   isHomePage && activeNav === 'Home'
-                    ? 'text-[#DC2626] font-bold bg-red-50/70'
-                    : 'text-slate-600 hover:text-[#DC2626] hover:bg-red-50/40'
+                    ? 'text-[#DC2626] font-black bg-red-50/80'
+                    : 'text-[#0F172A] hover:text-[#DC2626] hover:bg-red-50/50'
                 }`}
               >
                 <span>Home</span>
@@ -187,10 +187,10 @@ export function Header() {
                     setActiveNav('Services');
                     setServicesDropdownOpen(false);
                   }}
-                  className={`relative py-1.5 px-2.5 xl:px-3 text-[13px] xl:text-[14px] font-semibold rounded-lg whitespace-nowrap transition-all inline-flex items-center gap-1.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-600 ${
+                  className={`relative py-1.5 px-2.5 xl:px-3 text-[13px] xl:text-[14px] font-bold rounded-lg whitespace-nowrap transition-all inline-flex items-center gap-1.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-600 ${
                     isServicesDropdownActive
-                      ? 'text-[#DC2626] font-bold bg-red-50/70'
-                      : 'text-slate-600 hover:text-[#DC2626] hover:bg-red-50/40'
+                      ? 'text-[#DC2626] font-black bg-red-50/80'
+                      : 'text-[#0F172A] hover:text-[#DC2626] hover:bg-red-50/50'
                   }`}
                   aria-expanded={servicesDropdownOpen}
                   aria-haspopup="true"
@@ -198,7 +198,7 @@ export function Header() {
                   <span>Services</span>
                   <ChevronDown
                     className={`w-3.5 h-3.5 transition-transform duration-200 ${
-                      servicesDropdownOpen ? 'rotate-180 text-[#DC2626]' : 'text-slate-400 group-hover:text-[#DC2626]'
+                      servicesDropdownOpen ? 'rotate-180 text-[#DC2626]' : 'text-slate-500 group-hover:text-[#DC2626]'
                     }`}
                   />
                   <span
@@ -227,7 +227,7 @@ export function Header() {
                       prefetch={false}
                       onClick={() => setServicesDropdownOpen(false)}
                       className={`flex items-start gap-3 p-2.5 rounded-xl transition-colors ${
-                        isServicesPage ? 'bg-red-50/80 text-[#DC2626]' : 'hover:bg-slate-50 text-slate-700 hover:text-[#DC2626]'
+                        isServicesPage ? 'bg-red-50/80 text-[#DC2626]' : 'hover:bg-slate-50 text-[#0F172A] hover:text-[#DC2626]'
                       }`}
                     >
                       <div className="w-8 h-8 rounded-lg bg-red-50 text-[#DC2626] flex items-center justify-center shrink-0 border border-red-100 mt-0.5">
@@ -246,7 +246,7 @@ export function Header() {
                       prefetch={false}
                       onClick={() => setServicesDropdownOpen(false)}
                       className={`flex items-start gap-3 p-2.5 rounded-xl transition-colors ${
-                        isBusinessSolutionsPage ? 'bg-red-50/80 text-[#DC2626]' : 'hover:bg-slate-50 text-slate-700 hover:text-[#DC2626]'
+                        isBusinessSolutionsPage ? 'bg-red-50/80 text-[#DC2626]' : 'hover:bg-slate-50 text-[#0F172A] hover:text-[#DC2626]'
                       }`}
                     >
                       <div className="w-8 h-8 rounded-lg bg-red-50 text-[#DC2626] flex items-center justify-center shrink-0 border border-red-100 mt-0.5">
@@ -281,10 +281,10 @@ export function Header() {
                 href="/textile-logistics"
                 prefetch={false}
                 onClick={() => setActiveNav('Textile Logistics')}
-                className={`relative py-1.5 px-2.5 xl:px-3 text-[13px] xl:text-[14px] font-semibold rounded-lg whitespace-nowrap transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-600 ${
+                className={`relative py-1.5 px-2.5 xl:px-3 text-[13px] xl:text-[14px] font-bold rounded-lg whitespace-nowrap transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-600 ${
                   isTextilePage
-                    ? 'text-[#DC2626] font-bold bg-red-50/70'
-                    : 'text-slate-600 hover:text-[#DC2626] hover:bg-red-50/40'
+                    ? 'text-[#DC2626] font-black bg-red-50/80'
+                    : 'text-[#0F172A] hover:text-[#DC2626] hover:bg-red-50/50'
                 }`}
               >
                 <span>Textile Logistics</span>
@@ -301,10 +301,10 @@ export function Header() {
                 href="/track-shipment"
                 prefetch={false}
                 onClick={() => setActiveNav('Track Shipment')}
-                className={`relative py-1.5 px-2.5 xl:px-3 text-[13px] xl:text-[14px] font-semibold rounded-lg whitespace-nowrap transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-600 ${
+                className={`relative py-1.5 px-2.5 xl:px-3 text-[13px] xl:text-[14px] font-bold rounded-lg whitespace-nowrap transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-600 ${
                   isTrackShipmentPage
-                    ? 'text-[#DC2626] font-bold bg-red-50/70'
-                    : 'text-slate-600 hover:text-[#DC2626] hover:bg-red-50/40'
+                    ? 'text-[#DC2626] font-black bg-red-50/80'
+                    : 'text-[#0F172A] hover:text-[#DC2626] hover:bg-red-50/50'
                 }`}
               >
                 <span>Track Shipment</span>
@@ -321,10 +321,10 @@ export function Header() {
                 href="/gallery"
                 prefetch={false}
                 onClick={() => setActiveNav('Gallery')}
-                className={`relative py-1.5 px-2.5 xl:px-3 text-[13px] xl:text-[14px] font-semibold rounded-lg whitespace-nowrap transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-600 ${
+                className={`relative py-1.5 px-2.5 xl:px-3 text-[13px] xl:text-[14px] font-bold rounded-lg whitespace-nowrap transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-600 ${
                   isGalleryPage
-                    ? 'text-[#DC2626] font-bold bg-red-50/70'
-                    : 'text-slate-600 hover:text-[#DC2626] hover:bg-red-50/40'
+                    ? 'text-[#DC2626] font-black bg-red-50/80'
+                    : 'text-[#0F172A] hover:text-[#DC2626] hover:bg-red-50/50'
                 }`}
               >
                 <span>Gallery</span>
@@ -341,10 +341,10 @@ export function Header() {
                 href="/about"
                 prefetch={false}
                 onClick={() => setActiveNav('About')}
-                className={`relative py-1.5 px-2.5 xl:px-3 text-[13px] xl:text-[14px] font-semibold rounded-lg whitespace-nowrap transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-600 ${
+                className={`relative py-1.5 px-2.5 xl:px-3 text-[13px] xl:text-[14px] font-bold rounded-lg whitespace-nowrap transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-600 ${
                   isAboutPage
-                    ? 'text-[#DC2626] font-bold bg-red-50/70'
-                    : 'text-slate-600 hover:text-[#DC2626] hover:bg-red-50/40'
+                    ? 'text-[#DC2626] font-black bg-red-50/80'
+                    : 'text-[#0F172A] hover:text-[#DC2626] hover:bg-red-50/50'
                 }`}
               >
                 <span>About</span>
@@ -431,10 +431,10 @@ export function Header() {
             >
               <BrandLogo size="sm" />
               <div className="flex flex-col border-l border-slate-200 pl-2.5 text-left">
-                <span className="text-[11px] font-black text-slate-900 tracking-tight leading-none">
+                <span className="text-[11px] font-black text-[#0F172A] tracking-tight leading-none">
                   Economic Courier
                 </span>
-                <span className="text-[8.5px] font-bold text-[#DC2626] tracking-wider uppercase mt-0.5">
+                <span className="text-[8.5px] font-extrabold text-[#1E3A8A] tracking-wider uppercase mt-0.5">
                   Bhilwara Central Hub
                 </span>
               </div>
@@ -487,7 +487,7 @@ export function Header() {
                       className={`text-[20px] xs:text-[23px] sm:text-[26px] font-black tracking-tight leading-tight transition-all duration-150 ${
                         isActive
                           ? 'text-[#DC2626] scale-105'
-                          : 'text-slate-900 group-hover:text-[#DC2626]'
+                          : 'text-[#0F172A] group-hover:text-[#DC2626]'
                       }`}
                     >
                       {link.label}

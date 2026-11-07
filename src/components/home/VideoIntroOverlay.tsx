@@ -1,13 +1,17 @@
 'use client';
 
 import React, { useState, useEffect, useRef, useCallback } from 'react';
-import { X, ArrowRight } from 'lucide-react';
+import { X, Play, Pause, Volume2, VolumeX, ArrowRight } from 'lucide-react';
 
 const STORAGE_KEY = 'ecs_intro_played_v1';
 
 export function VideoIntroOverlay() {
   const [isVisible, setIsVisible] = useState(false);
   const [isFading, setIsFading] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(true);
+  const [isMuted, setIsMuted] = useState(false);
+  const [currentTime, setCurrentTime] = useState(0);
+  const [duration, setDuration] = useState(30);
   const [progress, setProgress] = useState(0);
   const [canDismissByBackdrop, setCanDismissByBackdrop] = useState(false);
   const videoRef = useRef<HTMLVideoElement | null>(null);
@@ -108,36 +112,42 @@ export function VideoIntroOverlay() {
     const video = videoRef.current;
     if (!video) return;
 
-    // 1. Start playback reliably (browsers always permit muted autoplay)
-    video.muted = true;
-    const playPromise = video.play();
+    // Start with sound attempt
+    video.muted = false;
+    video.volume = 1.0;
 
+    const playPromise = video.play();
     if (playPromise !== undefined) {
       playPromise
         .then(() => {
-          // Video is rolling. Now attempt to unmute sound immediately.
-          try {
-            video.muted = false;
-            video.volume = 1.0;
-          } catch {
-            // Ignore if browser restricts initial unmuting
-          }
+          setIsPlaying(true);
+          setIsMuted(false);
         })
         .catch((err) => {
-          console.info('Autoplay notice:', err?.message || err);
-          // Crucial: DO NOT call handleClose! Keep the video modal open!
+          console.info('Initial unmuted play held by browser policy, falling back to muted autoplay:', err?.message || err);
+          // Fallback to muted playback so video plays immediately
+          video.muted = true;
+          video.play()
+            .then(() => {
+              setIsPlaying(true);
+              setIsMuted(true);
+            })
+            .catch(() => {
+              setIsPlaying(false);
+            });
         });
     }
 
-    // 2. Unmute voice instantly on the very first gesture anywhere
+    // Auto-unmute voice on any first user gesture on the window
     const unmuteVoice = () => {
       if (videoRef.current) {
         videoRef.current.muted = false;
         videoRef.current.volume = 1.0;
+        setIsMuted(false);
       }
     };
 
-    const gestureEvents = ['pointerdown', 'pointermove', 'touchstart', 'keydown', 'click'];
+    const gestureEvents = ['pointerdown', 'touchstart', 'click', 'keydown'];
     gestureEvents.forEach((evt) => {
       window.addEventListener(evt, unmuteVoice, { once: true });
     });
@@ -149,7 +159,40 @@ export function VideoIntroOverlay() {
     };
   }, [isVisible]);
 
-  // Keyboard escape to close
+  // Play / Pause toggle handler
+  const togglePlayPause = (e?: React.MouseEvent) => {
+    if (e) e.stopPropagation();
+    const video = videoRef.current;
+    if (!video) return;
+
+    if (video.paused) {
+      // Whenever user clicks Play/Resume, ensure sound is enabled
+      video.muted = false;
+      video.volume = 1.0;
+      setIsMuted(false);
+      video.play().then(() => {
+        setIsPlaying(true);
+      }).catch((err) => {
+        console.warn('Play error:', err);
+      });
+    } else {
+      video.pause();
+      setIsPlaying(false);
+    }
+  };
+
+  // Sound toggle handler
+  const toggleSound = (e?: React.MouseEvent) => {
+    if (e) e.stopPropagation();
+    const video = videoRef.current;
+    if (!video) return;
+    const nextMuted = !video.muted;
+    video.muted = nextMuted;
+    video.volume = 1.0;
+    setIsMuted(nextMuted);
+  };
+
+  // Keyboard controls: Space to play/pause, M to mute, Escape to close
   useEffect(() => {
     if (!isVisible) return;
 
@@ -157,6 +200,12 @@ export function VideoIntroOverlay() {
       if (e.key === 'Escape') {
         e.preventDefault();
         handleClose(false);
+      } else if (e.key === ' ' || e.code === 'Space') {
+        e.preventDefault();
+        togglePlayPause();
+      } else if (e.key === 'm' || e.key === 'M') {
+        e.preventDefault();
+        toggleSound();
       }
     };
 
@@ -165,9 +214,16 @@ export function VideoIntroOverlay() {
   }, [isVisible, handleClose]);
 
   const handleTimeUpdate = () => {
-    if (videoRef.current && videoRef.current.duration) {
-      const pct = (videoRef.current.currentTime / videoRef.current.duration) * 100;
-      setProgress(pct);
+    if (videoRef.current) {
+      const cur = videoRef.current.currentTime;
+      setCurrentTime(cur);
+      if (videoRef.current.duration) {
+        const dur = videoRef.current.duration;
+        setDuration(dur);
+        setProgress((cur / dur) * 100);
+      }
+      setIsPlaying(!videoRef.current.paused);
+      setIsMuted(videoRef.current.muted);
     }
   };
 
@@ -184,6 +240,22 @@ export function VideoIntroOverlay() {
     }
   };
 
+  const handleProgressSeek = (e: React.MouseEvent<HTMLDivElement>) => {
+    e.stopPropagation();
+    const video = videoRef.current;
+    if (!video || !video.duration) return;
+    const rect = e.currentTarget.getBoundingClientRect();
+    const clickX = e.clientX - rect.left;
+    const newPct = Math.max(0, Math.min(1, clickX / rect.width));
+    video.currentTime = newPct * video.duration;
+  };
+
+  const formatTime = (secs: number) => {
+    const m = Math.floor(secs / 60);
+    const s = Math.floor(secs % 60);
+    return `${m}:${s < 10 ? '0' : ''}${s}`;
+  };
+
   if (!isVisible) {
     return null;
   }
@@ -198,21 +270,14 @@ export function VideoIntroOverlay() {
         isFading ? 'opacity-0 pointer-events-none' : 'opacity-100'
       }`}
     >
-      {/* Light Premium Modal Card (Clean corporate white card matching website) */}
+      {/* Light Premium Modal Card */}
       <div
-        onClick={(e) => {
-          e.stopPropagation();
-          // Unmute on clicking inside card as well
-          if (videoRef.current) {
-            videoRef.current.muted = false;
-            videoRef.current.volume = 1.0;
-          }
-        }}
-        className={`relative w-full max-w-[860px] bg-white rounded-2xl sm:rounded-3xl overflow-hidden shadow-[0_25px_60px_-15px_rgba(15,23,42,0.35),0_0_0_1px_rgba(15,23,42,0.08)] flex flex-col transition-all duration-300 ease-out ${
+        onClick={(e) => e.stopPropagation()} // Stop click inside card from closing backdrop
+        className={`relative w-full max-w-[880px] bg-white rounded-2xl sm:rounded-3xl overflow-hidden shadow-[0_25px_60px_-15px_rgba(15,23,42,0.35),0_0_0_1px_rgba(15,23,42,0.08)] flex flex-col transition-all duration-300 ease-out ${
           isFading ? 'scale-95 translate-y-2' : 'scale-100 translate-y-0'
         }`}
       >
-        {/* Clean Header Bar */}
+        {/* Header Bar */}
         <div className="px-4 py-3 sm:px-6 sm:py-3.5 bg-white border-b border-slate-100 flex items-center justify-between z-10 shrink-0">
           {/* Brand Badge */}
           <div className="flex items-center gap-2 sm:gap-2.5">
@@ -243,14 +308,17 @@ export function VideoIntroOverlay() {
           </button>
         </div>
 
-        {/* Video Player Frame — 100% Clean (No buttons or text banners over video) */}
-        <div className="relative w-full aspect-video bg-black overflow-hidden flex items-center justify-center">
+        {/* Video Player Frame — Click on video toggles Play/Pause */}
+        <div
+          onClick={togglePlayPause}
+          className="relative w-full aspect-video bg-black overflow-hidden flex items-center justify-center cursor-pointer group"
+        >
           <video
             ref={videoRef}
             src="/assets/intro/economic-courier-intro.mp4"
             poster="/assets/intro/intro-poster.webp"
             autoPlay
-            muted
+            muted={isMuted}
             playsInline
             preload="auto"
             onEnded={handleEnded}
@@ -258,28 +326,86 @@ export function VideoIntroOverlay() {
             className="w-full h-full object-contain sm:object-cover"
           />
 
-          {/* Bottom Progress Bar inside Video Player */}
+          {/* Big Center Play Button Overlay when Paused */}
+          {!isPlaying && (
+            <div className="absolute inset-0 flex items-center justify-center bg-black/35 backdrop-blur-[1px] transition-opacity z-20">
+              <button
+                type="button"
+                onClick={togglePlayPause}
+                aria-label="Resume video"
+                className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-[#DC2626] hover:bg-[#B91C1C] text-white flex items-center justify-center shadow-2xl transition-transform hover:scale-110 active:scale-95 cursor-pointer"
+              >
+                <Play className="w-8 h-8 sm:w-10 sm:h-10 ml-1 fill-white" />
+              </button>
+            </div>
+          )}
+
+          {/* Interactive Progress Bar at bottom of video frame */}
           <div
-            className="absolute bottom-0 left-0 right-0 h-1 sm:h-1.5 bg-white/20 z-20 overflow-hidden"
+            onClick={handleProgressSeek}
+            className="absolute bottom-0 left-0 right-0 h-1.5 sm:h-2 bg-white/25 hover:h-2.5 transition-all z-20 overflow-hidden cursor-pointer"
             role="progressbar"
             aria-valuenow={Math.round(progress)}
             aria-valuemin={0}
             aria-valuemax={100}
-            aria-label="Video playback progress"
+            aria-label="Video playback progress (click to seek)"
           >
             <div
-              className="h-full bg-gradient-to-r from-[#DC2626] to-[#EF4444] transition-[width] duration-100 ease-linear shadow-[0_0_8px_rgba(220,38,38,0.8)]"
+              className="h-full bg-gradient-to-r from-[#DC2626] to-[#EF4444] transition-[width] duration-75 ease-linear shadow-[0_0_8px_rgba(220,38,38,0.8)]"
               style={{ width: `${progress}%` }}
             />
           </div>
         </div>
 
-        {/* Light Bottom Info Bar */}
-        <div className="px-4 py-2.5 sm:px-6 sm:py-3 bg-slate-50 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
-          <span className="hidden sm:inline font-medium text-slate-600">
-            Click outside or press Esc to close
-          </span>
-          <span className="sm:hidden font-medium text-slate-600">Tap outside to close</span>
+        {/* Complete Player Control Bar */}
+        <div className="px-4 py-2.5 sm:px-6 sm:py-3 bg-slate-50 border-t border-slate-100 flex items-center justify-between text-xs text-slate-600">
+          {/* Left Controls: Play/Pause, Sound Toggle, Current Time */}
+          <div className="flex items-center gap-3">
+            {/* Play/Pause Button */}
+            <button
+              type="button"
+              onClick={togglePlayPause}
+              aria-label={isPlaying ? 'Pause video' : 'Play video'}
+              className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-white hover:bg-slate-100 active:bg-slate-200 text-slate-800 border border-slate-200/90 shadow-2xs transition-all cursor-pointer focus:outline-none focus:ring-2 focus:ring-red-400"
+            >
+              {isPlaying ? (
+                <Pause className="w-4 h-4 fill-slate-800 text-slate-800" />
+              ) : (
+                <Play className="w-4 h-4 fill-[#DC2626] text-[#DC2626] ml-0.5" />
+              )}
+            </button>
+
+            {/* Sound Toggle Button */}
+            <button
+              type="button"
+              onClick={toggleSound}
+              aria-label={isMuted ? 'Turn voice on' : 'Mute voice'}
+              className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold transition-all border cursor-pointer focus:outline-none focus:ring-2 ${
+                isMuted
+                  ? 'bg-amber-50 text-amber-900 border-amber-300 hover:bg-amber-100'
+                  : 'bg-emerald-50 text-emerald-800 border-emerald-200 hover:bg-emerald-100'
+              }`}
+            >
+              {isMuted ? (
+                <>
+                  <VolumeX className="w-3.5 h-3.5 text-amber-700" />
+                  <span>Unmute Voice</span>
+                </>
+              ) : (
+                <>
+                  <Volume2 className="w-3.5 h-3.5 text-emerald-700" />
+                  <span>Voice ON</span>
+                </>
+              )}
+            </button>
+
+            {/* Elapsed Time Display */}
+            <span className="font-mono text-[11px] sm:text-xs text-slate-500 font-medium">
+              {formatTime(currentTime)} / {formatTime(duration)}
+            </span>
+          </div>
+
+          {/* Right Action: Continue to Website */}
           <button
             type="button"
             onClick={() => handleClose(false)}

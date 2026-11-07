@@ -30,11 +30,11 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: 'Economic Courier | eCS World Wide Express Bhilwara',
+    default: 'Economic Courier | eCS World Wide Express – Bhilwara',
     template: '%s | Economic Courier Bhilwara',
   },
   description:
-    'Official website for Economic Courier & eCS World Wide Express in Bhilwara, Rajasthan. Priority domestic express, worldwide air cargo, and specialized textile fabric sample logistics.',
+    'Domestic and international courier, air cargo, sea cargo and business logistics services from Bhilwara, Rajasthan. Explore Economic Courier\'s shipping solutions.',
   keywords: [
     'economic courier bhilwara',
     'ecs world wide express',
@@ -50,16 +50,25 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_IN',
     url: '/',
-    title: 'Economic Courier | eCS World Wide Express Bhilwara',
+    title: 'Economic Courier | eCS World Wide Express',
     description:
-      'Prompt, dependable domestic parcel delivery & worldwide express cargo serving Bhilwara textile trade and community.',
+      'Domestic, international courier and complete logistics solutions from Bhilwara, Rajasthan.',
     siteName: 'Economic Courier / eCS World Wide Express',
+    images: [
+      {
+        url: '/assets/og/economic-courier-social.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Economic Courier – eCS World Wide Express, Bhilwara',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Economic Courier | eCS World Wide Express Bhilwara',
+    title: 'Economic Courier | eCS World Wide Express',
     description:
-      'Bhilwara premier courier service for textile samples, domestic express, and worldwide air parcel delivery.',
+      'Courier, cargo and logistics services from Bhilwara, Rajasthan.',
+    images: ['/assets/og/economic-courier-social.jpg'],
   },
   robots: {
     index: true,

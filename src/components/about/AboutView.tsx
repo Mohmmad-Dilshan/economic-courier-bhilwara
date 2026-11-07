@@ -16,7 +16,6 @@ import {
   ExternalLink,
   MessageCircle,
   Award,
-  Sparkles,
   Phone,
 } from 'lucide-react';
 import { InstagramIcon } from '@/components/common/InstagramIcon';
@@ -126,17 +125,6 @@ export function AboutView() {
                     sizes="(max-width: 1024px) 100vw, 480px"
                     className="object-cover"
                   />
-                  {/* Subtle inner gradient shadow */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent pointer-events-none" />
-
-                  {/* Floating verification badge */}
-                  <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-white text-xs font-semibold px-3 py-2 rounded-xl bg-slate-900/80 backdrop-blur-md border border-white/20">
-                    <div className="flex items-center gap-2">
-                      <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                      <span>Bhilwara Sorting &amp; Booking Facility</span>
-                    </div>
-                    <span className="text-[11px] font-mono text-slate-300">PUR ROAD HUB</span>
-                  </div>
                 </div>
 
                 {/* Bottom stats banner inside visual card */}
@@ -180,7 +168,7 @@ export function AboutView() {
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-0">
               {/* Left Column: Authentic Executive Portrait (5 Columns) */}
               <div className="lg:col-span-5 relative bg-slate-100 flex flex-col justify-between min-h-[420px] sm:min-h-[500px]">
-                <div className="relative w-full h-full flex-1">
+                <div className="relative w-full h-full flex-1 min-h-[380px] sm:min-h-[460px] lg:min-h-[520px]">
                   <Image
                     src="/assets/team/chandra-shekhar-panecha.jpg"
                     alt="Mr. Chandra Shekhar Panecha, Independent Director of Economic Courier and eCS World Wide Express in his Bhilwara office"
@@ -189,32 +177,6 @@ export function AboutView() {
                     className="object-cover object-[center_20%]"
                     priority
                   />
-                  {/* Subtle edge vignette */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent pointer-events-none" />
-
-                  {/* Overlaid Badges */}
-                  <div className="absolute top-4 left-4 z-10">
-                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/95 backdrop-blur-sm border border-slate-200 text-slate-900 text-[11px] font-black tracking-wide shadow-sm">
-                      <Sparkles className="w-3 h-3 text-[#DC2626]" />
-                      <span>FOUNDING DIRECTOR</span>
-                    </span>
-                  </div>
-
-                  <div className="absolute bottom-4 left-4 right-4 z-10 text-white">
-                    <div className="p-3 rounded-2xl bg-slate-900/85 backdrop-blur-md border border-white/15 space-y-1">
-                      <div className="flex items-center justify-between">
-                        <span className="text-[10px] font-mono font-bold text-red-400 uppercase tracking-wider">
-                          CENTRAL HUB DESK
-                        </span>
-                        <span className="text-[10px] font-semibold text-slate-300">
-                          Bhilwara · 311001
-                        </span>
-                      </div>
-                      <p className="text-xs text-slate-200 font-medium">
-                        Photographed on-site with eCS Value-Added Express dispatch container model.
-                      </p>
-                    </div>
-                  </div>
                 </div>
               </div>
 

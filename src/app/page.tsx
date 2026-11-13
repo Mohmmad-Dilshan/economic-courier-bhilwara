@@ -119,11 +119,16 @@ export default function HomePage() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 xl:gap-12 items-center">
             {/* Left Content Column */}
             <div className="lg:col-span-6 space-y-5">
-              {/* Location Badge */}
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-gradient-to-r from-red-50 via-white to-red-50/50 border border-red-200/80 text-red-700 text-[11px] font-extrabold tracking-widest uppercase shadow-xs ">
-                <span className="w-2 h-2 rounded-full bg-[#DC2626] shadow-[0_0_8px_rgba(220,38,38,0.7)] " />
-                <MapPin className="w-3.5 h-3.5 text-red-700" />
-                <span>BHILWARA · INDIA</span>
+              {/* Location Badge & Brand Authority Kicker */}
+              <div className="flex flex-wrap items-center gap-2">
+                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-gradient-to-r from-red-50 via-white to-red-50/50 border border-red-200/80 text-red-700 text-[11px] font-extrabold tracking-widest uppercase shadow-xs ">
+                  <span className="w-2 h-2 rounded-full bg-[#DC2626] shadow-[0_0_8px_rgba(220,38,38,0.7)] " />
+                  <MapPin className="w-3.5 h-3.5 text-red-700" />
+                  <span>BHILWARA · RAJASTHAN</span>
+                </div>
+                <span className="hidden sm:inline-block text-[11px] font-bold text-slate-500 uppercase tracking-wider">
+                  Best Courier Service in Bhilwara
+                </span>
               </div>
 
               {/* Large Modern Gradient Headline with Flight Trail and Airplane */}
@@ -152,12 +157,12 @@ export default function HomePage() {
                     />
                   </svg>
                 </span>
-                <span className="sr-only"> — Economic Courier &amp; eCS World Wide Express, Bhilwara</span>
+                <span className="sr-only"> — Economic Courier Bhilwara | Best Domestic &amp; International Courier Service in Bhilwara, Rajasthan</span>
               </h1>
 
               {/* Subtitle */}
               <p className="text-sm sm:text-base lg:text-lg text-slate-600 leading-relaxed max-w-md font-normal ">
-                Priority domestic express &amp; worldwide air cargo connectivity, tailored for Bhilwara trade, documents, and parcels.
+                <strong>Economic Courier (eCS World Wide Express)</strong> &mdash; Bhilwara&apos;s trusted courier service for priority domestic parcels across 19,000+ pin codes, worldwide air cargo to 220+ countries, and specialized textile fabric sample delivery.
               </p>
 
               {/* Search / Tracking Box */}
@@ -447,11 +452,11 @@ export default function HomePage() {
                 <span>ABOUT US</span>
               </div>
               <h2 className="text-3xl sm:text-4xl lg:text-[42px] font-black tracking-[-0.035em] leading-[1.08]">
-                <span className="text-[#1E3A8A]">A local team,</span> <br />
-                <span className="bg-gradient-to-r from-[#DC2626] via-[#E11D48] to-[#EF4444] bg-clip-text text-transparent">ready to help.</span>
+                <span className="text-[#1E3A8A]">Economic Courier:</span> <br />
+                <span className="bg-gradient-to-r from-[#DC2626] via-[#E11D48] to-[#EF4444] bg-clip-text text-transparent">Best Courier in Bhilwara.</span>
               </h2>
               <p className="text-sm sm:text-base text-slate-600 leading-relaxed max-w-lg pt-1 font-normal mx-auto lg:mx-0">
-                Economic Courier is a courier service in Bhilwara, providing domestic and international courier services for trade correspondence, parcels, and document consignments.
+                Operating from our central hub Opposite New Cloth Market on Pur Road, Economic Courier (eCS World Wide Express) is recognized as the best courier service in Bhilwara. We deliver dependable domestic express parcels across 19,000+ Indian pin codes, worldwide air cargo to 220+ countries, and specialized textile fabric sample logistics.
               </p>
               <div className="pt-3 w-full flex justify-center lg:justify-start">
                 <Link

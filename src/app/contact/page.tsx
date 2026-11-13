@@ -78,6 +78,7 @@ const contactJsonLd = {
         '@type': 'DeliveryService',
         name: 'Economic Courier / eCS World Wide Express',
         telephone: '+91 89551 44444',
+        email: 'economiccourierbhilwara@gmail.com',
         address: {
           '@type': 'PostalAddress',
           streetAddress: 'Opposite New Cloth Market, Railway Staff Quarter Area, Pur Road / Station Sector',

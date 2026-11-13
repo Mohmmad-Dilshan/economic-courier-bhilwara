@@ -140,6 +140,7 @@ const schemaGraph = {
       logo: 'https://www.economiccourierbhilwara.in/assets/logo/ecs-logo.png',
       image: 'https://www.economiccourierbhilwara.in/assets/og/economic-courier-social.jpg',
       telephone: '+91 89551 44444',
+      email: 'economiccourierbhilwara@gmail.com',
       address: {
         '@type': 'PostalAddress',
         streetAddress: 'Opposite New Cloth Market, Railway Staff Quarter Area, Pur Road / Station Sector',

@@ -72,9 +72,10 @@ export const BUSINESS_INFO = {
   instagramUrl: BUSINESS_DATA.instagram.url,
   googleMapsUrl: BUSINESS_DATA.googleMaps.url,
 
-  emailPlaceholder: 'info@economiccourierbhilwara.com [Pending Setup]',
-  emailConfigured: false,
-  emailPendingConfirmation: true,
+  emailPlaceholder: 'economiccourierbhilwara@gmail.com',
+  email: 'economiccourierbhilwara@gmail.com',
+  emailConfigured: true,
+  emailPendingConfirmation: false,
 
   gstinPlaceholder: '[GSTIN Pending Client Validation]',
   gstinPendingConfirmation: true,

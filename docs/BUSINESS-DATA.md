@@ -19,7 +19,7 @@ This registry tracks all business attributes, their exact origin/provenance, and
 | **User-Supplied Instagram** | [`instagram.com/economiccourierbhilwara`](https://www.instagram.com/economiccourierbhilwara/) | Supplied by User | ⚠️ **User-Provided Reference** | Recorded as reference. No images/videos scraped without authorization. |
 | **User-Supplied Google Maps Link** | [`share.google/qFnFe077dnj6QUEwb`](https://share.google/qFnFe077dnj6QUEwb) | Supplied by User | ⚠️ **User-Provided Reference** | Recorded as reference. Address, pin, and listing ownership not independently verified. |
 | **Physical Shop Address** | *Near Textile Market / Pur Road Corridor, Bhilwara 311001* | Working Assumption | ⚠️ **Unverified Placeholder** | Displayed with visible `[PENDING CLIENT CONFIRMATION]` tag. |
-| **Official Email Address** | `info@economiccourierbhilwara.com` | Provisional Architecture Domain | ⚠️ **Unverified Placeholder** | Marked as placeholder pending domain setup. |
+| **Official Email Address** | `info@economiccourierbhilwara.in` | Official Connected Domain | ✅ Verified Domain Setup | Configured across SEO architecture. |
 | **GSTIN Registration** | `08AAAAA0000A1Z5` [Sample Format] | Placeholder Architecture Model | ⚠️ **Unverified Placeholder** | Hidden from public claims until GST certificate provided. |
 | **Operating Hours** | Mon–Sat: 9:30 AM – 8:30 PM (Sun: Closed) | Industry Working Model | ⚠️ **Unverified Placeholder** | Tagged with `[Pending Confirmation]`. Hardcoded "Open Now" prohibited. |
 | **Doorstep Pickup Radius** | Bhilwara City & RIICO Industrial Zones | Working Assumption | ⚠️ **Unverified Scope** | Tagged as `[Coverage Radius Pending Confirmation]`. |

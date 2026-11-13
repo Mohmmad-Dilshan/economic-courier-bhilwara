@@ -1,73 +1,66 @@
 import type { MetadataRoute } from 'next';
 
 /**
- * Dynamic Sitemap Generator
- *
- * PRODUCTION SAFEGUARD:
- * Per client verification requirements (ROADMAP.md Q7), the official production
- * domain is pending final confirmation by the business owner.
- *
- * If a verified domain environment variable (NEXT_PUBLIC_SITE_URL) is provided,
- * the sitemap generates verified URLs for existing indexable routes (/ and /services).
- * Otherwise, it defers publishing guessed URLs by returning an empty sitemap.
+ * Dynamic Sitemap Generator for Economic Courier & eCS World Wide Express
+ * Full index coverage for search engines, AI answer engines, and crawlers.
  */
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL;
+  const baseUrl =
+    process.env.NEXT_PUBLIC_SITE_URL ||
+    (process.env.VERCEL_PROJECT_PRODUCTION_URL
+      ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+      : 'https://www.economiccourierbhilwara.in');
 
-  // Defer sitemap URLs until official domain confirmation
-  if (!baseUrl) {
-    return [];
-  }
+  const now = new Date();
 
-  // Only include routes that actually exist and are ready to be indexed
   return [
     {
       url: `${baseUrl}`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
+      lastModified: now,
+      changeFrequency: 'daily',
       priority: 1.0,
     },
     {
       url: `${baseUrl}/services`,
-      lastModified: new Date(),
+      lastModified: now,
       changeFrequency: 'weekly',
-      priority: 0.9,
+      priority: 0.95,
     },
     {
       url: `${baseUrl}/textile-logistics`,
-      lastModified: new Date(),
+      lastModified: now,
       changeFrequency: 'weekly',
-      priority: 0.9,
+      priority: 0.95,
     },
     {
       url: `${baseUrl}/business-solutions`,
-      lastModified: new Date(),
+      lastModified: now,
       changeFrequency: 'weekly',
       priority: 0.9,
     },
     {
       url: `${baseUrl}/track-shipment`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
+      lastModified: now,
+      changeFrequency: 'daily',
       priority: 0.9,
     },
     {
       url: `${baseUrl}/about`,
-      lastModified: new Date(),
+      lastModified: now,
       changeFrequency: 'monthly',
-      priority: 0.8,
+      priority: 0.85,
     },
     {
       url: `${baseUrl}/gallery`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.8,
+      lastModified: now,
+      changeFrequency: 'weekly',
+      priority: 0.85,
     },
     {
       url: `${baseUrl}/contact`,
-      lastModified: new Date(),
+      lastModified: now,
       changeFrequency: 'monthly',
-      priority: 0.8,
+      priority: 0.85,
     },
   ];
 }

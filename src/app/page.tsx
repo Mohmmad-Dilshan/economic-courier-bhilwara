@@ -33,6 +33,7 @@ import { ReviewsSection } from '@/components/home/ReviewsSection';
 import { FAQSection } from '@/components/home/FAQSection';
 import { CTABand } from '@/components/home/CTABand';
 import { HubLocationSection } from '@/components/home/HubLocationSection';
+import { VideoIntroOverlay } from '@/components/home/VideoIntroOverlay';
 
 export default function HomePage() {
   const [trackingInput, setTrackingInput] = useState('');
@@ -104,6 +105,9 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen bg-white text-[#0F172A] overflow-x-hidden antialiased">
+      {/* Full-Screen Motion Graphics Video Intro Overlay (Plays once per browser session) */}
+      <VideoIntroOverlay />
+
       {/* =========================================================================
           1. HERO SECTION (Desktop Proportioned, 1200px Container, Sky-wash Radial)
           ========================================================================= */}
@@ -148,6 +152,7 @@ export default function HomePage() {
                     />
                   </svg>
                 </span>
+                <span className="sr-only"> — Economic Courier &amp; eCS World Wide Express, Bhilwara</span>
               </h1>
 
               {/* Subtitle */}

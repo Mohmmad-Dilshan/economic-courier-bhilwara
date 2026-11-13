@@ -1,6 +1,46 @@
 # Robots.txt for Economic Courier / eCS World Wide Express, Bhilwara
-# Production Note: Sitemap URL is deferred until final client domain confirmation.
+# Full Crawl & Answer Engine Optimization (AEO / GEO) Directives
 
 User-agent: *
 Allow: /
+Disallow: /api/
+Disallow: /_next/
 
+# Search Engine Crawlers
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+# AI Answer Engines & Generative Search (AEO)
+User-agent: Google-Extended
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: meta-externalagent
+Allow: /
+
+# Canonical Sitemap & Host
+Host: https://www.economiccourierbhilwara.in
+Sitemap: https://www.economiccourierbhilwara.in/sitemap.xml

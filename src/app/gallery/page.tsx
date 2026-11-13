@@ -55,13 +55,30 @@ const jsonLd = {
   '@context': 'https://schema.org',
   '@graph': [
     {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: 'Home',
+          item: 'https://www.economiccourierbhilwara.in',
+        },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: 'Operations Gallery',
+          item: 'https://www.economiccourierbhilwara.in/gallery',
+        },
+      ],
+    },
+    {
       '@type': 'LocalBusiness',
-      '@id': 'https://economic-courier-bhilwara.vercel.app/#business',
+      '@id': 'https://www.economiccourierbhilwara.in/#business',
       name: 'Economic Courier / eCS World Wide Express',
       alternateName: 'Economic Courier Bhilwara',
-      image: 'https://economic-courier-bhilwara.vercel.app/assets/business-fleet-3d.webp',
+      image: 'https://www.economiccourierbhilwara.in/assets/business-fleet-3d.webp',
       telephone: '+91 89551 44444',
-      url: 'https://economic-courier-bhilwara.vercel.app',
+      url: 'https://www.economiccourierbhilwara.in',
       address: {
         '@type': 'PostalAddress',
         streetAddress: 'Opposite New Cloth Market, Railway Staff Quarter Area',
@@ -89,9 +106,9 @@ const jsonLd = {
       name: 'Economic Courier Bhilwara Operations Gallery',
       description:
         'Ground photographs and real video reels showcasing dispatch operations, parcel sorting, textile packaging, and linehaul fleet at Bhilwara Hub.',
-      url: 'https://economic-courier-bhilwara.vercel.app/gallery',
+      url: 'https://www.economiccourierbhilwara.in/gallery',
       publisher: {
-        '@id': 'https://economic-courier-bhilwara.vercel.app/#business',
+        '@id': 'https://www.economiccourierbhilwara.in/#business',
       },
     },
   ],

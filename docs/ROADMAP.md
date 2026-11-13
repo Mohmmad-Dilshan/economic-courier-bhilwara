@@ -115,4 +115,4 @@ Before transitioning from Phase 2 to Phase 3/4, the following business questions
 | **Q4** | **Franchise & Partner Affiliations** | Generic "Tier-1 Domestic & International Air Networks" | Determines whether logos of partners (e.g., DHL, FedEx, Aramex, Blue Dart) can be legally displayed. |
 | **Q5** | **Exact Office Operating Timings** | Assumed 9:30 AM – 8:30 PM (Mon–Sat) | Displayed on the header status pill (`Open Now` / `Closed`) and contact block. |
 | **Q6** | **Doorstep Pickup Coverage Area** | Assumed Bhilwara city and RIICO industrial zones | Defines service radius text on Textile logistics and Booking sections. |
-| **Q7** | **Official Domain Name** | Prototype assumes `economiccourierbhilwara.com` | Affects canonical SEO tags, sitemaps, OpenGraph metadata, and email addresses. |
+| **Q7** | **Official Domain Name** | ✅ **Confirmed:** `https://www.economiccourierbhilwara.in` | Verified live on production. Canonical SEO, sitemaps, and OpenGraph active. |

@@ -9,7 +9,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     process.env.NEXT_PUBLIC_SITE_URL ||
     (process.env.VERCEL_PROJECT_PRODUCTION_URL
       ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
-      : 'https://economic-courier-bhilwara.vercel.app');
+      : 'https://www.economiccourierbhilwara.in');
 
   const now = new Date();
 

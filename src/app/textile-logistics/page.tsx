@@ -61,13 +61,13 @@ const textileJsonLd = {
           '@type': 'ListItem',
           position: 1,
           name: 'Home',
-          item: 'https://economic-courier-bhilwara.vercel.app',
+          item: 'https://www.economiccourierbhilwara.in',
         },
         {
           '@type': 'ListItem',
           position: 2,
           name: 'Textile Logistics',
-          item: 'https://economic-courier-bhilwara.vercel.app/textile-logistics',
+          item: 'https://www.economiccourierbhilwara.in/textile-logistics',
         },
       ],
     },
@@ -77,7 +77,7 @@ const textileJsonLd = {
       provider: {
         '@type': 'DeliveryService',
         name: 'Economic Courier / eCS World Wide Express',
-        url: 'https://economic-courier-bhilwara.vercel.app',
+        url: 'https://www.economiccourierbhilwara.in',
         telephone: '+91 89551 44444',
       },
       areaServed: [

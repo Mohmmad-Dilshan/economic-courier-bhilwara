@@ -42,5 +42,5 @@ User-agent: meta-externalagent
 Allow: /
 
 # Canonical Sitemap & Host
-Host: https://economic-courier-bhilwara.vercel.app
-Sitemap: https://economic-courier-bhilwara.vercel.app/sitemap.xml
+Host: https://www.economiccourierbhilwara.in
+Sitemap: https://www.economiccourierbhilwara.in/sitemap.xml

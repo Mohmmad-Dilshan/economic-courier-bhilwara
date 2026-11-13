@@ -29,7 +29,7 @@ The following items are placeholders and **must not be presented as fact** to th
 | **Instagram Channel** | [`instagram.com/economiccourierbhilwara`](https://www.instagram.com/economiccourierbhilwara/) (User Supplied) | Owner authorization before media embedding or linking |
 | **Google Maps Listing** | [`share.google/qFnFe077dnj6QUEwb`](https://share.google/qFnFe077dnj6QUEwb) (User Supplied) | Owner validation (listing ownership & timings not verified) |
 | **Tracking Method** | **Unknown** (Strict Demo Mode `DEMO-` only) | Client specification (Carrier portal vs. API vs. phone) |
-| **Official Email** | `info@economiccourierbhilwara.com` | Verified domain email or Gmail |
+| **Official Email** | `info@economiccourierbhilwara.in` | Verified domain email or Gmail |
 | **GSTIN Number** | `08AAAAA0000A1Z5` [Placeholder] | Valid GST registration certificate |
 | **Operating Hours** | Mon–Sat: 9:30 AM – 8:30 PM; Sun: Closed/By appointment | Real office opening & pickup cutoff timings |
 | **Partner Networks** | *"Partnered with top tier domestic & global air networks"* | Specific carriers (e.g. DHL, FedEx, Blue Dart, Aramex) |

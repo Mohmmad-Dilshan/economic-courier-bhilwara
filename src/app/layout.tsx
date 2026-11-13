@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Script from 'next/script';
 import { Plus_Jakarta_Sans, JetBrains_Mono } from 'next/font/google';
 import '../styles/globals.css';
 import { cn } from '@/lib/utils';
@@ -25,7 +26,7 @@ const siteUrl =
   process.env.NEXT_PUBLIC_SITE_URL ||
   (process.env.VERCEL_PROJECT_PRODUCTION_URL
     ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
-    : 'https://economic-courier-bhilwara.vercel.app');
+    : 'https://www.economiccourierbhilwara.in');
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -98,6 +99,9 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
+  verification: {
+    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || undefined,
+  },
   other: {
     'geo.region': 'IN-RJ',
     'geo.placename': 'Bhilwara, Rajasthan, India',
@@ -122,7 +126,7 @@ const schemaGraph = {
   '@graph': [
     {
       '@type': 'DeliveryService',
-      '@id': 'https://economic-courier-bhilwara.vercel.app/#business',
+      '@id': 'https://www.economiccourierbhilwara.in/#business',
       name: 'Economic Courier / eCS World Wide Express',
       alternateName: [
         'Economic Courier Bhilwara',
@@ -132,9 +136,9 @@ const schemaGraph = {
       ],
       description:
         'Leading domestic courier, international air cargo, and specialized textile fabric sample logistics service hub in Bhilwara, Rajasthan. Daily linehauls across 19,000+ Indian pin codes and worldwide shipping across 220+ countries.',
-      url: 'https://economic-courier-bhilwara.vercel.app',
-      logo: 'https://economic-courier-bhilwara.vercel.app/assets/logo/ecs-logo.png',
-      image: 'https://economic-courier-bhilwara.vercel.app/assets/og/economic-courier-social.jpg',
+      url: 'https://www.economiccourierbhilwara.in',
+      logo: 'https://www.economiccourierbhilwara.in/assets/logo/ecs-logo.png',
+      image: 'https://www.economiccourierbhilwara.in/assets/og/economic-courier-social.jpg',
       telephone: '+91 89551 44444',
       address: {
         '@type': 'PostalAddress',
@@ -190,16 +194,16 @@ const schemaGraph = {
     },
     {
       '@type': 'WebSite',
-      '@id': 'https://economic-courier-bhilwara.vercel.app/#website',
-      url: 'https://economic-courier-bhilwara.vercel.app',
+      '@id': 'https://www.economiccourierbhilwara.in/#website',
+      url: 'https://www.economiccourierbhilwara.in',
       name: 'Economic Courier Bhilwara',
       publisher: {
-        '@id': 'https://economic-courier-bhilwara.vercel.app/#business',
+        '@id': 'https://www.economiccourierbhilwara.in/#business',
       },
       inLanguage: 'en-IN',
       potentialAction: {
         '@type': 'SearchAction',
-        target: 'https://economic-courier-bhilwara.vercel.app/track-shipment?awb={search_term_string}',
+        target: 'https://www.economiccourierbhilwara.in/track-shipment?awb={search_term_string}',
         'query-input': 'required name=search_term_string',
       },
     },
@@ -211,6 +215,10 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const gaMeasurementId =
+    process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID ||
+    process.env.NEXT_PUBLIC_GA_ID;
+
   return (
     <html lang="en" className={cn(plusJakarta.variable, jetbrainsMono.variable)}>
       <head>
@@ -224,6 +232,28 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaGraph) }}
         />
+        {gaMeasurementId && (
+          <>
+            <Script
+              strategy="afterInteractive"
+              src={`https://www.googletagmanager.com/gtag/js?id=${gaMeasurementId}`}
+            />
+            <Script
+              id="google-analytics"
+              strategy="afterInteractive"
+              dangerouslySetInnerHTML={{
+                __html: `
+                  window.dataLayer = window.dataLayer || [];
+                  function gtag(){dataLayer.push(arguments);}
+                  gtag('js', new Date());
+                  gtag('config', '${gaMeasurementId}', {
+                    page_path: window.location.pathname,
+                  });
+                `,
+              }}
+            />
+          </>
+        )}
       </head>
       <body className="font-sans min-h-screen flex flex-col bg-[var(--color-bg-primary)] text-[var(--color-text-primary)] antialiased">
         <ScrollObserver />

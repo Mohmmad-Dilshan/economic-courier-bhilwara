@@ -222,7 +222,7 @@ export function AnimatedRouteMap() {
           observer.disconnect();
         }
       },
-      { rootMargin: '400px' }
+      { rootMargin: '50px' }
     );
     observer.observe(container);
     return () => observer.disconnect();
@@ -327,47 +327,11 @@ export function AnimatedRouteMap() {
     }
   }, [isNearViewport]);
 
-  // Smooth scroll listener
-  useEffect(() => {
-    const container = containerRef.current;
-    if (!container) return;
+  const animIdRef = useRef<number | null>(null);
 
-    const prefersReducedMotion =
-      typeof window !== 'undefined' &&
-      window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-    const handleScroll = () => {
-      const rect = container.getBoundingClientRect();
-      const viewportHeight = window.innerHeight;
-
-      const enterOffset = viewportHeight * 0.75;
-      const exitOffset = viewportHeight * 0.2;
-      const totalScrollable = rect.height + enterOffset - exitOffset;
-      const scrolled = enterOffset - rect.top;
-
-      let rawProgress = scrolled / totalScrollable;
-      rawProgress = Math.max(0, Math.min(1, rawProgress));
-
-      targetProgressRef.current = rawProgress;
-
-      if (prefersReducedMotion) {
-        currentProgressRef.current = rawProgress;
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll();
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
-
-  // Animation loop: Only runs when movement is needed, zero CPU when stationary!
-  useEffect(() => {
-    let animId: number | null = null;
-
-    const renderRiders = (progress: number) => {
+  // Render Rider positions along paths
+  const renderRiders = useCallback(
+    (progress: number) => {
       // Update Desktop Rider
       const dPath = desktopPathRef.current;
       if (dPath && totalLength > 0) {
@@ -433,39 +397,80 @@ export function AnimatedRouteMap() {
       }
 
       setHasCompleted(progress > 0.96);
-    };
+    },
+    [totalLength, mobTotalLength]
+  );
+
+  // Kick off requestAnimationFrame loop only when progress needs animation
+  const startAnimation = useCallback(() => {
+    if (animIdRef.current !== null) return;
 
     const updateRiders = () => {
       const diff = targetProgressRef.current - currentProgressRef.current;
       if (Math.abs(diff) < 0.001) {
         currentProgressRef.current = targetProgressRef.current;
         renderRiders(currentProgressRef.current);
-        animId = null;
-        return; // Complete - stop animation frame loop to free main thread
+        animIdRef.current = null;
+        return; // Stopped — zero CPU usage
       }
 
       currentProgressRef.current += diff * 0.15;
       renderRiders(currentProgressRef.current);
-      animId = requestAnimationFrame(updateRiders);
+      animIdRef.current = requestAnimationFrame(updateRiders);
     };
 
-    renderRiders(currentProgressRef.current);
+    animIdRef.current = requestAnimationFrame(updateRiders);
+  }, [renderRiders]);
 
-    const checkAnimation = () => {
-      if (animId === null && Math.abs(targetProgressRef.current - currentProgressRef.current) > 0.001) {
-        animId = requestAnimationFrame(updateRiders);
+  // Smooth scroll listener: only computes when near viewport and movement occurs
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container || !isNearViewport) return;
+
+    const prefersReducedMotion =
+      typeof window !== 'undefined' &&
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    const handleScroll = () => {
+      const rect = container.getBoundingClientRect();
+      const viewportHeight = window.innerHeight;
+
+      const enterOffset = viewportHeight * 0.75;
+      const exitOffset = viewportHeight * 0.2;
+      const totalScrollable = rect.height + enterOffset - exitOffset;
+      const scrolled = enterOffset - rect.top;
+
+      let rawProgress = scrolled / totalScrollable;
+      rawProgress = Math.max(0, Math.min(1, rawProgress));
+
+      targetProgressRef.current = rawProgress;
+
+      if (prefersReducedMotion) {
+        currentProgressRef.current = rawProgress;
+        renderRiders(rawProgress);
+      } else {
+        startAnimation();
       }
     };
 
-    const interval = setInterval(checkAnimation, 100);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
 
     return () => {
-      clearInterval(interval);
-      if (animId) {
-        cancelAnimationFrame(animId);
+      window.removeEventListener('scroll', handleScroll);
+      if (animIdRef.current !== null) {
+        cancelAnimationFrame(animIdRef.current);
+        animIdRef.current = null;
       }
     };
-  }, [totalLength, mobTotalLength]);
+  }, [isNearViewport, renderRiders, startAnimation]);
+
+  // Initial paint when near viewport
+  useEffect(() => {
+    if (isNearViewport) {
+      renderRiders(currentProgressRef.current);
+    }
+  }, [isNearViewport, renderRiders]);
 
   // Handle stop selection / click-to-fly
   const handleSelectStop = useCallback(
@@ -475,9 +480,10 @@ export function AnimatedRouteMap() {
       if (stopDistancesRef.current.length > idx && totalLength > 0) {
         const targetDist = stopDistancesRef.current[idx];
         targetProgressRef.current = targetDist / totalLength;
+        startAnimation();
       }
     },
-    [totalLength]
+    [totalLength, startAnimation]
   );
 
   return (
@@ -691,7 +697,7 @@ export function AnimatedRouteMap() {
                 transform={`translate(-42, -70) ${riderPos.isFacingLeft ? 'scale(-1, 1) translate(-84, 0)' : ''}`}
               >
                 <image
-                  href="/assets/routes/ecs-scooter-rider.png"
+                  href="/assets/routes/ecs-scooter-rider-map.webp"
                   width="84"
                   height="72"
                   preserveAspectRatio="xMidYMid meet"
@@ -1033,7 +1039,7 @@ export function AnimatedRouteMap() {
               <ellipse cx="0" cy="6" rx="22" ry="7" fill="rgba(15,23,42,0.25)" />
               <g transform="translate(-32, -54)">
                 <image
-                  href="/assets/routes/ecs-scooter-rider.png"
+                  href="/assets/routes/ecs-scooter-rider-map.webp"
                   width="64"
                   height="55"
                   preserveAspectRatio="xMidYMid meet"

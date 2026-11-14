@@ -69,7 +69,8 @@ export function DailyRouteSection() {
                 sizes="(max-width: 1024px) 280px, 360px"
                 style={{ aspectRatio: '1024/682' }}
                 className="w-full h-auto object-contain"
-                quality={95}
+                loading="lazy"
+                quality={85}
               />
             </div>
           </div>
@@ -85,12 +86,12 @@ export function DailyRouteSection() {
           >
             <div className="relative w-full" style={{ aspectRatio: '1024/341' }}>
               <Image
-                src={getMediaUrl('/assets/routes/daily-dispatch-banner-hd.webp', { type: 'image', quality: 100 })}
+                src={getMediaUrl('/assets/routes/daily-dispatch-banner-hd.webp', { type: 'image', quality: 95 })}
                 alt="Economic Courier 10:00 AM Office Cutoff — Daily Regional Route & Same-Day Delivery Circuit from Bhilwara"
                 title="Daily Express Linehaul Cutoff & Route Schedule — Bhilwara Hub"
                 fill
-                priority
-                unoptimized
+                loading="lazy"
+                quality={95}
                 sizes="(max-width: 640px) 100vw, (max-width: 1280px) 100vw, 1560px"
                 style={{ aspectRatio: '1024/341' }}
                 className="object-cover object-center transition-transform duration-500 group-hover:scale-[1.01]"

@@ -164,7 +164,8 @@ export function NetworkPartnersSection() {
                 sizes="(max-width: 640px) 220px, (max-width: 1024px) 280px, 360px"
                 style={{ aspectRatio: '1024/682' }}
                 className="w-full h-auto object-contain"
-                quality={95}
+                loading="lazy"
+                quality={85}
               />
             </div>
           </div>

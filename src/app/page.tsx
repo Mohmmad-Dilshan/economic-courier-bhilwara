@@ -17,23 +17,45 @@ import {
   Loader2,
 } from 'lucide-react';
 
-// Modals dynamically imported on demand
+// Client-only modals dynamically loaded on demand (zero initial bundle impact)
 const TrackingNoticeModal = dynamic(
   () => import('@/components/home/TrackingNoticeModal').then((mod) => mod.TrackingNoticeModal),
   { ssr: false }
 );
 
-// Core sections pre-rendered via SSR so entire HTML renders on first paint
-import { NetworkPartnersSection } from '@/components/home/NetworkPartnersSection';
-import { DailyRouteSection } from '@/components/home/DailyRouteSection';
-import { RealMomentsSection } from '@/components/home/RealMomentsSection';
-import { OperationsShowcaseSection } from '@/components/home/OperationsShowcaseSection';
-import { HowItWorksSection } from '@/components/home/HowItWorksSection';
-import { ReviewsSection } from '@/components/home/ReviewsSection';
-import { FAQSection } from '@/components/home/FAQSection';
-import { CTABand } from '@/components/home/CTABand';
-import { HubLocationSection } from '@/components/home/HubLocationSection';
-import { VideoIntroOverlay } from '@/components/home/VideoIntroOverlay';
+const VideoIntroOverlay = dynamic(
+  () => import('@/components/home/VideoIntroOverlay').then((mod) => mod.VideoIntroOverlay),
+  { ssr: false }
+);
+
+// Below-the-fold sections dynamically imported (SSR-rendered HTML for SEO, split JS chunks for ultra-fast TBT)
+const NetworkPartnersSection = dynamic(
+  () => import('@/components/home/NetworkPartnersSection').then((m) => m.NetworkPartnersSection)
+);
+const DailyRouteSection = dynamic(
+  () => import('@/components/home/DailyRouteSection').then((m) => m.DailyRouteSection)
+);
+const RealMomentsSection = dynamic(
+  () => import('@/components/home/RealMomentsSection').then((m) => m.RealMomentsSection)
+);
+const OperationsShowcaseSection = dynamic(
+  () => import('@/components/home/OperationsShowcaseSection').then((m) => m.OperationsShowcaseSection)
+);
+const HowItWorksSection = dynamic(
+  () => import('@/components/home/HowItWorksSection').then((m) => m.HowItWorksSection)
+);
+const ReviewsSection = dynamic(
+  () => import('@/components/home/ReviewsSection').then((m) => m.ReviewsSection)
+);
+const FAQSection = dynamic(
+  () => import('@/components/home/FAQSection').then((m) => m.FAQSection)
+);
+const CTABand = dynamic(
+  () => import('@/components/home/CTABand').then((m) => m.CTABand)
+);
+const HubLocationSection = dynamic(
+  () => import('@/components/home/HubLocationSection').then((m) => m.HubLocationSection)
+);
 import { getMediaUrl } from '@/lib/cloudinary';
 
 export default function HomePage() {
@@ -263,7 +285,7 @@ export default function HomePage() {
                   title="Economic Courier Bhilwara — Express Doorstep Parcel Delivery Service"
                   width={580}
                   height={390}
-                  quality={95}
+                  quality={85}
                   priority
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 560px"
                   style={{ aspectRatio: '580/390' }}
@@ -366,7 +388,8 @@ export default function HomePage() {
                   title="Priority Express Courier Parcel Packaging — Economic Courier Bhilwara"
                   width={951}
                   height={570}
-                  quality={95}
+                  quality={85}
+                  loading="lazy"
                   sizes="(max-width: 640px) 140px, (max-width: 1024px) 210px, 230px"
                   style={{ aspectRatio: '951/570' }}
                   className="w-full h-auto object-contain"
@@ -384,7 +407,8 @@ export default function HomePage() {
                   title="Express City Delivery & Sample Pickup — Economic Courier Bhilwara"
                   width={645}
                   height={550}
-                  quality={95}
+                  quality={85}
+                  loading="lazy"
                   sizes="(max-width: 640px) 150px, (max-width: 1024px) 220px, 240px"
                   style={{ aspectRatio: '645/550' }}
                   className="w-full h-auto object-contain"
@@ -409,7 +433,8 @@ export default function HomePage() {
                       alt={service.alt}
                       title={service.imageTitle}
                       fill
-                      quality={95}
+                      loading="lazy"
+                      quality={85}
                       sizes="(max-width: 640px) 50vw, (max-width: 1024px) 50vw, 280px"
                       style={{ aspectRatio: '4/3' }}
                       className="object-cover transition-transform duration-500 group-hover:scale-105"
@@ -467,8 +492,8 @@ export default function HomePage() {
                   title="Economic Courier Bhilwara — Central Booking Hub & Storefront, Pur Road"
                   width={680}
                   height={383}
-                  quality={95}
-                  priority
+                  quality={85}
+                  loading="lazy"
                   className="w-full h-auto object-cover block mx-auto rounded-2xl shadow-[0_12px_36px_rgba(15,23,42,0.12)] border border-slate-200/90"
                 />
               </div>

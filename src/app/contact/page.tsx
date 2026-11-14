@@ -2,11 +2,14 @@ import type { Metadata } from 'next';
 import { ContactView } from '@/components/contact/ContactView';
 
 export const metadata: Metadata = {
-  title: 'Contact Us & Office Location in Bhilwara | Economic Courier Desk',
+  title: 'Contact Best Courier Service in Bhilwara | Economic Courier Hub',
   description:
-    'Contact Economic Courier & eCS World Wide Express in Bhilwara: Counter Opposite New Cloth Market, Pur Road / Station Sector. Call +91 89551 44444 for doorstep parcel pickups, rate quotes & textile swatch booking.',
+    'Contact Economic Courier & eCS World Wide Express — recognized as the best courier service in Bhilwara. Central Counter Opposite New Cloth Market, Pur Road / Station Sector. Call +91 89551 44444 or email economiccourierbhilwara@gmail.com for doorstep parcel pickups, rate quotes & express booking.',
   keywords: [
     'contact economic courier bhilwara',
+    'best courier in bhilwara',
+    'best courier service in bhilwara',
+    'economic courier bhilwara',
     'courier office bhilwara',
     'ecs express contact bhilwara',
     'economic courier office bhilwara',
@@ -15,12 +18,13 @@ export const metadata: Metadata = {
     'courier phone number bhilwara',
     'pur road courier office contact',
     'opposite new cloth market courier',
+    'doorstep courier pickup bhilwara',
   ],
   alternates: {
     canonical: '/contact',
   },
   openGraph: {
-    title: 'Contact Us & Office Location in Bhilwara | Economic Courier Desk',
+    title: 'Contact Best Courier Service in Bhilwara | Economic Courier Hub',
     description:
       'Direct customer inquiry desk in Bhilwara. Priority domestic parcels, international air cargo, and textile swatch sample shipping assistance.',
     url: '/contact',
@@ -36,7 +40,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Contact Us & Office Location in Bhilwara | Economic Courier Desk',
+    title: 'Contact Best Courier Service in Bhilwara | Economic Courier Hub',
     description:
       'Contact Economic Courier and eCS World Wide Express in Bhilwara: customer desk, consignment queries, and booking guidance.',
     images: ['/assets/og/economic-courier-social.jpg'],
@@ -78,6 +82,7 @@ const contactJsonLd = {
         '@type': 'DeliveryService',
         name: 'Economic Courier / eCS World Wide Express',
         telephone: '+91 89551 44444',
+        email: 'economiccourierbhilwara@gmail.com',
         address: {
           '@type': 'PostalAddress',
           streetAddress: 'Opposite New Cloth Market, Railway Staff Quarter Area, Pur Road / Station Sector',

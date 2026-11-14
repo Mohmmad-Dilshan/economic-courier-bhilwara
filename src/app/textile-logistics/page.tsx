@@ -6,6 +6,8 @@ export const metadata: Metadata = {
   description:
     'Dedicated textile courier service for Bhilwara weaving mills, garment exporters & fabric traders: express delivery of sample swatches, shade cards, suiting cuts & trade paperwork to Mumbai, Surat, Delhi & 220+ countries.',
   keywords: [
+    'best textile courier bhilwara',
+    'economic courier bhilwara',
     'textile courier bhilwara',
     'fabric sample shipping bhilwara',
     'suiting sample courier bhilwara',

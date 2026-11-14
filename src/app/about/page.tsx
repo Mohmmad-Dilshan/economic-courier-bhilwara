@@ -2,11 +2,14 @@ import type { Metadata } from 'next';
 import { AboutView } from '@/components/about/AboutView';
 
 export const metadata: Metadata = {
-  title: 'About Us | Economic Courier & eCS World Wide Express Bhilwara',
+  title: 'About Economic Courier | Best Courier Service in Bhilwara',
   description:
-    'Learn about Economic Courier and eCS World Wide Express in Bhilwara, Rajasthan. Established central hub Opposite New Cloth Market, Pur Road. Dedicated domestic express, worldwide air cargo transit, and specialized textile fabric sample logistics.',
+    'Learn about Economic Courier and eCS World Wide Express — recognized as the best courier service in Bhilwara, Rajasthan. Established central hub Opposite New Cloth Market, Pur Road. Dedicated domestic express, worldwide air cargo transit, and specialized textile fabric sample logistics.',
   keywords: [
     'about economic courier bhilwara',
+    'best courier in bhilwara',
+    'best courier service in bhilwara',
+    'economic courier bhilwara',
     'ecs world wide express bhilwara',
     'courier office bhilwara',
     'textile courier bhilwara history',
@@ -18,7 +21,7 @@ export const metadata: Metadata = {
     canonical: '/about',
   },
   openGraph: {
-    title: 'About Us | Economic Courier & eCS World Wide Express Bhilwara',
+    title: 'About Economic Courier | Best Courier Service in Bhilwara',
     description:
       'Discover our Bhilwara hub operations, dedicated courier personnel, local textile trade focus, and international express forwarding under eCS World Wide Express.',
     url: '/about',
@@ -34,7 +37,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'About Us | Economic Courier & eCS World Wide Express Bhilwara',
+    title: 'About Economic Courier | Best Courier Service in Bhilwara',
     description:
       'Bhilwara courier hub operations, local textile trade specialization, and global express air transit.',
     images: ['/assets/og/economic-courier-social.jpg'],

@@ -119,15 +119,20 @@ export default function HomePage() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 xl:gap-12 items-center">
             {/* Left Content Column */}
             <div className="lg:col-span-6 space-y-5">
-              {/* Location Badge */}
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-gradient-to-r from-red-50 via-white to-red-50/50 border border-red-200/80 text-red-700 text-[11px] font-extrabold tracking-widest uppercase shadow-xs ">
-                <span className="w-2 h-2 rounded-full bg-[#DC2626] shadow-[0_0_8px_rgba(220,38,38,0.7)] " />
-                <MapPin className="w-3.5 h-3.5 text-red-700" />
-                <span>BHILWARA · INDIA</span>
+              {/* Location Badge & Brand Authority Kicker */}
+              <div className="flex flex-wrap items-center gap-2">
+                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-gradient-to-r from-red-50 via-white to-red-50/50 border border-red-200/80 text-red-700 text-[11px] font-extrabold tracking-widest uppercase shadow-xs ">
+                  <span className="w-2 h-2 rounded-full bg-[#DC2626] shadow-[0_0_8px_rgba(220,38,38,0.7)] " />
+                  <MapPin className="w-3.5 h-3.5 text-red-700" />
+                  <span>BHILWARA · RAJASTHAN</span>
+                </div>
+                <span className="hidden sm:inline-block text-[11px] font-bold text-slate-500 uppercase tracking-wider">
+                  Best Courier Service in Bhilwara
+                </span>
               </div>
 
               {/* Large Modern Gradient Headline with Flight Trail and Airplane */}
-              <h1 className="text-3xl xs:text-4xl sm:text-5xl lg:text-[54px] xl:text-[58px] font-black tracking-[-0.035em] leading-[1.08] sm:leading-[1.06] ">
+              <h1 className="text-4xl xs:text-[42px] sm:text-5xl md:text-6xl lg:text-[62px] xl:text-[68px] font-black tracking-[-0.04em] leading-[1.04] sm:leading-[1.02] ">
                 <span className="text-[#1E3A8A]">
                   From Bhilwara to
                 </span>{' '}
@@ -135,7 +140,7 @@ export default function HomePage() {
                 <span className="bg-gradient-to-r from-[#DC2626] via-[#EF4444] to-[#B91C1C] bg-clip-text text-transparent inline-flex items-center relative drop-shadow-[0_2px_12px_rgba(220,38,38,0.18)]">
                   the world.
                   <svg
-                    className="w-10 h-8 xs:w-12 xs:h-9 sm:w-14 sm:h-11 -mt-5 sm:-mt-7 ml-2 sm:ml-2.5 inline-block overflow-visible shrink-0"
+                    className="w-11 h-9 xs:w-13 xs:h-10 sm:w-14 sm:h-11 md:w-16 md:h-12 lg:w-[68px] lg:h-[54px] -mt-5 sm:-mt-7 md:-mt-8 ml-2 sm:ml-3 inline-block overflow-visible shrink-0"
                     viewBox="0 0 50 40"
                     fill="none"
                     aria-hidden="true"
@@ -152,16 +157,16 @@ export default function HomePage() {
                     />
                   </svg>
                 </span>
-                <span className="sr-only"> — Economic Courier &amp; eCS World Wide Express, Bhilwara</span>
+                <span className="sr-only"> — Economic Courier Bhilwara | Best Domestic &amp; International Courier Service in Bhilwara, Rajasthan</span>
               </h1>
 
               {/* Subtitle */}
-              <p className="text-sm sm:text-base lg:text-lg text-slate-600 leading-relaxed max-w-md font-normal ">
-                Priority domestic express &amp; worldwide air cargo connectivity, tailored for Bhilwara trade, documents, and parcels.
+              <p className="text-sm sm:text-base lg:text-[17px] xl:text-lg text-slate-600 leading-relaxed max-w-xl font-normal ">
+                Fast, safe, and reliable courier service for your parcels, documents, and textile samples &mdash; connecting Bhilwara to all India and worldwide with daily dispatches.
               </p>
 
               {/* Search / Tracking Box */}
-              <div className="pt-1 max-w-[460px] ">
+              <div className="pt-1 max-w-[480px] ">
                 <form
                   onSubmit={handleTrackSubmit}
                   noValidate
@@ -447,11 +452,11 @@ export default function HomePage() {
                 <span>ABOUT US</span>
               </div>
               <h2 className="text-3xl sm:text-4xl lg:text-[42px] font-black tracking-[-0.035em] leading-[1.08]">
-                <span className="text-[#1E3A8A]">A local team,</span> <br />
-                <span className="bg-gradient-to-r from-[#DC2626] via-[#E11D48] to-[#EF4444] bg-clip-text text-transparent">ready to help.</span>
+                <span className="text-[#1E3A8A]">Economic Courier:</span> <br />
+                <span className="bg-gradient-to-r from-[#DC2626] via-[#E11D48] to-[#EF4444] bg-clip-text text-transparent">Best Courier in Bhilwara.</span>
               </h2>
               <p className="text-sm sm:text-base text-slate-600 leading-relaxed max-w-lg pt-1 font-normal mx-auto lg:mx-0">
-                Economic Courier is a courier service in Bhilwara, providing domestic and international courier services for trade correspondence, parcels, and document consignments.
+                Operating from our central hub Opposite New Cloth Market on Pur Road, Economic Courier (eCS World Wide Express) is recognized as the best courier service in Bhilwara. We deliver dependable domestic express parcels across 19,000+ Indian pin codes, worldwide air cargo to 220+ countries, and specialized textile fabric sample logistics.
               </p>
               <div className="pt-3 w-full flex justify-center lg:justify-start">
                 <Link

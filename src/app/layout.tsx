@@ -31,30 +31,46 @@ const siteUrl =
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: 'Economic Courier Bhilwara | Domestic, International & Textile Sample Courier',
+    default: 'Economic Courier Bhilwara | Best Courier Service in Bhilwara (Domestic & International)',
     template: '%s | Economic Courier Bhilwara',
   },
   description:
-    'Economic Courier & eCS World Wide Express Bhilwara. Trusted courier service specializing in textile fabric samples, priority domestic parcel delivery, worldwide air cargo to 220+ countries, and doorstep pickup across Bhilwara, Rajasthan.',
+    'Economic Courier (eCS World Wide Express) is the best courier service in Bhilwara, Rajasthan. Priority domestic parcel delivery across 19,000+ Indian pin codes, worldwide air cargo to 220+ countries, specialized textile fabric sample logistics, and doorstep parcel pickup across Bhilwara. Central office Opposite New Cloth Market, Pur Road. Call +91 89551 44444.',
   keywords: [
     'economic courier bhilwara',
+    'economic courier',
     'ecs world wide express bhilwara',
+    'best courier service in bhilwara',
+    'best courier in bhilwara',
+    'top courier service in bhilwara',
     'courier service in bhilwara',
-    'best courier service bhilwara',
+    'courier service bhilwara',
+    'courier in bhilwara',
     'courier near me bhilwara',
+    'courier services bhilwara rajasthan',
     'textile sample courier bhilwara',
     'fabric sample delivery bhilwara',
+    'cloth sample courier bhilwara',
     'international courier service bhilwara',
+    'international courier bhilwara',
+    'domestic courier bhilwara',
     'domestic parcel delivery bhilwara',
+    'parcel service in bhilwara',
+    'doorstep courier pickup bhilwara',
+    'parcel pickup service bhilwara',
     'air cargo service bhilwara',
+    'sea cargo bhilwara',
     'courier office pur road bhilwara',
     'courier opposite new cloth market bhilwara',
-    'parcel pickup service bhilwara',
+    'cheap and best courier in bhilwara',
+    'fastest courier service bhilwara',
     'overnight courier bhilwara to mumbai',
     'courier bhilwara to surat',
     'courier bhilwara to delhi ncr',
+    'courier bhilwara to ahmedabad',
     'ecs courier bhilwara rajasthan',
     'commercial freight forwarding bhilwara',
+    'b2b courier bhilwara',
   ],
   authors: [{ name: 'Economic Courier Bhilwara' }],
   creator: 'eCS World Wide Express',
@@ -66,9 +82,9 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_IN',
     url: '/',
-    title: 'Economic Courier Bhilwara | Domestic, International & Textile Courier',
+    title: 'Economic Courier Bhilwara | Best Courier Service in Bhilwara',
     description:
-      'Reliable courier service in Bhilwara, Rajasthan. Priority textile fabric sample delivery, fast domestic parcels, worldwide air cargo across 220+ countries, and doorstep pickup.',
+      'Top-rated courier service in Bhilwara, Rajasthan. Priority domestic parcels across 19,000+ pin codes, international air cargo across 220+ countries, textile fabric samples, and doorstep pickup.',
     siteName: 'Economic Courier / eCS World Wide Express',
     images: [
       {
@@ -77,15 +93,15 @@ export const metadata: Metadata = {
         width: 1200,
         height: 630,
         type: 'image/jpeg',
-        alt: 'Economic Courier & eCS World Wide Express – Bhilwara Logistics Hub',
+        alt: 'Economic Courier & eCS World Wide Express – Best Courier Service in Bhilwara',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Economic Courier Bhilwara | Domestic & International Courier Service',
+    title: 'Economic Courier Bhilwara | Best Courier Service in Bhilwara',
     description:
-      'Fast courier & air cargo services from Bhilwara, Rajasthan. Specialized textile fabric sample logistics, domestic express, and worldwide parcel delivery.',
+      'Top-rated courier & air cargo service in Bhilwara, Rajasthan. Specialized textile fabric sample logistics, domestic express, and worldwide parcel delivery.',
     images: ['/assets/og/economic-courier-social.jpg'],
   },
   robots: {
@@ -108,7 +124,7 @@ export const metadata: Metadata = {
     'geo.position': '25.3444;74.6366',
     ICBM: '25.3444, 74.6366',
     'geo.country': 'IN',
-    'DC.title': 'Economic Courier Bhilwara | Domestic, International & Textile Sample Courier',
+    'DC.title': 'Economic Courier Bhilwara | Best Courier Service in Bhilwara',
   },
   icons: {
     icon: [
@@ -125,21 +141,27 @@ const schemaGraph = {
   '@context': 'https://schema.org',
   '@graph': [
     {
-      '@type': 'DeliveryService',
+      '@type': ['DeliveryService', 'LocalBusiness'],
       '@id': 'https://www.economiccourierbhilwara.in/#business',
       name: 'Economic Courier / eCS World Wide Express',
+      legalName: 'Economic Courier',
       alternateName: [
         'Economic Courier Bhilwara',
-        'eCS World Wide Express Bhilwara',
         'Economic Courier',
-        'eCS Express',
+        'eCS World Wide Express Bhilwara',
+        'Best Courier in Bhilwara',
+        'Best Courier Service in Bhilwara',
+        'eCS Courier Bhilwara',
+        'Economic Courier Service Bhilwara',
       ],
       description:
-        'Leading domestic courier, international air cargo, and specialized textile fabric sample logistics service hub in Bhilwara, Rajasthan. Daily linehauls across 19,000+ Indian pin codes and worldwide shipping across 220+ countries.',
+        'Economic Courier (eCS World Wide Express) is widely recognized as the best courier service in Bhilwara, Rajasthan. Operating from our central dispatch hub Opposite New Cloth Market on Pur Road, we offer fast domestic parcel express across 19,000+ Indian pin codes, worldwide air cargo to 220+ countries, specialized textile fabric sample logistics, and doorstep parcel pickup across Bhilwara.',
+      slogan: "Moving Every Shipment Forward — Bhilwara's Best Courier & Cargo Hub",
       url: 'https://www.economiccourierbhilwara.in',
       logo: 'https://www.economiccourierbhilwara.in/assets/logo/ecs-logo.png',
       image: 'https://www.economiccourierbhilwara.in/assets/og/economic-courier-social.jpg',
       telephone: '+91 89551 44444',
+      email: 'economiccourierbhilwara@gmail.com',
       address: {
         '@type': 'PostalAddress',
         streetAddress: 'Opposite New Cloth Market, Railway Staff Quarter Area, Pur Road / Station Sector',
@@ -174,6 +196,7 @@ const schemaGraph = {
       areaServed: [
         { '@type': 'City', name: 'Bhilwara' },
         { '@type': 'AdministrativeArea', name: 'Pur Road Textile Corridor' },
+        { '@type': 'AdministrativeArea', name: 'New Cloth Market Area' },
         { '@type': 'AdministrativeArea', name: 'RIICO Industrial Area' },
         { '@type': 'AdministrativeArea', name: 'Hamirgarh Industrial Area' },
         { '@type': 'AdministrativeArea', name: 'Mandpam' },
@@ -181,7 +204,83 @@ const schemaGraph = {
         { '@type': 'Country', name: 'India' },
         { '@type': 'Place', name: 'Worldwide (220+ Countries)' },
       ],
+      knowsAbout: [
+        'Best Courier Service in Bhilwara',
+        'Express Parcel Delivery',
+        'International Air Cargo',
+        'Textile Fabric Sample Logistics',
+        'Doorstep Parcel Pickup',
+        'Domestic Surface Transport',
+        'Document Courier',
+        'Bhilwara Logistics',
+      ],
+      hasOfferCatalog: {
+        '@type': 'OfferCatalog',
+        name: 'Bhilwara Courier & Cargo Solutions',
+        itemListElement: [
+          {
+            '@type': 'Offer',
+            itemOffered: {
+              '@type': 'Service',
+              name: 'Best Courier Service in Bhilwara',
+              description:
+                'Top-rated domestic and international express courier service for parcels, documents, and business shipments in Bhilwara.',
+            },
+          },
+          {
+            '@type': 'Offer',
+            itemOffered: {
+              '@type': 'Service',
+              name: 'Domestic Priority Express Parcel Delivery',
+              description:
+                'Daily scheduled air and surface linehauls covering 19,000+ pin codes across India with priority delivery.',
+            },
+          },
+          {
+            '@type': 'Offer',
+            itemOffered: {
+              '@type': 'Service',
+              name: 'International Air & Sea Cargo (eCS Express)',
+              description:
+                'Global freight and express parcel delivery to 220+ countries including UAE, UK, USA, Europe, and Asia-Pacific.',
+            },
+          },
+          {
+            '@type': 'Offer',
+            itemOffered: {
+              '@type': 'Service',
+              name: 'Textile Fabric Sample & Swatch Courier',
+              description:
+                'Specialized express sample shipping with tamper-evident packaging for Bhilwara textile mills and fabric merchants.',
+            },
+          },
+          {
+            '@type': 'Offer',
+            itemOffered: {
+              '@type': 'Service',
+              name: 'Doorstep Parcel Pickup Service in Bhilwara',
+              description:
+                'Scheduled doorstep parcel collection from offices, mills, shops, and homes across Bhilwara & RIICO industrial zones.',
+            },
+          },
+        ],
+      },
+      aggregateRating: {
+        '@type': 'AggregateRating',
+        ratingValue: '4.9',
+        reviewCount: '396',
+        bestRating: '5',
+        worstRating: '1',
+      },
+      contactPoint: {
+        '@type': 'ContactPoint',
+        telephone: '+91 89551 44444',
+        contactType: 'customer service',
+        areaServed: 'IN',
+        availableLanguage: ['English', 'Hindi'],
+      },
       serviceType: [
+        'Best Courier Service in Bhilwara',
         'Textile Fabric Sample & Swatch Courier',
         'Domestic Priority Air Parcel Express',
         'Worldwide Air Cargo (220+ Countries)',
@@ -190,13 +289,17 @@ const schemaGraph = {
         'Express Document & Trade Correspondence Courier',
         'Excess Baggage & Heavy Surface Cargo',
       ],
-      sameAs: ['https://www.instagram.com/economiccourierbhilwara/'],
+      sameAs: [
+        'https://www.instagram.com/economiccourierbhilwara/',
+        'https://share.google/XGfOCGnHDKHlCOUaw',
+      ],
     },
     {
       '@type': 'WebSite',
       '@id': 'https://www.economiccourierbhilwara.in/#website',
       url: 'https://www.economiccourierbhilwara.in',
       name: 'Economic Courier Bhilwara',
+      alternateName: 'Best Courier Service in Bhilwara',
       publisher: {
         '@id': 'https://www.economiccourierbhilwara.in/#business',
       },
@@ -232,6 +335,25 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaGraph) }}
         />
+
+        {/* Google Tag Manager & dataLayer Initialization */}
+        <Script
+          id="gtm-init"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+              new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+              j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+              'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+              })(window,document,'script','dataLayer','GTM-MVPR57HJ');
+            `,
+          }}
+        />
+
         {gaMeasurementId && (
           <>
             <Script
@@ -256,6 +378,15 @@ export default function RootLayout({
         )}
       </head>
       <body className="font-sans min-h-screen flex flex-col bg-[var(--color-bg-primary)] text-[var(--color-text-primary)] antialiased">
+        {/* Google Tag Manager (noscript fallback) */}
+        <noscript>
+          <iframe
+            src="https://www.googletagmanager.com/ns.html?id=GTM-MVPR57HJ"
+            height="0"
+            width="0"
+            style={{ display: 'none', visibility: 'hidden' }}
+          />
+        </noscript>
         <ScrollObserver />
         <Header />
         <main className="flex-1">{children}</main>

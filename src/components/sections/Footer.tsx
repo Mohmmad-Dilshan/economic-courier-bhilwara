@@ -6,6 +6,7 @@ import { usePathname } from 'next/navigation';
 import {
   MapPin,
   Phone,
+  Mail,
   Clock,
   ExternalLink,
   ShieldCheck,
@@ -175,6 +176,15 @@ export function Footer() {
               >
                 <Phone className="w-4 h-4 text-[#DC2626] shrink-0 group-hover:scale-110 transition-transform" />
                 <span>+91 89551 44444 (Counter Helpline)</span>
+              </a>
+
+              <a
+                href="mailto:economiccourierbhilwara@gmail.com"
+                className="flex items-center gap-2.5 text-slate-700 hover:text-[#DC2626] font-medium transition-colors group break-all"
+                aria-label="Email Economic Courier Bhilwara"
+              >
+                <Mail className="w-4 h-4 text-[#DC2626] shrink-0 group-hover:scale-110 transition-transform" />
+                <span>economiccourierbhilwara@gmail.com</span>
               </a>
 
               <div className="flex items-center gap-2.5 text-slate-600">

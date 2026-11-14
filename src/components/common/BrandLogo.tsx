@@ -27,12 +27,11 @@ export function BrandLogo({
   return (
     <div className={`inline-flex items-center select-none ${className}`}>
       <Image
-        src={getMediaUrl(isDark ? '/assets/logo/ecs-logo-dark.png' : '/assets/logo/ecs-logo-header.png', { type: 'image' })}
+        src={getMediaUrl(isDark ? '/assets/logo/ecs-logo-dark.png' : '/assets/logo/ecs-logo-header.webp', { type: 'image' })}
         alt="Economic Courier & eCS World Wide Express Bhilwara Official Logo"
         title="Economic Courier & eCS World Wide Express - Best Courier Service in Bhilwara"
         width={current.width}
         height={current.height}
-        unoptimized
         priority
         style={{ aspectRatio: `${current.width}/${current.height}` }}
         className={`${current.imgClass} w-auto object-contain transition-transform duration-150 hover:scale-[1.02]`}

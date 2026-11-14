@@ -43,7 +43,7 @@ export function HowItWorksSection() {
             title="Step-by-step courier booking & dispatch process — Economic Courier & eCS World Wide Express Bhilwara"
             width={2172}
             height={724}
-            quality={95}
+            quality={90}
             loading="lazy"
             style={{ aspectRatio: '2172/724' }}
             className="w-full h-auto object-contain block select-none"
@@ -62,7 +62,7 @@ export function HowItWorksSection() {
             title="Step-by-step courier booking & dispatch process — Economic Courier & eCS World Wide Express Bhilwara"
             width={1364}
             height={2048}
-            quality={95}
+            quality={90}
             loading="lazy"
             style={{ aspectRatio: '1364/2048' }}
             className="w-full h-auto object-contain block select-none"

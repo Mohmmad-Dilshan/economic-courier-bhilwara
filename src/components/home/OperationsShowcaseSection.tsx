@@ -143,6 +143,8 @@ export function OperationsShowcaseSection() {
                   src={photo.imageSrc}
                   alt={photo.title}
                   fill
+                  loading="lazy"
+                  quality={80}
                   sizes="(max-width: 640px) 256px, 320px"
                   className="object-cover group-hover/card:scale-108 transition-transform duration-500 ease-out"
                 />
@@ -172,6 +174,8 @@ export function OperationsShowcaseSection() {
                   src={photo.imageSrc}
                   alt={photo.title}
                   fill
+                  loading="lazy"
+                  quality={80}
                   sizes="(max-width: 640px) 256px, 320px"
                   className="object-cover group-hover/card:scale-108 transition-transform duration-500 ease-out"
                 />

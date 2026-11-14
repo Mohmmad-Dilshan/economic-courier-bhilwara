@@ -119,14 +119,14 @@ export default function HomePage() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 xl:gap-12 items-center">
             {/* Left Content Column */}
             <div className="lg:col-span-6 space-y-5">
-              {/* Location Badge & Brand Authority Kicker */}
+              {/* Location Badge & Authority Kicker */}
               <div className="flex flex-wrap items-center gap-2">
                 <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-gradient-to-r from-red-50 via-white to-red-50/50 border border-red-200/80 text-red-700 text-[11px] font-extrabold tracking-widest uppercase shadow-xs ">
                   <span className="w-2 h-2 rounded-full bg-[#DC2626] shadow-[0_0_8px_rgba(220,38,38,0.7)] " />
                   <MapPin className="w-3.5 h-3.5 text-red-700" />
                   <span>BHILWARA · RAJASTHAN</span>
                 </div>
-                <span className="hidden sm:inline-block text-[11px] font-bold text-slate-500 uppercase tracking-wider">
+                <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider">
                   Best Courier Service in Bhilwara
                 </span>
               </div>
@@ -226,8 +226,8 @@ export default function HomePage() {
                 )}
               </div>
 
-              {/* Inquiry Action Button */}
-              <div className="pt-0.5 ">
+              {/* Inquiry Action Button & Brand Assurance Line */}
+              <div className="pt-0.5 flex flex-wrap items-center gap-3 sm:gap-3.5">
                 <Link
                   href="/contact#inquiry-form"
                   className="inline-flex items-center gap-2 bg-[#008751] hover:bg-[#007043] text-white text-[13px] font-semibold px-5 py-2.5 rounded-full shadow-xs transition-all active:scale-95 cursor-pointer"
@@ -236,6 +236,12 @@ export default function HomePage() {
                   <MessageCircle className="w-4 h-4 fill-white text-[#008751]" />
                   <span>Talk to our team</span>
                 </Link>
+
+                <div className="inline-flex items-center gap-2 text-xs sm:text-[13px] font-bold text-slate-700">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#DC2626]" />
+                  <span className="text-[#0F172A] font-extrabold">Economic Courier</span>
+                  <span className="text-slate-500 font-semibold">(eCS World Wide Express)</span>
+                </div>
               </div>
             </div>
 

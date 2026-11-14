@@ -119,7 +119,7 @@ export default function HomePage() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 xl:gap-12 items-center">
             {/* Left Content Column */}
             <div className="lg:col-span-6 space-y-5">
-              {/* Location Badge & Brand Line */}
+              {/* Location Badge, Authority Tag & Brand Line */}
               <div className="flex flex-wrap items-center gap-2 sm:gap-2.5">
                 <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-gradient-to-r from-red-50 via-white to-red-50/50 border border-red-200/80 text-red-700 text-[11px] font-extrabold tracking-widest uppercase shadow-xs ">
                   <span className="w-2 h-2 rounded-full bg-[#DC2626] shadow-[0_0_8px_rgba(220,38,38,0.7)] " />
@@ -127,9 +127,17 @@ export default function HomePage() {
                   <span>BHILWARA · RAJASTHAN</span>
                 </div>
 
-                <span className="text-[11px] sm:text-xs font-bold text-slate-600 uppercase tracking-wider">
-                  Economic Courier (eCS World Wide Express)
+                <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider">
+                  Best Courier Service in Bhilwara
                 </span>
+
+                <span className="text-slate-300 hidden sm:inline">•</span>
+
+                <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/90 border border-slate-200/90 text-[11px] sm:text-xs font-bold text-slate-800 shadow-2xs">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#DC2626]" />
+                  <span className="text-[#0F172A] font-extrabold">Economic Courier</span>
+                  <span className="text-slate-500 font-medium">(eCS World Wide Express)</span>
+                </div>
               </div>
 
               {/* Large Modern Gradient Headline with Flight Trail and Airplane */}

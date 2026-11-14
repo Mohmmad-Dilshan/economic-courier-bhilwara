@@ -67,8 +67,12 @@ export function VideoIntroOverlay() {
         return;
       }
 
-      // Activate intro popup
-      setIsVisible(true);
+      // Activate intro popup asynchronously to avoid cascading renders
+      const timer = setTimeout(() => {
+        setIsVisible(true);
+      }, 50);
+
+      return () => clearTimeout(timer);
     } catch {
       // Graceful fallback
     }

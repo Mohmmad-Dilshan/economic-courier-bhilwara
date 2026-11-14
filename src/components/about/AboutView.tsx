@@ -170,12 +170,13 @@ export function AboutView() {
               <div className="lg:col-span-5 relative bg-slate-100 flex flex-col justify-between min-h-[420px] sm:min-h-[500px]">
                 <div className="relative w-full h-full flex-1 min-h-[380px] sm:min-h-[460px] lg:min-h-[520px]">
                   <Image
-                    src="/assets/team/chandra-shekhar-panecha.jpg"
-                    alt="Mr. Chandra Shekhar Panecha, Independent Director of Economic Courier and eCS World Wide Express in his Bhilwara office"
+                    src="/assets/team/chandra-shekhar-panecha.webp"
+                    alt="Mr. Chandra Shekhar Panecha, Founder & Independent Director of Economic Courier & eCS World Wide Express, Bhilwara"
+                    title="Mr. Chandra Shekhar Panecha — Founder & Independent Director, Economic Courier Bhilwara"
                     fill
-                    sizes="(max-width: 1024px) 100vw, 42vw"
-                    className="object-cover object-[center_20%]"
+                    unoptimized
                     priority
+                    className="object-cover object-[center_top]"
                   />
                 </div>
               </div>

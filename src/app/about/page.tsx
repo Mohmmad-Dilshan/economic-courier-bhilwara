@@ -89,6 +89,24 @@ const aboutJsonLd = {
         },
       },
     },
+    {
+      '@type': 'Person',
+      '@id': 'https://www.economiccourierbhilwara.in/about#chandra-shekhar-panecha',
+      name: 'Chandra Shekhar Panecha',
+      jobTitle: 'Founder & Independent Director',
+      worksFor: {
+        '@type': 'DeliveryService',
+        name: 'Economic Courier / eCS World Wide Express',
+        url: 'https://www.economiccourierbhilwara.in',
+      },
+      image: 'https://www.economiccourierbhilwara.in/assets/team/chandra-shekhar-panecha.webp',
+      description:
+        'Supply chain specialist with over 35 years of logistics experience, leading Economic Courier and eCS World Wide Express in Bhilwara, Rajasthan.',
+      sameAs: [
+        'https://www.instagram.com/chandrashekharpanecha',
+        'https://youtube.com/@chandrashekharpanecha',
+      ],
+    },
   ],
 };
 

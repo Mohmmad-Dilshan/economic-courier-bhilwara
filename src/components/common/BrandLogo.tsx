@@ -1,5 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
+import { getMediaUrl } from '@/lib/cloudinary';
 
 interface BrandLogoProps {
   variant?: 'light' | 'dark';
@@ -26,7 +27,7 @@ export function BrandLogo({
   return (
     <div className={`inline-flex items-center select-none ${className}`}>
       <Image
-        src={isDark ? '/assets/logo/ecs-logo-dark.png' : '/assets/logo/ecs-logo-header.png'}
+        src={getMediaUrl(isDark ? '/assets/logo/ecs-logo-dark.png' : '/assets/logo/ecs-logo-header.png', { type: 'image' })}
         alt="Economic Courier & eCS World Wide Express Bhilwara Official Logo"
         title="Economic Courier & eCS World Wide Express - Best Courier Service in Bhilwara"
         width={current.width}

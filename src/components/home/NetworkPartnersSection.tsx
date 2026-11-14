@@ -14,6 +14,7 @@ import {
 } from 'lucide-react';
 import { ACTIVE_NETWORK_PARTNERS } from '../../lib/partnersData';
 import type { NetworkPartner, PartnerRole } from '../../types/partner';
+import { getMediaUrl } from '@/lib/cloudinary';
 
 // ─── Local Types ──────────────────────────────────────────────────────────────
 
@@ -155,13 +156,15 @@ export function NetworkPartnersSection() {
               style={{ aspectRatio: '1024/682' }}
             >
               <Image
-                src="/assets/network/ecs-airplane-3d.webp"
-                alt="eCS World Wide Express 3D Air Cargo Airplane Object"
+                src={getMediaUrl('/assets/network/ecs-airplane-3d.webp', { type: 'image' })}
+                alt="Economic Courier & eCS World Wide Express 3D Air Cargo Plane"
+                title="International Express Air Freight & Domestic Air Cargo Network — Economic Courier Bhilwara"
                 width={1024}
                 height={682}
                 sizes="(max-width: 640px) 220px, (max-width: 1024px) 280px, 360px"
                 style={{ aspectRatio: '1024/682' }}
                 className="w-full h-auto object-contain"
+                quality={95}
               />
             </div>
           </div>

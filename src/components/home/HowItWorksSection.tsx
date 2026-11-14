@@ -4,6 +4,7 @@ import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Sparkles, ArrowRight } from 'lucide-react';
+import { getMediaUrl } from '@/lib/cloudinary';
 
 export function HowItWorksSection() {
   return (
@@ -37,10 +38,12 @@ export function HowItWorksSection() {
             ========================================================================= */}
         <div className="hidden sm:block relative w-full rounded-2xl sm:rounded-3xl lg:rounded-4xl overflow-hidden border border-slate-200/90 shadow-[0_8px_30px_rgba(15,23,42,0.06)] bg-white transition-all duration-300 hover:shadow-[0_16px_45px_rgba(220,38,38,0.09)] hover:border-red-200/80" style={{ aspectRatio: '2172/724' }}>
           <Image
-            src="/assets/how-it-works/how-shipping-works-desktop.webp"
-            alt="How shipping works - From Bhilwara to doorstep in 4 simple steps: Pickup, Handover, Delivered"
+            src={getMediaUrl('/assets/how-it-works/how-shipping-works-desktop.webp', { type: 'image' })}
+            alt="How shipping works with Economic Courier Bhilwara — 4 simple steps: Doorstep Booking, Linehaul Dispatch, Hub In-Transit & Guaranteed Delivery"
+            title="Step-by-step courier booking & dispatch process — Economic Courier & eCS World Wide Express Bhilwara"
             width={2172}
             height={724}
+            quality={95}
             loading="lazy"
             style={{ aspectRatio: '2172/724' }}
             className="w-full h-auto object-contain block select-none"
@@ -54,10 +57,12 @@ export function HowItWorksSection() {
             ========================================================================= */}
         <div className="block sm:hidden relative w-full rounded-2xl overflow-hidden border border-slate-200/90 shadow-[0_6px_24px_rgba(15,23,42,0.06)] bg-white transition-all duration-300" style={{ aspectRatio: '1364/2048' }}>
           <Image
-            src="/assets/how-it-works/how-shipping-works-mobile.webp"
-            alt="How shipping works - From Bhilwara to doorstep in 4 simple steps"
+            src={getMediaUrl('/assets/how-it-works/how-shipping-works-mobile.webp', { type: 'image' })}
+            alt="How shipping works with Economic Courier Bhilwara — 4 simple steps: Doorstep Booking, Linehaul Dispatch, Hub In-Transit & Guaranteed Delivery"
+            title="Step-by-step courier booking & dispatch process — Economic Courier & eCS World Wide Express Bhilwara"
             width={1364}
             height={2048}
+            quality={95}
             loading="lazy"
             style={{ aspectRatio: '1364/2048' }}
             className="w-full h-auto object-contain block select-none"

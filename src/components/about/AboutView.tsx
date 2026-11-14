@@ -20,6 +20,7 @@ import {
 } from 'lucide-react';
 import { InstagramIcon } from '@/components/common/InstagramIcon';
 import { YouTubeIcon } from '@/components/common/YouTubeIcon';
+import { getMediaUrl } from '@/lib/cloudinary';
 
 export function AboutView() {
   return (
@@ -118,7 +119,7 @@ export function AboutView() {
               <div className="relative rounded-3xl overflow-hidden border border-slate-200 bg-white p-3 shadow-[0_16px_40px_rgba(15,23,42,0.06)]">
                 <div className="relative w-full aspect-[4/3] rounded-2xl overflow-hidden bg-slate-100">
                   <Image
-                    src="/assets/office/economic-courier-bhilwara-storefront.webp"
+                    src={getMediaUrl('/assets/office/economic-courier-bhilwara-storefront.webp', { type: 'image' })}
                     alt="Economic Courier central hub storefront and booking office Opposite New Cloth Market on Pur Road, Bhilwara"
                     title="Economic Courier Bhilwara — Central Booking Hub & Storefront, Pur Road"
                     fill
@@ -171,7 +172,7 @@ export function AboutView() {
               <div className="lg:col-span-5 relative bg-slate-100 flex flex-col justify-between min-h-[420px] sm:min-h-[500px]">
                 <div className="relative w-full h-full flex-1 min-h-[380px] sm:min-h-[460px] lg:min-h-[520px]">
                   <Image
-                    src="/assets/team/chandra-shekhar-panecha.webp"
+                    src={getMediaUrl('/assets/team/chandra-shekhar-panecha.webp', { type: 'image' })}
                     alt="Mr. Chandra Shekhar Panecha, Founder & Independent Director of Economic Courier & eCS World Wide Express, Bhilwara"
                     title="Mr. Chandra Shekhar Panecha — Founder & Independent Director, Economic Courier Bhilwara"
                     fill

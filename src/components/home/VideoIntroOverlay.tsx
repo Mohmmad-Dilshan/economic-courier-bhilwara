@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { X, Play, Pause, ArrowRight } from 'lucide-react';
+import { getMediaUrl } from '@/lib/cloudinary';
 
 const STORAGE_KEY = 'ecs_intro_played_v1';
 
@@ -306,7 +307,7 @@ export function VideoIntroOverlay() {
         >
           <video
             ref={videoRef}
-            src="/assets/intro/economic-courier-intro.mp4"
+            src={getMediaUrl('/assets/intro/economic-courier-intro.mp4', { type: 'video' })}
             poster="/assets/intro/intro-poster.webp"
             autoPlay
             playsInline

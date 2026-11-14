@@ -9,6 +9,7 @@ import {
   MapPin,
 } from 'lucide-react';
 import { AnimatedRouteMap } from './AnimatedRouteMap';
+import { getMediaUrl } from '@/lib/cloudinary';
 
 export function DailyRouteSection() {
   return (
@@ -60,13 +61,15 @@ export function DailyRouteSection() {
               style={{ aspectRatio: '1024/682' }}
             >
               <Image
-                src="/assets/routes/ecs-truck-3d.webp"
-                alt="eCS World Wide Express 3D Linehaul Cargo Truck Object"
+                src={getMediaUrl('/assets/routes/ecs-truck-3d.webp', { type: 'image' })}
+                alt="Economic Courier & eCS World Wide Express 3D Linehaul Cargo Truck"
+                title="Daily Linehaul Cargo Dispatches across Rajasthan & Pan-India"
                 width={1024}
                 height={682}
                 sizes="(max-width: 1024px) 280px, 360px"
                 style={{ aspectRatio: '1024/682' }}
                 className="w-full h-auto object-contain"
+                quality={95}
               />
             </div>
           </div>
@@ -82,12 +85,14 @@ export function DailyRouteSection() {
           >
             <div className="relative w-full" style={{ aspectRatio: '1024/341' }}>
               <Image
-                src="/assets/routes/daily-dispatch-banner-hd.webp"
-                alt="10:00 AM ECS Office Cutoff — Daily Regional Route & Same-Day Delivery from Bhilwara Hub"
+                src={getMediaUrl('/assets/routes/daily-dispatch-banner-hd.webp', { type: 'image' })}
+                alt="Economic Courier 10:00 AM Office Cutoff — Daily Regional Route & Same-Day Delivery Circuit from Bhilwara"
+                title="Daily Express Linehaul Cutoff & Route Schedule — Bhilwara Hub"
                 fill
                 sizes="(max-width: 768px) 100vw, 1240px"
                 style={{ aspectRatio: '1024/341' }}
                 className="object-cover object-center transition-transform duration-500 group-hover:scale-[1.01]"
+                quality={95}
               />
             </div>
           </Link>

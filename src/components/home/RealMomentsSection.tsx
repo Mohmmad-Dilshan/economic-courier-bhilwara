@@ -10,6 +10,7 @@ import {
 } from 'lucide-react';
 import { InstagramIcon } from '@/components/common/InstagramIcon';
 import { BUSINESS_INFO } from '@/lib/constants';
+import { getMediaUrl } from '@/lib/cloudinary';
 
 export interface RealMomentVideo {
   id: string;
@@ -27,8 +28,8 @@ export const REAL_MOMENTS_DATA: RealMomentVideo[] = [
     title: 'Economic Courier Bhilwara Visit',
     tag: 'BHILWARA HUB VISIT',
     subtitle: 'Customer walkthrough opposite New Cloth Market',
-    videoUrl: '/assets/social/reel-1-bhilwara-visit.mp4',
-    posterUrl: '/assets/social/reel-1-bhilwara-visit.jpg',
+    videoUrl: getMediaUrl('/assets/social/reel-1-bhilwara-visit.mp4', { type: 'video' }),
+    posterUrl: getMediaUrl('/assets/social/reel-1-bhilwara-visit.jpg', { type: 'image' }),
     instagramUrl: BUSINESS_INFO.instagramUrl,
   },
   {
@@ -36,8 +37,8 @@ export const REAL_MOMENTS_DATA: RealMomentVideo[] = [
     title: 'International Parcel Ka Sahi Tareeka',
     tag: 'INTERNATIONAL DESK',
     subtitle: 'Customs documentation & worldwide express guide',
-    videoUrl: '/assets/social/reel-2-international.mp4',
-    posterUrl: '/assets/social/reel-2-international.jpg',
+    videoUrl: getMediaUrl('/assets/social/reel-2-international.mp4', { type: 'video' }),
+    posterUrl: getMediaUrl('/assets/social/reel-2-international.jpg', { type: 'image' }),
     instagramUrl: BUSINESS_INFO.instagramUrl,
   },
   {
@@ -45,8 +46,8 @@ export const REAL_MOMENTS_DATA: RealMomentVideo[] = [
     title: 'Counter Booking & Handover',
     tag: 'RAILWAY STATION AREA',
     subtitle: 'Live consignment weighing, booking & receipt',
-    videoUrl: '/assets/social/reel-3-railway-station.mp4',
-    posterUrl: '/assets/social/reel-3-railway-station.jpg',
+    videoUrl: getMediaUrl('/assets/social/reel-3-railway-station.mp4', { type: 'video' }),
+    posterUrl: getMediaUrl('/assets/social/reel-3-railway-station.jpg', { type: 'image' }),
     instagramUrl: BUSINESS_INFO.instagramUrl,
   },
   {
@@ -54,8 +55,8 @@ export const REAL_MOMENTS_DATA: RealMomentVideo[] = [
     title: 'Secure Packaging & Direct Rates',
     tag: 'COMMERCIAL DISPATCH',
     subtitle: 'Commercial box dispatch & trade cargo safety',
-    videoUrl: '/assets/social/reel-4-bhilwara-hub.mp4',
-    posterUrl: '/assets/social/reel-4-bhilwara-hub.jpg',
+    videoUrl: getMediaUrl('/assets/social/reel-4-bhilwara-hub.mp4', { type: 'video' }),
+    posterUrl: getMediaUrl('/assets/social/reel-4-bhilwara-hub.jpg', { type: 'image' }),
     instagramUrl: BUSINESS_INFO.instagramUrl,
   },
 ];

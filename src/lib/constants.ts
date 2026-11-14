@@ -44,7 +44,7 @@ export const BUSINESS_DATA: BusinessData = {
   trackingMethod: 'unknown',
   trackingMethodVerified: false,
 
-  logoStatus: 'PROPOSED_CONCEPT_PENDING_APPROVAL',
+  logoStatus: 'OFFICIAL_ASSET_APPROVED',
   mediaAssetsStatus: 'PENDING_FILE_PROVISIONING',
 };
 

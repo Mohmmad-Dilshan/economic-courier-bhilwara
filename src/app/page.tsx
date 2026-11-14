@@ -132,7 +132,7 @@ export default function HomePage() {
               </div>
 
               {/* Large Modern Gradient Headline with Flight Trail and Airplane */}
-              <h1 className="text-3xl xs:text-4xl sm:text-5xl lg:text-[54px] xl:text-[58px] font-black tracking-[-0.035em] leading-[1.08] sm:leading-[1.06] ">
+              <h1 className="text-4xl xs:text-[42px] sm:text-5xl md:text-6xl lg:text-[62px] xl:text-[68px] font-black tracking-[-0.04em] leading-[1.04] sm:leading-[1.02] ">
                 <span className="text-[#1E3A8A]">
                   From Bhilwara to
                 </span>{' '}
@@ -140,7 +140,7 @@ export default function HomePage() {
                 <span className="bg-gradient-to-r from-[#DC2626] via-[#EF4444] to-[#B91C1C] bg-clip-text text-transparent inline-flex items-center relative drop-shadow-[0_2px_12px_rgba(220,38,38,0.18)]">
                   the world.
                   <svg
-                    className="w-10 h-8 xs:w-12 xs:h-9 sm:w-14 sm:h-11 -mt-5 sm:-mt-7 ml-2 sm:ml-2.5 inline-block overflow-visible shrink-0"
+                    className="w-11 h-9 xs:w-13 xs:h-10 sm:w-14 sm:h-11 md:w-16 md:h-12 lg:w-[68px] lg:h-[54px] -mt-5 sm:-mt-7 md:-mt-8 ml-2 sm:ml-3 inline-block overflow-visible shrink-0"
                     viewBox="0 0 50 40"
                     fill="none"
                     aria-hidden="true"
@@ -161,12 +161,12 @@ export default function HomePage() {
               </h1>
 
               {/* Subtitle */}
-              <p className="text-sm sm:text-base lg:text-lg text-slate-600 leading-relaxed max-w-md font-normal ">
-                <strong>Economic Courier (eCS World Wide Express)</strong> &mdash; Bhilwara&apos;s trusted courier service for priority domestic parcels across 19,000+ pin codes, worldwide air cargo to 220+ countries, and specialized textile fabric sample delivery.
+              <p className="text-sm sm:text-base lg:text-[17px] xl:text-lg text-slate-600 leading-relaxed max-w-xl font-normal ">
+                Fast, safe, and reliable courier service for your parcels, documents, and textile samples &mdash; connecting Bhilwara to all India and worldwide with daily dispatches.
               </p>
 
               {/* Search / Tracking Box */}
-              <div className="pt-1 max-w-[460px] ">
+              <div className="pt-1 max-w-[480px] ">
                 <form
                   onSubmit={handleTrackSubmit}
                   noValidate

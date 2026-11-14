@@ -174,9 +174,9 @@ export function AboutView() {
                     alt="Mr. Chandra Shekhar Panecha, Founder & Independent Director of Economic Courier & eCS World Wide Express, Bhilwara"
                     title="Mr. Chandra Shekhar Panecha — Founder & Independent Director, Economic Courier Bhilwara"
                     fill
-                    sizes="(max-width: 1024px) 100vw, 42vw"
-                    className="object-cover object-[center_top]"
+                    unoptimized
                     priority
+                    className="object-cover object-[center_top]"
                   />
                 </div>
               </div>

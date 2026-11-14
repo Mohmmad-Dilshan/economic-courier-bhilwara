@@ -118,8 +118,9 @@ export function AboutView() {
               <div className="relative rounded-3xl overflow-hidden border border-slate-200 bg-white p-3 shadow-[0_16px_40px_rgba(15,23,42,0.06)]">
                 <div className="relative w-full aspect-[4/3] rounded-2xl overflow-hidden bg-slate-100">
                   <Image
-                    src="/assets/office/about-collage.webp"
-                    alt="Economic Courier & eCS World Wide Express Bhilwara office hub and operations floor"
+                    src="/assets/office/economic-courier-bhilwara-storefront.webp"
+                    alt="Economic Courier central hub storefront and booking office Opposite New Cloth Market on Pur Road, Bhilwara"
+                    title="Economic Courier Bhilwara — Central Booking Hub & Storefront, Pur Road"
                     fill
                     priority
                     sizes="(max-width: 1024px) 100vw, 480px"

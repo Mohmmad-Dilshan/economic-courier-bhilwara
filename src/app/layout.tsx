@@ -169,7 +169,10 @@ const schemaGraph = {
         height: 512,
         caption: 'Economic Courier & eCS World Wide Express Bhilwara Official Brand Logo',
       },
-      image: 'https://www.economiccourierbhilwara.in/assets/og/economic-courier-social.jpg',
+      image: [
+        'https://www.economiccourierbhilwara.in/assets/og/economic-courier-social.jpg',
+        'https://www.economiccourierbhilwara.in/assets/office/economic-courier-bhilwara-storefront.webp',
+      ],
       telephone: '+91 89551 44444',
       email: 'economiccourierbhilwara@gmail.com',
       address: {

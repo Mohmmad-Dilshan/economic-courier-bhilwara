@@ -441,12 +441,18 @@ export default function HomePage() {
       <section id="about" className="py-8 sm:py-12 lg:py-16 scroll-mt-20 sm:scroll-mt-24">
         <div className="max-w-[1240px] xl:max-w-[1360px] 2xl:max-w-[1480px] min-[1800px]:max-w-[1560px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-            {/* Left Photo Collage (eCS Wall Logo, Team & Van) */}
-            <div className="lg:col-span-6 relative flex justify-center lg:justify-start ">
+            {/* Left Photo: Authentic Central Bhilwara Office Storefront */}
+            <div className="lg:col-span-6 relative flex justify-center lg:justify-start">
               <div className="relative w-full max-w-[540px]">
                 <Image
-                  src="/assets/office/about-collage.webp" alt="Economic Courier Bhilwara office team, eCS wall logo, and logistics dispatch" width={580} height={350}
-                  className="w-full h-auto object-contain block mx-auto rounded-2xl"
+                  src="/assets/office/economic-courier-bhilwara-storefront.webp"
+                  alt="Economic Courier central hub storefront and booking office Opposite New Cloth Market on Pur Road, Bhilwara"
+                  title="Economic Courier Bhilwara — Central Booking Hub & Storefront, Pur Road"
+                  width={680}
+                  height={383}
+                  quality={95}
+                  priority
+                  className="w-full h-auto object-cover block mx-auto rounded-2xl shadow-[0_12px_36px_rgba(15,23,42,0.12)] border border-slate-200/90"
                 />
               </div>
             </div>

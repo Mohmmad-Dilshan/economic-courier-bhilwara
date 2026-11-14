@@ -164,7 +164,7 @@ export function AboutView() {
           </div>
 
           {/* Master Founder Profile Showcase Card */}
-          <div className="bg-gradient-to-br from-slate-50 via-white to-red-50/20 rounded-3xl border border-slate-200/90 shadow-[0_20px_50px_rgba(15,23,42,0.06)] overflow-hidden">
+          <div className="bg-gradient-to-br from-slate-50 via-white to-red-50/20 rounded-3xl border border-slate-200/90 border-b-4 border-b-[#DC2626] shadow-[0_20px_50px_rgba(15,23,42,0.06)] overflow-hidden">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-0">
               {/* Left Column: Authentic Executive Portrait (5 Columns) */}
               <div className="lg:col-span-5 relative bg-slate-100 flex flex-col justify-between min-h-[420px] sm:min-h-[500px]">

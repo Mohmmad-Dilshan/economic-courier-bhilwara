@@ -142,12 +142,12 @@
   "/assets/routes/daily-dispatch-banner-hd.webp": {
     "localPath": "/assets/routes/daily-dispatch-banner-hd.webp",
     "publicId": "economic-courier/images/daily-dispatch-banner-hd",
-    "secureUrl": "https://res.cloudinary.com/a4pwyvog/image/upload/v1794653911/economic-courier/images/daily-dispatch-banner-hd.webp",
-    "bytes": 241958,
+    "secureUrl": "https://res.cloudinary.com/a4pwyvog/image/upload/v1794655336/economic-courier/images/daily-dispatch-banner-hd.webp",
+    "bytes": 1062804,
     "format": "webp",
     "type": "image",
-    "width": 2100,
-    "height": 700
+    "width": 3072,
+    "height": 1023
   },
   "/assets/network/ecs-airplane-3d.webp": {
     "localPath": "/assets/network/ecs-airplane-3d.webp",

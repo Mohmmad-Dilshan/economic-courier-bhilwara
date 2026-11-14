@@ -2,22 +2,38 @@
  * Cloudinary Media Optimization Utility
  * 
  * Provides automated CDN URL generation for images and videos with:
+ * - Versioned secure URLs ensuring freshest assets from Cloudinary CDN edge cache
  * - Automatic modern format selection (AVIF / WebP for images, WebM / MP4 for videos)
- * - Lossless perceptual quality tuning (q_auto)
+ * - Ultra-high fidelity quality tuning (q_100 / q_auto:best) preventing any text/face blurriness
  * - Zero-downtime fallback to local assets if Cloudinary is unreachable or not configured
  */
+
+import manifestData from './cloudinary-manifest.json';
 
 export const CLOUDINARY_CLOUD_NAME =
   process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME || 'a4pwyvog';
 
 export interface MediaTransformOptions {
   type?: 'image' | 'video';
-  quality?: string | number; // e.g. 'auto', 'auto:best', 95
+  quality?: string | number; // e.g. 100, 95, 'auto:best', 'auto'
   format?: string;          // e.g. 'auto', 'webp', 'mp4'
   width?: number;
   height?: number;
   crop?: string;            // e.g. 'fill', 'scale', 'limit'
 }
+
+interface ManifestEntry {
+  localPath: string;
+  publicId: string;
+  secureUrl: string;
+  bytes: number;
+  format: string;
+  type: 'image' | 'video';
+  width?: number;
+  height?: number;
+}
+
+const MANIFEST: Record<string, ManifestEntry> = manifestData as unknown as Record<string, ManifestEntry>;
 
 /**
  * Registry of uploaded assets on Cloudinary
@@ -156,7 +172,7 @@ export function buildCloudinaryUrl(
 ): string {
   const {
     type = 'image',
-    quality = 'auto',
+    quality = 'auto:best',
     format = 'auto',
     width,
     height,
@@ -178,7 +194,8 @@ export function buildCloudinaryUrl(
 
 /**
  * Returns the best available media URL:
- * - If registered in Cloudinary media registry, returns the ultra-fast Cloudinary CDN URL
+ * - If registered in Cloudinary manifest, returns the versioned, ultra-fast Cloudinary CDN URL
+ * - If not in manifest but in registry, builds standard Cloudinary URL
  * - If not registered or Cloudinary name is missing, seamlessly returns the local asset path
  */
 export function getMediaUrl(
@@ -190,7 +207,34 @@ export function getMediaUrl(
     return localPath;
   }
 
-  // Check if we have this asset mapped
+  // 1. High-fidelity versioned manifest check
+  const manifestEntry = MANIFEST[localPath];
+  if (manifestEntry && CLOUDINARY_CLOUD_NAME) {
+    const isGraphicBanner = localPath.includes('banner') || localPath.includes('how-shipping-works');
+    const {
+      quality = isGraphicBanner ? 100 : 'auto:best',
+      format = 'auto',
+      width,
+      height,
+      crop,
+    } = options;
+
+    const transforms: string[] = [];
+    if (quality) transforms.push(`q_${quality}`);
+    if (format) transforms.push(`f_${format}`);
+    if (width) transforms.push(`w_${width}`);
+    if (height) transforms.push(`h_${height}`);
+    if (crop) transforms.push(`c_${crop}`);
+
+    const transformString = transforms.length > 0 ? transforms.join(',') + '/' : '';
+
+    if (manifestEntry.secureUrl.includes('/upload/')) {
+      return manifestEntry.secureUrl.replace('/upload/', `/upload/${transformString}`);
+    }
+    return manifestEntry.secureUrl;
+  }
+
+  // 2. Registry fallback
   const entry = CLOUDINARY_MEDIA_REGISTRY[localPath];
   if (entry && CLOUDINARY_CLOUD_NAME) {
     return buildCloudinaryUrl(entry.publicId, {
@@ -199,6 +243,6 @@ export function getMediaUrl(
     });
   }
 
-  // Graceful fallback to local path
+  // 3. Local graceful fallback
   return localPath;
 }

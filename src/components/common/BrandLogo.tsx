@@ -27,7 +27,8 @@ export function BrandLogo({
     <div className={`inline-flex items-center select-none ${className}`}>
       <Image
         src={isDark ? '/assets/logo/ecs-logo-dark.png' : '/assets/logo/ecs-logo-header.png'}
-        alt="eCS World Wide Express - Economic Courier Bhilwara"
+        alt="Economic Courier & eCS World Wide Express Bhilwara Official Logo"
+        title="Economic Courier & eCS World Wide Express - Best Courier Service in Bhilwara"
         width={current.width}
         height={current.height}
         unoptimized

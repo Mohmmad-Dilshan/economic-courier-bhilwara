@@ -12,9 +12,22 @@ export default function manifest(): MetadataRoute.Manifest {
     theme_color: '#DC2626',
     icons: [
       {
-        src: '/assets/logo/ecs-logo.png',
-        sizes: '150x150',
+        src: '/assets/logo/ecs-logo-192.png',
+        sizes: '192x192',
         type: 'image/png',
+        purpose: 'any',
+      },
+      {
+        src: '/assets/logo/ecs-logo-512.png',
+        sizes: '512x512',
+        type: 'image/png',
+        purpose: 'any',
+      },
+      {
+        src: '/assets/logo/ecs-logo.png',
+        sizes: '512x512',
+        type: 'image/png',
+        purpose: 'maskable',
       },
     ],
   };

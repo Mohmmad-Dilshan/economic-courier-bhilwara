@@ -128,12 +128,14 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: '/assets/logo/ecs-logo.png', sizes: '150x150', type: 'image/png' },
+      { url: '/favicon.ico', sizes: 'any' },
+      { url: '/assets/logo/ecs-logo-192.png', sizes: '192x192', type: 'image/png' },
+      { url: '/assets/logo/ecs-logo-512.png', sizes: '512x512', type: 'image/png' },
     ],
     apple: [
-      { url: '/assets/logo/ecs-logo.png', sizes: '150x150', type: 'image/png' },
+      { url: '/assets/logo/ecs-logo-180.png', sizes: '180x180', type: 'image/png' },
     ],
-    shortcut: '/assets/logo/ecs-logo.png',
+    shortcut: '/favicon.ico',
   },
 };
 
@@ -158,7 +160,15 @@ const schemaGraph = {
         'Economic Courier (eCS World Wide Express) is widely recognized as the best courier service in Bhilwara, Rajasthan. Operating from our central dispatch hub Opposite New Cloth Market on Pur Road, we offer fast domestic parcel express across 19,000+ Indian pin codes, worldwide air cargo to 220+ countries, specialized textile fabric sample logistics, and doorstep parcel pickup across Bhilwara.',
       slogan: "Moving Every Shipment Forward — Bhilwara's Best Courier & Cargo Hub",
       url: 'https://www.economiccourierbhilwara.in',
-      logo: 'https://www.economiccourierbhilwara.in/assets/logo/ecs-logo.png',
+      logo: {
+        '@type': 'ImageObject',
+        '@id': 'https://www.economiccourierbhilwara.in/#logo',
+        url: 'https://www.economiccourierbhilwara.in/assets/logo/ecs-logo-512.png',
+        contentUrl: 'https://www.economiccourierbhilwara.in/assets/logo/ecs-logo-512.png',
+        width: 512,
+        height: 512,
+        caption: 'Economic Courier & eCS World Wide Express Bhilwara Official Brand Logo',
+      },
       image: 'https://www.economiccourierbhilwara.in/assets/og/economic-courier-social.jpg',
       telephone: '+91 89551 44444',
       email: 'economiccourierbhilwara@gmail.com',

@@ -15,6 +15,7 @@ import {
   ShieldCheck,
 } from 'lucide-react';
 import { BUSINESS_INFO } from '@/lib/constants';
+import { getMediaUrl } from '@/lib/cloudinary';
 
 export function HubLocationSection() {
   const verifiedAddress =
@@ -80,7 +81,7 @@ export function HubLocationSection() {
           <div className="lg:col-span-5 flex justify-center lg:justify-end">
             <div className="relative w-full max-w-[280px] xs:max-w-[340px] sm:max-w-[380px] lg:max-w-[420px]">
               <Image
-                src="/assets/hub-3d-model.webp"
+                src={getMediaUrl('/assets/hub-3d-model.webp', { type: 'image' })}
                 alt="Economic Courier & eCS World Wide Express Central Dispatch Hub 3D Architectural Model Bhilwara"
                 title="Economic Courier Central Dispatch Hub — Opposite New Cloth Market, Pur Road, Bhilwara"
                 width={480}

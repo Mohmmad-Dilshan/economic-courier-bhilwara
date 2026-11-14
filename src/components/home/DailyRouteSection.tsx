@@ -9,6 +9,7 @@ import {
   MapPin,
 } from 'lucide-react';
 import { AnimatedRouteMap } from './AnimatedRouteMap';
+import { getMediaUrl } from '@/lib/cloudinary';
 
 export function DailyRouteSection() {
   return (
@@ -60,7 +61,7 @@ export function DailyRouteSection() {
               style={{ aspectRatio: '1024/682' }}
             >
               <Image
-                src="/assets/routes/ecs-truck-3d.webp"
+                src={getMediaUrl('/assets/routes/ecs-truck-3d.webp', { type: 'image' })}
                 alt="Economic Courier & eCS World Wide Express 3D Linehaul Cargo Truck"
                 title="Daily Linehaul Cargo Dispatches across Rajasthan & Pan-India"
                 width={1024}
@@ -84,7 +85,7 @@ export function DailyRouteSection() {
           >
             <div className="relative w-full" style={{ aspectRatio: '1024/341' }}>
               <Image
-                src="/assets/routes/daily-dispatch-banner-hd.webp"
+                src={getMediaUrl('/assets/routes/daily-dispatch-banner-hd.webp', { type: 'image' })}
                 alt="Economic Courier 10:00 AM Office Cutoff — Daily Regional Route & Same-Day Delivery Circuit from Bhilwara"
                 title="Daily Express Linehaul Cutoff & Route Schedule — Bhilwara Hub"
                 fill

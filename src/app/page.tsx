@@ -34,6 +34,7 @@ import { FAQSection } from '@/components/home/FAQSection';
 import { CTABand } from '@/components/home/CTABand';
 import { HubLocationSection } from '@/components/home/HubLocationSection';
 import { VideoIntroOverlay } from '@/components/home/VideoIntroOverlay';
+import { getMediaUrl } from '@/lib/cloudinary';
 
 export default function HomePage() {
   const [trackingInput, setTrackingInput] = useState('');
@@ -72,7 +73,7 @@ export default function HomePage() {
       imageTitle: 'Domestic Priority Express Shipping from Bhilwara Hub',
       caption: 'domestic · all-india',
       subtext: 'Surface & air express across India',
-      image: '/assets/services/card-domestic.webp',
+      image: getMediaUrl('/assets/services/card-domestic.webp', { type: 'image' }),
       icon: Truck,
       rotation: 'lg:-rotate-2',
     },
@@ -83,7 +84,7 @@ export default function HomePage() {
       imageTitle: 'International Priority Air Courier & Worldwide Freight from Bhilwara',
       caption: 'international · eCS express',
       subtext: 'Global air cargo & priority transit',
-      image: '/assets/services/card-international.webp',
+      image: getMediaUrl('/assets/services/card-international.webp', { type: 'image' }),
       icon: Globe,
       rotation: 'lg:rotate-1',
     },
@@ -94,7 +95,7 @@ export default function HomePage() {
       imageTitle: 'Urgent Documents, Contracts & Passport Courier Desk',
       caption: 'documents · priority desk',
       subtext: 'Secure paperwork & dossiers',
-      image: '/assets/services/card-documents.webp',
+      image: getMediaUrl('/assets/services/card-documents.webp', { type: 'image' }),
       icon: FileText,
       rotation: 'lg:-rotate-1',
     },
@@ -105,7 +106,7 @@ export default function HomePage() {
       imageTitle: 'Bhilwara Textile Logistics — Fabric Swatches & Mill Sample Dispatches',
       caption: 'commercial · textile freight',
       subtext: 'Bhilwara mills to national hubs',
-      image: '/assets/services/card-textiles.webp',
+      image: getMediaUrl('/assets/services/card-textiles.webp', { type: 'image' }),
       icon: Layers,
       rotation: 'lg:rotate-2',
     },
@@ -257,7 +258,7 @@ export default function HomePage() {
             <div className="lg:col-span-6 relative flex justify-center lg:justify-end ">
               <div className="relative w-full max-w-[560px]">
                 <Image
-                  src="/assets/hero/hero-courier.webp"
+                  src={getMediaUrl('/assets/hero/hero-courier.webp', { type: 'image' })}
                   alt="Economic Courier delivery staff with branded eCS van and parcel box delivering in Bhilwara"
                   title="Economic Courier Bhilwara — Express Doorstep Parcel Delivery Service"
                   width={580}
@@ -360,7 +361,7 @@ export default function HomePage() {
                 style={{ aspectRatio: '951/570' }}
               >
                 <Image
-                  src="/assets/services/ecs-boxes-3d.webp"
+                  src={getMediaUrl('/assets/services/ecs-boxes-3d.webp', { type: 'image' })}
                   alt="Economic Courier & eCS World Wide Express 3D Branded Courier Parcel Boxes"
                   title="Priority Express Courier Parcel Packaging — Economic Courier Bhilwara"
                   width={951}
@@ -378,7 +379,7 @@ export default function HomePage() {
                 style={{ aspectRatio: '645/550' }}
               >
                 <Image
-                  src="/assets/services/ecs-scooter-rider-facing-inward.webp"
+                  src={getMediaUrl('/assets/services/ecs-scooter-rider-facing-inward.webp', { type: 'image' })}
                   alt="Economic Courier Express Scooter Delivery Rider for Fast Bhilwara City Dispatches"
                   title="Express City Delivery & Sample Pickup — Economic Courier Bhilwara"
                   width={645}
@@ -461,7 +462,7 @@ export default function HomePage() {
             <div className="lg:col-span-6 relative flex justify-center lg:justify-start">
               <div className="relative w-full max-w-[540px]">
                 <Image
-                  src="/assets/office/economic-courier-bhilwara-storefront.webp"
+                  src={getMediaUrl('/assets/office/economic-courier-bhilwara-storefront.webp', { type: 'image' })}
                   alt="Economic Courier central hub storefront and booking office Opposite New Cloth Market on Pur Road, Bhilwara"
                   title="Economic Courier Bhilwara — Central Booking Hub & Storefront, Pur Road"
                   width={680}

@@ -68,6 +68,8 @@ export default function HomePage() {
     {
       id: 'domestic',
       title: 'Domestic Courier',
+      alt: 'Economic Courier Domestic Express Shipping across 19,000+ Pin Codes in India',
+      imageTitle: 'Domestic Priority Express Shipping from Bhilwara Hub',
       caption: 'domestic · all-india',
       subtext: 'Surface & air express across India',
       image: '/assets/services/card-domestic.webp',
@@ -77,6 +79,8 @@ export default function HomePage() {
     {
       id: 'international',
       title: 'International Courier',
+      alt: 'eCS World Wide Express International Air Cargo forwarding to 220+ Countries from Bhilwara',
+      imageTitle: 'International Priority Air Courier & Worldwide Freight from Bhilwara',
       caption: 'international · eCS express',
       subtext: 'Global air cargo & priority transit',
       image: '/assets/services/card-international.webp',
@@ -86,6 +90,8 @@ export default function HomePage() {
     {
       id: 'documents',
       title: 'Documents & Parcels',
+      alt: 'Confidential Document & Legal Dossier Express Courier Delivery by Economic Courier Bhilwara',
+      imageTitle: 'Urgent Documents, Contracts & Passport Courier Desk',
       caption: 'documents · priority desk',
       subtext: 'Secure paperwork & dossiers',
       image: '/assets/services/card-documents.webp',
@@ -95,6 +101,8 @@ export default function HomePage() {
     {
       id: 'textiles',
       title: 'Commercial & Textile Cargo',
+      alt: 'Specialized Textile Fabric Swatches, Mill Bales & Suit Sample Courier from Bhilwara Mandi',
+      imageTitle: 'Bhilwara Textile Logistics — Fabric Swatches & Mill Sample Dispatches',
       caption: 'commercial · textile freight',
       subtext: 'Bhilwara mills to national hubs',
       image: '/assets/services/card-textiles.webp',
@@ -250,9 +258,11 @@ export default function HomePage() {
               <div className="relative w-full max-w-[560px]">
                 <Image
                   src="/assets/hero/hero-courier.webp"
-                  alt="eCS Courier Delivery staff in Bhilwara with van and happy customer"
+                  alt="Economic Courier delivery staff with branded eCS van and parcel box delivering in Bhilwara"
+                  title="Economic Courier Bhilwara — Express Doorstep Parcel Delivery Service"
                   width={580}
                   height={390}
+                  quality={95}
                   priority
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 560px"
                   style={{ aspectRatio: '580/390' }}
@@ -351,9 +361,11 @@ export default function HomePage() {
               >
                 <Image
                   src="/assets/services/ecs-boxes-3d.webp"
-                  alt="eCS World Wide Express 3D Courier Parcel Boxes"
+                  alt="Economic Courier & eCS World Wide Express 3D Branded Courier Parcel Boxes"
+                  title="Priority Express Courier Parcel Packaging — Economic Courier Bhilwara"
                   width={951}
                   height={570}
+                  quality={95}
                   sizes="(max-width: 640px) 140px, (max-width: 1024px) 210px, 230px"
                   style={{ aspectRatio: '951/570' }}
                   className="w-full h-auto object-contain"
@@ -367,9 +379,11 @@ export default function HomePage() {
               >
                 <Image
                   src="/assets/services/ecs-scooter-rider-facing-inward.webp"
-                  alt="eCS World Wide Express Scooter Delivery Rider Object"
+                  alt="Economic Courier Express Scooter Delivery Rider for Fast Bhilwara City Dispatches"
+                  title="Express City Delivery & Sample Pickup — Economic Courier Bhilwara"
                   width={645}
                   height={550}
+                  quality={95}
                   sizes="(max-width: 640px) 150px, (max-width: 1024px) 220px, 240px"
                   style={{ aspectRatio: '645/550' }}
                   className="w-full h-auto object-contain"
@@ -391,8 +405,10 @@ export default function HomePage() {
                   <div className="relative w-full rounded-xl sm:rounded-2xl overflow-hidden bg-slate-100" style={{ aspectRatio: '4/3' }}>
                     <Image
                       src={service.image}
-                      alt={service.title}
+                      alt={service.alt}
+                      title={service.imageTitle}
                       fill
+                      quality={95}
                       sizes="(max-width: 640px) 50vw, (max-width: 1024px) 50vw, 280px"
                       style={{ aspectRatio: '4/3' }}
                       className="object-cover transition-transform duration-500 group-hover:scale-105"
